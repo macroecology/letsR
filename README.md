@@ -16,7 +16,7 @@ We hope you enjoy it.
 =====
 Here are some advices:
 
-You can download this package using the function install_git from the pacckage devtools. 
+You can download this package using the function install_git from the package devtools. 
 
 For properly work of this version you may install and load the following packages:
 - maps
