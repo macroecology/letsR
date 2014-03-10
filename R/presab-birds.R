@@ -4,7 +4,7 @@
 #' 
 #' @description Transform species shapefiles into a matrix of presence/absence (specially desinged for bird life output).
 #'
-#' @usage presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
+#' @usage lets.presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
 #' remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
 #' crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL, 
 #' origin=NULL, seasonal=NULL)
@@ -32,12 +32,12 @@
 #'polygons is not the same number of species that you have. Before run the function please check if the arguments are in the way you want.
 #' 
 #' @seealso plot.PresenceAbsence
-#' @seealso presab
-#' @seealso shFilter
+#' @seealso lets.presab
+#' @seealso lets.shFilter
 #' 
 #' @export
 
-presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90, 
+lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90, 
                      ymx=90, resol=1, remove.cells=TRUE,
                      remove.sp=TRUE, show.matrix=FALSE, 
                      crs=CRS("+proj=longlat +datum=WGS84"),
@@ -65,7 +65,7 @@ presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
     valores2 <- valores
     shp <- readShapePoly(shapes[j], delete_null_obj=TRUE, force_ring=T)
     nomes[j] <- levels(shp$SCINAME)[1]
-    shp <- shFilter(shp, presence=presence, origin=origin, seasonal=seasonal)
+    shp <- lets.shFilter(shp, presence=presence, origin=origin, seasonal=seasonal)
     if(!is.null(shp)){  
     k <- k+1
     cell <- extract(r, shp, cellnumber=T, small=T, weights=T)        
@@ -87,17 +87,17 @@ presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
     
   
   if(remove.cells==TRUE){
-    matriz <- removeCells(matriz)
+    matriz <- .removeCells(matriz)
   }
     
   if(remove.sp==TRUE){
-    matriz <- removeSp(matriz)
+    matriz <- .removeSp(matriz)
   }
   
   dev.off()
   cat("\nThank you for your patience!")
 
-  matriz <- unicas(matriz)
+  matriz <- .unicas(matriz)
   
   if(show.matrix==TRUE){
     return(matriz)

@@ -1,6 +1,7 @@
 # Summary for object of class PresenceAbsence
 # Bruno Vilela
 #' @export
+
 summary.PresenceAbsence <- function(x){
   class <- class(x)
   Numberofspecies <- ncol(x$Pre)-2

@@ -46,7 +46,7 @@ lets.iucn.his <- function(input){
     plot.new()
     text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n-i))))      
     
-    resu <- Hist(input[i])
+    resu <- .Hist(input[i])
     resus <- rbind(resus, resu)
   }   
   
@@ -58,7 +58,7 @@ lets.iucn.his <- function(input){
 
 
 ###
-Hist <- function(input){
+.Hist <- function(input){
   
   input <- gsub(as.matrix(input), patt=" ", replace="-")
   h2 <- try(htmlParse(paste("http://api.iucnredlist.org/go/",input, sep = "")),silent=TRUE)

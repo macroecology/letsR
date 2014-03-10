@@ -1,8 +1,7 @@
 # Function to remove species with only zero values from PresenceAbscence matrix
 # Bruno Vilela
-#' @export
 
-removeSp <- function(x){
+.removeSp <- function(x){
   if(nrow(as.matrix(x))==1){
     nomes <- colnames(x)
     x <- as.vector(x)

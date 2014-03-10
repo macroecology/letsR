@@ -4,7 +4,7 @@
 #' 
 #' @description Filter species shapefiles by origin and presence type (following IUCN types).
 #'
-#' @usage shFilter(shapes, presence=NULL, origin=NULL, seasonal=NULL)
+#' @usage lets.shFilter(shapes, presence=NULL, origin=NULL, seasonal=NULL)
 #' 
 #' @param shapes SpatialPolygonsDataFrame (see function readShapePoly to open this files) class object. Species name should be in a subclass called BINOMIAL or binomial.
 #' @param presence A vector with the code numbers of presence type to be matained.
@@ -39,13 +39,13 @@
 #' More info see metadata file of the shapefiles.
 #' 
 #' @seealso plot.PresenceAbsence
-#' @seealso presab
+#' @seealso lets.presab
 #' 
 #' @export
 
 
 
-shFilter <- function(shapes, presence=NULL, origin=NULL, seasonal=NULL){
+lets.shFilter <- function(shapes, presence=NULL, origin=NULL, seasonal=NULL){
   
 if(is.null(presence) & is.null(origin) & is.null(seasonal)){
   return(shapes)

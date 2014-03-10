@@ -1,8 +1,7 @@
 # Function to sum the duplcated species in the matrix
 # Bruno Vilela
-#' @export
 
-unicas <- function(resu){
+.unicas <- function(resu){
   if(!any(duplicated(colnames(resu)))){
     return(resu)
   }else{

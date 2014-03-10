@@ -4,7 +4,7 @@
 #' 
 #' @description Transform species shapefiles into a matrix of presence/absence.
 #'
-#' @usage presab(shapes, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
+#' @usage lets.presab(shapes, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
 #' remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
 #' crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL, 
 #' origin=NULL, seasonal=NULL)
@@ -32,8 +32,8 @@
 #'polygons is not the same number of species that you have. Before run the function please check if the arguments are in the way you want.
 #' 
 #' @seealso plot.PresenceAbsence
-#' @seealso presab.birds
-#' @seealso shFilter
+#' @seealso lets.presab.birds
+#' @seealso lets.shFilter
 #' 
 #' @import raster
 #' @import maptools
@@ -41,14 +41,14 @@
 #' 
 #' @export
 
-presab <- function(shapes, xmn=-180, xmx=180, ymn=-90, 
+lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90, 
                    ymx=90, resol=1, remove.cells=TRUE, 
                    remove.sp=TRUE, show.matrix=FALSE, 
                    crs=CRS("+proj=longlat +datum=WGS84"),
                    cover=0, presence=NULL, origin=NULL, seasonal=NULL){
   
   
-  shapes <- shFilter(shapes, presence=presence, origin=origin, seasonal=seasonal)
+  shapes <- lets.shFilter(shapes, presence=presence, origin=origin, seasonal=seasonal)
   
   if(is.null(shapes)){
     stop("after filtering none species distribution left")
@@ -94,10 +94,10 @@ presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   }
   cbind(coord,matriz)->Resultado
   if(remove.cells==TRUE){
-    Resultado <- removeCells(Resultado)
+    Resultado <- .removeCells(Resultado)
   }
   if(remove.sp==TRUE){
-    Resultado <- removeSp(Resultado)
+    Resultado <- .removeSp(Resultado)
   }
   dev.off()
   cat("\nThank you for your patience!")
