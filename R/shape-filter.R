@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Filter species shapefiles by origin and presence type (following IUCN types).
+#' @description Filter species shapefiles by origin, presence and seasonal type (following IUCN types).
 #'
 #' @usage lets.shFilter(shapes, presence=NULL, origin=NULL, seasonal=NULL)
 #' 
@@ -47,45 +47,43 @@
 
 lets.shFilter <- function(shapes, presence=NULL, origin=NULL, seasonal=NULL){
   
-if(is.null(presence) & is.null(origin) & is.null(seasonal)){
+ if(is.null(presence) & is.null(origin) & is.null(seasonal)){
   return(shapes)
-}else{
+ }else{
   
-try(names(shapes)[names(shapes)=="ORIGIN"]  <- "origin", silent = T)
-try(names(shapes)[names(shapes)=="PRESENCE"]  <- "presence", silent = T)
-try(names(shapes)[names(shapes)=="SEASONAL"]  <- "seasonal", silent = T)
+ try(names(shapes)[names(shapes)=="ORIGIN"]  <- "origin", silent = T)
+ try(names(shapes)[names(shapes)=="PRESENCE"]  <- "presence", silent = T)
+ try(names(shapes)[names(shapes)=="SEASONAL"]  <- "seasonal", silent = T)
 
 
-if(!is.null(presence)){
-pos <- which(shapes$presence %in% presence)
-if(length(pos)>0){
-shapes <- shapes[pos, ]
-}else{
+ if(!is.null(presence)){
+  pos <- which(shapes$presence %in% presence)
+  if(length(pos)>0){
+    shapes <- shapes[pos, ]
+  }else{
   shapes <-  NULL
-}
-}
+  }
+ }
 
-if(!is.null(origin)){
-pos2 <- which(shapes$origin %in% origin)
+ if(!is.null(origin)){
+  pos2 <- which(shapes$origin %in% origin)
 
-if(length(pos2)>0){
-  shapes <- shapes[pos2, ]
-}else{
+  if(length(pos2)>0){
+   shapes <- shapes[pos2, ]
+  }else{
   shapes <- NULL
-}
-}
+  }
+ }
 
-
-if(!is.null(seasonal)){
+ if(!is.null(seasonal)){
   pos3 <- which(shapes$seasonal %in% seasonal)
-
   if(length(pos3)>0){
     shapes <- shapes[pos3, ]
   }else{
     shapes <- NULL
   }      
-}
+ }
 
-return(shapes)
-}
+ return(shapes)
+ }
 }

@@ -2,8 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description return sepecies information from IUCN website from one or more species names, 
-#' or from an object of the PresenceAbsence class.
+#' @description Get species information from IUCN website for one or more species.
 #' 
 #' @usage lets.iucn(input)
 #' 

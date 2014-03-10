@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 
-#' @description Transform species shapefiles into a matrix of presence/absence (specially desinged for bird life output).
+#' @description Transform species shapefiles into a matrix of presence/absence (specially desinged for BirdLife output).
 #'
 #' @usage lets.presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
 #' remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 

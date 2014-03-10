@@ -9,7 +9,7 @@
 #' crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL, 
 #' origin=NULL, seasonal=NULL)
 #' 
-#' @param shapes SpatialPolygonsDataFrame (see function readShapePoly to open this files) class object. Species name should be in a subclass called BINOMIAL or binomial.
+#' @param shapes SpatialPolygonsDataFrame (see function readShapePoly to open these files) class object. Species name should be in a subclass called BINOMIAL or binomial.
 #' @param xmx Maximun longitude used to construct the grid of cells in which the matrix will be based. 
 #' @param xmn Minimun longitude used to construct the grid of cells in which the matrix will be based.
 #' @param ymx Maximun latitude used to construct the grid of cells in which the matrix will be based. 
