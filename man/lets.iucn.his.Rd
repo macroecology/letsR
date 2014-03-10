@@ -15,9 +15,8 @@ conservation status of the species (see IUCN website for
 details). NE = Not evaluated.
 }
 \description{
-return sepecies historic status information from IUCN
-website from one or more species names, or from an object
-of the PresenceAbsence class.
+Get species conservation status history information from
+IUCN website for one or more species.
 }
 \details{
 Depending on your internet conection and the number of
