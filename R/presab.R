@@ -1,6 +1,6 @@
 #' Shapefiles to presence/absence matrix
 #' 
-#' @author Bruno Vilela
+#' @author Bruno Vilela & Fabricio Villalobos
 #' 
 #' @description Transform species shapefiles into a matrix of presence/absence.
 #'
