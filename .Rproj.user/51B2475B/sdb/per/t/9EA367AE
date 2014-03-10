@@ -1,0 +1,17 @@
+{
+    "contents" : "#' Shapefiles to presence/absence matrix\n#' \n#' @author Bruno Vilela\n#' \n#' @description Transform species shapefiles into matrix of presence/absence\n#'\n#' @usage presab(shapes, xmn=-180, xmx=180, ymn=-90, ymx=90, \n#' resol=1, remove.cells=TRUE, remove.sp=TRUE)\n#' @param shapes SpatialPolygonsDataFrame class object.\n#' @param xmx Maximun longitude used to construct the grid of cells in which the matrix will be based. \n#' @param xmn Minimun longitude used to construct the grid of cells in which the matrix will be based.\n#' @param ymx Maximun latitude used to construct the grid of cells in which the matrix will be based. \n#' @param ymn Minimun latitude used to construct the grid of cells in which the matrix will be based.\n#' @param remove.cells If true the final matrix will not contain cells in the grid with a value equal to zero.\n#' @param remove.sp If true the final matrix will not contain species that do not match any cell in the grid.\n#' @param show.matrix if true only the object matrix will be shown\n#' \n#' \n#' @export\n\npresab <- function(shapes, xmn=-180, xmx=180, ymn=-90, \n                             ymx=90, resol=1, remove.cells=TRUE, \n                             remove.sp=TRUE, show.matrix=FALSE){\n  \n  ras <- raster(xmn=xmn, xmx=xmx, ymn=ymn, ymx=ymx)\n  res(ras) <- resol\n  values(ras) <- 1\n  coord <- xyFromCell(ras, 1:length(values(ras)))\n  nomes <- levels(shapes$BINOMIAL)\n  matriz <- matrix(0, ncol=length(nomes), nrow=length(values(ras)))\n  colnames(matriz) <- nomes\n  n <- length(shapes$BINOMIAL)\n  \n  cat(\"This action may take some time...\\nWe will take the liberty to open a counting window so you can follow the progress...\")\n  \n  x11(2,2,pointsize = 12)\n  par(mar=c(0,0,0,0))\n  \n  for(i in 1:n){\n    plot.new()\n    text(0.5, 0.5, paste(paste(\"Total:\",n,\"\\n\",\"Runs to go: \",(n-i))))\n    celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])), cellnumbers=T, weights=T, small=T)\n    pos <- which(shapes$BINOMIAL[i]==nomes)\n    matriz[do.call(rbind.data.frame, celulas)[, 1], pos] <- 1\n  }\n  cbind(coord,matriz)->Resultado\n  if(remove.cells==TRUE){\n    Resultado <- removeCells(Resultado)\n  }\n  if(remove.sp==TRUE){\n    Resultado <- removeSp(Resultado)\n  }\n  dev.off()\n  cat(\"\\nThank you for your patience!\")\n  if(show.matrix==TRUE){\n    return(Resultado)\n  }else{\n  values(ras) <- rowSums(matriz)\n  final <- list(\"Presence and Absence Matrix\"=Resultado, \"Richness Raster\"=ras, \n                \"Species name\"=colnames(Resultado[,-(1:2)]))\n  class(final) <- \"PresenceAbsence\"\n  return(final)\n  }\n}\n\n###\nremoveCells <- function(x){\n  rem <- which(rowSums(x[, -c(1, 2)])==0)\n  if(length(rem)>0){\n  x <- x[-rem,]\n  }\n  return(x)\n}\n\nremoveSp <- function(x){  \n  rem <- which(colSums(x[, -c(1, 2)])==0)+2\n  if(length(rem)>0){\n    x <- x[,-rem]\n  }\n return(x)\n}\n\n",
+    "created" : 1393290497155.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2874356635",
+    "id" : "9EA367AE",
+    "lastKnownWriteTime" : 1393300913,
+    "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/presab.R",
+    "project_path" : "R/presab.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

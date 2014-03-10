@@ -1,0 +1,17 @@
+{
+    "contents" : "#' Add variables to a PresenceAbscence object\n#' \n#' @author Bruno Vilela\n#' \n#' @description Add variables in raster format to a PresenceAbsence object.\n#'\n#' @usage lets.addvar(x, y)\n#' \n#' @param x An PresenceAbsence object. \n#' @param y Variables to be added in Raster or RasterStack format.\n#' \n#' @return The result is a matrix of species presence/absence with \n#' the variables columns added at the end.  \n#'  \n#' @seealso presab.birds\n#' @seealso presab\n#' \n#' @export\n\nlets.addvar <- function(x, y){\nvar_c <- crop(y, x$R)\nres1 <- res(var_c)[1]\nres2 <- res(x$R)[1]\nif(res2>res1){\nvar_a <- aggregate(var_c, fact= (res2/res1), na.rm=T)\n}\nif(res2<res1){\n  var_a <- disaggregate(var_c, fact= (res1/res2), na.rm=T)\n}\nif(res2==res1){\n  var_a <- var_c\n}\nvar_r <- resample(var_a, x$R)\nvar_e <- extract(var_r, x$P[, 1:2]) \nresultado <- cbind(x$P, var_e)\nreturn(resultado)\n}\n",
+    "created" : 1394465436411.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4190793613",
+    "id" : "8A217A63",
+    "lastKnownWriteTime" : 1394472038,
+    "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/add-variables.R",
+    "project_path" : "R/add-variables.R",
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

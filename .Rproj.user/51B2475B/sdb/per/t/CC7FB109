@@ -1,0 +1,17 @@
+{
+    "contents" : "#' Plot for an object of class PresenceAbsence\n#' \n#' @author Bruno Vilela\n#' \n#' @description Plot species richness map from an object of class PresenceAbsence or an\n#' specific species map.\n#'\n#' @usage plot(x, name=NULL)\n#' @param x an object of class PresenceAbsence (see function presab).\n#' @param name you can specify a species to be ploted instead of the richness map.\n#' \n#' @export\n\nplot.PresenceAbsence <- function(x, name=NULL){\n  if(is.null(name)){\n  plot(x$Rich)  \n  }\n  if(!is.null(name)){\n    pos <- which(resu$Sp==name)\n    r <- rasterize(resu$Presen[,1:2], x$Rich,  resu$Presen[,(pos+2)])  \n    plot(r)\n  }  \n}\n\n",
+    "created" : 1393297319348.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "280417501",
+    "id" : "CC7FB109",
+    "lastKnownWriteTime" : 1393300497,
+    "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/plot.R",
+    "project_path" : "R/plot.R",
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

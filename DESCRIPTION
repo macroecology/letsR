@@ -1,0 +1,10 @@
+Package: letsR
+Type: Package
+Title: Functions that are used in the LETS lab in UFG Brazil
+Version: 1.0
+Date: 2014-02-24
+Author: Bruno Vilela
+Maintainer: Bruno Vilela <brunovilelasilva@hotmail.com>
+Description: Here we have a lot of usefull tools for ecology and evolution
+    researchers.
+License: Free
