@@ -24,15 +24,15 @@ For properly work of this version you may install and load the following package
 - raster
 - XML
 
-The main functions are:
+The main functions of the letsR package are:
 
 - lets.presab: Transform species shapefiles into a matrix of presence/absence. 
 - lets.presab.birds: Transform species shapefiles into a matrix of presence/absence (specially desinged for bird life output).
+- lets.addvar: Add variables in raster format to a presence/absence matrix.
 - lets.iucn: Get species information from IUCN website for one or more species.
 - lets.iucn.ha: Get species habitat information from IUCN website for one or more species.
 - lets.iucn.his: Get species conservation status history information from IUCN website for one or more species.
 - lets.shFilter: Filter species shapefiles by origin, presence and seasonal type (following IUCN types).
-- lets.addvar: Add variables in raster format to a presence/absence matrix.
 
 Look functions' help files for more informations.
 
