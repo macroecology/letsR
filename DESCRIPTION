@@ -6,7 +6,8 @@ Date: 2014-03-11
 Author: Bruno Vilela & Fabricio Villalobos
 Maintainer: Bruno Vilela <brunovilelasilva@hotmail.com>
 Description: This package is being developed at LETS (Laboratório de Ecologia Teórica e Síntese) in 
-UFG (Universidade Federal de Goiás, Brazil) as part of a larger project looking to integrate recent advances in macroecological data handling and processing. 
-Its purpose is to make some of our commonly used but unavailable R functions available to the larger public. 
-The package provides useful R functions for researchers in ecology and evolution.
+UFG (Universidade Federal de Goiás, Brazil) as part of a larger project looking to integrate recent 
+advances in macroecological data handling and processing. Its purpose is to make some of our commonly
+used but unavailable R functions available to the larger public. The package provides useful R functions
+for researchers in ecology and evolution.
 License: Free
