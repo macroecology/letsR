@@ -10,17 +10,18 @@
 #' @param name you can specify a species to be ploted instead of the richness map.
 #' @param world if True a shapefile of countries is added to the plot.
 #' 
-#' @seealso presab
-#' 
+#' @seealso lets.presab
+#' @seealso lets.presab.birds
 #' @export
 
 plot.PresenceAbsence <- function(x, name=NULL, world=T){
   if(is.null(name)){
-  colfunc <- colorRampPalette(c("white", "green", "yellow", "red"))
+  colfunc <- colorRampPalette(c("green", "yellow", "red"))
   v <- values(x$Rich)
+  c <- max(v)
   v[(v==0)] <- NA
   values(x$Rich) <- v
-  plot(x$Rich, col=colfunc((length(x$S)+1)))  
+  plot(x$Rich, col=colfunc(c))  
   }
   if(!is.null(name)){
     pos <- which(x$Sp==name)

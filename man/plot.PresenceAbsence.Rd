@@ -22,6 +22,8 @@ PresenceAbsence or an specific species map.
 Bruno Vilela
 }
 \seealso{
-presab
+lets.presab
+
+lets.presab.birds
 }
 

@@ -1,0 +1,16 @@
+{
+    "contents" : "#' Plot for an object of class PresenceAbsence\n#' \n#' @author Bruno Vilela\n#' \n#' @description Plot species richness map from an object of class PresenceAbsence or an\n#' specific species map.\n#'\n#' @usage plot(x, name=NULL, world=T)\n#' @param x an object of class PresenceAbsence (see function presab).\n#' @param name you can specify a species to be ploted instead of the richness map.\n#' @param world if True a shapefile of countries is added to the plot.\n#' \n#' @seealso lets.presab\n#' @seealso lets.presab.birds\n#' @export\n\nplot.PresenceAbsence <- function(x, name=NULL, world=T){\n  if(is.null(name)){\n  colfunc <- colorRampPalette(c(\"green\", \"yellow\", \"red\"))\n  v <- values(x$Rich)\n  c <- max(v)\n  v[(v==0)] <- NA\n  values(x$Rich) <- v\n  plot(x$Rich, col=colfunc(c))  \n  }\n  if(!is.null(name)){\n    pos <- which(x$Sp==name)\n    \n    r <- rasterize(x$Presen[ ,1:2], x$Rich,  x$Presen[ ,(pos+2)])  \n    plot(r, col=c(\"white\", \"red\"))\n  }\n  if(world==T){\n  map(add=T)\n  }\n}\n\n",
+    "created" : 1394053135603.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "325515743",
+    "id" : "C7C74197",
+    "lastKnownWriteTime" : 1394551211,
+    "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/plot.R",
+    "project_path" : "R/plot.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -21,8 +21,10 @@ Add variables in raster format to a PresenceAbsence object.
 Bruno Vilela
 }
 \seealso{
-presab.birds
+lets.presab.birds
 
-presab
+lets.presab
+
+lets.addpoly
 }
 

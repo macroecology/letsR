@@ -12,8 +12,9 @@
 #' @return The result is a matrix of species presence/absence with 
 #' the variables columns added at the end.  
 #'  
-#' @seealso presab.birds
-#' @seealso presab
+#' @seealso lets.presab.birds
+#' @seealso lets.presab
+#' @seealso lets.addpoly
 #' 
 #' @export
 

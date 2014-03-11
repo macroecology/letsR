@@ -1,0 +1,17 @@
+{
+    "contents" : "#print summary\nprint.summary.PresenceAbsence <- function(x){\n  cat(\"\\nClass:\", x$class)\n  cat(\"\\n_ _\")\n  \n  cat(\"\\nNumber of species:\", x$Numberofspecies,\n      \"\\nNumber of cells:\", x$Numberofcells)\n  cat(\"\\nCells with presence:\", x$Cellswithpresence)\n  cat(\"\\nCells without presence:\", x$Cellswithoutanypresence)  \n  cat(\"\\nSpecies without presence:\", x$Specieswithoutanypresence)\n  cat(\"\\nSpecies with the largest range:\", x$SpeciesLargestRange)\n  cat(\"\\n_ _\")  \n  \n  cat(\"\\nRaster carachteristics\")\n  cat(\"\\nScale: \", x$resolution[1], \", \", x$resolution[2], \" (x, y)\", sep=\"\")  \n  cat(\"\\nExtention: \", xmin(x$ex), \", \",  xmax(x$ex), \", \", ymin(x$ex), \", \", ymax(x$ex), \" (xmin, xmax, ymin, ymax)\", sep=\"\")\n  cat(\"\\nCoord. Ref.: \", x$coordRef)\n  \n}\n",
+    "created" : 1394459591330.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1384939936",
+    "id" : "7563CCC3",
+    "lastKnownWriteTime" : 1394547639,
+    "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/print-summary.R",
+    "project_path" : "R/print-summary.R",
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
