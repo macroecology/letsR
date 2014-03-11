@@ -6,7 +6,7 @@
 #'
 #' @usage lets.addvar(x, y, onlyvar=F)
 #' 
-#' @param x An PresenceAbsence object. 
+#' @param x A PresenceAbsence object. 
 #' @param y Variables to be added in Raster or RasterStack format.
 #' @param onlyvar If True only the variable matrix will be returned.
 #' @return The result is a matrix of species presence/absence with 

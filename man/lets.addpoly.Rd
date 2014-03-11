@@ -5,7 +5,7 @@
 lets.addpoly(x, y, onlyvar=F)
 }
 \arguments{
-  \item{x}{An PresenceAbsence object.}
+  \item{x}{A PresenceAbsence object.}
 
   \item{y}{Polygon information to be added.}
 

@@ -6,7 +6,7 @@
 #'
 #' @usage lets.addpoly(x, y, onlyvar=F)
 #' 
-#' @param x An PresenceAbsence object. 
+#' @param x A PresenceAbsence object. 
 #' @param y Polygon information to be added.
 #' @param z Name of the information inside the polygon.
 #' @param onlyvar If True only the variable matrix will be returned.

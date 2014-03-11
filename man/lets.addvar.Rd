@@ -5,7 +5,7 @@
 lets.addvar(x, y, onlyvar=F)
 }
 \arguments{
-  \item{x}{An PresenceAbsence object.}
+  \item{x}{A PresenceAbsence object.}
 
   \item{y}{Variables to be added in Raster or RasterStack
   format.}
