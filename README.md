@@ -1,39 +1,33 @@
-letsR
+﻿letsR
 =====
 
 Package letsR
 
-This is a package developed in UFG (Universidade Federal de Goiás), 
-specifically in LETS (Laboratório de Ecologia Teórica e Síntese).
+This package is being developed at LETS (Laboratório de Ecologia Teórica e Síntese) in UFG (Universidade Federal de Goiás, Brazil) as part of a larger project looking to integrate recent advances in macroecological data handling and processing. Its purpose is to make some of our commonly used but unavailable R functions available to the larger public. The package provides useful R functions for researchers in ecology and evolution.
 
-It has some usefull functions for researchers in ecology and evolution.
+The letsR package is in continuous development and suggestions are more than welcome!
 
-The package is in continuos development. Suggestions are welcome!!
+We hope you enjoy it and find it useful.
 
-We hope you enjoy it.
+====
+Here are a few advices about using the letsR package:
+You can download this package using the function install_git from the package devtools.
 
+For this package version to work properly, you should previously install and load the following R packages:
+• maps
+• maptools
+• raster
+• XML
 
-=====
-Here are some advices:
+The main functions of the letsR package are the following:
+• lets.presab: Builts a presence-absence matrix (sites x species) based on species’ range maps from shapefiles.
+• lets.presab.birds: Builts a presence-absence matrix (sites x species) based on species’ range maps from shapefiles (specially designed for the BirdLife International database).
+• lets.shFilter: Filter species’ shapefiles by origin, presence and seasonal type (following IUCN categorization of species’ distributional ranges).
+• lets.addvar: Add variables in raster format to a presence-absence matrix.
+• lets.iucn: Get species’ information from the IUCN website.
+• lets.iucn.ha: Get species’ habitat information from the IUCN website.
+• lets.iucn.his: Get information on the history of species’ conservation status from the IUCN website.
 
-You can download this package using the function install_git from the package devtools. 
+Take a look at the functions' help files for more information.
 
-For properly work of this version you may install and load the following packages:
-- maps
-- maptools
-- raster
-- XML
-
-The main functions of the letsR package are:
-
-- lets.presab: Transform species shapefiles into a matrix of presence/absence. 
-- lets.presab.birds: Transform species shapefiles into a matrix of presence/absence (specially desinged for BirdLife output).
-- lets.addvar: Add variables in raster format to a presence/absence matrix.
-- lets.iucn: Get species information from IUCN website for one or more species.
-- lets.iucn.ha: Get species habitat information from IUCN website for one or more species.
-- lets.iucn.his: Get species conservation status history information from IUCN website for one or more species.
-- lets.shFilter: Filter species shapefiles by origin, presence and seasonal type (following IUCN types).
-
-Look functions' help files for more informations.
-
-Try the functions summary and plot with the object of class PresenceAbsence.
+Try the R functions summary() and plot() with the object of class PresenceAbsence.
