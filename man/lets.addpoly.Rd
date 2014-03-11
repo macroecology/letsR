@@ -2,7 +2,7 @@
 \alias{lets.addpoly}
 \title{Add polygon values to a PresenceAbscence object}
 \usage{
-lets.addpoly(x, y)
+lets.addpoly(x, y, onlyvar=F)
 }
 \arguments{
   \item{x}{An PresenceAbsence object.}
@@ -10,6 +10,9 @@ lets.addpoly(x, y)
   \item{y}{Polygon information to be added.}
 
   \item{z}{Name of the information inside the polygon.}
+
+  \item{onlyvar}{If True only the variable matrix will be
+  returned.}
 }
 \value{
 The result is a matrix of species presence/absence with the
