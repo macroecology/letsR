@@ -1,11 +1,11 @@
 {
     "contents" : "#' Shapefiles filtering \n#' \n#' @author Bruno Vilela\n#' \n#' @description Filter species shapefiles by origin, presence and seasonal type (following IUCN types).\n#'\n#' @usage lets.shFilter(shapes, presence=NULL, origin=NULL, seasonal=NULL)\n#' \n#' @param shapes SpatialPolygonsDataFrame (see function readShapePoly to open this files) class object. Species name should be in a subclass called BINOMIAL or binomial.\n#' @param presence A vector with the code numbers of presence type to be matained.\n#' @param origin A vector with the code numbers of origin type to be matained.\n#' @param seasonal A vector with the code numbers of seasonal type to be matained.\n#' \n#' @return The result is the shapefile filtered. If the filters remove all polygons, the result will be NULL.\n#' \n#'  \n#' @details Presence codes:\n#' (1) Extant, \n#' (2) Probably Extant, \n#' (3) Possibly Extant, \n#' (4) Possibly Extinct, \n#' (5) Extinct (post 1500) &\n#' (6) Presence Uncertain.\n#' \n#' Origin codes:\n#' (1) Native, \n#' (2) Reintroduced, \n#' (3) Introduced, \n#' (4) Vagrant &\n#' (5) Origin Uncertain.\n#' \n#' Seasonal codes:\n#' (1) Resident, \n#' (2) Breeding Season, \n#' (3) Non-breeding Season, \n#' (4) Passage &\n#' (5) Seasonal Occurrence Uncertain.\n#' \n#' More info see metadata file of the shapefiles.\n#' \n#' @seealso plot.PresenceAbsence\n#' @seealso lets.presab\n#' \n#' @export\n\n\n\nlets.shFilter <- function(shapes, presence=NULL, origin=NULL, seasonal=NULL){\n  \n if(is.null(presence) & is.null(origin) & is.null(seasonal)){\n  return(shapes)\n }else{\n  \n try(names(shapes)[names(shapes)==\"ORIGIN\"]  <- \"origin\", silent = T)\n try(names(shapes)[names(shapes)==\"PRESENCE\"]  <- \"presence\", silent = T)\n try(names(shapes)[names(shapes)==\"SEASONAL\"]  <- \"seasonal\", silent = T)\n\n\n if(!is.null(presence)){\n  pos <- which(shapes$presence %in% presence)\n  if(length(pos)>0){\n    shapes <- shapes[pos, ]\n  }else{\n  shapes <-  NULL\n  }\n }\n\n if(!is.null(origin)){\n  pos2 <- which(shapes$origin %in% origin)\n\n  if(length(pos2)>0){\n   shapes <- shapes[pos2, ]\n  }else{\n  shapes <- NULL\n  }\n }\n\n if(!is.null(seasonal)){\n  pos3 <- which(shapes$seasonal %in% seasonal)\n  if(length(pos3)>0){\n    shapes <- shapes[pos3, ]\n  }else{\n    shapes <- NULL\n  }      \n }\n\n return(shapes)\n }\n}\n",
-    "created" : 1394053136802.000,
+    "created" : 1394565878245.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "1481320009",
-    "id" : "CC3C22AC",
+    "id" : "A09693CF",
     "lastKnownWriteTime" : 1394484550,
     "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/shape-filter.R",
     "project_path" : "R/shape-filter.R",

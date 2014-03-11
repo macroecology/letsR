@@ -1,0 +1,17 @@
+{
+    "contents" : "#' Create a matrix summarizing a species atribute \n#' \n#' @author Bruno Vilela\n#' \n#' @description Create a matrix summarizing a species atribute.\n#'\n#' @usage lets.maplizer(x, y, z, func=mean, ras=FALSE)\n#' \n#' @param x \n#' @param y\n#' @param z\n#' @param func\n#' @param ras\n#' \n#' @return \n#' \n#' @details \n#' \n#' @seealso lets.presab\n#' \n#' @export\n\nlets.maplizer <- function(x, y, z, func=mean, ras=F){\n if(is.factor(y)){\n  y <- as.numeric(levels(y))[y]\n }\n p <- x$P[, -(1:2)]\n for(i in 1:ncol(p)){\n  pos <- which(x$S[i]== z)\n  p[, i] <- p[, i]*y[pos]\n  pos2 <- which(p[, i]==0)\n  p[pos2, i] <- NA\n }\n resum <- apply(p, 1, func, na.rm=T)\n resultado <- cbind(x$P[, 1:2], resum)\n if(ras==T){\n  r <- rasterize(x$P[, 1:2], x$R, resum)\n  return(list(Matrix=resultado, raster=r))\n }else{\n  return(resultado)\n }\n}\n",
+    "created" : 1394559072817.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2252055836",
+    "id" : "4CDC03FD",
+    "lastKnownWriteTime" : 1394568532,
+    "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/maplizer.R",
+    "project_path" : "R/maplizer.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

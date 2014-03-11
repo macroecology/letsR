@@ -1,6 +1,6 @@
 #Print for object of class PresenceAbsence
 #Bruno Vilela
-
+#' @export
 print.PresenceAbsence <- function(x){
   resolution <- res(x$Ric)
   cat("\nClass:", class(x),

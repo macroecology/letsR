@@ -1,4 +1,5 @@
 #print summary
+#' @export
 print.summary.PresenceAbsence <- function(x){
   cat("\nClass:", x$class)
   cat("\n_ _")
