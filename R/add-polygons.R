@@ -4,11 +4,12 @@
 #' 
 #' @description Add polygon information to a PresenceAbsence object.
 #'
-#' @usage lets.addpoly(x, y)
+#' @usage lets.addpoly(x, y, onlyvar=F)
 #' 
 #' @param x An PresenceAbsence object. 
 #' @param y Polygon information to be added.
 #' @param z Name of the information inside the polygon.
+#' @param onlyvar If True only the variable matrix will be returned.
 #' 
 #' @return The result is a matrix of species presence/absence with 
 #' the polygon information columns added at the end. The Values repesent
@@ -20,7 +21,7 @@
 #' 
 #' @export
 
-lets.addpoly <- function(x, y, z){
+lets.addpoly <- function(x, y, z, onlyvar=F){
 
 pos1 <- which(names(y)==z)
  names(y)[pos1] <- "NOME"
@@ -38,6 +39,10 @@ pos1 <- which(names(y)==z)
  r <- rasterize(xy, x$R, matriz)
  r_e <- extract(r, x$P[,1:2])
  resultado <- cbind(x$P, r_e)
- return(resultado)
 
+ if(onlyvar==T){
+  return(r_e) 
+ }else{
+  return(resultado)
+ }
 }

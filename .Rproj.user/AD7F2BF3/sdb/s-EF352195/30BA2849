@@ -1,12 +1,12 @@
 {
-    "contents" : "#' Add polygon values to a PresenceAbscence object\n#' \n#' @author Bruno Vilela\n#' \n#' @description Add polygon information to a PresenceAbsence object.\n#'\n#' @usage lets.addpoly(x, y)\n#' \n#' @param x An PresenceAbsence object. \n#' @param y Polygon information to be added.\n#' @param z Name of the information inside the polygon.\n#' \n#' @return The result is a matrix of species presence/absence with \n#' the polygon information columns added at the end. The Values repesent\n#' the porcentage of the cell covered by the polygon.   \n#'  \n#' @seealso lets.presab.birds\n#' @seealso lets.presab\n#' @seealso lets.addvar\n#' \n#' @export\n\nlets.addpoly <- function(x, y, z){\n\npos1 <- which(names(y)==z)\n names(y)[pos1] <- \"NOME\"\n valores <- values(x$R)\n n <- nrow(y)\n matriz <- matrix(0, ncol=n, nrow=length(valores))\n nomes <- y$NOME\n colnames(matriz) <- nomes\n xy <- xyFromCell(x$R, 1:length(valores))\n for(i in 1:n){\n  celu <- extract(x$R, y[i,], cellnumber=T, small=T,  weights=T)\n  celu2 <- do.call(rbind.data.frame, celu)\n  matriz[celu2[,1], i] <- celu2[,3]\n }\n r <- rasterize(xy, x$R, matriz)\n r_e <- extract(r, x$P[,1:2])\n resultado <- cbind(x$P, r_e)\n return(resultado)\n\n}",
+    "contents" : "#' Add polygon values to a PresenceAbscence object\n#' \n#' @author Bruno Vilela\n#' \n#' @description Add polygon information to a PresenceAbsence object.\n#'\n#' @usage lets.addpoly(x, y, onlyvar=F)\n#' \n#' @param x An PresenceAbsence object. \n#' @param y Polygon information to be added.\n#' @param z Name of the information inside the polygon.\n#' @param onlyvar If True only the variable matrix will be returned.\n#' \n#' @return The result is a matrix of species presence/absence with \n#' the polygon information columns added at the end. The Values repesent\n#' the porcentage of the cell covered by the polygon.   \n#'  \n#' @seealso lets.presab.birds\n#' @seealso lets.presab\n#' @seealso lets.addvar\n#' \n#' @export\n\nlets.addpoly <- function(x, y, z, onlyvar=F){\n\npos1 <- which(names(y)==z)\n names(y)[pos1] <- \"NOME\"\n valores <- values(x$R)\n n <- nrow(y)\n matriz <- matrix(0, ncol=n, nrow=length(valores))\n nomes <- y$NOME\n colnames(matriz) <- nomes\n xy <- xyFromCell(x$R, 1:length(valores))\n for(i in 1:n){\n  celu <- extract(x$R, y[i,], cellnumber=T, small=T,  weights=T)\n  celu2 <- do.call(rbind.data.frame, celu)\n  matriz[celu2[,1], i] <- celu2[,3]\n }\n r <- rasterize(xy, x$R, matriz)\n r_e <- extract(r, x$P[,1:2])\n resultado <- cbind(x$P, r_e)\n\n if(onlyvar==T){\n  return(r_e) \n }else{\n  return(resultado)\n }\n}",
     "created" : 1394548365854.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "828758508",
+    "hash" : "2997327308",
     "id" : "30BA2849",
-    "lastKnownWriteTime" : 1394551141,
+    "lastKnownWriteTime" : 1394555791,
     "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/add-polygons.R",
     "project_path" : "R/add-polygons.R",
     "properties" : {

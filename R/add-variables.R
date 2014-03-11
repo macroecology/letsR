@@ -4,11 +4,11 @@
 #' 
 #' @description Add variables in raster format to a PresenceAbsence object.
 #'
-#' @usage lets.addvar(x, y)
+#' @usage lets.addvar(x, y, onlyvar=F)
 #' 
 #' @param x An PresenceAbsence object. 
 #' @param y Variables to be added in Raster or RasterStack format.
-#' 
+#' @param onlyvar If True only the variable matrix will be returned.
 #' @return The result is a matrix of species presence/absence with 
 #' the variables columns added at the end.  
 #'  
@@ -18,7 +18,7 @@
 #' 
 #' @export
 
-lets.addvar <- function(x, y){
+lets.addvar <- function(x, y, onlyvar=F){
  var_c <- crop(y, x$R)
  res1 <- res(var_c)[1]
  res2 <- res(x$R)[1]
@@ -34,5 +34,9 @@ lets.addvar <- function(x, y){
  var_r <- resample(var_a, x$R)
  var_e <- extract(var_r, x$P[, 1:2]) 
  resultado <- cbind(x$P, var_e)
+ if(onlyvar==T){
+  return(var_e) 
+ }else{
  return(resultado)
+}
 }
