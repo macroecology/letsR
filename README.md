@@ -14,9 +14,9 @@ Here are a few advices about using the letsR package:
 You can download this package using the function install_git from the package devtools.
 
 For this package version to work properly, you should previously install and load the following R packages:
-• maps
-• maptools
-• raster
+• maps 
+• maptools 
+• raster 
 • XML
 
 The main functions of the letsR package are the following:
