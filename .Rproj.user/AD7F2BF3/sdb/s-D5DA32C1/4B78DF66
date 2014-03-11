@@ -1,0 +1,16 @@
+{
+    "contents" : "Package: letsR\nType: Package\nTitle: letsR: Tools for macroecological data handling.\nVersion: 1.0\nDate: 2014-03-11\nAuthor: Bruno Vilela & Fabricio Villalobos\nMaintainer: Bruno Vilela <brunovilelasilva@hotmail.com>\nDescription: This package is being developed at LETS (Laboratório de Ecologia Teórica e Síntese) in \nUFG (Universidade Federal de Goiás, Brazil) as part of a larger project looking to integrate recent advances in macroecological data handling and processing. \nIts purpose is to make some of our commonly used but unavailable R functions available to the larger public. \nThe package provides useful R functions for researchers in ecology and evolution.\nLicense: Free\n",
+    "created" : 1394480119912.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2708477801",
+    "id" : "4B78DF66",
+    "lastKnownWriteTime" : 1394542711,
+    "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "dcf"
+}

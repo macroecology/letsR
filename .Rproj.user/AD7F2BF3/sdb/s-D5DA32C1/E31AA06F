@@ -1,0 +1,17 @@
+{
+    "contents" : "# Function to remove cells with only zero values from PresenceAbscence matrix\n# Bruno Vilela\n\n.removeCells <- function(x){\n  rem <- which(rowSums(as.matrix(x[, -c(1, 2)]))==0)\n  if(length(rem)>0){\n    x <- x[-rem, ]\n  }\n  if(is.vector(x)){\n    nomes <- names(x)\n    x <- matrix(x, ncol=length(x))\n    colnames(x) <- nomes          \n  }\n  return(x)\n}\n",
+    "created" : 1394053136415.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "875066944",
+    "id" : "E31AA06F",
+    "lastKnownWriteTime" : 1394479812,
+    "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/removecells.R",
+    "project_path" : "R/removecells.R",
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

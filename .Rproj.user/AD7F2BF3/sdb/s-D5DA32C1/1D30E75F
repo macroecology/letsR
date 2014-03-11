@@ -1,0 +1,16 @@
+{
+    "contents" : "#Print for object of class PresenceAbsence\n#Bruno Vilela\n#' @export\n\nprint.PresenceAbsence <- function(x){\n  resolution <- res(x$Ric)\n  cat(\"\\nClass:\", class(x),\n      \"\\nNumber of species:\", (ncol(x$Pre)-2),\n      \"\\nNumber of cells:\", nrow(x$Pre))\n  cat(\"\\nScale: \", resolution[1], \", \", resolution[2], \" (x, y)\", sep=\"\")  \n      \n}\n\n",
+    "created" : 1394053138004.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1686833353",
+    "id" : "1D30E75F",
+    "lastKnownWriteTime" : 1394139391,
+    "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/print.R",
+    "project_path" : "R/print.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
