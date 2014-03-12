@@ -1,16 +1,16 @@
 {
     "contents" : "",
-    "created" : 1394566142286.000,
-    "dirty" : true,
+    "created" : 1394634583037.000,
+    "dirty" : false,
     "encoding" : "",
     "folds" : "",
     "hash" : "0",
-    "id" : "850D09E0",
-    "lastKnownWriteTime" : 0,
+    "id" : "4FF25B31",
+    "lastKnownWriteTime" : 1394634332,
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "tempName" : "Untitled2"
+        "tempName" : "Untitled1"
     },
     "source_on_save" : false,
     "type" : "r_source"
