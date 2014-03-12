@@ -1,5 +1,6 @@
 export(lets.addpoly)
 export(lets.addvar)
+export(lets.field)
 export(lets.iucn)
 export(lets.iucn.ha)
 export(lets.iucn.his)
