@@ -1,11 +1,11 @@
 {
     "contents" : "#' Create a matrix summarizing a species atribute \n#' \n#' @author Bruno Vilela\n#' \n#' @description Create a matrix summarizing a species atribute.\n#'\n#' @usage lets.maplizer(x, y, z, func=mean, ras=FALSE)\n#' \n#' @param x A PresenceAbsence object.\n#' @param y Species atribute to be maped \n#' @param z Species names in the same order of the atributes.\n#' @param func function to summarize the atribute.\n#' @param ras If True the raster file will be returned together with the matrix\n#' \n#' @return Return a matrix with coordinates and the atributes summarized.\n#' \n#' \n#' @seealso lets.presab\n#' \n#' @export\n\nlets.maplizer <- function(x, y, z, func=mean, ras=F){\n\n  if(is.factor(y)){\n  y <- as.numeric(levels(y))[y]\n }\n\n p <- x$P[, -(1:2)]\n\n for(i in 1:ncol(p)){\n  pos <- which(x$S[i]==z)\n  if(length(pos)>0){\n  p[, i] <- p[, i]*y[pos]\n  pos2 <- which(p[, i]==0)\n  p[pos2, i] <- NA\n  }else{\n    p[, i] <- NA\n  }  \n }\n\n resum <- apply(p, 1, func, na.rm=T)\n resultado <- cbind(x$P[, 1:2], resum)\n resu2 <- na.omit(resultado)\n\n if(ras==T){\n  r <- rasterize(resu2[, 1:2], x$R, resu2[, 3])\n  return(list(Matrix=resultado, raster=r))\n }else{\n  return(resultado)\n }\n}\n",
-    "created" : 1394634592100.000,
+    "created" : 1394818731587.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "221053797",
-    "id" : "4D94C9E0",
+    "id" : "B07C19BA",
     "lastKnownWriteTime" : 1394570664,
     "path" : "C:/Users/Bruno/SkyDrive/letsR/letsR/R/maplizer.R",
     "project_path" : "R/maplizer.R",

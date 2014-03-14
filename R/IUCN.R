@@ -126,7 +126,7 @@ lets.iucn <- function(input){
   resu[, 1] <- gsub(resu[, 1],patt="-",replace=" ")
   resu[, 6] <- as.numeric(gsub("\\D", "", resu[, 6]))
   resu[, 6] <- as.numeric(substr(resu[, 6], 1, 4))
-  
-  #retorna um data frame (so para retirar as aspas que ficam se estiver no formato de matriz)
-  return(as.data.frame(resu))
+  resu <- as.data.frame(resu)
+  resu[, 6] <- as.numeric(levels(resu[, 6]))[resu[, 6]]
+  return(resu)
 }

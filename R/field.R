@@ -59,5 +59,7 @@ lets.field <- function(x, y, z, weigth=T){
 
  resultado <- cbind(x$S, media)
  colnames(resultado) <- c("Species", "Value")
- return(as.data.frame(resultado))
+ resultado <- as.data.frame(resultado)
+ resultado[, 2] <- as.numeric(levels(resultado[, 2]))[resultado[, 2]]
+ return(resultado)
 }

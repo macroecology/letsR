@@ -1,0 +1,17 @@
+{
+    "contents" : "#Packages\nlibrary(raster)\nlibrary(maptools)\nlibrary(maps)\nlibrary(XML)\n\n#Shapes\nserpe <- readShapePoly(\"C:/Users/Bruno/SkyDrive/Pacote/SEASNAKES/VIEW_SEASNAKES.shp\")\nreptiles <- readShapePoly(\"C:/Users/Bruno/Documents/Spatial data/REPTILES_NOV2013/REPTILES_NOV2013.shp\")\namphi <- readShapePoly(\"C:/Users/Bruno/Documents/Spatial data/All_AMPHIBIANS_NOV2013/All_AMPHIBIANS_NOV2013.shp\", delete_null_obj=TRUE)\nmama <- readShapePoly(\"C:/Users/Bruno/Documents/Spatial data/TERRESTRIAL_MAMMALS_NOV2013/TERRESTRIAL_MAMMALS_NOV2013.shp\")\nmang <- readShapePoly(\"C:/Users/Bruno/Documents/Spatial data/MANGROVES_JULY2013/MANGROVES/MANGROVES.shp\")\n\n#Variables\nlista <- list.files(\"C:/Users/Bruno/Documents/bio_10m_bil\", pattern=\".bil\", full.names=T)\nvari <- stack(lista)\n\n#Shapes\nterra <- readShapePoly(\"C:/Users/Bruno/Documents/Mapas/World_car.shp\")\n\n#First test\nresu <- lets.presab(amphi, resol=1, remove.cell=T, remove.sp=T)\nresu\nresu_sum <- summary(resu)\nresu2 <- lets.iucn(resu1)\n\nplot(resu)\nplot(resu, resu_sum$SpeciesL)\nnames(resu)\nresu$S\nresu$P\nresu$R\n\n#Second test\nresu1 <- lets.presab.birds(\"C:/Users/Bruno/Documents/testeb\", resol=2, origin=c(1, 2),\n                           seasonal=c(1, 2), presence=c(1, 2, 3), remove.cell=T, remove.sp=T)\nresu1\nsummary(resu1)\nplot(resu1)\nresu2 <- lets.iucn(resu1)\nresu3 <- lets.iucn.ha(resu1)\nresu4 <- lets.iucn.his(resu1)\nresu5 <- lets.addvar(resu1, vari)\n\n#Third test\npolis <- lets.addpoly(resu1, terra, \"CNTRY_NAME\", onlyvar=T)\n\nte <- lets.maplizer(resu1, y, resu2[,1], func=mean, ras=F)\n\n#fourth test\n\nfiel <- lets.field(resu1, resu2[, 6], resu2[, 1])\n\n\n\n\n\n#real test\n\nresu <- lets.presab(amphi, resol=1, remove.cell=T, remove.sp=T)\nresu_iuc <- lets.iucn(resu)\nrisco <- lets.iucncont(resu_iuc[, 3])\nvalor <- lets.field(resu, risco, resu_iuc)\nvalor[,2] <- as.numeric(levels(valor[,2]))[valor[,2]]\nresu_iuc[,6] <- as.numeric(levels(resu_iuc[,6]))[resu_iuc[,6]]\nret <- which(is.na(risco) | is.na(valor[,2]))\ncor(risco[-ret], valor[-ret,2])\n",
+    "created" : 1393349999099.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "153815332",
+    "id" : "345C1C94",
+    "lastKnownWriteTime" : 1394759764,
+    "path" : "C:/Users/Bruno/SkyDrive/Pacote/testes/test_area.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
