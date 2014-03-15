@@ -31,7 +31,7 @@ lets.field <- function(x, y, z, weigth=T){
 
 
  for(i in 1:ncol(p2)){
-  pos <- which(x$S[i]==z)
+  pos <- which(z==x$S[i])
   if(length(pos)>0){
     p2[, i] <- p2[, i]*y[pos]
     pos2 <- which(p2[, i]==0)
@@ -42,8 +42,19 @@ lets.field <- function(x, y, z, weigth=T){
  }
 
  media <- numeric(ncol(p))
+
  
- for(i in 1:length(media)){
+ cat("This action may take some time...\nWe will take the liberty to open a counting window so you can follow the progress...")
+ 
+ x11(2, 2, pointsize = 12)
+ par(mar=c(0, 0, 0, 0)) 
+ n <- length(media)
+ 
+ for(i in 1:n){
+   
+   plot.new()
+   text(0.5, 0.5, paste(paste("Total:", n, "\n","Runs to go: ", (n-i))))
+   
   pos3 <- p[, i]==1
   p3 <- p[pos3, -i]
   p4 <- p2[pos3, -i]
@@ -52,8 +63,9 @@ lets.field <- function(x, y, z, weigth=T){
    media[i] <- mean(mult, na.rm=T)
   }
   if(weigth==F){
-   me <- colMeans(mult, na.rm=T)
-   media[i] <- mean(me, na.rm=T)
+  mult <- matrix(mult, ncol=(ncol(p)-1)) 
+  me <- colMeans(mult, na.rm=T)
+  media[i] <- mean(me, na.rm=T)
   }
  }
 
