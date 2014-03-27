@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Create a matrix summarizing a species atribute.
+#' @description Summarize species atributes per cell in a presence-absence matrix.
 #'
 #' @usage lets.maplizer(x, y, z, func=mean, ras=FALSE)
 #' 

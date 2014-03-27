@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Create a variable based on other species values that cooccur in the geographic range.
+#' @description Generate a species' attribute based on the attribute value of other species that cooccur in it's geographic range.
 #'
 #' @usage lets.field(x, y, z, weigth=TRUE)
 #' 
