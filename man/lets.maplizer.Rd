@@ -22,7 +22,8 @@ Return a matrix with coordinates and the atributes
 summarized.
 }
 \description{
-Create a matrix summarizing a species atribute.
+Summarize species atributes per cell in a presence-absence
+matrix.
 }
 \author{
 Bruno Vilela

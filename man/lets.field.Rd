@@ -20,8 +20,8 @@ lets.field(x, y, z, weigth=TRUE)
 Return a matrix with species x values.
 }
 \description{
-Create a variable based on other species values that
-cooccur in the geographic range.
+Generate a species' attribute based on the attribute value
+of other species that cooccur in it's geographic range.
 }
 \author{
 Bruno Vilela

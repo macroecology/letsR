@@ -2,13 +2,16 @@
 \alias{lets.iucncont}
 \title{Transform IUCN conservation status to continuos values}
 \usage{
-lets.iucncont(x, dd=NA)
+lets.iucncont(x, dd=NA, ne=NA)
 }
 \arguments{
   \item{x}{A vector or a matrix containing IUCN codes.}
 
-  \item{dd}{The value to be atributed to DD and NE species,
-  the default option is NA.}
+  \item{dd}{The value to be atributed to DD species, the
+  default option is NA.}
+
+  \item{ne}{The value to be atributed to NE species, the
+  default option is NA.}
 }
 \value{
 Return a vector with continuos values from 0 to 5.
