@@ -4,10 +4,11 @@
 #' 
 #' @description Get species habitat information from IUCN website for one or more species.
 #' 
-#' @usage lets.iucn.ha(input)
+#' @usage lets.iucn.ha(input, count=FALSE)
 #' 
 #' @param input character vector with one or more species names,
 #' or an object of the PresenceAbsence class.
+#' @param count Logical, if TRUE a counting window will be open.
 #' 
 #' @return A data frame with the species names in the rows and the habitats in the columns,
 #' the number 1 indicates the use of the habitat while the 0 indicates that the species do 
@@ -24,7 +25,7 @@
 #' 
 #' @export
 
-lets.iucn.ha <- function(input){
+lets.iucn.ha <- function(input, count=FALSE){
   #keep species name
   
   if(class(input)=="PresenceAbsence"){
@@ -48,8 +49,8 @@ lets.iucn.ha <- function(input){
   colnames(habitat) <- names
   
   n <- length(input)
-  cat("This action may take some time...\nWe will take the liberty to open a counting window so you can follow the progress...")
-  
+
+ if(count == TRUE){  
   x11(2, 2, pointsize=12)
   par(mar=c(0, 0, 0, 0))  
   
@@ -83,8 +84,36 @@ lets.iucn.ha <- function(input){
   }
   
   dev.off()
-  cat("\nThank you for your patience!")
-  
+ }
+
+ if(count == FALSE){
+   for(i in 1:n){
+       
+    #Taking the Website code from the internet
+    input <- gsub(as.matrix(input), patt=" ", replace="-")
+    h <- try(htmlParse(paste("http://api.iucnredlist.org/go/", input[i], sep = "")), silent=TRUE)
+    b <- try(xpathSApply(h, '//div', xmlValue), silent=TRUE)[1]
+    c <- as.numeric(gsub("\\D", "", b))
+    h2 <- try(htmlParse(paste("http://www.iucnredlist.org/details/classify/", c, "/0", sep = "")), silent=TRUE)
+    
+    #taking the specific parts that contains the habitat names
+    b2 <- try(xpathSApply(h2, '//html', xmlValue), silent=TRUE)
+    
+    #look for the habitat names inside the string (if the sting contains the name, it will be marked 1)
+    for(t in 2:18){
+      if(sum(grep(names[t], b2))>0){
+        habitat[i, t] <- 1
+      }
+    }
+    
+    #If none of the habitat names have been found or also if the species have not been found in IUCN archives.
+    #it will be marked 1 in the column Unknwon
+    if(sum(habitat[i, ])==0){
+      habitat[i, 19] <- 1
+    }
+  }  
+ }
+
   #Adding species names to the first column
   habitat[, 1] <- sps
   

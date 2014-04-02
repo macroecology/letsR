@@ -6,7 +6,7 @@ print.PresenceAbsence <- function(x){
   cat("\nClass:", class(x),
       "\nNumber of species:", (ncol(x$Pre)-2),
       "\nNumber of cells:", nrow(x$Pre))
-  cat("\nScale: ", resolution[1], ", ", resolution[2], " (x, y)", sep="")  
+  cat("\nResolution: ", resolution[1], ", ", resolution[2], " (x, y)", sep="")  
       
 }
 

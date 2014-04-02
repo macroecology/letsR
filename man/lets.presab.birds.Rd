@@ -5,7 +5,7 @@
 lets.presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1,
 remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
 crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
-origin=NULL, seasonal=NULL)
+origin=NULL, seasonal=NULL, count=FALSE)
 }
 \arguments{
   \item{path}{Path location in which the folders with one
@@ -37,6 +37,9 @@ origin=NULL, seasonal=NULL)
   \item{cover}{Porcentage of the cell covered by the
   shapefile that shall be considered for presence (values
   between 0 and 1).}
+
+  \item{count}{Logical, if TRUE a counting window will be
+  open.}
 }
 \value{
 The result is an object of class PresenceAbsence with the

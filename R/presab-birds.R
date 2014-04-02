@@ -7,7 +7,7 @@
 #' @usage lets.presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
 #' remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
 #' crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL, 
-#' origin=NULL, seasonal=NULL)
+#' origin=NULL, seasonal=NULL, count=FALSE)
 #' 
 #' @param path Path location in which the folders with one or more individual species shapefiles.
 #' @param xmx Maximun longitude used to construct the grid of cells in which the matrix will be based. 
@@ -19,7 +19,8 @@
 #' @param show.matrix if true, only the object matrix will be shown.
 #' @param crs the projection of the shapefiles.
 #' @param cover Porcentage of the cell covered by the shapefile that shall be considered for presence (values between 0 and 1).
-#' 
+#' @param count Logical, if TRUE a counting window will be open.
+
 #' @return The result is an object of class PresenceAbsence with the following objects:
 #' @return Presence and Absence Matrix: A matrix of Presence(1) and Absence(0) with x (longitude) and y (latitude) of cells centroid;
 #' @return Richness Raster: A raster containing richness data;
@@ -41,7 +42,8 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
                      ymx=90, resol=1, remove.cells=TRUE,
                      remove.sp=TRUE, show.matrix=FALSE, 
                      crs=CRS("+proj=longlat +datum=WGS84"),
-                     cover=0, presence=NULL, origin=NULL, seasonal=NULL){
+                     cover=0, presence=NULL, origin=NULL, 
+                     seasonal=NULL, count=FALSE){
     
   shapes <- list.files(path, pattern=".shp", full.names=T, recursive=T)
   r <- raster(xmn=xmn, xmx=xmx, ymn=ymn, ymx=ymx, crs=crs)
@@ -54,8 +56,8 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
   matriz <- cbind(xy, matriz)
   n <- length(shapes)
   k <- 0
-  cat("This action may take some time...\nWe will take the liberty to open a counting window so you can follow the progress...")
-  
+
+  if(count == TRUE){
   x11(2, 2, pointsize=12)
   par(mar=c(0, 0, 0, 0))  
   
@@ -74,10 +76,30 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
     valores2[cell3[, 1]] <- 1
     matriz[,(j+2)] <- valores2
     }
+  }  
+  dev.off()
+  }
+  
+  
+  if(count == FALSE){
+    
+    for(j in 1:n){    
+      valores2 <- valores
+      shp <- readShapePoly(shapes[j], delete_null_obj=TRUE, force_ring=T)
+      nomes[j] <- levels(shp$SCINAME)[1]
+      shp <- lets.shFilter(shp, presence=presence, origin=origin, seasonal=seasonal)
+      if(!is.null(shp)){  
+        k <- k+1
+        cell <- extract(r, shp, cellnumber=T, small=T, weights=T)        
+        cell2 <- do.call(rbind.data.frame, cell)
+        cell3 <- cell2[which(cell2[,3]>=cover), ]    
+        valores2[cell3[, 1]] <- 1
+        matriz[,(j+2)] <- valores2
+      }
+    }  
   }
   
   if(k==0){
-    dev.off()
     stop("after filtering none species distribution left")
   }
   
@@ -94,8 +116,6 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
     matriz <- .removeSp(matriz)
   }
   
-  dev.off()
-  cat("\nThank you for your patience!")
 
   matriz <- .unicas(matriz)
   

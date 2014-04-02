@@ -2,11 +2,14 @@
 \alias{lets.iucn}
 \title{Download species information from IUCN}
 \usage{
-lets.iucn(input)
+lets.iucn(input, count=FALSE)
 }
 \arguments{
-  \item{input}{character vector with one or more species
+  \item{input}{Character vector with one or more species
   names, or an object of the PresenceAbsence class.}
+
+  \item{count}{Logical, if TRUE a counting window will be
+  open.}
 }
 \value{
 Return a data frame with the species name, Family, Status,

@@ -4,10 +4,11 @@
 #' 
 #' @description Get species information from IUCN website for one or more species.
 #' 
-#' @usage lets.iucn(input)
+#' @usage lets.iucn(input, count=FALSE)
 #' 
-#' @param input character vector with one or more species names,
+#' @param input Character vector with one or more species names,
 #' or an object of the PresenceAbsence class.
+#' @param count Logical, if TRUE a counting window will be open.
 #' 
 #' @return Return a data frame with the species name, Family, Status, 
 #' Criteria used to estabilish that status (when the species is threatened), 
@@ -24,7 +25,7 @@
 #' 
 #' @export
 
-lets.iucn <- function(input){
+lets.iucn <- function(input, count=FALSE){
   
   if(class(input)=="PresenceAbsence"){
     input <- input$S
@@ -42,14 +43,15 @@ lets.iucn <- function(input){
   autor <- matriz1  
   pais <- matriz1
   
-  cat("This action may take some time...\nWe will take the liberty to open a counting window so you can follow the progress...")
+  if(count == TRUE){
   
   x11(2, 2, pointsize=12)
   par(mar=c(0, 0, 0, 0))  
   
   #Loop para procurar o status de cada especie da matriz no site da IUCN
   for (i in 1:ln){
-   
+
+    
     plot.new()
     text(0.5, 0.5, paste(paste("Total:", ln, "\n", "Runs to go: ", (ln-i))))      
   
@@ -96,6 +98,59 @@ lets.iucn <- function(input){
       }     
     }
   }
+    
+  dev.off()
+  }
+  
+  if(count == FALSE){
+    for (i in 1:ln){          
+      
+      h <- try(htmlParse(paste("http://api.iucnredlist.org/go/",input[i], sep = "")),silent=TRUE)
+      
+      if((class(h)[1])=="try-error"){
+        status[i, 1]<-"NE"
+        criterio[i, 1] <-""
+        populacao[i, 1]<-"Unkown"
+        familia[i, 1]<-""
+        autor[i, 1]<-""
+        pais[i, ]<-""      
+      }else{
+        status[i, 1] <- try(xpathSApply(h, '//div[@id="red_list_category_code"]', xmlValue), silent=TRUE)
+        criterio[i, 1] <- try(xpathSApply(h, '//div[@id="red_list_criteria"]', xmlValue), silent=TRUE)
+        pop <- try(xpathSApply(h, '//div[@id="population_trend"]', xmlValue), silent=TRUE)
+        populacao[i, 1] <- ifelse(is.list(pop), "Unknown",pop)
+        familia[i, 1] <- try(xpathSApply(h, '//div[@id="family"]', xmlValue), silent=TRUE)
+        autor[i, 1] <- try(xpathSApply(h, '//div[@id="species_authority"]', xmlValue), silent=TRUE)            
+        
+        ###Pais
+        distr1 <- try(xpathSApply(h, '//ul[@class="countries"]', xmlValue), silent=TRUE)
+        
+        if(is.list(distr1)){
+          pais[i, 1] <- ""
+        }else{
+          distr2 <- try(unlist(strsplit(distr1, "\n")), silent=TRUE)
+          distr2[distr2 == "Russian Federation"] <- "Russia"
+          distr2[distr2 == "Bolivia, Plurinational States of"] <- "Bolivia"
+          distr2[distr2 == "Venezuela, Bolivarian Republic of"] <- "Venezuela"
+          distr2[distr2 == "Korea, Democratic People's Republic of"] <- "Democratic People's Republic of Korea"
+          distr2[distr2 == "Congo, The Democratic Republic of the"] <- "The Democratic Republic of the Congo"
+          distr2[distr2 == "Tanzania, United Republic of"] <- "United Republic of Tanzania"
+          distr2[distr2 == "Palestinian Territory, Occupied"] <- "Occupied Palestinian Territory"
+          distr2[distr2 == "Micronesia, Federated States of"] <- "Federated States of Micronesia"
+          distr2[distr2 == "Macedonia, the former Yugoslav Republic of"] <- "The former Yugoslav Republic of Macedonia"
+          distr2[distr2 == "Korea, Republic of"] <- "Republic of Korea"
+          distr2[distr2 == "Iran, Islamic Republic of"] <- "Islamic Republic of Iran"
+          distr2[distr2 == "Disputed Territory, Djibouti"] <- "Djibouti Disputed Territory"
+          distr2[distr2 == "Virgin Islands, U.S."] <- "Virgin Islands(U.S.)"
+          distr2[distr2 == "Virgin Islands, British"] <- "Virgin Islands(British)"
+          
+          pais[i, 1] <- paste(distr2, collapse = ", ")
+        }     
+      }
+    }
+    
+  }
+  
   
   #Fazendo a tabela final
   resu <- cbind(input, familia, status, criterio, populacao, autor, pais)
@@ -119,8 +174,6 @@ lets.iucn <- function(input){
     
   }
   
-  dev.off()
-  cat("\nThank you for your patience!")
   
   #Retirando os tracos e colocando de novo o espaco entre as palavras
   resu[, 1] <- gsub(resu[, 1],patt="-",replace=" ")

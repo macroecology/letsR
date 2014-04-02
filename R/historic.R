@@ -4,11 +4,12 @@
 #' 
 #' @description Get species conservation status history information from IUCN website for one or more species.
 #' 
-#' @usage lets.iucn.his(input)
+#' @usage lets.iucn.his(input, count=FALSE)
 #' 
 #' @param input character vector with one or more species names,
 #' or an object of the PresenceAbsence class.
-#' 
+#' @param count Logical, if TRUE a counting window will be open.
+
 #' @return A data frame with the species names in the rows and the years (1980 - 2014) in the columns, 
 #' the code represents the conservation status of the species (see IUCN website for details).
 #' NE = Not evaluated.
@@ -26,7 +27,7 @@
 #' @export
 
 
-lets.iucn.his <- function(input){  
+lets.iucn.his <- function(input, count=FALSE){  
   
   if(class(input)=="PresenceAbsence"){
     input <- input$S
@@ -35,8 +36,7 @@ lets.iucn.his <- function(input){
   resus <- c()
   n <- length(input)
 
-  cat("This action may take some time...\nWe will take the liberty to open a counting window so you can follow the progress...")
-  
+  if(count == TRUE){
   x11(2, 2, pointsize=12)
   par(mar=c(0, 0, 0, 0))  
     
@@ -50,7 +50,16 @@ lets.iucn.his <- function(input){
   }   
   
   dev.off()
-  cat("\nThank you for your patience!")
+  }
+  
+  if(count == FALSE){
+
+    for(i in 1:n){              
+      resu <- .Hist(input[i])
+      resus <- rbind(resus, resu)
+    }   
+    
+  }
   return(as.data.frame(resus))
 }
 

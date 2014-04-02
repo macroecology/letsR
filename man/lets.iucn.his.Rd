@@ -2,11 +2,14 @@
 \alias{lets.iucn.his}
 \title{Download habitat information from IUCN}
 \usage{
-lets.iucn.his(input)
+lets.iucn.his(input, count=FALSE)
 }
 \arguments{
   \item{input}{character vector with one or more species
   names, or an object of the PresenceAbsence class.}
+
+  \item{count}{Logical, if TRUE a counting window will be
+  open.}
 }
 \value{
 A data frame with the species names in the rows and the

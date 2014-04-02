@@ -20,7 +20,7 @@
 #' @export
 
 
-lets.field <- function(x, y, z, weigth=T){
+lets.field <- function(x, y, z, weigth=T, count=FALSE){
   
  if(is.factor(y)){
   y <- as.numeric(levels(y))[y]
@@ -42,13 +42,12 @@ lets.field <- function(x, y, z, weigth=T){
  }
 
  media <- numeric(ncol(p))
-
+ n <- length(media)
  
- cat("This action may take some time...\nWe will take the liberty to open a counting window so you can follow the progress...")
  
+ if(count == TRUE){
  x11(2, 2, pointsize = 12)
  par(mar=c(0, 0, 0, 0)) 
- n <- length(media)
  
  for(i in 1:n){
    
@@ -68,7 +67,27 @@ lets.field <- function(x, y, z, weigth=T){
   media[i] <- mean(me, na.rm=T)
   }
  }
-
+ dev.off()
+ }
+ 
+ if(count == FALSE){
+   for(i in 1:n){
+          
+     pos3 <- p[, i]==1
+     p3 <- p[pos3, -i]
+     p4 <- p2[pos3, -i]
+     mult <- p3*p4
+     if(weigth==T){
+       media[i] <- mean(mult, na.rm=T)
+     }
+     if(weigth==F){
+       mult <- matrix(mult, ncol=(ncol(p)-1)) 
+       me <- colMeans(mult, na.rm=T)
+       media[i] <- mean(me, na.rm=T)
+     }
+   }
+ }
+ 
  resultado <- cbind(x$S, media)
  colnames(resultado) <- c("Species", "Value")
  resultado <- as.data.frame(resultado)

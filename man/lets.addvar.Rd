@@ -2,7 +2,7 @@
 \alias{lets.addvar}
 \title{Add variables to a PresenceAbscence object}
 \usage{
-lets.addvar(x, y, onlyvar=F)
+lets.addvar(x, y, onlyvar=F, fun=mean)
 }
 \arguments{
   \item{x}{A PresenceAbsence object.}
@@ -12,6 +12,8 @@ lets.addvar(x, y, onlyvar=F)
 
   \item{onlyvar}{If True only the variable matrix will be
   returned.}
+
+  \item{fun}{function used to aggregate values}
 }
 \value{
 The result is a matrix of species presence/absence with the
