@@ -177,6 +177,10 @@ lets.iucn <- function(input, count=FALSE){
   
   #Retirando os tracos e colocando de novo o espaco entre as palavras
   resu[, 1] <- gsub(resu[, 1],patt="-",replace=" ")
+
+  resu[, 6] <-gsub("[[:alpha:]]", "", resu[, 6])
+  resu[, 6] <- gsub("[[:punct:]]", "", resu[, 6])
+  resu[, 6] <- gsub("[[:cntrl:]]", "", resu[, 6])
   resu[, 6] <- as.numeric(gsub("\\D", "", resu[, 6]))
   resu[, 6] <- as.numeric(substr(resu[, 6], 1, 4))
   resu <- as.data.frame(resu)
