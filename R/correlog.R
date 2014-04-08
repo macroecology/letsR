@@ -1,6 +1,6 @@
 #' Compute correlogram based on Moran's I
 #' 
-#' @author Bruno Vilela, Fabricio Villalobos, Lucas Jardim & José Alexandre Diniz-Filho 
+#' @author Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jos? Alexandre Diniz-Filho 
 #' 
 #' @description Compute correlogram for a variable from a distance matrix.
 #'
@@ -12,7 +12,6 @@
 #' @param equidistant Logical, if TRUE the classes will be equidistant. If FALSE the classes will be contruct to have equal number of pairs.
 #' @param plot Logical, if TRUE the correlogram will be ploted. 
 #' 
-#' @import ape
 #' 
 #' @export
 
