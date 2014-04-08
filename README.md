@@ -11,7 +11,7 @@ We hope you enjoy it and find it useful.
 
 ====
 ## Package donwload and install
-You can download this package using the function `install_git` from the package `devtools`.
+You can download this package using the function `install_github` from the package `devtools`.
 
 For this package version to work properly, you should previously install and load the following R packages:
 - `maps` 
