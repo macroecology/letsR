@@ -124,7 +124,7 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   }else{
     values(ras) <- rowSums(matriz)
     final <- list("Presence and Absence Matrix"=Resultado, "Richness Raster"=ras, 
-                  "Species name"=colnames(Resultado[,-(1:2)]))
+                  "Species name"=colnames(Resultado)[-(1:2)])
     class(final) <- "PresenceAbsence"
     return(final)
   }
