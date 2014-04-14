@@ -18,6 +18,7 @@ For this package version to work properly, you should previously install and loa
 - `maptools` 
 - `raster` 
 - `XML`
+- 'geosphere'
 
 ## Key functions
 - `lets.presab`: Builts a presence-absence matrix (sites x species) based on species’ range maps from shapefiles.
