@@ -2,18 +2,18 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Add polygon information to a PresenceAbsence object.
+#' @description Add polygon values to a PresenceAbsence object .
 #'
 #' @usage lets.addpoly(x, y, onlyvar=F)
 #' 
 #' @param x A PresenceAbsence object. 
-#' @param y Polygon information to be added.
-#' @param z Name of the information inside the polygon.
-#' @param onlyvar If True only the variable matrix will be returned.
+#' @param y Polygon values to add.
+#' @param z Name of polygon values.
+#' @param onlyvar If True only the matrix object will be returned.
 #' 
-#' @return The result is a matrix of species presence/absence with 
-#' the polygon information columns added at the end. The Values repesent
-#' the porcentage of the cell covered by the polygon.   
+#' @return The result is a presence-absence matrix of species with 
+#' the polygon values added as columns at the right-end of the matrix . The Values represent
+#' the percentage of the cell covered by the polygon.   
 #'  
 #' @seealso lets.presab.birds
 #' @seealso lets.presab

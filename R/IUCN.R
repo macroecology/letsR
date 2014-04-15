@@ -1,23 +1,20 @@
-#' Download species information from IUCN
+#' Download species' information from IUCN
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Get species information from IUCN website for one or more species.
+#' @description Get species' information from the IUCN website for one or more species.
 #' 
 #' @usage lets.iucn(input, count=FALSE)
 #' 
 #' @param input Character vector with one or more species names,
-#' or an object of the PresenceAbsence class.
-#' @param count Logical, if TRUE a counting window will be open.
+#' or an object of class PresenceAbsence.
+#' @param count Logical, if TRUE a counting window will open.
 #' 
-#' @return Return a data frame with the species name, Family, Status, 
-#' Criteria used to estabilish that status (when the species is threatened), 
-#' population status, the year of description and the countries where it occurs.
+#' @return Returns a data frame with the Species name, Family, Status, 
+#' Criteria used to estabilish the conservation status, Population Status, Year of Description, and the Countries where it occurs.
 #' NE = Not evaluated
 #' 
-#' @details Depending on your internet conection and the number of species, the function 
-#' may take some time. So, we open a count window where you can follow the progress.
-#' Note that the internet must be turned on during all the process. 
+#' @details Note that you must be connected to the internet to use this function. 
 #' 
 #' @import XML
 #' 

@@ -1,15 +1,15 @@
-#' Species geographical range midpoint
+#' Species' geographical range midpoint
 #' 
 #' @author Fabricio Villalobos & Bruno Vilela
 #' 
-#' @description Get species geographical range midpoint from a presence-absence matrix.
+#' @description Calculate species' geographical range midpoint from a presence-absence matrix.
 #' 
 #' @usage lets.midpoint(pam, planar=FALSE)
 #' 
-#' @param pam A presence absence matrix, or an object of class PresenceAbsence.
+#' @param pam A presence-absence matrix (sites in the rows and species in the columns, with the first two columns being longitude and latitude coordinates, respectively), or an object of class PresenceAbsence.
 #' @param planar Logical, if FALSE the coordinates are in Longitude/Latitude. If TRUE the coordinates are planar.
 #' 
-#' @return A matrix containing the point by species.
+#' @return A matrix containing the species' names and coordinates (longitude [x], latitude [y]) of species' midpoints.
 #' 
 #'           
 #' @import geosphere

@@ -2,14 +2,14 @@
 #' 
 #' @author Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jose Alexandre Diniz-Filho 
 #' 
-#' @description Compute correlogram for a variable from a distance matrix.
+#' @description Compute Moran's correlogram of a variable using a distance matrix.
 #'
 #' @usage lets.correl(x, y, z, equidistant=FALSE, plot=TRUE)
 #' 
-#' @param x A single variable in a vector, or multiple variables in a matrix. 
-#' @param y A distance matrix.
-#' @param z The number of distance classes in the correlogram.
-#' @param equidistant Logical, if TRUE the classes will be equidistant. If FALSE the classes will be contruct to have equal number of pairs.
+#' @param x A single variable in vector format or multiple variables in matrix format (as columns). 
+#' @param y A distance matrix of class 'matrix'.
+#' @param z The number of distance classes to use in the correlogram.
+#' @param equidistant Logical, if TRUE the classes will be equidistant. If FALSE the classes will have equal number of observations.
 #' @param plot Logical, if TRUE the correlogram will be ploted. 
 #' 
 #' 

@@ -1,22 +1,19 @@
-#' Download habitat information from IUCN
+#' Download habitat information for species from IUCN
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Get species habitat information from IUCN website for one or more species.
+#' @description Get species' habitat information from IUCN website for one or more species.
 #' 
 #' @usage lets.iucn.ha(input, count=FALSE)
 #' 
 #' @param input character vector with one or more species names,
 #' or an object of the PresenceAbsence class.
-#' @param count Logical, if TRUE a counting window will be open.
+#' @param count Logical, if TRUE a counting window will open.
 #' 
-#' @return A data frame with the species names in the rows and the habitats in the columns,
-#' the number 1 indicates the use of the habitat while the 0 indicates that the species do 
-#' not use the habitat.
-#' 
-#' @details Depending on your internet conection and the number of species, the function 
-#' may take some time. So, we open a count window where you can follow the progress.
-#' Note that the internet must be turned on during all the process. 
+#' @return A data frame with species names in the first column and the habitats in the remaining columns,
+#' '1' if species is present in that habitat and '0' otherwise.
+#'
+#' @details Note that you must be connected to the internet to use this function. 
 #' 
 #' @import XML
 #' 

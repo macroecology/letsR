@@ -1,16 +1,16 @@
-#' Create variables based on species range field
+#' Create variables based on species geographical ranges
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Generate a species' attribute based on the attribute value of other species that cooccur in it's geographic range.
+#' @description Create species' attributes based on the attribute values of species co-occurring within their ranges.
 #'
 #' @usage lets.field(x, y, z, weigth=TRUE)
 #' 
 #' @param x A PresenceAbsence object.
-#' @param y Species atribute to be maped 
-#' @param z Species names in the same order of the atributes.
-#' @param weigth If TRUE the value is weighted by species range cover, 
-#' if FASLSE the value is the mean of all species that cooccur with the
+#' @param y Species attribute to be considered. It must be a continuous attribute
+#' @param z Species names in the same order as the attributes.
+#' @param weigth If TRUE the value is weighted by species' range size (i.e. ), 
+#' if FALSE the value is the mean of all species that cooccur with the
 #'  species target.
 #' 
 #' @return Return a matrix with species x values.

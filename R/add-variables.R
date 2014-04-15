@@ -2,16 +2,16 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Add variables in raster format to a PresenceAbsence object.
+#' @description Add variables (in raster format) to a PresenceAbsence object.
 #'
 #' @usage lets.addvar(x, y, onlyvar=F, fun=mean)
 #' 
 #' @param x A PresenceAbsence object. 
 #' @param y Variables to be added in Raster or RasterStack format.
-#' @param onlyvar If True only the variable matrix will be returned.
+#' @param onlyvar If True only the matrix object will be returned.
 #' @param fun function used to aggregate values
-#' @return The result is a matrix of species presence/absence with 
-#' the variables columns added at the end.  
+#' @return The result is a presence-absence matrix of species with 
+#' the variables added as columns at the right-end of the matrix.  
 #'  
 #' @seealso lets.presab.birds
 #' @seealso lets.presab

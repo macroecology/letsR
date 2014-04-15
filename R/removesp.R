@@ -1,4 +1,4 @@
-# Function to remove species with only zero values from PresenceAbscence matrix
+# Function to remove species with zero values in PresenceAbscence matrix
 # Bruno Vilela
 
 .removeSp <- function(x){

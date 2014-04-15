@@ -1,4 +1,4 @@
-# Function to sum the duplcated species in the matrix
+# Function to join the duplicated species in the matrix
 # Bruno Vilela
 
 .unicas <- function(resu){

@@ -1,4 +1,4 @@
-# Function to remove cells with only zero values from PresenceAbscence matrix
+# Function to remove cells with zero values in PresenceAbscence matrix
 # Bruno Vilela
 
 .removeCells <- function(x){

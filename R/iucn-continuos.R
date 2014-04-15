@@ -1,16 +1,16 @@
-#' Transform IUCN conservation status to continuos values
+#' Transform IUCN conservation status to continuous values
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Transform IUCN conservation status to continuos values from 0 to 5.
+#' @description Transform IUCN conservation status to continuous values from 0 to 5.
 #'
 #' @usage lets.iucncont(x, dd=NA, ne=NA)
 #' 
-#' @param x A vector or a matrix containing IUCN codes.
-#' @param dd The value to be atributed to DD species, the default option is NA. 
-#' @param ne The value to be atributed to NE species, the default option is NA. 
+#' @param x A vector or a matrix containing IUCN codes to be transformed.
+#' @param dd The value to be attributed to DD (data-deficient) species, the default option is NA. 
+#' @param ne The value to be attributed to NE (not-evaluated) species, the default option is NA. 
 
-#' @return Return a vector with continuos values from 0 to 5.
+#' @return Returns a vector/matrix with continuos values from 0 to 5.
 #' @details EX and EW = 5
 #' 
 #' EN = 4
@@ -30,6 +30,8 @@
 #' @seealso lets.iucn
 #' 
 #' @export
+#'
+#' @reference Purvis A et al., 2000. Predicting extinction risk in declining species. Proceedings of the Royal Society of London. Series B: Biological Sciences, 267.1456: 1947-1952. 
 
 
 

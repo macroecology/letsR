@@ -1,14 +1,14 @@
-#' Plot for an object of class PresenceAbsence
+#' Plot an object of class PresenceAbsence
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Plot species richness map from an object of class PresenceAbsence or an
+#' @description Plots species richness map from an object of class PresenceAbsence or an
 #' specific species map.
 #'
 #' @usage plot(x, name=NULL, world=T)
 #' @param x an object of class PresenceAbsence (see function presab).
-#' @param name you can specify a species to be ploted instead of the richness map.
-#' @param world if True a shapefile of countries is added to the plot.
+#' @param name you can specify a species to be ploted instead of the species richness map.
+#' @param world if True a map of political divisions (countries) is added to the plot.
 #' 
 #' @seealso lets.presab
 #' @seealso lets.presab.birds

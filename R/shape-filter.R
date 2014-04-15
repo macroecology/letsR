@@ -6,12 +6,12 @@
 #'
 #' @usage lets.shFilter(shapes, presence=NULL, origin=NULL, seasonal=NULL)
 #' 
-#' @param shapes SpatialPolygonsDataFrame (see function readShapePoly to open this files) class object. Species name should be in a subclass called BINOMIAL or binomial.
-#' @param presence A vector with the code numbers of presence type to be matained.
-#' @param origin A vector with the code numbers of origin type to be matained.
-#' @param seasonal A vector with the code numbers of seasonal type to be matained.
+#' @param shapes Object of class SpatialPolygonsDataFrame (see function readShapePoly to open this files).
+#' @param presence A vector with the code numbers for the presence type to be maintained.
+#' @param origin A vector with the code numbers for the origin type to be maintained.
+#' @param seasonal A vector with the code numbers for the seasonal type to be maintained.
 #' 
-#' @return The result is the shapefile filtered. If the filters remove all polygons, the result will be NULL.
+#' @return The result is the shapefile(s) filtered according to the selected types. If the filters remove all polygons, the result will be NULL.
 #' 
 #'  
 #' @details Presence codes:
@@ -36,7 +36,7 @@
 #' (4) Passage &
 #' (5) Seasonal Occurrence Uncertain.
 #' 
-#' More info see metadata file of the shapefiles.
+#' More info in the shapefiles' metadata.
 #' 
 #' @seealso plot.PresenceAbsence
 #' @seealso lets.presab

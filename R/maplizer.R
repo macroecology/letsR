@@ -1,4 +1,4 @@
-#' Create a matrix summarizing a species atribute 
+#' Create a matrix summarizing species' attributes 
 #' 
 #' @author Bruno Vilela
 #' 
@@ -7,8 +7,8 @@
 #' @usage lets.maplizer(x, y, z, func=mean, ras=FALSE)
 #' 
 #' @param x A PresenceAbsence object.
-#' @param y Species atribute to be maped 
-#' @param z Species names in the same order of the atributes.
+#' @param y Species attribute to be considered.
+#' @param z Species names in the same order as the attributes.
 #' @param func function to summarize the atribute.
 #' @param ras If True the raster file will be returned together with the matrix
 #' 
