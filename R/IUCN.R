@@ -57,7 +57,7 @@ lets.iucn <- function(input, count=FALSE){
     if((class(h)[1])=="try-error"){
       status[i, 1]<-"NE"
       criterio[i, 1] <-""
-      populacao[i, 1]<-"Unkown"
+      populacao[i, 1]<-"Unknown"
       familia[i, 1]<-""
       autor[i, 1]<-""
       pais[i, ]<-""      
@@ -69,8 +69,13 @@ lets.iucn <- function(input, count=FALSE){
       familia[i, 1] <- try(xpathSApply(h, '//div[@id="family"]', xmlValue), silent=TRUE)
       autor[i, 1] <- try(xpathSApply(h, '//div[@id="species_authority"]', xmlValue), silent=TRUE)            
       
+      if(status[i, 1]=="LR/nt"){
+        status[i, 1] <- "NT"
+      }
+      
       ###Pais
       distr1 <- try(xpathSApply(h, '//ul[@class="countries"]', xmlValue), silent=TRUE)
+
       
       if(is.list(distr1)){
         pais[i, 1] <- ""
@@ -118,7 +123,9 @@ lets.iucn <- function(input, count=FALSE){
         populacao[i, 1] <- ifelse(is.list(pop), "Unknown",pop)
         familia[i, 1] <- try(xpathSApply(h, '//div[@id="family"]', xmlValue), silent=TRUE)
         autor[i, 1] <- try(xpathSApply(h, '//div[@id="species_authority"]', xmlValue), silent=TRUE)            
-        
+        if(status[i, 1]=="LR/nt"){
+          status[i, 1] <- "NT"
+        }
         ###Pais
         distr1 <- try(xpathSApply(h, '//ul[@class="countries"]', xmlValue), silent=TRUE)
         
