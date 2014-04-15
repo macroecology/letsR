@@ -26,7 +26,7 @@ For this package version to work properly, you should previously install and loa
 - `lets.shFilter`: Filter species’ shapefiles by origin, presence and seasonal type (following IUCN categorization of species’ distributional ranges).
 - `lets.addvar`: Add variables in raster format to a presence-absence matrix.
 - `lets.addpoly`: Add variables in polygon format to a presence-absence matrix.
-- `lets.iucn`: Get species’ information from the IUCN website.
+- `lets.iucn`: Get species’ information from the IUCN website (different from `taxize` version).
 - `lets.iucn.ha`: Get species’ habitat information from the IUCN website.
 - `lets.iucn.his`: Get information on the history of species’ conservation status from the IUCN website.
 

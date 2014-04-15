@@ -1,6 +1,6 @@
 #' Compute correlogram based on Moran's I
 #' 
-#' @author Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jos? Alexandre Diniz-Filho 
+#' @author Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jose Alexandre Diniz-Filho 
 #' 
 #' @description Compute correlogram for a variable from a distance matrix.
 #'
@@ -87,9 +87,15 @@ lets.correl <- function(x, y, z, equidistant=FALSE, plot=TRUE){
  count <- rep(NA, (n-1))
  
  for(i in 1:(n-1)){
-   
+   if(i>1){
    pos <- (y>quant[i] & y<=quant[i+1])
    count[i] <- sum(pos)
+   }
+   if(i==1){
+     pos <- (y>=quant[i] & y<=quant[i+1])
+     count[i] <- sum(pos)     
+   }
+   
    dist_cl [i] <- mean(c(quant[i], quant[i+1]))
    
   if(count[i]>0){

@@ -24,7 +24,7 @@ lets.correl(x, y, z, equidistant=FALSE, plot=TRUE)
 Compute correlogram for a variable from a distance matrix.
 }
 \author{
-Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jos?
+Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jose
 Alexandre Diniz-Filho
 }
 
