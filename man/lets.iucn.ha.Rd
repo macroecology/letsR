@@ -1,6 +1,6 @@
 \name{lets.iucn.ha}
 \alias{lets.iucn.ha}
-\title{Download habitat information from IUCN}
+\title{Download habitat information for species from IUCN}
 \usage{
 lets.iucn.ha(input, count=FALSE)
 }
@@ -8,24 +8,21 @@ lets.iucn.ha(input, count=FALSE)
   \item{input}{character vector with one or more species
   names, or an object of the PresenceAbsence class.}
 
-  \item{count}{Logical, if TRUE a counting window will be
+  \item{count}{Logical, if TRUE a counting window will
   open.}
 }
 \value{
-A data frame with the species names in the rows and the
-habitats in the columns, the number 1 indicates the use of
-the habitat while the 0 indicates that the species do not
-use the habitat.
+A data frame with species names in the first column and the
+habitats in the remaining columns, '1' if species is
+present in that habitat and '0' otherwise.
 }
 \description{
-Get species habitat information from IUCN website for one
+Get species' habitat information from IUCN website for one
 or more species.
 }
 \details{
-Depending on your internet conection and the number of
-species, the function may take some time. So, we open a
-count window where you can follow the progress. Note that
-the internet must be turned on during all the process.
+Note that you must be connected to the internet to use this
+function.
 }
 \author{
 Bruno Vilela

@@ -10,17 +10,18 @@ lets.addvar(x, y, onlyvar=F, fun=mean)
   \item{y}{Variables to be added in Raster or RasterStack
   format.}
 
-  \item{onlyvar}{If True only the variable matrix will be
+  \item{onlyvar}{If True only the matrix object will be
   returned.}
 
   \item{fun}{function used to aggregate values}
 }
 \value{
-The result is a matrix of species presence/absence with the
-variables columns added at the end.
+The result is a presence-absence matrix of species with the
+variables added as columns at the right-end of the matrix.
 }
 \description{
-Add variables in raster format to a PresenceAbsence object.
+Add variables (in raster format) to a PresenceAbsence
+object.
 }
 \author{
 Bruno Vilela

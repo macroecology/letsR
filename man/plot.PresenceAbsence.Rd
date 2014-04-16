@@ -1,6 +1,6 @@
 \name{plot.PresenceAbsence}
 \alias{plot.PresenceAbsence}
-\title{Plot for an object of class PresenceAbsence}
+\title{Plot an object of class PresenceAbsence}
 \usage{
 plot(x, name=NULL, world=T)
 }
@@ -9,13 +9,13 @@ plot(x, name=NULL, world=T)
   presab).}
 
   \item{name}{you can specify a species to be ploted
-  instead of the richness map.}
+  instead of the species richness map.}
 
-  \item{world}{if True a shapefile of countries is added to
-  the plot.}
+  \item{world}{if True a map of political divisions
+  (countries) is added to the plot.}
 }
 \description{
-Plot species richness map from an object of class
+Plots species richness map from an object of class
 PresenceAbsence or an specific species map.
 }
 \author{

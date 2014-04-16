@@ -5,23 +5,22 @@
 lets.shFilter(shapes, presence=NULL, origin=NULL, seasonal=NULL)
 }
 \arguments{
-  \item{shapes}{SpatialPolygonsDataFrame (see function
-  readShapePoly to open this files) class object. Species
-  name should be in a subclass called BINOMIAL or
-  binomial.}
+  \item{shapes}{Object of class SpatialPolygonsDataFrame
+  (see function readShapePoly to open this files).}
 
-  \item{presence}{A vector with the code numbers of
-  presence type to be matained.}
+  \item{presence}{A vector with the code numbers for the
+  presence type to be maintained.}
 
-  \item{origin}{A vector with the code numbers of origin
-  type to be matained.}
+  \item{origin}{A vector with the code numbers for the
+  origin type to be maintained.}
 
-  \item{seasonal}{A vector with the code numbers of
-  seasonal type to be matained.}
+  \item{seasonal}{A vector with the code numbers for the
+  seasonal type to be maintained.}
 }
 \value{
-The result is the shapefile filtered. If the filters remove
-all polygons, the result will be NULL.
+The result is the shapefile(s) filtered according to the
+selected types. If the filters remove all polygons, the
+result will be NULL.
 }
 \description{
 Filter species shapefiles by origin, presence and seasonal
@@ -39,7 +38,7 @@ Seasonal codes: (1) Resident, (2) Breeding Season, (3)
 Non-breeding Season, (4) Passage & (5) Seasonal Occurrence
 Uncertain.
 
-More info see metadata file of the shapefiles.
+More info in the shapefiles' metadata.
 }
 \author{
 Bruno Vilela

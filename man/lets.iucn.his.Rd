@@ -1,31 +1,32 @@
 \name{lets.iucn.his}
 \alias{lets.iucn.his}
-\title{Download habitat information from IUCN}
+\title{Download historical conservation status of species from IUCN}
 \usage{
 lets.iucn.his(input, count=FALSE)
 }
 \arguments{
   \item{input}{character vector with one or more species
-  names, or an object of the PresenceAbsence class.}
+  names, or an object of class PresenceAbsence.}
 
-  \item{count}{Logical, if TRUE a counting window will be
+  \item{count}{Logical, if TRUE a counting window will
   open.}
 }
 \value{
-A data frame with the species names in the rows and the
-years (1980 - 2014) in the columns, the code represents the
-conservation status of the species (see IUCN website for
-details). NE = Not evaluated.
+A data frame with the species names in the first column
+rows and the years (1980 - present) in the remaining
+columns, the code represents the species' conservation
+status (see the IUCN website for details). If species do
+not have information (i.e. have not been evaluated), the
+result is: NE (Not evaluated).
 }
 \description{
-Get species conservation status history information from
-IUCN website for one or more species.
+Get species conservation status through history (i.e. from
+1980 to present date available) from the IUCN website for
+one or more species.
 }
 \details{
-Depending on your internet conection and the number of
-species, the function may take some time. So, we open a
-count window where you can follow the progress. Note that
-the internet must be turned on during all the process.
+Note that you must be connected to the internet to use this
+function.
 }
 \author{
 Bruno Vilela

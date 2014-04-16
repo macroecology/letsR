@@ -1,16 +1,16 @@
 \name{lets.maplizer}
 \alias{lets.maplizer}
-\title{Create a matrix summarizing a species atribute}
+\title{Create a matrix summarizing species' attributes}
 \usage{
 lets.maplizer(x, y, z, func=mean, ras=FALSE)
 }
 \arguments{
   \item{x}{A PresenceAbsence object.}
 
-  \item{y}{Species atribute to be maped}
+  \item{y}{Species attribute to be considered.}
 
-  \item{z}{Species names in the same order of the
-  atributes.}
+  \item{z}{Species names in the same order as the
+  attributes.}
 
   \item{func}{function to summarize the atribute.}
 

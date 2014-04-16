@@ -7,20 +7,21 @@ lets.addpoly(x, y, onlyvar=F)
 \arguments{
   \item{x}{A PresenceAbsence object.}
 
-  \item{y}{Polygon information to be added.}
+  \item{y}{Polygon values to add.}
 
-  \item{z}{Name of the information inside the polygon.}
+  \item{z}{Name of polygon values.}
 
-  \item{onlyvar}{If True only the variable matrix will be
+  \item{onlyvar}{If True only the matrix object will be
   returned.}
 }
 \value{
-The result is a matrix of species presence/absence with the
-polygon information columns added at the end. The Values
-repesent the porcentage of the cell covered by the polygon.
+The result is a presence-absence matrix of species with the
+polygon values added as columns at the right-end of the
+matrix . The Values represent the percentage of the cell
+covered by the polygon.
 }
 \description{
-Add polygon information to a PresenceAbsence object.
+Add polygon values to a PresenceAbsence object.
 }
 \author{
 Bruno Vilela
