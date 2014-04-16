@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Add polygon values to a PresenceAbsence object .
+#' @description Add polygon values to a PresenceAbsence object.
 #'
 #' @usage lets.addpoly(x, y, onlyvar=F)
 #' 

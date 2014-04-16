@@ -73,6 +73,9 @@ lets.iucn <- function(input, count=FALSE){
         status[i, 1] <- "NT"
       }
       
+      if(status[i, 1]=="LR/lc"){
+        status[i, 1] <- "LC"
+      }
       ###Pais
       distr1 <- try(xpathSApply(h, '//ul[@class="countries"]', xmlValue), silent=TRUE)
 
@@ -123,8 +126,13 @@ lets.iucn <- function(input, count=FALSE){
         populacao[i, 1] <- ifelse(is.list(pop), "Unknown",pop)
         familia[i, 1] <- try(xpathSApply(h, '//div[@id="family"]', xmlValue), silent=TRUE)
         autor[i, 1] <- try(xpathSApply(h, '//div[@id="species_authority"]', xmlValue), silent=TRUE)            
+        
         if(status[i, 1]=="LR/nt"){
           status[i, 1] <- "NT"
+        }
+        
+        if(status[i, 1]=="LR/lc"){
+          status[i, 1] <- "LC"
         }
         ###Pais
         distr1 <- try(xpathSApply(h, '//ul[@class="countries"]', xmlValue), silent=TRUE)
