@@ -27,7 +27,7 @@ plot.PresenceAbsence <- function(x, name=NULL, world=T){
     pos <- which(x$Sp==name)
     
     r <- rasterize(x$Presen[ ,1:2], x$Rich,  x$Presen[ ,(pos+2)])  
-    plot(r, col=c("white", "red"))
+    plot(r, col=c("white", "red"), legend=F)
   }
   if(world==T){
   map(add=T)
