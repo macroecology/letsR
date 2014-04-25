@@ -163,5 +163,6 @@ lets.correl <- function(x, y, z, equidistant=FALSE, plot=TRUE){
   else 2 * (1 - pv)
   
   
-  return(list("observed"=ob, "expected"=es, "sd"=sdi/sqrt(n), "p.value"= pv))
+  return(list("observed"=ob, "expected"=es, "sd"=sdi, "p.value"= pv))
+  
 }

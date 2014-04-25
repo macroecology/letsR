@@ -2,7 +2,7 @@
 \alias{plot.PresenceAbsence}
 \title{Plot an object of class PresenceAbsence}
 \usage{
-plot(x, name=NULL, world=T)
+plot(x, name=NULL, world=T, ...)
 }
 \arguments{
   \item{x}{an object of class PresenceAbsence (see function
@@ -13,6 +13,8 @@ plot(x, name=NULL, world=T)
 
   \item{world}{if True a map of political divisions
   (countries) is added to the plot.}
+
+  \item{...}{Other plot parameters.}
 }
 \description{
 Plots species richness map from an object of class
