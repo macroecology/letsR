@@ -12,14 +12,21 @@ lets.transf(x, y, z, NUMERIC=TRUE)
   \item{z}{The value to be atributed to each level (same
   order as y).}
 
-  \item{NUMERIC}{logical, if TRUE z will be considered
-  numbers.}
+  \item{NUMERIC}{logical, if \code{TRUE} z will be
+  considered numbers.}
 }
 \value{
 Return a vector with changed values.
 }
 \description{
 Transform each element of a vector.
+}
+\examples{
+\dontrun{
+status <- sample(c("EN","VU", "NT", "CR", "DD", "LC"), 30, replace=TRUE)
+statustrans <- lets.transf(status, c("EN","VU", "NT", "CR", "DD", "LC"), c("Threatened","Threatened", "Non-Threatened", "Threatened", "Data Deficient", "Non-Threatened"), NUMERIC=FALSE)
+
+}
 }
 \author{
 Bruno Vilela

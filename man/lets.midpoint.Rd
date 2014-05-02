@@ -10,8 +10,9 @@ lets.midpoint(pam, planar=FALSE)
   being longitude and latitude coordinates, respectively),
   or an object of class PresenceAbsence.}
 
-  \item{planar}{Logical, if FALSE the coordinates are in
-  Longitude/Latitude. If TRUE the coordinates are planar.}
+  \item{planar}{Logical, if \code{FALSE} the coordinates
+  are in Longitude/Latitude. If TRUE the coordinates are
+  planar.}
 }
 \value{
 A matrix containing the species' names and coordinates
@@ -21,10 +22,18 @@ A matrix containing the species' names and coordinates
 Calculate species' geographical range midpoint from a
 presence-absence matrix.
 }
+\examples{
+\dontrun{
+data(PAM)
+mid <- lets.midpoint(PAM)
+}
+}
 \author{
 Fabricio Villalobos & Bruno Vilela
 }
 \seealso{
-lets.presab
+\code{\link{lets.presab}}
+
+\code{\link{lets.presab.birds}}
 }
 

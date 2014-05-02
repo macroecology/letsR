@@ -2,13 +2,13 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Get species' habitat information from IUCN website for one or more species.
+#' @description Get species' habitat information from IUCN website(\url{http//:http://www.iucnedlist.org/}) for one or more species.
 #' 
 #' @usage lets.iucn.ha(input, count=FALSE)
 #' 
 #' @param input character vector with one or more species names,
 #' or an object of the PresenceAbsence class.
-#' @param count Logical, if TRUE a counting window will open.
+#' @param count Logical, if \\code{TRUE} a counting window will open.
 #' 
 #' @return A data frame with species names in the first column and the habitats in the remaining columns,
 #' '1' if species is present in that habitat and '0' otherwise.
@@ -17,8 +17,13 @@
 #' 
 #' @import XML
 #' 
-#' @seealso lets.iucn
+#' @seealso \code{\link{lets.iucn}}
+#' @seealso \code{\link{lets.iucn.his}} 
 #' 
+#' @examples \dontrun{
+#' lets.iucn.ha("Pongo pygmaeus")  # single species
+#' lets.iucn.ha(c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius")) # multiple species
+#' }
 #' 
 #' @export
 

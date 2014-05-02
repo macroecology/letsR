@@ -38,8 +38,10 @@
 #' 
 #' More info in the shapefiles' metadata.
 #' 
-#' @seealso plot.PresenceAbsence
-#' @seealso lets.presab
+#' @seealso \code{\link{plot.PresenceAbsence}}
+#' @seealso \code{\link{lets.presab}}
+#' @seealso \code{\link{lets.presab.birds}}
+#' 
 #' 
 #' @export
 

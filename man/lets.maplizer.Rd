@@ -14,8 +14,8 @@ lets.maplizer(x, y, z, func=mean, ras=FALSE)
 
   \item{func}{function to summarize the atribute.}
 
-  \item{ras}{If True the raster file will be returned
-  together with the matrix}
+  \item{ras}{If \code{TRUE} the raster file will be
+  returned together with the matrix}
 }
 \value{
 Return a matrix with coordinates and the atributes
@@ -25,10 +25,21 @@ summarized.
 Summarize species atributes per cell in a presence-absence
 matrix.
 }
+\examples{
+\dontrun{
+data(PAM)
+trait <- runif(32)
+resu <- lets.maplizer(PAM, trait, PAM$S, ras=TRUE)
+head(resu$Matrix)
+plot(resu$raster) ; map(add=T)
+}
+}
 \author{
 Bruno Vilela
 }
 \seealso{
-lets.presab
+\code{\link{lets.presab}}
+
+\code{\link{lets.presab.birds}}
 }
 

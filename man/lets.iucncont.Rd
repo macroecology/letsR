@@ -38,10 +38,22 @@ DD = NA
 
 NE = NA
 }
+\examples{
+\dontrun{
+#Vector transformation
+status <- sample(c("EN","VU", "NT", "CR", "DD", "LC", "EX"), 30, replace=TRUE)
+transV <- lets.iucncont(status)
+
+#matrix transformation
+data(IUCN)
+transM <- lets.iucncont(iucn)
+
+}
+}
 \author{
 Bruno Vilela
 }
 \seealso{
-lets.iucn
+\code{\link{lets.iucn}}
 }
 

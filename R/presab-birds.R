@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 
-#' @description Convert species' shapefiles into a presence-absence matrix. This function is specially designed to work with BirdLife Intl. shapefiles (www.birdlife.org).
+#' @description Convert species' shapefiles into a presence-absence matrix. This function is specially designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
 #'
 #' @usage lets.presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
 #' remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
@@ -14,27 +14,36 @@
 #' @param xmn Minimun longitude used to construct the grid in which the matrix will be based (i.e. the geographic domain of interest).
 #' @param ymx Maximun latitude used to construct the grid in which the matrix will be based (i.e. the geographic domain of interest).
 #' @param ymn Minimun latitude used to construct the grid in which the matrix will be based (i.e. the geographic domain of interest).
-#' @param remove.cells If true, the final matrix will not contain cells in the grid that have value of zero (i.e. no species present in that cell).
-#' @param remove.sp If true, the final matrix will not contain species that do not match any cell in the grid (i.e. species not distributed in the domain).
-#' @param show.matrix if true, only the presence-absence matrix will be shown.
-#' @param crs the projection of the shapefiles.
+#' @param remove.cells If \code{TRUE}, the final matrix will not contain cells in the grid with a value of zero (i.e. sites with no species present).
+#' @param remove.sp If \code{TRUE}, the final matrix will not contain species that do not match any cell in the grid.
+#' @param show.matrix if \code{TRUE}, only the presence-absence matrix will be shown.
+#' @param character representign the PROJ.4 type description of a Coordinate Reference System (map projection).
 #' @param cover Percentage of the cell covered by the shapefile that will be considered for presence (values between 0 and 1).
-#' @param count Logical, if TRUE a counting window will open.
-
-#' @return The result is an object of class PresenceAbsence with the following objects:
-#' @return Presence-Absence Matrix: A matrix of species' presence(1) and absence(0). The first two columns contain the longitude (x) and latitude (y) of the cells' centroid and the remainin columns the incidence values (1,0);
-#' @return Richness Raster: A raster containing species richness data within the gridded domain;
-#' @return Species name: A vector of species' names contained in the presence-absence matrix.
-#' @return *But see the option argument show.matrix.
+#' @param presence A vector with the code numbers for the presence type to be considered in the process. 
+#' @param origin A vector with the code numbers for the origin type to be considered in the process.
+#' @param seasonal A vector with the code numbers for the seasonal type to be considered in the process.
+#' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
+#' @return The result is an object of class PresenceAbsence with the following objects:
+#' @return \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information. The first two columns contain the longitude (x) and latitude (y) of the cells' centroid (from the gridded domain used);
+#' @return \strong{Richness Raster}: A raster containing species richness data;
+#' @return \strong{Species name}: A vector with species' names contained in the matrix.
+#' @return *But see the option argument \code{show.matrix}.
 #'  
 #' @details The function creates the presence-absence matrix based on a raster file. Depending on the cell size, extension used and number of species it may require a lot of memory, 
-#'and may take some time to process it. Thus, during this process, a counting window is open so you can see the progress (i.e. in what polygon the function is working). Note that the number of 
-#'polygons is not the same as the number of species (i.e. one species may have more than one polygon/shapefile).
+#'and may take some time to process it. Thus, during the process, if \code{count} argument is set \code{TRUE}, a counting window will open so you can see the progress (i.e. in what polygon the function is working). Note that the number of 
+#'polygons is not the same as the number of species that you have (i.e. a species may have more than one polygon/shapefiles).
 #' 
-#' @seealso plot.PresenceAbsence
-#' @seealso lets.presab
-#' @seealso lets.shFilter
+#' @seealso \code{\link{plot.PresenceAbsence}}
+#' @seealso \code{\link{lets.presab}}
+#' @seealso \code{\link{lets.shFilter}}
+#' 
+#' @examples \dontrun{
+#' #Constructing a Presence/Absence matrix for birds (this will not work if do not change the path for the folder were you kept the spatial data) 
+#' PAM <- lets.presab.birds("YOURPATH/YOURPATH/BIRDS")
+#' plot(PAM)  # Species richness map
+#' 
+#' }
 #' 
 #' @export
 

@@ -10,12 +10,22 @@
 #' @param y Species attribute to be considered.
 #' @param z Species names in the same order as the attributes.
 #' @param func function to summarize the atribute.
-#' @param ras If True the raster file will be returned together with the matrix
+#' @param ras If \code{TRUE} the raster file will be returned together with the matrix
 #' 
 #' @return Return a matrix with coordinates and the atributes summarized.
 #' 
 #' 
-#' @seealso lets.presab
+#' @seealso \code{\link{lets.presab}}
+#' @seealso \code{\link{lets.presab.birds}}
+#' 
+#' 
+#' @examples \dontrun{
+#' data(PAM)
+#' trait <- runif(32)
+#' resu <- lets.maplizer(PAM, trait, PAM$S, ras=TRUE)
+#' head(resu$Matrix)
+#' plot(resu$raster) ; map(add=T)
+#' }
 #' 
 #' @export
 

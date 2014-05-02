@@ -44,8 +44,10 @@ More info in the shapefiles' metadata.
 Bruno Vilela
 }
 \seealso{
-plot.PresenceAbsence
+\code{\link{plot.PresenceAbsence}}
 
-lets.presab
+\code{\link{lets.presab}}
+
+\code{\link{lets.presab.birds}}
 }
 

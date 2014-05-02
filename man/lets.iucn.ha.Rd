@@ -8,8 +8,8 @@ lets.iucn.ha(input, count=FALSE)
   \item{input}{character vector with one or more species
   names, or an object of the PresenceAbsence class.}
 
-  \item{count}{Logical, if TRUE a counting window will
-  open.}
+  \item{count}{Logical, if \\code{TRUE} a counting window
+  will open.}
 }
 \value{
 A data frame with species names in the first column and the
@@ -17,17 +17,26 @@ habitats in the remaining columns, '1' if species is
 present in that habitat and '0' otherwise.
 }
 \description{
-Get species' habitat information from IUCN website for one
-or more species.
+Get species' habitat information from IUCN
+website(\url{http//:http://www.iucnedlist.org/}) for one or
+more species.
 }
 \details{
 Note that you must be connected to the internet to use this
 function.
 }
+\examples{
+\dontrun{
+lets.iucn.ha("Pongo pygmaeus")  # single species
+lets.iucn.ha(c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius")) # multiple species
+}
+}
 \author{
 Bruno Vilela
 }
 \seealso{
-lets.iucn
+\code{\link{lets.iucn}}
+
+\code{\link{lets.iucn.his}}
 }
 

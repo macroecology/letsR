@@ -7,14 +7,19 @@
 #' @usage lets.midpoint(pam, planar=FALSE)
 #' 
 #' @param pam A presence-absence matrix (sites in the rows and species in the columns, with the first two columns being longitude and latitude coordinates, respectively), or an object of class PresenceAbsence.
-#' @param planar Logical, if FALSE the coordinates are in Longitude/Latitude. If TRUE the coordinates are planar.
+#' @param planar Logical, if \code{FALSE} the coordinates are in Longitude/Latitude. If TRUE the coordinates are planar.
 #' 
 #' @return A matrix containing the species' names and coordinates (longitude [x], latitude [y]) of species' midpoints.
-#' 
 #'           
 #' @import geosphere
 #' 
-#' @seealso lets.presab
+#' @seealso \code{\link{lets.presab}}
+#' @seealso \code{\link{lets.presab.birds}}
+#' 
+#' @examples \dontrun{
+#' data(PAM)
+#' mid <- lets.midpoint(PAM)
+#' } 
 #' 
 #' @export
 

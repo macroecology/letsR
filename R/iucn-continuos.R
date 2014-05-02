@@ -27,7 +27,18 @@
 #' 
 #' NE = NA
 #' 
-#' @seealso lets.iucn
+#' @seealso \code{\link{lets.iucn}}
+#' 
+#' @examples \dontrun{
+#' #Vector transformation
+#' status <- sample(c("EN","VU", "NT", "CR", "DD", "LC", "EX"), 30, replace=TRUE) 
+#' transV <- lets.iucncont(status)
+#' 
+#' #matrix transformation
+#' data(IUCN)
+#' transM <- lets.iucncont(iucn)
+#' 
+#' }
 #' 
 #' @export
 #'

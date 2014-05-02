@@ -12,6 +12,8 @@ We hope you enjoy it and find it useful.
 ====
 ## Package donwload and install
 You can download this package using the function `install_github` from the package `devtools`.
+You will need to have the git software installed (http://git-scm.com/).
+If you are a windows user you will need to download the Rtools (http://cran.r-project.org/bin/windows/Rtools/).
 
 For this package version to work properly, you should previously install and load the following R packages:
 - `maps` 

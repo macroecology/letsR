@@ -9,10 +9,15 @@
 #' @param x A vector to be transformed.
 #' @param y levels to be transformed. 
 #' @param z The value to be atributed to each level (same order as y).
-#' @param NUMERIC logical, if TRUE z will be considered numbers.
-
+#' @param NUMERIC logical, if \code{TRUE} z will be considered numbers.
+#' 
 #' @return Return a vector with changed values.
 #' 
+#' @examples \dontrun{
+#' status <- sample(c("EN","VU", "NT", "CR", "DD", "LC"), 30, replace=TRUE) 
+#' statustrans <- lets.transf(status, c("EN","VU", "NT", "CR", "DD", "LC"), c("Threatened","Threatened", "Non-Threatened", "Threatened", "Data Deficient", "Non-Threatened"), NUMERIC=FALSE)
+#' 
+#' }
 #' 
 #' @export
 
