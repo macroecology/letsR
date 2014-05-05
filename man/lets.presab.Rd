@@ -29,19 +29,20 @@ origin=NULL, seasonal=NULL, count=FALSE)
   which the matrix will be based (i.e. the [gridded]
   geographic domain of interest)}
 
-  \item{remove.cells}{If \code{TRUE}, the final matrix will
-  not contain cells in the grid with a value of zero (i.e.
-  sites with no species present).}
+  \item{remove.cells}{Logical, if \code{TRUE} the final
+  matrix will not contain cells in the grid with a value of
+  zero (i.e. sites with no species present).}
 
-  \item{remove.sp}{If \code{TRUE}, the final matrix will
-  not contain species that do not match any cell in the
-  grid.}
+  \item{remove.sp}{Logical, if \code{TRUE} the final matrix
+  will not contain species that do not match any cell in
+  the grid.}
 
-  \item{show.matrix}{if \code{TRUE}, only the
+  \item{show.matrix}{Logical, if \code{TRUE} only the
   presence-absence matrix will be shown.}
 
-  \item{character}{representign the PROJ.4 type description
-  of a Coordinate Reference System (map projection).}
+  \item{crs}{Character representign the PROJ.4 type
+  description of a Coordinate Reference System (map
+  projection).}
 
   \item{cover}{Porcentage of the cell covered by the
   shapefile that will be considered for presence (values

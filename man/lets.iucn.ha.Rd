@@ -5,10 +5,10 @@
 lets.iucn.ha(input, count=FALSE)
 }
 \arguments{
-  \item{input}{character vector with one or more species
+  \item{input}{Character vector with one or more species
   names, or an object of the PresenceAbsence class.}
 
-  \item{count}{Logical, if \\code{TRUE} a counting window
+  \item{count}{Logical, if \code{TRUE} a counting window
   will open.}
 }
 \value{

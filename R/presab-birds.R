@@ -10,18 +10,18 @@
 #' origin=NULL, seasonal=NULL, count=FALSE)
 #' 
 #' @param path Path location of folders with one or more species' shapefiles.
-#' @param xmx Maximun longitude used to construct the grid in which the matrix will be based (i.e. the geographic domain of interest). 
-#' @param xmn Minimun longitude used to construct the grid in which the matrix will be based (i.e. the geographic domain of interest).
-#' @param ymx Maximun latitude used to construct the grid in which the matrix will be based (i.e. the geographic domain of interest).
-#' @param ymn Minimun latitude used to construct the grid in which the matrix will be based (i.e. the geographic domain of interest).
-#' @param remove.cells If \code{TRUE}, the final matrix will not contain cells in the grid with a value of zero (i.e. sites with no species present).
-#' @param remove.sp If \code{TRUE}, the final matrix will not contain species that do not match any cell in the grid.
-#' @param show.matrix if \code{TRUE}, only the presence-absence matrix will be shown.
-#' @param character representign the PROJ.4 type description of a Coordinate Reference System (map projection).
-#' @param cover Percentage of the cell covered by the shapefile that will be considered for presence (values between 0 and 1).
-#' @param presence A vector with the code numbers for the presence type to be considered in the process. 
-#' @param origin A vector with the code numbers for the origin type to be considered in the process.
-#' @param seasonal A vector with the code numbers for the seasonal type to be considered in the process.
+#' @param xmx Maximun longitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
+#' @param xmn Minimun longitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
+#' @param ymx Maximun latitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
+#' @param ymn Minimun latitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
+#' @param remove.cells Logical, if \code{TRUE} the final matrix will not contain cells in the grid with a value of zero (i.e. sites with no species present).
+#' @param remove.sp Logical, if \code{TRUE} the final matrix will not contain species that do not match any cell in the grid.
+#' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be shown.
+#' @param crs Character representign the PROJ.4 type description of a Coordinate Reference System (map projection).
+#' @param cover Porcentage of the cell covered by the shapefile that will be considered for presence (values between 0 and 1).
+#' @param presence A vector with the code numbers for the presence type to be considered in the process (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data}). 
+#' @param origin A vector with the code numbers for the origin type to be considered in the process (for IUCN spatial data).
+#' @param seasonal A vector with the code numbers for the seasonal type to be considered in the process (for IUCN spatial data).
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
 #' @return The result is an object of class PresenceAbsence with the following objects:

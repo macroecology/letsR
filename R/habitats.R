@@ -6,9 +6,9 @@
 #' 
 #' @usage lets.iucn.ha(input, count=FALSE)
 #' 
-#' @param input character vector with one or more species names,
+#' @param input Character vector with one or more species names,
 #' or an object of the PresenceAbsence class.
-#' @param count Logical, if \\code{TRUE} a counting window will open.
+#' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
 #' @return A data frame with species names in the first column and the habitats in the remaining columns,
 #' '1' if species is present in that habitat and '0' otherwise.

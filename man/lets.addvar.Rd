@@ -10,10 +10,10 @@ lets.addvar(x, y, onlyvar=F, fun=mean)
   \item{y}{Variables to be added in Raster or RasterStack
   format.}
 
-  \item{onlyvar}{If True only the matrix object will be
-  returned.}
+  \item{onlyvar}{If \code{TRUE} only the matrix object will
+  be returned.}
 
-  \item{fun}{function used to aggregate values}
+  \item{fun}{Function used to aggregate values.}
 }
 \value{
 The result is a presence-absence matrix of species with the
@@ -23,14 +23,21 @@ variables added as columns at the right-end of the matrix.
 Add variables (in raster format) to a PresenceAbsence
 object.
 }
+\examples{
+\dontrun{
+data(temp)  # Global mean temperature
+data(PAM)  # Phyllomedusa presence-absence matrix
+PAM_temp <- lets.addvar(PAM, temp)
+}
+}
 \author{
 Bruno Vilela
 }
 \seealso{
-lets.presab.birds
+\code{\link{lets.presab.birds}}
 
-lets.presab
+\code{\link{lets.presab}}
 
-lets.addpoly
+\code{\link{lets.addpoly}}
 }
 

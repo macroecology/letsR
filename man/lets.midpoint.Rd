@@ -11,8 +11,8 @@ lets.midpoint(pam, planar=FALSE)
   or an object of class PresenceAbsence.}
 
   \item{planar}{Logical, if \code{FALSE} the coordinates
-  are in Longitude/Latitude. If TRUE the coordinates are
-  planar.}
+  are in Longitude/Latitude. If \code{TRUE} the coordinates
+  are planar.}
 }
 \value{
 A matrix containing the species' names and coordinates

@@ -11,8 +11,16 @@
 #' @param world if True a map of political divisions (countries) is added to the plot.
 #' @param ... Other plot parameters.
 #' 
-#' @seealso lets.presab
-#' @seealso lets.presab.birds
+#' @seealso \code{\link{lets.presab}}
+#' @seealso \code{\link{lets.presab.birds}}
+#' 
+#' @examples \dontrun{
+#' data(PAM)
+#' plot(PAM)
+#' plot(PAM, name="Phyllomedusa atelopoides")
+#' plot(PAM, name="Phyllomedusa azurea")
+#' }
+#' 
 #' @export
 
 plot.PresenceAbsence <- function(x, name=NULL, world=T, ...){

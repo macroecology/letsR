@@ -8,26 +8,37 @@ lets.field(x, y, z, weigth=TRUE)
   \item{x}{A PresenceAbsence object.}
 
   \item{y}{Species attribute to be considered. It must be a
-  continuous attribute}
+  numeric attribute.}
 
   \item{z}{Species names in the same order as the
   attributes.}
 
-  \item{weigth}{If TRUE the value is weighted by species'
-  range size (i.e. ), if FALSE the value is the mean of all
-  species that cooccur with the species target.}
-}
-\value{
-Return a matrix with species x values.
+  \item{weigth}{If \code{TRUE} the value is weighted by
+  species' range size, if \code{FALSE} the value is the
+  mean of all species that cooccur with the species
+  target.}
 }
 \description{
 Create species' attributes based on the attribute values of
 species co-occurring within their ranges.
 }
+\details{
+If the species do not co-occur with any other species NaN
+will be returned.
+}
+\examples{
+\dontrun{
+data(PAM)
+range <- colSums(PAM$P)[-(1:2)]
+field <- lets.field(PAM, range, PAM$S, weigth=TRUE)
+}
+}
 \author{
 Bruno Vilela
 }
 \seealso{
-lets.presab
+\code{\link{lets.presab.birds}}
+
+\code{\link{lets.presab}}
 }
 

@@ -12,47 +12,52 @@ origin=NULL, seasonal=NULL, count=FALSE)
   species' shapefiles.}
 
   \item{xmx}{Maximun longitude used to construct the grid
-  in which the matrix will be based (i.e. the geographic
-  domain of interest).}
+  in which the matrix will be based (i.e. the [gridded]
+  geographic domain of interest)}
 
   \item{xmn}{Minimun longitude used to construct the grid
-  in which the matrix will be based (i.e. the geographic
-  domain of interest).}
+  in which the matrix will be based (i.e. the [gridded]
+  geographic domain of interest)}
 
   \item{ymx}{Maximun latitude used to construct the grid in
-  which the matrix will be based (i.e. the geographic
-  domain of interest).}
+  which the matrix will be based (i.e. the [gridded]
+  geographic domain of interest)}
 
   \item{ymn}{Minimun latitude used to construct the grid in
-  which the matrix will be based (i.e. the geographic
-  domain of interest).}
+  which the matrix will be based (i.e. the [gridded]
+  geographic domain of interest)}
 
-  \item{remove.cells}{If \code{TRUE}, the final matrix will
-  not contain cells in the grid with a value of zero (i.e.
-  sites with no species present).}
+  \item{remove.cells}{Logical, if \code{TRUE} the final
+  matrix will not contain cells in the grid with a value of
+  zero (i.e. sites with no species present).}
 
-  \item{remove.sp}{If \code{TRUE}, the final matrix will
-  not contain species that do not match any cell in the
-  grid.}
+  \item{remove.sp}{Logical, if \code{TRUE} the final matrix
+  will not contain species that do not match any cell in
+  the grid.}
 
-  \item{show.matrix}{if \code{TRUE}, only the
+  \item{show.matrix}{Logical, if \code{TRUE} only the
   presence-absence matrix will be shown.}
 
-  \item{character}{representign the PROJ.4 type description
-  of a Coordinate Reference System (map projection).}
+  \item{crs}{Character representign the PROJ.4 type
+  description of a Coordinate Reference System (map
+  projection).}
 
-  \item{cover}{Percentage of the cell covered by the
+  \item{cover}{Porcentage of the cell covered by the
   shapefile that will be considered for presence (values
   between 0 and 1).}
 
   \item{presence}{A vector with the code numbers for the
-  presence type to be considered in the process.}
+  presence type to be considered in the process (for IUCN
+  spatial data
+  \url{http://www.iucnredlist.org/technical-documents/spatial-data}).}
 
   \item{origin}{A vector with the code numbers for the
-  origin type to be considered in the process.}
+  origin type to be considered in the process (for IUCN
+  spatial data).}
 
   \item{seasonal}{A vector with the code numbers for the
-  seasonal type to be considered in the process.}
+  seasonal type to be considered in the process (for IUCN
+  spatial data).}
 
   \item{count}{Logical, if \code{TRUE} a counting window
   will open.}

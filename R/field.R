@@ -7,15 +7,22 @@
 #' @usage lets.field(x, y, z, weigth=TRUE)
 #' 
 #' @param x A PresenceAbsence object.
-#' @param y Species attribute to be considered. It must be a continuous attribute
+#' @param y Species attribute to be considered. It must be a numeric attribute.
 #' @param z Species names in the same order as the attributes.
-#' @param weigth If TRUE the value is weighted by species' range size (i.e. ), 
-#' if FALSE the value is the mean of all species that cooccur with the
+#' @param weigth If \code{TRUE} the value is weighted by species' range size, 
+#' if \code{FALSE} the value is the mean of all species that cooccur with the
 #'  species target.
+#'  
+#'  @details If the species do not co-occur with any other species NaN will be returned. 
 #' 
-#' @return Return a matrix with species x values.
+#' @seealso \code{\link{lets.presab.birds}}
+#' @seealso \code{\link{lets.presab}}
 #' 
-#' @seealso lets.presab
+#' @examples \dontrun{
+#' data(PAM)
+#' range <- colSums(PAM$P)[-(1:2)]
+#' field <- lets.field(PAM, range, PAM$S, weigth=TRUE)
+#' }
 #' 
 #' @export
 

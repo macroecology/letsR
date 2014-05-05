@@ -20,12 +20,20 @@ plot(x, name=NULL, world=T, ...)
 Plots species richness map from an object of class
 PresenceAbsence or an specific species map.
 }
+\examples{
+\dontrun{
+data(PAM)
+plot(PAM)
+plot(PAM, name="Phyllomedusa atelopoides")
+plot(PAM, name="Phyllomedusa azurea")
+}
+}
 \author{
 Bruno Vilela
 }
 \seealso{
-lets.presab
+\code{\link{lets.presab}}
 
-lets.presab.birds
+\code{\link{lets.presab.birds}}
 }
 
