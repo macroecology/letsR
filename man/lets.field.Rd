@@ -2,7 +2,7 @@
 \alias{lets.field}
 \title{Create variables based on species geographical ranges}
 \usage{
-lets.field(x, y, z, weigth=TRUE)
+lets.field(x, y, z, weigth=TRUE, count=FALSE)
 }
 \arguments{
   \item{x}{A PresenceAbsence object.}
@@ -17,6 +17,9 @@ lets.field(x, y, z, weigth=TRUE)
   species' range size, if \code{FALSE} the value is the
   mean of all species that cooccur with the species
   target.}
+
+  \item{count}{Logical, if \code{TRUE} a counting window
+  will open.}
 }
 \description{
 Create species' attributes based on the attribute values of

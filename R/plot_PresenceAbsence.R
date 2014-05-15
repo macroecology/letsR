@@ -5,7 +5,9 @@
 #' @description Plots species richness map from an object of class PresenceAbsence or an
 #' specific species map.
 #'
-#' @usage plot(x, name=NULL, world=T, ...)
+#' @usage 
+#' \method{plot}{PresenceAbsence}(x, name=NULL, world=T, \dots)
+#' 
 #' @param x an object of class PresenceAbsence (see function presab).
 #' @param name you can specify a species to be ploted instead of the species richness map.
 #' @param world if True a map of political divisions (countries) is added to the plot.

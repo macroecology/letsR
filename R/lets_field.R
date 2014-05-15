@@ -4,7 +4,7 @@
 #' 
 #' @description Create species' attributes based on the attribute values of species co-occurring within their ranges.
 #'
-#' @usage lets.field(x, y, z, weigth=TRUE)
+#' @usage lets.field(x, y, z, weigth=TRUE, count=FALSE)
 #' 
 #' @param x A PresenceAbsence object.
 #' @param y Species attribute to be considered. It must be a numeric attribute.
@@ -12,6 +12,7 @@
 #' @param weigth If \code{TRUE} the value is weighted by species' range size, 
 #' if \code{FALSE} the value is the mean of all species that cooccur with the
 #'  species target.
+#' @param count Logical, if \code{TRUE} a counting window will open.
 #'  
 #'  @details If the species do not co-occur with any other species NaN will be returned. 
 #' 
@@ -27,7 +28,7 @@
 #' @export
 
 
-lets.field <- function(x, y, z, weigth=T, count=FALSE){
+lets.field <- function(x, y, z, weigth=TRUE, count=FALSE){
   
  if(is.factor(y)){
   y <- as.numeric(levels(y))[y]

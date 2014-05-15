@@ -9,9 +9,10 @@ origin=NULL, seasonal=NULL, count=FALSE)
 }
 \arguments{
   \item{shapes}{Object of class SpatialPolygonsDataFrame
-  (see function readShapePoly to open these files). Species
-  name should be in a column (within the .DBF table of the
-  shapefile) called BINOMIAL or binomial.}
+  (see function \code{\link{readShapePoly}} to open these
+  files). Species name should be in a column (within the
+  .DBF table of the shapefile) called BINOMIAL or
+  binomial.}
 
   \item{xmx}{Maximun longitude used to construct the grid
   in which the matrix will be based (i.e. the [gridded]
@@ -28,6 +29,9 @@ origin=NULL, seasonal=NULL, count=FALSE)
   \item{ymn}{Minimun latitude used to construct the grid in
   which the matrix will be based (i.e. the [gridded]
   geographic domain of interest)}
+
+  \item{resol}{Numeric vector of length 1 or 2 to set the
+  grid resolution.}
 
   \item{remove.cells}{Logical, if \code{TRUE} the final
   matrix will not contain cells in the grid with a value of

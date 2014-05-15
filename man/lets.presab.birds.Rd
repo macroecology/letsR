@@ -27,6 +27,9 @@ origin=NULL, seasonal=NULL, count=FALSE)
   which the matrix will be based (i.e. the [gridded]
   geographic domain of interest)}
 
+  \item{resol}{Numeric vector of length 1 or 2 to set the
+  grid resolution.}
+
   \item{remove.cells}{Logical, if \code{TRUE} the final
   matrix will not contain cells in the grid with a value of
   zero (i.e. sites with no species present).}

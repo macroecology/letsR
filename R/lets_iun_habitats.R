@@ -62,7 +62,7 @@ lets.iucn.ha <- function(input, count=FALSE){
     text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n-i))))      
     
     #Taking the Website code from the internet
-    input <- gsub(as.matrix(input), patt=" ", replace="-")
+    input <- gsub(as.matrix(input), pattern=" ", replacement="-")
     h <- try(htmlParse(paste("http://api.iucnredlist.org/go/", input[i], sep = "")), silent=TRUE)
     b <- try(xpathSApply(h, '//div', xmlValue), silent=TRUE)[1]
     c <- as.numeric(gsub("\\D", "", b))
@@ -92,7 +92,7 @@ lets.iucn.ha <- function(input, count=FALSE){
    for(i in 1:n){
        
     #Taking the Website code from the internet
-    input <- gsub(as.matrix(input), patt=" ", replace="-")
+    input <- gsub(as.matrix(input), pattern=" ", replacement="-")
     h <- try(htmlParse(paste("http://api.iucnredlist.org/go/", input[i], sep = "")), silent=TRUE)
     b <- try(xpathSApply(h, '//div', xmlValue), silent=TRUE)[1]
     c <- as.numeric(gsub("\\D", "", b))

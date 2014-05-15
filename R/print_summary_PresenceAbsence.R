@@ -1,6 +1,18 @@
-#print summary
+#' Print summary for object of class PresenceAbsence
+#' @author Bruno Vilela
+#' 
+#' @description Print summary for objects of class PresenceAbsence.
+#' 
+#' @usage 
+#' \method{print.summary}{PresenceAbsence}(x, \dots)
+#' 
+#' @param x an object of class PresenceAbsence (see function presab).
+#' @param ... Other print parameters.
+#' 
 #' @export
-print.summary.PresenceAbsence <- function(x){
+
+
+print.summary.PresenceAbsence <- function(x, ...){
   cat("\nClass:", x$class)
   cat("\n_ _")
   

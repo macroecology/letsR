@@ -1,12 +1,21 @@
-# Summary for object of class PresenceAbsence
-# Bruno Vilela
+#' Summary for object of class PresenceAbsence
+#' @author Bruno Vilela
+#' 
+#' @description Summary for objects of class PresenceAbsence.
+#' 
+#' @usage 
+#' \method{summary}{PresenceAbsence}(object, \dots)
+#' 
+#' @param object an object of class PresenceAbsence (see function presab).
+#' @param ... Other summary parameters.
+#' 
 #' @export
 
-summary.PresenceAbsence <- function(x){
-  class <- class(x)
-  Numberofspecies <- ncol(x$Pre)-2
-  Numberofcells <- nrow(x$Pre)
-  x2<- x$Pre[,-(1:2)]
+summary.PresenceAbsence <- function(object, ...){
+  class <- class(object)
+  Numberofspecies <- ncol(object$Pre)-2
+  Numberofcells <- nrow(object$Pre)
+  x2<- object$Pre[,-(1:2)]
   if(is.vector(x2)){
     nomes <- names(x2)
     x2 <- matrix(x2, ncol=length(x2))
@@ -23,11 +32,11 @@ summary.PresenceAbsence <- function(x){
     Cellswithpresence <- sum(x2>0)
     Cellswithoutanypresence <- sum(x2==0)
     Specieswithoutanypresence <- ifelse(Numberofcells==Cellswithoutanypresence, 1, 0)
-    SpeciesLargestRange <- x$S
+    SpeciesLargestRange <- object$S
   }
-  resolution <- res(x$Ri)
-  extention <- extent(x$Ri)
-  coordRef <- projection(x$R)  
+  resolution <- res(object$Ri)
+  extention <- extent(object$Ri)
+  coordRef <- projection(object$R)  
   result <- list(class=class,Numberofspecies=Numberofspecies, Numberofcells=Numberofcells, 
        Cellswithpresence=Cellswithpresence, Cellswithoutanypresence=Cellswithoutanypresence,
        Specieswithoutanypresence=Specieswithoutanypresence, SpeciesLargestRange=SpeciesLargestRange,

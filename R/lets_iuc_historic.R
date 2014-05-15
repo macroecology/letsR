@@ -69,7 +69,7 @@ lets.iucn.his <- function(input, count=FALSE){
 ###
 .Hist <- function(input){
   
-  input <- gsub(as.matrix(input), patt=" ", replace="-")
+  input <- gsub(as.matrix(input), pattern=" ", replacement="-")
   h2 <- try(htmlParse(paste("http://api.iucnredlist.org/go/",input, sep = "")),silent=TRUE)
   b <- try(xpathSApply(h2, '//div', xmlValue),silent=TRUE)[1]
   c <- as.numeric(gsub("\\D", "", b))
@@ -151,7 +151,7 @@ lets.iucn.his <- function(input, count=FALSE){
     pos3 <- which(anos%in%ano1)
     matriz[pos3:ncol(matriz)] <- ameaca1
   }
-  Species <- gsub(as.matrix(input), patt="-", replace=" ")
+  Species <- gsub(as.matrix(input), pattern="-", replacement=" ")
   matriz <- cbind(Species, matriz)
   colnames(matriz)[1] <- "Species"
   return(matriz)

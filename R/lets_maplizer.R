@@ -29,7 +29,7 @@
 #' 
 #' @export
 
-lets.maplizer <- function(x, y, z, func=mean, ras=F){
+lets.maplizer <- function(x, y, z, func=mean, ras=FALSE){
 
   if(is.factor(y)){
   y <- as.numeric(levels(y))[y]

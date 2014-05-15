@@ -33,7 +33,7 @@ lets.iucn <- function(input, count=FALSE){
     input <- input$S
   }
   
-  input <- gsub(as.matrix(input), patt=" ", replace="-")
+  input <- gsub(as.matrix(input), pattern=" ", replacement="-")
   
   #vetor para guardar o status
   ln <- length(input)
@@ -193,7 +193,7 @@ lets.iucn <- function(input, count=FALSE){
   
   
   #Retirando os tracos e colocando de novo o espaco entre as palavras
-  resu[, 1] <- gsub(resu[, 1],patt="-",replace=" ")
+  resu[, 1] <- gsub(resu[, 1],pattern="-",replacement=" ")
 
   resu[, 6] <-gsub("[[:alpha:]]", "", resu[, 6])
   resu[, 6] <- gsub("[[:punct:]]", "", resu[, 6])

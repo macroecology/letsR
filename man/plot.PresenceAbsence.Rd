@@ -2,7 +2,7 @@
 \alias{plot.PresenceAbsence}
 \title{Plot an object of class PresenceAbsence}
 \usage{
-plot(x, name=NULL, world=T, ...)
+\method{plot}{PresenceAbsence}(x, name=NULL, world=T, \dots)
 }
 \arguments{
   \item{x}{an object of class PresenceAbsence (see function

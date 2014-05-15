@@ -9,11 +9,12 @@
 #' crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL, 
 #' origin=NULL, seasonal=NULL, count=FALSE)
 #' 
-#' @param shapes Object of class SpatialPolygonsDataFrame (see function readShapePoly to open these files). Species name should be in a column (within the .DBF table of the shapefile) called BINOMIAL or binomial.
+#' @param shapes Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} to open these files). Species name should be in a column (within the .DBF table of the shapefile) called BINOMIAL or binomial.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
 #' @param xmn Minimun longitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
 #' @param ymx Maximun latitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
 #' @param ymn Minimun latitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
+#' @param resol Numeric vector of length 1 or 2 to set the grid resolution.
 #' @param remove.cells Logical, if \code{TRUE} the final matrix will not contain cells in the grid with a value of zero (i.e. sites with no species present).
 #' @param remove.sp Logical, if \code{TRUE} the final matrix will not contain species that do not match any cell in the grid.
 #' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be shown.
@@ -52,6 +53,7 @@
 #' @import raster
 #' @import maptools
 #' @import maps
+#' @import sp
 #' 
 #' 
 #' @export
