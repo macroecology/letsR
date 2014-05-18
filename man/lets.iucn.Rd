@@ -30,8 +30,11 @@ function.
 }
 \examples{
 \dontrun{
-lets.iucn("Pongo pygmaeus")  # single species
-lets.iucn(c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius")) # multiple species
+# Single species
+lets.iucn("Pongo pygmaeus")
+
+# Multiple species
+lets.iucn(c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius"))
 }
 }
 \author{

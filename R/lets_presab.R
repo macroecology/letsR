@@ -29,7 +29,7 @@
 #' @return The result is an object of class PresenceAbsence with the following objects:
 #' @return \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information. The first two columns contain the longitude (x) and latitude (y) of the cells' centroid (from the gridded domain used);
 #' @return \strong{Richness Raster}: A raster containing species richness data;
-#' @return \strong{Species name}: A vector with species' names contained in the matrix.
+#' @return \strong{Species name}: A character vector with species' names contained in the matrix.
 #' @return *But see the option argument \code{show.matrix}.
 #' 
 #'  
@@ -95,7 +95,7 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   colnames(matriz) <- nomes
   
   if(count == TRUE){
-  x11(2, 2, pointsize = 12)
+  dev.new(width=2, height=2, pointsize = 12)
   par(mar=c(0, 0, 0, 0))
   
   for(i in 1:n){

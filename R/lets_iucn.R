@@ -21,8 +21,11 @@
 #' @seealso \code{\link{lets.iucn.his}}
 #' 
 #' @examples \dontrun{
-#' lets.iucn("Pongo pygmaeus")  # single species
-#' lets.iucn(c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius")) # multiple species
+#' # Single species
+#' lets.iucn("Pongo pygmaeus")
+#' 
+#' # Multiple species
+#' lets.iucn(c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius"))
 #' }
 #' 
 #' @export
@@ -47,7 +50,7 @@ lets.iucn <- function(input, count=FALSE){
   
   if(count == TRUE){
   
-  x11(2, 2, pointsize=12)
+  dev.new(width=2, height=2, pointsize = 12)
   par(mar=c(0, 0, 0, 0))  
   
   #Loop para procurar o status de cada especie da matriz no site da IUCN

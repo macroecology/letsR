@@ -24,7 +24,11 @@ Transform each element of a vector.
 \examples{
 \dontrun{
 status <- sample(c("EN","VU", "NT", "CR", "DD", "LC"), 30, replace=TRUE)
-statustrans <- lets.transf(status, c("EN","VU", "NT", "CR", "DD", "LC"), c("Threatened","Threatened", "Non-Threatened", "Threatened", "Data Deficient", "Non-Threatened"), NUMERIC=FALSE)
+TE <- "Threatened"
+NT <- "Non-Threatened"
+new <- c(TE, TE, NT, TE, "Data Deficient", NT)
+old <- c("EN","VU", "NT", "CR", "DD", "LC")
+statustrans <- lets.transf(status, old, new, NUMERIC=FALSE)
 
 }
 }

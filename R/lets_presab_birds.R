@@ -40,7 +40,8 @@
 #' @seealso \code{\link{lets.shFilter}}
 #' 
 #' @examples \dontrun{
-#' #Constructing a Presence/Absence matrix for birds (this will not work if do not change the path for the folder were you kept the spatial data) 
+#' # Constructing a Presence/Absence matrix for birds 
+#' #(this will not work if do not change the path for the folder were you kept the spatial data) 
 #' PAM <- lets.presab.birds("YOURPATH/YOURPATH/BIRDS")
 #' plot(PAM)  # Species richness map
 #' 
@@ -68,8 +69,9 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
   k <- 0
 
   if(count == TRUE){
-  x11(2, 2, pointsize=12)
-  par(mar=c(0, 0, 0, 0))  
+    
+    dev.new(width=2, height=2, pointsize = 12)
+    par(mar=c(0, 0, 0, 0))  
   
   for(j in 1:n){    
     plot.new()

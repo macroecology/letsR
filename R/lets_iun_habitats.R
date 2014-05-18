@@ -21,8 +21,11 @@
 #' @seealso \code{\link{lets.iucn.his}} 
 #' 
 #' @examples \dontrun{
-#' lets.iucn.ha("Pongo pygmaeus")  # single species
-#' lets.iucn.ha(c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius")) # multiple species
+#' # Single species
+#' lets.iucn.ha("Pongo pygmaeus")
+#' 
+#' # Multiple species
+#' lets.iucn.ha(c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius"))
 #' }
 #' 
 #' @export
@@ -53,7 +56,7 @@ lets.iucn.ha <- function(input, count=FALSE){
   n <- length(input)
 
  if(count == TRUE){  
-  x11(2, 2, pointsize=12)
+  dev.new(width=2, height=2, pointsize = 12)
   par(mar=c(0, 0, 0, 0))  
   
   for(i in 1:n){

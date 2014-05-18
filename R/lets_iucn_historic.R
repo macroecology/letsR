@@ -21,8 +21,11 @@
 #' @seealso \code{\link{lets.iucn}}
 #' 
 #' @examples \dontrun{
-#' lets.iucn.his("Panthera onca")  # single species
-#' lets.iucn.his(c("Rhincodon typus", "Ailuropoda melanoleuca")) # multiple species
+#' # Single species
+#' lets.iucn.his("Panthera onca")
+#' 
+#' # Multiple species
+#' lets.iucn.his(c("Rhincodon typus", "Ailuropoda melanoleuca"))
 #' }
 #' 
 #' @export
@@ -38,7 +41,7 @@ lets.iucn.his <- function(input, count=FALSE){
   n <- length(input)
 
   if(count == TRUE){
-  x11(2, 2, pointsize=12)
+  dev.new(width=2, height=2, pointsize = 12)
   par(mar=c(0, 0, 0, 0))  
     
   for(i in 1:n){    

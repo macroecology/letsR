@@ -80,8 +80,8 @@ cells' centroid (from the gridded domain used);
 \strong{Richness Raster}: A raster containing species
 richness data;
 
-\strong{Species name}: A vector with species' names
-contained in the matrix.
+\strong{Species name}: A character vector with species'
+names contained in the matrix.
 
 *But see the option argument \code{show.matrix}.
 }

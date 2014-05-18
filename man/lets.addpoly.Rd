@@ -29,7 +29,10 @@ Add polygon values to a PresenceAbsence object.
 data(PAM)  # Phyllomedusa presence-absence matrix
 data(wrld_simpl)  # World map
 Brazil <- wrld_simpl[wrld_simpl$NAME=="Brazil", ]  # Brazil (polygon)
-names(Brazil)  # Check where is the variable name (in this case it is in "NAME" which will be my z value)
+
+# Check where is the variable name (in this case it is in "NAME" which will be my z value)
+names(Brazil)
+
 PAM_pol <- lets.addpoly(PAM, Brazil, "NAME")
 }
 }

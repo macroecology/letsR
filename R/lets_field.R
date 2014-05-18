@@ -54,7 +54,7 @@ lets.field <- function(x, y, z, weigth=TRUE, count=FALSE){
  
  
  if(count == TRUE){
- x11(2, 2, pointsize = 12)
+ dev.new(width=2, height=2, pointsize = 12)
  par(mar=c(0, 0, 0, 0)) 
  
  for(i in 1:n){

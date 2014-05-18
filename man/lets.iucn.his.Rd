@@ -31,8 +31,11 @@ function.
 }
 \examples{
 \dontrun{
-lets.iucn.his("Panthera onca")  # single species
-lets.iucn.his(c("Rhincodon typus", "Ailuropoda melanoleuca")) # multiple species
+# Single species
+lets.iucn.his("Panthera onca")
+
+# Multiple species
+lets.iucn.his(c("Rhincodon typus", "Ailuropoda melanoleuca"))
 }
 }
 \author{

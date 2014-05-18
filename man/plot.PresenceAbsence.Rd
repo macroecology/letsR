@@ -2,7 +2,7 @@
 \alias{plot.PresenceAbsence}
 \title{Plot an object of class PresenceAbsence}
 \usage{
-\method{plot}{PresenceAbsence}(x, name=NULL, world=T, \dots)
+\method{plot}{PresenceAbsence}(x, name=NULL, world=TRUE, \dots)
 }
 \arguments{
   \item{x}{an object of class PresenceAbsence (see function
@@ -11,7 +11,7 @@
   \item{name}{you can specify a species to be ploted
   instead of the species richness map.}
 
-  \item{world}{if True a map of political divisions
+  \item{world}{if \code{TURE} a map of political divisions
   (countries) is added to the plot.}
 
   \item{...}{Other plot parameters.}
