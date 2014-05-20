@@ -21,8 +21,8 @@ evaluated).
 }
 \description{
 Get species' information from the IUCN
-website(\url{http//:http://www.iucnedlist.org/}) for one or
-more species.
+website(\url{http://www.iucnredlist.org/}) for one or more
+species.
 }
 \details{
 Note that you must be connected to the internet to use this

@@ -29,7 +29,7 @@
 #' @return \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information. The first two columns contain the longitude (x) and latitude (y) of the cells' centroid (from the gridded domain used);
 #' @return \strong{Richness Raster}: A raster containing species richness data;
 #' @return \strong{Species name}: A vector with species' names contained in the matrix.
-#' @return *But see the option argument \code{show.matrix}.
+#' @return *But see the optional argument \code{show.matrix}.
 #'  
 #' @details The function creates the presence-absence matrix based on a raster file. Depending on the cell size, extension used and number of species it may require a lot of memory, 
 #'and may take some time to process it. Thus, during the process, if \code{count} argument is set \code{TRUE}, a counting window will open so you can see the progress (i.e. in what polygon the function is working). Note that the number of 

@@ -2,18 +2,26 @@
 \name{letsR}
 \alias{letsR}
 \alias{letsR-package}
-\title{Tools for macroecological data handling}
+\title{Tools for data handling and analysis in  macroecology.}
 \description{
-This package is being developed at LETS (Laboratorio de
-Ecologia Teorica e Sintese) in UFG (Universidade Federal de
-Goias, Brazil) as part of a larger project looking to
-integrate recent advances in macroecological data handling
-and processing. Its purpose is to make some of our commonly
-used but unavailable R functions available to the larger
-public. The package provides useful R functions for
-researchers in ecology and evolution. The letsR package is
-in continuous development and suggestions are more than
-welcome! We hope you enjoy it and find it useful.
+R functions for handling and analyzing geographic data,
+mainly species' geographic distributions (in ESRI shapefile
+format) and environmental variables (in raster format), as
+well as species' information related to their description
+(e.g. taxonomy and year of description) and conservation
+status (e.g. category of threat, population trend) as
+provided by the IUCN's RedList database. The package
+includes functions to create presence-absence matrices
+based on species distributions and user-defined grid
+systems, from which several other functions could be
+applied to generate, for example, species richness rasters
+and maps, and geographical midpoints of species. In
+addition, it provides a function to create spatial
+correlograms of variables, based on the Moran's I index,
+under the equiprobable or equidistant criterion to define
+distance classes. The letsR package is in continuous
+development and suggestions are more than welcome! We hope
+you enjoy it and find it useful.
 }
 \details{
 \tabular{ll}{ Package: \tab lestR\cr Type: \tab Package\cr

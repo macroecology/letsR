@@ -1,7 +1,7 @@
 \docType{data}
 \name{iucn}
 \alias{iucn}
-\title{IUCN avaliation for frogs of Phyllomedusa genera}
+\title{IUCN avaliation for frogs of Phyllomedusa genus}
 \usage{
 data(iucn)
 }

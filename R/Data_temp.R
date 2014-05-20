@@ -3,7 +3,7 @@
 #'@docType data
 #'@title Avarege temperature raster for the world 
 #'@usage data(temp)
-#'@description Avarege temperature raster for the world in 10 min of resolution. Data was modfied from WorldClim (\url{http://worldclim.com/}, downloaded in 05/2014).
+#'@description Average temperature raster for the world in 10 min of resolution. Data was modfied from WorldClim (\url{http://worldclim.com/}, downloaded in 05/2014).
 #'@source Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
 
 NULL

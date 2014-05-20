@@ -41,7 +41,7 @@ plot.PresenceAbsence <- function(x, name=NULL, world=TRUE, ...){
     plot(r, col=c("white", "red"), legend=F, ...)
   }
   if(world==T){
-  map(add=T)
+    map(add=T)
   }
 }
 

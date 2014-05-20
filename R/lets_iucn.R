@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Get species' information from the IUCN website(\url{http//:http://www.iucnedlist.org/}) for one or more species.
+#' @description Get species' information from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
 #' 
 #' @usage lets.iucn(input, count=FALSE)
 #' 

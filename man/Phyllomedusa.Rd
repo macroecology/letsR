@@ -1,7 +1,7 @@
 \docType{data}
 \name{Phyllomedusa}
 \alias{Phyllomedusa}
-\title{Geographic distribution of Phyllomedusa genera}
+\title{Geographic distribution of Phyllomedusa genus}
 \source{
 IUCN - \url{http://www.iucnredlist.org/}. 2014.
 }

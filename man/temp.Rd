@@ -12,7 +12,7 @@ Climatology 25: 1965-1978.
 data(temp)
 }
 \description{
-Avarege temperature raster for the world in 10 min of
+Average temperature raster for the world in 10 min of
 resolution. Data was modfied from WorldClim
 (\url{http://worldclim.com/}, downloaded in 05/2014).
 }

@@ -80,7 +80,7 @@ richness data;
 \strong{Species name}: A vector with species' names
 contained in the matrix.
 
-*But see the option argument \code{show.matrix}.
+*But see the optional argument \code{show.matrix}.
 }
 \description{
 Convert species' shapefiles into a presence-absence matrix.

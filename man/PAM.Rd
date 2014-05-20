@@ -1,7 +1,7 @@
 \docType{data}
 \name{PAM}
 \alias{PAM}
-\title{PresenceAbsence object for frogs of Phyllomedusa genera}
+\title{PresenceAbsence object for frogs of Phyllomedusa genus}
 \source{
 IUCN - \url{http://www.iucnredlist.org/}. 2014.
 }

@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Get species conservation status through history (i.e. from 1980 to present date available) from the IUCN website(\url{http//:http://www.iucnedlist.org/}) for one or more species.
+#' @description Get species conservation status through history (i.e. from 1980 to present date available) from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
 #' 
 #' @usage lets.iucn.his(input, count=FALSE)
 #' 
