@@ -104,6 +104,7 @@ is not the same as the number of species that you have
 data(Phyllomedusa)  # Spatial distribution polygons of south american frogs of genus Phyllomedusa.
 PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15)
 summary(PAM)
+require(maps)
 plot(PAM)  # Species richness map
 plot(PAM, name="Phyllomedusa nordestina")  # Map of the specific species
 }
