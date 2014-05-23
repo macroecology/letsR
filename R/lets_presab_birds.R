@@ -43,6 +43,7 @@
 #' # Constructing a Presence/Absence matrix for birds 
 #' #(this will not work if do not change the path for the folder were you kept the spatial data) 
 #' PAM <- lets.presab.birds("YOURPATH/YOURPATH/BIRDS")
+#' require(maps)
 #' plot(PAM)  # Species richness map
 #' 
 #' }
