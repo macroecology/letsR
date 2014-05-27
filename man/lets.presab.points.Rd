@@ -1,0 +1,105 @@
+\name{lets.presab.points}
+\alias{lets.presab.points}
+\title{Coordinates into a presence-absence matrix}
+\usage{
+lets.presab.points(xy, species, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1,
+remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
+crs=CRS("+proj=longlat +datum=WGS84"), count=FALSE)
+}
+\arguments{
+  \item{xy}{A matrix with coordinates, first column is the
+  longitude (or x), and the second latitude (or y).}
+
+  \item{species}{Character vector with species names, in
+  the same order as the coordinates.}
+
+  \item{xmx}{Maximun longitude used to construct the grid
+  in which the matrix will be based (i.e. the [gridded]
+  geographic domain of interest)}
+
+  \item{xmn}{Minimun longitude used to construct the grid
+  in which the matrix will be based (i.e. the [gridded]
+  geographic domain of interest)}
+
+  \item{ymx}{Maximun latitude used to construct the grid in
+  which the matrix will be based (i.e. the [gridded]
+  geographic domain of interest)}
+
+  \item{ymn}{Minimun latitude used to construct the grid in
+  which the matrix will be based (i.e. the [gridded]
+  geographic domain of interest)}
+
+  \item{resol}{Numeric vector of length 1 or 2 to set the
+  grid resolution.}
+
+  \item{remove.cells}{Logical, if \code{TRUE} the final
+  matrix will not contain cells in the grid with a value of
+  zero (i.e. sites with no species present).}
+
+  \item{remove.sp}{Logical, if \code{TRUE} the final matrix
+  will not contain species that do not match any cell in
+  the grid.}
+
+  \item{show.matrix}{Logical, if \code{TRUE} only the
+  presence-absence matrix will be shown.}
+
+  \item{crs}{Character representign the PROJ.4 type
+  description of a Coordinate Reference System (map
+  projection).}
+
+  \item{count}{Logical, if \code{TRUE} a counting window
+  will open.}
+}
+\value{
+The result is an object of class PresenceAbsence with the
+following objects:
+
+\strong{Presence-Absence Matrix}: A matrix of species'
+presence(1) and absence(0) information. The first two
+columns contain the longitude (x) and latitude (y) of the
+cells' centroid (from the gridded domain used);
+
+\strong{Richness Raster}: A raster containing species
+richness data;
+
+\strong{Species name}: A character vector with species'
+names contained in the matrix.
+
+*But see the optional argument \code{show.matrix}.
+}
+\description{
+Convert species shapefiles into a presence-absence matrix.
+}
+\details{
+The function creates the presence-absence matrix based on a
+raster file. Depending on the cell size, extension used and
+number of species it may require a lot of memory, and may
+take some time to process it. Thus, during the process, if
+\code{count} argument is set \code{TRUE}, a counting window
+will open so you can see the progress (i.e. in what polygon
+the function is working). Note that the number of polygons
+is not the same as the number of species that you have
+(i.e. a species may have more than one polygon/shapefiles).
+}
+\examples{
+\dontrun{
+PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15)
+summary(PAM)
+require(maps)
+plot(PAM)  # Species richness map
+plot(PAM, name="Phyllomedusa nordestina")  # Map of the specific species
+}
+}
+\author{
+Bruno Vilela
+}
+\seealso{
+\code{\link{plot.PresenceAbsence}}
+
+\code{\link{lets.presab.birds}}
+
+\code{\link{lets.presab}}
+
+\code{\link{lets.shFilter}}
+}
+
