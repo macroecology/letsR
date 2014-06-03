@@ -21,7 +21,9 @@
 #' # Correlated distance matrix
 #' distan <- matrix(runif(1000), ncol=100, nrow=100)
 #' diag(distan) <- 0
-#' distan[lower.tri(distan)] <- distan[upper.tri(distan)]
+#' ind <- lower.tri(distan)
+#' distan[ind] <- t(distan)[ind]
+#' distan[lower.tri(distan)] <- distan[upper.tri(distan)]   
 #' distan2 <- as.matrix(dist(var))
 #' distan <- (distan)*(distan2)
 #' 

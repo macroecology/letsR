@@ -2,8 +2,8 @@
 \alias{lets.presab.points}
 \title{Coordinates into a presence-absence matrix}
 \usage{
-lets.presab.points(xy, species, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1,
-remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
+lets.presab.points(xy, species, xmn=-180, xmx=180, ymn=-90, ymx=90,
+resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
 crs=CRS("+proj=longlat +datum=WGS84"), count=FALSE)
 }
 \arguments{
@@ -83,11 +83,15 @@ is not the same as the number of species that you have
 }
 \examples{
 \dontrun{
-PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15)
+species <- c(rep("sp1", 100), rep("sp2", 100), rep("sp3", 100), rep("sp4", 100))
+x <- runif(400, min = -69, max = -51)
+y <- runif(400, min = -23, max = -4)
+xy <- cbind(x,y)
+PAM <- lets.presab.points(xy, species, xmn=-93, xmx=-29, ymn= -57, ymx=15)
 summary(PAM)
 require(maps)
 plot(PAM)  # Species richness map
-plot(PAM, name="Phyllomedusa nordestina")  # Map of the specific species
+plot(PAM, name="sp1")  # Map of the specific species
 }
 }
 \author{

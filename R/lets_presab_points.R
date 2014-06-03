@@ -4,8 +4,8 @@
 #' 
 #' @description Convert species shapefiles into a presence-absence matrix.
 #'
-#' @usage lets.presab.points(xy, species, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
-#' remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
+#' @usage lets.presab.points(xy, species, xmn=-180, xmx=180, ymn=-90, ymx=90, 
+#' resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
 #' crs=CRS("+proj=longlat +datum=WGS84"), count=FALSE)
 #' 
 #' @param xy A matrix with coordinates, first column is the longitude (or x), and the second latitude (or y).
@@ -39,11 +39,15 @@
 #' @seealso \code{\link{lets.shFilter}}
 #' 
 #' @examples \dontrun{
-#' PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15)
+#' species <- c(rep("sp1", 100), rep("sp2", 100), rep("sp3", 100), rep("sp4", 100))
+#' x <- runif(400, min = -69, max = -51)
+#' y <- runif(400, min = -23, max = -4)
+#' xy <- cbind(x,y)
+#' PAM <- lets.presab.points(xy, species, xmn=-93, xmx=-29, ymn= -57, ymx=15)
 #' summary(PAM)
 #' require(maps)
 #' plot(PAM)  # Species richness map
-#' plot(PAM, name="Phyllomedusa nordestina")  # Map of the specific species
+#' plot(PAM, name="sp1")  # Map of the specific species
 #' }
 #' 
 #' 
@@ -54,8 +58,8 @@
 lets.presab.points <- function(xy, species, xmn=-180, xmx=180, ymn=-90, 
                         ymx=90, resol=1, remove.cells=TRUE, 
                         remove.sp=TRUE, show.matrix=FALSE, 
-                        crs=CRS("+proj=longlat +datum=WGS84"),
-                        cover=0, count=FALSE){
+                        crs=CRS("+proj=longlat +datum=WGS84"), 
+                        count=FALSE){
   if(is.factor(species)){
     species <- as.character(species)
   }  
