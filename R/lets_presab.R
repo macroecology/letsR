@@ -20,7 +20,7 @@
 #' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be shown.
 #' @param crs Character representign the PROJ.4 type description of a Coordinate Reference System (map projection).
 #' @param cover Porcentage of the cell covered by the shapefile that will be considered for presence (values between 0 and 1).
-#' @param presence A vector with the code numbers for the presence type to be considered in the process (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data}). 
+#' @param presence A vector with the code numbers for the presence type to be considered in the process (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata). 
 #' @param origin A vector with the code numbers for the origin type to be considered in the process (for IUCN spatial data).
 #' @param seasonal A vector with the code numbers for the seasonal type to be considered in the process (for IUCN spatial data).
 #' @param count Logical, if \code{TRUE} a counting window will open.
@@ -55,7 +55,7 @@
 #' @import maptools
 #' @import maps
 #' @import sp
-#' 
+#' @import rgdal 
 #' 
 #' @export
 
@@ -77,7 +77,7 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   ras <- raster(xmn=xmn, xmx=xmx, ymn=ymn, ymx=ymx, crs=crs)
   res(ras) <- resol
   values(ras) <- 1
-  coord <- xyFromCell(ras, 1:length(values(ras)))
+  coord <- xyFromCell(ras, 1:ncell(ras))
   colnames(coord) <- c("Longitude(x)", "Latitude(y)")
   
   if(any(names(shapes)=="BINOMIAL")){  
@@ -92,7 +92,7 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
     nomes2 <- shapes$binomial
   }
   
-  matriz <- matrix(0, ncol=length(nomes), nrow=length(values(ras)))
+  matriz <- matrix(0, ncol=length(nomes), nrow=ncell(ras))
   colnames(matriz) <- nomes
   
   if(count == TRUE){

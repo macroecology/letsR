@@ -1,6 +1,6 @@
 #' Coordinates into a presence-absence matrix
 #' 
-#' @author Bruno Vilela
+#' @author Bruno Vilela & Fabricio Villalobos
 #' 
 #' @description Convert species shapefiles into a presence-absence matrix.
 #'

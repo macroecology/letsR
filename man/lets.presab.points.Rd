@@ -95,7 +95,7 @@ plot(PAM, name="sp1")  # Map of the specific species
 }
 }
 \author{
-Bruno Vilela
+Bruno Vilela & Fabricio Villalobos
 }
 \seealso{
 \code{\link{plot.PresenceAbsence}}

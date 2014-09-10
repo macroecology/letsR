@@ -56,7 +56,6 @@ lets.midpoint <- function(pam, planar=FALSE){
   dif <- distCosine(c(dis[1, 1], 0), c(dis2[1, 1],0))/(111.321*1000) 
   
   if(dif>150){
-    print(i)
     if(dis2[1, 1]>=0){
     dis2[1, 1] <- dis2[1, 1]-180
     }else{

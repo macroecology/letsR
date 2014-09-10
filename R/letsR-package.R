@@ -20,6 +20,6 @@
 #' License: \tab GPL-2\cr
 #' }
 #' 
-#' @import raster geosphere XML maptools maps sp
+#' @import raster geosphere XML maptools maps sp rgdal
 
 NULL
