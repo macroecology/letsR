@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Based on a Presence-Absence matrix with variables added (see \code{\link{lets.addvar}}), the function divides a continuous variable into classes and count the occurence frequency of each species in each class. 
+#' @description Based on a species Presence-Absence matrix including variables of interest (see \code{\link{lets.addvar}}), the function divides a continuous variable into classes and counts the frequency of each class in each species' range. 
 #' 
 #' @usage lets.classvar(x, groups="default", pos, xy)
 #' 
@@ -13,6 +13,8 @@
 #' 
 #' @return A matrix with species in rows and class in columns.
 #' 
+#' @references Morales-Castilla et al. 2013. Range size patterns of New World oscine passerines (Aves): insights from differences among migratory and sedentary clades. Journal of Biogeography, 40, 2261-2273. 
+#'
 #' @examples \dontrun{
 #' data(PAM)
 #' data(temp)
