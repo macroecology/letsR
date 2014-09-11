@@ -18,7 +18,7 @@ Install `letsR` from CRAN
 install.packages("letsR")
 library("letsR")
 ```
-Install `letsR` developing version from github
+Install `letsR` developers version from github
 
 
 ```coffee
