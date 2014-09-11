@@ -14,7 +14,7 @@
 #'  species target.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #'  
-#'  @details If the species do not co-occur with any other species NaN will be returned. 
+#' @details If the species do not co-occur with any other species NaN will be returned. 
 #' 
 #' @seealso \code{\link{lets.presab.birds}}
 #' @seealso \code{\link{lets.presab}}

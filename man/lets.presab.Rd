@@ -55,7 +55,8 @@ origin=NULL, seasonal=NULL, count=FALSE)
   \item{presence}{A vector with the code numbers for the
   presence type to be considered in the process (for IUCN
   spatial data
-  \url{http://www.iucnredlist.org/technical-documents/spatial-data}).}
+  \url{http://www.iucnredlist.org/technical-documents/spatial-data},
+  see metadata).}
 
   \item{origin}{A vector with the code numbers for the
   origin type to be considered in the process (for IUCN

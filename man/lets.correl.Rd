@@ -43,7 +43,7 @@ distan[lower.tri(distan)] <- distan[upper.tri(distan)]
 distan2 <- as.matrix(dist(var))
 distan <- (distan)*(distan2)
 
-moran <- lets.correl(var, distan, 5, equidistant=FALSE, plot=TRUE)
+moran <- lets.correl(var, distan, 10, equidistant=FALSE, plot=TRUE)
 }
 }
 \author{

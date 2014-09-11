@@ -24,7 +24,9 @@ result will be NULL.
 }
 \description{
 Filter species shapefiles by origin, presence and seasonal
-type (following IUCN types).
+type (following IUCN types:
+\url{http://www.iucnredlist.org/technical-documents/spatial-data},
+see metadata)).
 }
 \details{
 Presence codes: (1) Extant, (2) Probably Extant, (3)

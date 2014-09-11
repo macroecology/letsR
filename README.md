@@ -10,20 +10,32 @@ The letsR package is in continuous development and suggestions are more than wel
 We hope you enjoy it and find it useful.
 
 ====
-## Package donwload and install
-You can download this package using the function `install_github` from the package `devtools`.
-You will need to have the git software installed (http://git-scm.com/).
-If you are a windows user you will need to download the Rtools (http://cran.r-project.org/bin/windows/Rtools/).
+## Install
 
-For this package version to work properly, you should previously install and load the following R packages:
-- `maps` 
-- `maptools` 
-- `raster` 
-- `XML`
-- `geosphere`
-- `sp`
+Install `letsR` from CRAN
+
+```coffee
+install.packages("letsR")
+library("letsR")
+```
+Install `letsR` developing version from github
+
+
+```coffee
+install.packages("devtools")
+library(devtools)
+install_github("macroecology/letsR")
+library(letsR)
+```
+
+OBS.: For the download of the developing version you will need to have the git software installed (http://git-scm.com/).
+If you are a windows user you will also need to download the Rtools (http://cran.r-project.org/bin/windows/Rtools/).
+
 
 ## Key functions
+
+The `letsR` package includes 20 functions. Below we highlight some them:
+
 - `lets.presab`: Builts a presence-absence matrix (sites x species) based on species’ range maps from shapefiles.
 - `lets.presab.birds`: Builts a presence-absence matrix (sites x species) based on species’ range maps from shapefiles (specially designed for the BirdLife International database).
 - `lets.shFilter`: Filter species’ shapefiles by origin, presence and seasonal type (following IUCN categorization of species’ distributional ranges).
@@ -35,4 +47,5 @@ For this package version to work properly, you should previously install and loa
 
 Take a look at the functions' help files for more information.
 
-Try the R functions `summary` and `plot` with the object of class `PresenceAbsence`.
+
+

@@ -5,8 +5,8 @@
 lets.distmat(xy)
 }
 \arguments{
-  \item{x}{Matrix with two columns, first the longitude and
-  second the latitude.}
+  \item{xy}{Matrix with two columns, first the longitude
+  and second the latitude.}
 }
 \value{
 Returns an object of class "dist".

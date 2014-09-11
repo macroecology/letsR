@@ -6,7 +6,7 @@
 #'
 #' @usage lets.distmat(xy)
 #' 
-#' @param x Matrix with two columns, first the longitude and second the latitude.
+#' @param xy Matrix with two columns, first the longitude and second the latitude.
 #'
 #' @return Returns an object of class "dist".
 #'   

@@ -164,22 +164,17 @@ lets.correl <- function(x, y, z, equidistant=FALSE, plot=TRUE){
   soma <- n*(sum(w*(z%o%z)))
   divi <- sum(w) * sum((z^2))
   ob <- soma/divi
-  es <- -1/(n-1)
-  
-  
+  es <- -1/(n-1)    
   S1 <-  0.5 * sum((w + t(w))^2)
   S2 <- sum((apply(w, 1, sum) + apply(w, 2, sum))^2)
   k <- n*sum(z^4)/((sum(z^2))^2)
   s.sq <- sum(w)^2
   sdi <- sqrt((n * ((n^2 - 3 * n + 3) * S1 - n * S2 + 3 * s.sq) 
-               - k * (n * (n - 1) * S1 - 2 * n * S2 + 6 * s.sq))/((n - 1) *
-                                                                    (n - 2) * (n - 3) * s.sq) - 1/((n - 1)^2))
+              - k * (n * (n - 1) * S1 - 2 * n * S2 + 6 * s.sq))/((n - 1) *
+              (n - 2) * (n - 3) * s.sq) - 1/((n - 1)^2))
   pv <- pnorm(ob, mean = es, sd = sdi)
   pv <- if (ob <= es) 
     2 * pv
   else 2 * (1 - pv)
-  
-  
-  return(list("observed"=ob, "expected"=es, "sd"=sdi, "p.value"= pv))
-  
+  return(list("observed"=ob, "expected"=es, "sd"=sdi, "p.value"= pv))  
 }

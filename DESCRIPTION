@@ -24,6 +24,7 @@ Imports:
     XML,
     geosphere,
     maptools,
-    sp
+    sp,
+    rgdal
 Depends:
     R (>= 2.10)
