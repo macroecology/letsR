@@ -30,7 +30,7 @@ plot.PresenceAbsence <- function(x, name=NULL, world=TRUE, ...){
   if(is.null(name)){
   colfunc <- colorRampPalette(c("green", "yellow", "red"))
   v <- values(x$Rich)
-  c <- max(v)
+  c <- max(v, na.rm=TRUE)
   v[(v==0)] <- NA
   values(x$Rich) <- v
   plot(x$Rich, col=colfunc(c), ...)  
