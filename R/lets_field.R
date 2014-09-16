@@ -1,8 +1,8 @@
-#' Create variables based on species geographical ranges
+#' Create species' variables based on co-occurrence among species within focal ranges
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Create species' attributes based on the attribute values of species co-occurring within their ranges.
+#' @description Create species' attributes based on the attribute values of species co-occurring within individual ranges.
 #'
 #' @usage lets.field(x, y, z, weigth=TRUE, count=FALSE)
 #' 
@@ -10,8 +10,8 @@
 #' @param y Species attribute to be considered. It must be a numeric attribute.
 #' @param z Species names in the same order as the attributes.
 #' @param weigth If \code{TRUE} the value is weighted by species' range size, 
-#' if \code{FALSE} the value is the mean of all species that cooccur with the
-#'  species target.
+#' if \code{FALSE} the value is the mean of all species that co-occur with the
+#'  focal species.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #'  
 #' @details If the species do not co-occur with any other species NaN will be returned. 
