@@ -31,13 +31,13 @@ lets.summarize <- function(x, pos, xy=TRUE, fun=mean){
   n <- length(Species)
   resum <- matrix(NA, nrow=n, ncol=length(pos))
   colnames(resum) <- colnames(var)
-  
+  var <- as.matrix(var)
   for(i in 1:n){
     vari <- var[(sp[, i]==1), ]
     if(!is.matrix(vari)){
-      vari <- t(as.matrix(vari))
+      vari <- as.matrix(vari)
     }
-    resum[i, ] <- apply(vari, 2, fun)    
+    resum[i, ] <- apply(vari, 2, fun, na.rm=TRUE)    
   }
   
   resul <- as.data.frame(cbind(Species, resum))

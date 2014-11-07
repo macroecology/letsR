@@ -4,23 +4,44 @@
 #' 
 #' @description Calculates geographic distance matrix based on a two column matrix of x(longitude) and y(latitude).
 #'
-#' @usage lets.distmat(xy)
+#' @usage lets.distmat(xy, count=TRUE)
 #' 
 #' @param xy Matrix with two columns, first the longitude and second the latitude.
-#'
+#' @param count Logical, if \code{TRUE} a counting window will open.
+#' 
 #' @return Returns an object of class "dist".
 #'   
 #' @export
 
 
-lets.distmat <- function(xy){
+lets.distmat <- function(xy, count=TRUE){
   n <- nrow(xy)
   distan <- matrix(ncol=n, nrow=n)
+  
+  if(count == TRUE){
+    dev.new(width=2, height=2, pointsize = 12)
+    par(mar=c(0, 0, 0, 0))
+    x <- 0 
+    n2 <- ((n*n)-n)/2
   for(i in (1:(n-1))){
     for(j in ((i+1):n)){
+      x <- x+1
+      plot.new()
+      text(0.5, 0.5, paste(paste("Total:", n2, "\n","Runs to go: ", (n2-x))))      
       distan[j,i] <- distCosine(p1=xy[i, ], p2=xy[j, ])      
     }
   }
+  }
+  
+  if(count == FALSE){
+    for(i in (1:(n-1))){
+      for(j in ((i+1):n)){
+        distan[j,i] <- distCosine(p1=xy[i, ], p2=xy[j, ])      
+      }
+    }
+  }
+  
+  
   return(as.dist(distan))
 }
 

@@ -69,7 +69,7 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
   n <- length(shapes)
   k <- 0
 
-  if(count == TRUE){
+  if(count){
     
     dev.new(width=2, height=2, pointsize = 12)
     par(mar=c(0, 0, 0, 0))  
@@ -83,7 +83,8 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
     shp <- lets.shFilter(shp, presence=presence, origin=origin, seasonal=seasonal)
     if(!is.null(shp)){  
     k <- k+1
-    cell <- extract(r, shp, cellnumber=T, small=T, weights=T)        
+    cell <- extract(r, shp, cellnumber=T, small=T, weights=T)
+    cell <- lapply(cell, function(x){colnames(x)<-1:3;return(x)})
     cell2 <- do.call(rbind.data.frame, cell)
     cell3 <- cell2[which(cell2[,3]>=cover), ]    
     valores2[cell3[, 1]] <- 1
@@ -94,7 +95,7 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
   }
   
   
-  if(count == FALSE){
+  if(count){
     
     for(j in 1:n){    
       valores2 <- valores
@@ -103,7 +104,8 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
       shp <- lets.shFilter(shp, presence=presence, origin=origin, seasonal=seasonal)
       if(!is.null(shp)){  
         k <- k+1
-        cell <- extract(r, shp, cellnumber=T, small=T, weights=T)        
+        cell <- extract(r, shp, cellnumber=T, small=T, weights=T)
+        cell <- lapply(cell, function(x){colnames(x)<-1:3;return(x)})
         cell2 <- do.call(rbind.data.frame, cell)
         cell3 <- cell2[which(cell2[,3]>=cover), ]    
         valores2[cell3[, 1]] <- 1
@@ -121,18 +123,18 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
   riqueza <- rowSums(as.matrix(matriz[,-c(1,2)]))  
     
   
-  if(remove.cells==TRUE){
+  if(remove.cells){
     matriz <- .removeCells(matriz)
   }
     
-  if(remove.sp==TRUE){
+  if(remove.sp){
     matriz <- .removeSp(matriz)
   }
   
 
   matriz <- .unicas(matriz)
   
-  if(show.matrix==TRUE){
+  if(show.matrix){
     return(matriz)
   }else{
     values(r) <- riqueza

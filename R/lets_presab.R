@@ -95,7 +95,7 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   matriz <- matrix(0, ncol=length(nomes), nrow=ncell(ras))
   colnames(matriz) <- nomes
   
-  if(count == TRUE){
+  if(count){
   dev.new(width=2, height=2, pointsize = 12)
   par(mar=c(0, 0, 0, 0))
   
@@ -103,6 +103,7 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
     plot.new()
     text(0.5, 0.5, paste(paste("Total:", n, "\n","Runs to go: ", (n-i))))
     celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])), cellnumbers=T, weights=T, small=T)
+    celulas <- lapply(celulas, function(x){colnames(x)<-1:3;return(x)})
     
     pos <- which(nomes2[i]==nomes)
     
@@ -119,9 +120,9 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
     for(i in 1:n){
 
       celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])), cellnumbers=T, weights=T, small=T)
+      celulas <- lapply(celulas, function(x){colnames(x)<-1:3;return(x)})
       
       pos <- which(nomes2[i]==nomes)
-      
       pos2 <- do.call(rbind.data.frame, celulas)
       pos2 <- pos2[which(pos2[,3]>=cover), ]
       matriz[pos2[, 1], pos] <- 1
@@ -129,14 +130,14 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   }  
   
   cbind(coord,matriz)->Resultado
-  if(remove.cells==TRUE){
+  if(remove.cells){
     Resultado <- .removeCells(Resultado)
   }
-  if(remove.sp==TRUE){
+  if(remove.sp){
     Resultado <- .removeSp(Resultado)
   }
   
-  if(show.matrix==TRUE){
+  if(show.matrix){
     return(Resultado)
   }else{
     values(ras) <- rowSums(matriz)
