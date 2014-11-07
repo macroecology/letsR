@@ -121,9 +121,10 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
     plot.new()
     text(0.5, 0.5, paste(paste("Total:", n, "\n","Runs to go: ", (n-i))))
     celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])), cellnumbers=T, weights=T, small=T)
-    if(!all(sapply(celulas, is.null))){
+    celulas <- celulas[!sapply(celulas, is.null)]
+    if(length(celulas)>0){
       celulas <- lapply(celulas, function(x){colnames(x)<-1:3;return(x)})
-    }    
+    }
     pos <- which(nomes2[i]==nomes)
     
     pos2 <- do.call(rbind.data.frame, celulas)
@@ -139,7 +140,8 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
     for(i in 1:n){
 
       celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])), cellnumbers=T, weights=T, small=T)
-      if(!all(sapply(celulas, is.null))){
+      celulas <- celulas[!sapply(celulas, is.null)]
+      if(length(celulas)>0){
         celulas <- lapply(celulas, function(x){colnames(x)<-1:3;return(x)})
       }
       
