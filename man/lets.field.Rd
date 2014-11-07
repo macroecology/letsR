@@ -27,7 +27,7 @@ If the species do not co-occur with any other species NaN will be returned.
 \examples{
 \dontrun{
 data(PAM)
-range <- colSums(PAM$P)[-(1:2)]
+range <- lets.rangesize(x=PAM, units="cell")
 field <- lets.field(PAM, range, PAM$S, weigth=TRUE)
 }
 }
