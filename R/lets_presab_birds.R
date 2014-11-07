@@ -84,7 +84,9 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
     if(!is.null(shp)){  
     k <- k+1
     cell <- extract(r, shp, cellnumber=T, small=T, weights=T)
+    if(!all(sapply(cell, is.null))){
     cell <- lapply(cell, function(x){colnames(x)<-1:3;return(x)})
+    }
     cell2 <- do.call(rbind.data.frame, cell)
     cell3 <- cell2[which(cell2[,3]>=cover), ]    
     valores2[cell3[, 1]] <- 1
@@ -105,7 +107,9 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
       if(!is.null(shp)){  
         k <- k+1
         cell <- extract(r, shp, cellnumber=T, small=T, weights=T)
-        cell <- lapply(cell, function(x){colnames(x)<-1:3;return(x)})
+        if(!all(sapply(cell, is.null))){
+          cell <- lapply(cell, function(x){colnames(x)<-1:3;return(x)})
+        }
         cell2 <- do.call(rbind.data.frame, cell)
         cell3 <- cell2[which(cell2[,3]>=cover), ]    
         valores2[cell3[, 1]] <- 1

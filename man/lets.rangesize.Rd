@@ -17,7 +17,7 @@ lets.rangesize(x, species_name = x@data[, 1], coordinates = "geographic",
 }
 \value{
 The result is a matrix with the range size of each species.
-If the range size accounts for the earth curvature (Yes or No) and it's unit
+If the range size accounts for the earth curvature (Yes or No) or it's unit
 may differ for each argument combination:
 1) SpatialPolygonsDataFrame & geographical = Square meters. Yes.
 2) SpatialPolygonsDataFrame & planar = same units as the coordinates. No.
@@ -40,7 +40,7 @@ rangesize2 <- lets.rangesize(x=Phyllomedusa, coordinates="planar")
 data(PAM)
 rangesize3 <- lets.rangesize(x=PAM, units="cell")
 
-# PresenceAbsence & squaremeters
+# PresenceAbsence & squaremeter
 rangesize4 <- lets.rangesize(x=PAM, units="squaremeter")
 }
 }
