@@ -135,7 +135,7 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   }
   
   
-  if(count == FALSE){
+  if(!count){
     
     for(i in 1:n){
 

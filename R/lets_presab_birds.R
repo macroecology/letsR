@@ -98,7 +98,7 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
   }
   
   
-  if(count){
+  if(!count){
     
     for(j in 1:n){    
       valores2 <- valores
@@ -107,6 +107,7 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
       shp <- lets.shFilter(shp, presence=presence, origin=origin, seasonal=seasonal)
       if(!is.null(shp)){  
         k <- k+1
+        cell <- extract(r, shp, cellnumber=T, small=T, weights=T)
         cell <- cell[!sapply(cell, is.null)]
         if(length(cell)>0){
           cell <- lapply(cell, function(x){colnames(x)<-1:3;return(x)})
