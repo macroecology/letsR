@@ -8,9 +8,8 @@
 #' @param x A PresenceAbsence object.
 #' 
 #' @return The result is a list of two objects. The first is a grid in shapefile format;
-#' the second is a presence absence matrix with an aditional column called FID.
-#' SP_ID (shapefile cell identifier).   
-#' 
+#' the second is a presence absence matrix with an aditional column called SP_ID (shapefile cell identifier).
+#'  
 #' 
 #' @seealso \code{\link{plot.PresenceAbsence}}
 #' @seealso \code{\link{lets.presab.birds}} 

@@ -78,14 +78,14 @@
 #' @export
 
 lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90, 
-                   ymx=90, resol=1, remove.cells=TRUE, 
-                   remove.sp=TRUE, show.matrix=FALSE, 
-                   crs=CRS("+proj=longlat +datum=WGS84"),
-                   cover=0, presence=NULL, origin=NULL, 
-                   seasonal=NULL, count=FALSE){
+                        ymx=90, resol=1, remove.cells=TRUE, 
+                        remove.sp=TRUE, show.matrix=FALSE, 
+                        crs=CRS("+proj=longlat +datum=WGS84"),
+                        cover=0, presence=NULL, origin=NULL, 
+                        seasonal=NULL, count=FALSE){
   
   if(!all(is.null(presence), is.null(origin), is.null(seasonal))){
-  shapes <- lets.shFilter(shapes, presence=presence, origin=origin, seasonal=seasonal)
+    shapes <- lets.shFilter(shapes, presence=presence, origin=origin, seasonal=seasonal)
   }
   
   if(is.null(shapes)){
@@ -114,32 +114,55 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   colnames(matriz) <- nomes
   
   if(count){
-  dev.new(width=2, height=2, pointsize = 12)
-  par(mar=c(0, 0, 0, 0))
-  
-  for(i in 1:n){
-    plot.new()
-    text(0.5, 0.5, paste(paste("Total:", n, "\n","Runs to go: ", (n-i))))
-    celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])), cellnumbers=T, weights=T, small=T)
-    celulas <- celulas[!sapply(celulas, is.null)]
-    if(length(celulas)>0){
-      celulas <- lapply(celulas, function(x){colnames(x)<-1:3;return(x)})
-    }
-    pos <- which(nomes2[i]==nomes)
+    dev.new(width=2, height=2, pointsize = 12)
+    par(mar=c(0, 0, 0, 0))
     
-    pos2 <- do.call(rbind.data.frame, celulas)
-    pos2 <- pos2[which(pos2[,3]>=cover), ]
-    matriz[pos2[, 1], pos] <- 1
-  }
-  dev.off()
+    for(i in 1:n){
+      plot.new()
+      text(0.5, 0.5, paste(paste("Total:", n, "\n","Runs to go: ", (n-i))))
+      
+      celulas <- try(celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])),
+                                        cellnumbers=T, weights=T, small=T), silent=T)
+      if(class(celulas)=="try-error"){
+        celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])),
+                           cellnumbers=T)
+        nen <- sapply(celulas, nrow)
+        for(ky in 1:length(nen)){
+          weigth <- rep(0, nen[ky]) 
+          celulas[[ky]] <- cbind(celulas[[ky]], weigth)  
+        } 
+      }
+      
+      celulas <- celulas[!sapply(celulas, is.null)]
+      if(length(celulas)>0){
+        celulas <- lapply(celulas, function(x){colnames(x)<-1:3;return(x)})
+      }
+      pos <- which(nomes2[i]==nomes)
+      
+      pos2 <- do.call(rbind.data.frame, celulas)
+      pos2 <- pos2[which(pos2[,3]>=cover), ]
+      matriz[pos2[, 1], pos] <- 1
+    }
+    dev.off()
   }
   
   
   if(!count){
     
     for(i in 1:n){
-
-      celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])), cellnumbers=T, weights=T, small=T)
+      
+      celulas <- try(celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])),
+                                        cellnumbers=T, weights=T, small=T), silent=T)
+      if(class(celulas)=="try-error"){
+        celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])),
+                           cellnumbers=T)
+        nen <- sapply(celulas, nrow)
+        for(ky in 1:length(nen)){
+          weigth <- rep(0, nen[ky]) 
+          celulas[[ky]] <- cbind(celulas[[ky]], weigth)  
+        } 
+      }
+      
       celulas <- celulas[!sapply(celulas, is.null)]
       if(length(celulas)>0){
         celulas <- lapply(celulas, function(x){colnames(x)<-1:3;return(x)})

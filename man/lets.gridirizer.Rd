@@ -10,8 +10,7 @@ lets.gridirizer(x)
 }
 \value{
 The result is a list of two objects. The first is a grid in shapefile format;
-the second is a presence absence matrix with an aditional column called FID.
-SP_ID (shapefile cell identifier).
+the second is a presence absence matrix with an aditional column called SP_ID (shapefile cell identifier).
 }
 \description{
 This function create a grid in shapefile format and add its IDs to the presence absence matrix.
