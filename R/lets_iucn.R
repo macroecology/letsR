@@ -37,6 +37,7 @@ lets.iucn <- function(input, count=FALSE){
   }
   
   input <- gsub(as.matrix(input), pattern=" ", replacement="-")
+  input <- gsub(as.matrix(input), pattern="_", replacement="-")
   
   #vetor para guardar o status
   ln <- length(input)

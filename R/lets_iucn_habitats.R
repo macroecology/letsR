@@ -37,8 +37,9 @@ lets.iucn.ha <- function(input, count=FALSE){
     input <- input$S
   }
   
-  
+  input <- gsub(input, pattern="_", replacement=" ")
   sps <- input 
+  
   
   #enpty matrix
   habitat <- matrix(0, nrow=length(input), ncol=19) 

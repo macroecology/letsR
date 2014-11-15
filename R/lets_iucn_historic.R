@@ -37,6 +37,7 @@ lets.iucn.his <- function(input, count=FALSE){
     input <- input$S
   }
   
+  input <- gsub(input, pattern="_", replacement=" ")
   resus <- c()
   n <- length(input)
 
