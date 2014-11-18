@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Letsr by macroecology</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Letsr</h1>
+          <h2>Tools for data handling and analysis in macroecology</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/macroecology/letsR/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/macroecology/letsR/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/macroecology/letsR" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="letsr" class="anchor" href="#letsr" aria-hidden="true"><span class="octicon octicon-link"></span></a>letsR</h1>
+
+<h2>
+<a id="package-letsr" class="anchor" href="#package-letsr" aria-hidden="true"><span class="octicon octicon-link"></span></a>Package letsR</h2>
+
+<p>This package provides different functions for data handling and analysis in macroecology. It is being developed at LETS (Laboratório de Ecologia Teórica e Síntese) in UFG (Universidade Federal de Goiás, Brazil) as part of a larger project looking to integrate recent advances in macroecological data handling and processing. Its purpose is to make some of our commonly used but unavailable R functions available to the larger public. The package provides useful R functions for researchers in ecology and evolution.</p>
+
+<p>The letsR package is in continuous development and suggestions are more than welcome!</p>
+
+<p>We hope you enjoy it and find it useful.</p>
+
+<h1></h1>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<p>Install <code>letsR</code> from CRAN</p>
+
+<div class="highlight highlight-coffee"><pre>install.packages(<span class="pl-s1"><span class="pl-pds">"</span>letsR<span class="pl-pds">"</span></span>)
+library(<span class="pl-s1"><span class="pl-pds">"</span>letsR<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>Install <code>letsR</code> developers version from github</p>
+
+<div class="highlight highlight-coffee"><pre>install.packages(<span class="pl-s1"><span class="pl-pds">"</span>devtools<span class="pl-pds">"</span></span>)
+library(devtools)
+install_github(<span class="pl-s1"><span class="pl-pds">"</span>macroecology/letsR<span class="pl-pds">"</span></span>)
+library(letsR)</pre></div>
+
+<p>OBS.: To download the developers version you will need to have the git software installed (<a href="http://git-scm.com/">http://git-scm.com/</a>).
+If you are a windows user you will also need to download the Rtools (<a href="http://cran.r-project.org/bin/windows/Rtools/">http://cran.r-project.org/bin/windows/Rtools/</a>).</p>
+
+<h2>
+<a id="key-functions" class="anchor" href="#key-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Key functions</h2>
+
+<p>The <code>letsR</code> package includes many different functions. Below we highlight some them:</p>
+
+<ul>
+<li>
+<code>lets.presab</code>: Builts a presence-absence matrix (sites x species) based on species’ range maps from shapefiles.</li>
+<li>
+<code>lets.presab.birds</code>: Builts a presence-absence matrix (sites x species) based on species’ range maps from shapefiles (specially designed for the BirdLife International database).</li>
+<li>
+<code>lets.shFilter</code>: Filter species’ shapefiles by origin, presence and seasonal type (following IUCN categorization of species’ distributional ranges).</li>
+<li>
+<code>lets.addvar</code>: Add variables in raster format to a presence-absence matrix.</li>
+<li>
+<code>lets.addpoly</code>: Add variables in polygon format to a presence-absence matrix.</li>
+<li>
+<code>lets.iucn</code>: Get species’ information from the IUCN website (different from <code>taxize</code> version).</li>
+<li>
+<code>lets.iucn.ha</code>: Get species’ habitat information from the IUCN website.</li>
+<li>
+<code>lets.iucn.his</code>: Get information on the history of species’ conservation status from the IUCN website.</li>
+</ul>
+
+<p>Take a look at the functions' help files for more information.</p>
+        </section>
+
+        <footer>
+          Letsr is maintained by <a href="https://github.com/macroecology">macroecology</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
