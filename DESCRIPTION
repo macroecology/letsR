@@ -23,6 +23,7 @@ Imports:
     raster,
     XML,
     geosphere,
+    fields,
     maptools,
     sp,
     rgdal

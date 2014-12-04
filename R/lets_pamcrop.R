@@ -1,4 +1,4 @@
-#' Crop a PAM object from a shapefile
+#' Crop a PresenceAbsence object based on a specified shapefile
 #' 
 #' @author Bruno Vilela
 #' 
@@ -20,7 +20,7 @@
 #' @export
 
 
-lets.PAMcrop <- function(x, shp, remove.cells=TRUE, remove.sp=TRUE){
+lets.pamcrop <- function(x, shp, remove.cells=TRUE, remove.sp=TRUE){
 
 remover1 <- extract(x$R, shp, cellnumbers=T, weights=T, small=T)
 remover2 <- do.call(rbind.data.frame, remover1)[, 1]

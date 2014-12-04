@@ -1,4 +1,4 @@
-#' Download habitat information for species from IUCN
+#' Download species' habitat information from IUCN
 #' 
 #' @author Bruno Vilela
 #' 

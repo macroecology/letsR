@@ -1,10 +1,10 @@
-#' Summary cell variables for species
+#' Summary the variables in a presence-absence matrix for each species
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 
 #' @description Based on a Presence-Absence matrix with variables added (see \code{\link{lets.addvar}}) summarizes the values per species. 
 #'
-#' @usage lets.summarize(x, pos, xy=TRUE, fun=mean)
+#' @usage lets.summarizer(x, pos, xy=TRUE, fun=mean)
 #' 
 #' @param x Presence-absence matrix with variables added.
 #' @param pos Column position of the variables.
@@ -18,7 +18,7 @@
 #' @export
 
 
-lets.summarize <- function(x, pos, xy=TRUE, fun=mean){
+lets.summarizer <- function(x, pos, xy=TRUE, fun=mean){
   
   var <- x[, pos]
   sp <- x[, -pos]  

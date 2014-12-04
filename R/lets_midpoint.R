@@ -1,4 +1,4 @@
-#' Species' geographical range midpoint
+#' Compute species' geographical range midpoint
 #' 
 #' @author Fabricio Villalobos & Bruno Vilela
 #' 
@@ -11,6 +11,7 @@
 #' 
 #' @return A matrix containing the species' names and coordinates (longitude [x], latitude [y]) of species' midpoints.
 #'           
+#' @import fields
 #' @import geosphere
 #' 
 #' @seealso \code{\link{lets.presab}}
@@ -53,7 +54,7 @@ lets.midpoint <- function(pam, planar=FALSE){
   
   if(length(pam2[pos, 1])>1){
   dis <- geomean(cbind(pam2[pos, 1], pam2[pos, 2]))  
-  dif <- distCosine(c(dis[1, 1], 0), c(dis2[1, 1],0))/(111.321*1000) 
+  dif <- rdist.earth(cbind(dis[1, 1], 0), cbind(dis2[1, 1],0), miles=F)/(111.321*1000) 
   
   if(dif>150){
     if(dis2[1, 1]>=0){

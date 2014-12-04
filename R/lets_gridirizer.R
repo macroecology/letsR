@@ -1,4 +1,4 @@
-#' Fits a PAM object into a grid
+#' Fits a PresenceAbsence object into a shapefile grid
 #' 
 #' @author Bruno Vilela
 #' 
@@ -24,6 +24,6 @@ lets.gridirizer <- function(x){
   SP_ID <- extract(r, x$P[, 1:2])
   resultado <- cbind(SP_ID, x$P)
   colnames(grid@data) <- "Species_Richness"
-  return(list("Grid"=grid, "Presence Absence Matrix"=resultado))
+  return(list("Grid"=grid, "Presence_Absence_Matrix"=resultado))
   
 }

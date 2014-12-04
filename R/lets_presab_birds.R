@@ -1,4 +1,4 @@
-#' Shapefiles to presence/absence matrix by folder location
+#' Shapefiles to presence-absence matrix by folder location (Birdlife spatial data)
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 
@@ -144,8 +144,8 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
     return(matriz)
   }else{
     values(r) <- riqueza
-    final <- list("Presence and Absence Matrix"=matriz, "Richness Raster"=r, 
-                  "Species name"=(colnames(matriz)[-(1:2)]))
+    final <- list("Presence_and_Absence_Matrix"=matriz, "Richness_Raster"=r, 
+                  "Species_name"=(colnames(matriz)[-(1:2)]))
     class(final) <- "PresenceAbsence"
     return(final)    
 }

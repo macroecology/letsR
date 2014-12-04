@@ -1,4 +1,4 @@
-#' Calculate species range size 
+#' Compute species' geographic range size 
 #' 
 #' @author Bruno Vilela
 #' 

@@ -1,4 +1,4 @@
-#' Shapefiles filtering 
+#' Filter species shapefiles based on its presence, origin and season
 #' 
 #' @author Bruno Vilela
 #' 

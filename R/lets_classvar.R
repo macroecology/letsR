@@ -1,4 +1,4 @@
-#' Fucntion to count for frequency distribution along a variable
+#' Frequency distribution along a variable classes
 #' 
 #' @author Bruno Vilela
 #' 

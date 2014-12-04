@@ -1,4 +1,4 @@
-#' Geographic range overlap
+#' Compute pairwise species' geographic range overlap
 #' 
 #' @author Fabricio Villalobos & Bruno Vilela
 #' 

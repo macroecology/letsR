@@ -1,4 +1,4 @@
-#' Download historical conservation status of species from IUCN
+#' Download species' historical conservation status from IUCN
 #' 
 #' @author Bruno Vilela
 #' 

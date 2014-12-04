@@ -1,4 +1,4 @@
-#' Coordinates into a presence-absence matrix
+#' Spatial occurrences into a presence-absence matrix
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 
@@ -114,8 +114,8 @@ lets.presab.points <- function(xy, species, xmn=-180, xmx=180, ymn=-90,
     return(Resultado)
   }else{
     values(ras) <- rowSums(matriz)
-    final <- list("Presence and Absence Matrix"=Resultado, "Richness Raster"=ras, 
-                  "Species name"=colnames(Resultado)[-(1:2)])
+    final <- list("Presence_and_Absence_Matrix"=Resultado, "Richness_Raster"=ras, 
+                  "Species_name"=colnames(Resultado)[-(1:2)])
     class(final) <- "PresenceAbsence"
     return(final)
   }

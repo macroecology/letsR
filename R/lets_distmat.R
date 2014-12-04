@@ -28,7 +28,7 @@ lets.distmat <- function(xy, count=TRUE){
       x <- x+1
       plot.new()
       text(0.5, 0.5, paste(paste("Total:", n2, "\n","Runs to go: ", (n2-x))))      
-      distan[j,i] <- distCosine(p1=xy[i, ], p2=xy[j, ])      
+      distan[j,i] <- rdist.earth(as.matrix(xy[i, ]), as.matrix(xy[j, ]), miles=F)      
     }
   }
   }
@@ -36,7 +36,9 @@ lets.distmat <- function(xy, count=TRUE){
   if(count == FALSE){
     for(i in (1:(n-1))){
       for(j in ((i+1):n)){
-        distan[j,i] <- distCosine(p1=xy[i, ], p2=xy[j, ])      
+        distan[j,i] <- rdist.earth(as.matrix(xy[i, ]), 
+                                   as.matrix(xy[j, ]),
+                                   miles=F)      
       }
     }
   }
