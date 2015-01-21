@@ -1,4 +1,4 @@
-#' Create species' variables based on co-occurrence among species within focal ranges
+#' Create species’ variables based on species co-occurrences within focal ranges
 #' 
 #' @author Bruno Vilela
 #' 

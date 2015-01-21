@@ -1,4 +1,4 @@
-#' Compute correlogram based on Moran's I
+#' Compute correlogram based on Moran's I index
 #' 
 #' @author Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jose Alexandre Diniz-Filho
 #' 
@@ -62,13 +62,12 @@ lets.correl <- function(x, y, z, equidistant=FALSE, plot=TRUE){
     points(x=resu[pos3, 4], y=resu[pos3, 1], pch=20, cex=1.5)
     
     epsilon = max(resu[pos3, 4])/(14*z)
-    for(i in 1:nrow(resu)) {
       up <- resu[pos3, 1] + resu[pos3, 2]
       low <- resu[pos3, 1] - resu[pos3, 2]
       segments(resu[pos3, 4], low , resu[pos3, 4], up)
       segments(resu[pos3, 4]-epsilon, up , resu[pos3, 4]+epsilon, up)
       segments(resu[pos3, 4]-epsilon, low , resu[pos3, 4]+epsilon, low)
-    }
+
     }
     return(resu)
   }

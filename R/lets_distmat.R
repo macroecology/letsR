@@ -1,4 +1,4 @@
-#' Geographic distance matrix
+#' Compute a geographic distance matrix
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 

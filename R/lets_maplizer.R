@@ -1,4 +1,4 @@
-#' Create a matrix summarizing species' attributes 
+#' Create a matrix summarizing species' attributes within cells 
 #' 
 #' @author Bruno Vilela
 #' 
