@@ -1,4 +1,4 @@
-#' Download species’ information from IUCN
+#' Download species' information from IUCN
 #' 
 #' @author Bruno Vilela
 #' 

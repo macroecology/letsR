@@ -24,7 +24,7 @@ print.summary.PresenceAbsence <- function(x, ...){
   cat("\nSpecies with the largest range:", x$SpeciesLargestRange)
   cat("\n_ _")  
   
-  cat("\nRaster carachteristics")
+  cat("\nGrid parameters")
   cat("\nResolution: ", x$resolution[1], ", ", x$resolution[2], " (x, y)", sep="")  
   cat("\nExtention: ", xmin(x$ex), ", ",  xmax(x$ex), ", ", ymin(x$ex), ", ", ymax(x$ex), " (xmin, xmax, ymin, ymax)", sep="")
   cat("\nCoord. Ref.: ", x$coordRef)

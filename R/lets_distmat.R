@@ -9,7 +9,7 @@
 #' @param xy Matrix with two columns, first the longitude and second the latitude.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
-#' @return Returns an object of class "dist".
+#' @return Returns an object of class "dist". Distance values are given in kilometers.
 #'   
 #' @export
 

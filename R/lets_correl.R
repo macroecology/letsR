@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jose Alexandre Diniz-Filho
 #' 
-#' @description Compute Moran's correlogram of a variable using a distance matrix.
+#' @description Compute Moran's I correlogram of a variable.
 #'
 #' @usage lets.correl(x, y, z, equidistant=FALSE, plot=TRUE)
 #' 
@@ -14,6 +14,8 @@
 #' 
 #' @return Returns a matrix with the Moran's I Observed value, Standard Deviation and Expected value. Also the p value of the null model, the mean distance between classes and the number of observations.   
 #' 
+#' @references Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology. 1. Methodology. Biological Journal of the Linnean Society, 10, 199-228.
+#' @references Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology. 2. Some biological implications and four applications of evolutionary and ecological interest. Biological Journal of the Linnean Society, 10, 229-249.
 #' 
 #' @examples \dontrun{
 #' var <- runif(100)  # random variable

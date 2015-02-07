@@ -12,7 +12,7 @@
 #' @param fun Function used to aggregate values.
 #' 
 #' @return The result is a presence-absence matrix of species with 
-#' the variables added as columns at the right-end of the matrix.  
+#' the variables added as columns at the right-end of the matrix (but see the onlyvar argument).
 #'  
 #' @seealso \code{\link{lets.presab.birds}}
 #' @seealso \code{\link{lets.presab}}

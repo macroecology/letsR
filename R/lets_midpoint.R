@@ -1,4 +1,4 @@
-#' Compute species’ geographical range midpoint
+#' Compute species' geographical range midpoint
 #' 
 #' @author Fabricio Villalobos & Bruno Vilela
 #' 
