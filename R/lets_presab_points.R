@@ -1,14 +1,14 @@
-#' Spatial occurrences into a presence-absence matrix
+#' Create a presence-absence matrix based on species' point occurrences
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 
-#' @description Convert species shapefiles into a presence-absence matrix.
+#' @description Convert species' occurrences into a presence-absence matrix based on a user-defined grid.
 #'
 #' @usage lets.presab.points(xy, species, xmn=-180, xmx=180, ymn=-90, ymx=90, 
 #' resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
 #' crs=CRS("+proj=longlat +datum=WGS84"), count=FALSE)
 #' 
-#' @param xy A matrix with coordinates, first column is the longitude (or x), and the second latitude (or y).
+#' @param xy A matrix with geographic coordinates of species occurrences, first column is the longitude (or x), and the second latitude (or y).
 #' @param species Character vector with species names, in the same order as the coordinates.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
 #' @param xmn Minimun longitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
