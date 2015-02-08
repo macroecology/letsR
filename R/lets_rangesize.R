@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description This function calculate species range size from a PresenceAbsence object or direct from the species shapefiles.
+#' @description This function calculates species' range sizes from a PresenceAbsence object or directly from the species' shapefiles.
 #' 
 #' @param x a PresenceAbsence object or an SpatialPolygonsDataFrame.
 #' @param species_name  species name in the same other as in the SpatialPolygonsDataFrame (only needed if x is a SpatialPolygonsDataFrame).
