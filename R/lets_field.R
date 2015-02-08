@@ -1,8 +1,8 @@
-#' Create species' variables based on species co-occurrences within focal ranges
+#' Create species' values based on the species co-occurrence within focal ranges
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Create species' attributes based on the attribute values of species co-occurring within individual ranges.
+#' @description Create single species' values based on the attributes of species co-occurring within individual ranges.
 #'
 #' @usage lets.field(x, y, z, weigth=TRUE, count=FALSE)
 #' 
@@ -10,7 +10,7 @@
 #' @param y Species attribute to be considered. It must be a numeric attribute.
 #' @param z Species names in the same order as the attributes.
 #' @param weigth If \code{TRUE} the value is weighted by species' range size, 
-#' if \code{FALSE} the value is the mean of all species that co-occur with the
+#' if \code{FALSE} the value is the mean of all species that co-occur within the
 #'  focal species.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #'  
