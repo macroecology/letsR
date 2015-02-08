@@ -33,28 +33,41 @@
 #' @export
 
 lets.addpoly <- function(x, y, z, onlyvar=F){
-
- pos1 <- which(names(y)==z)
- names(y)[pos1] <- "NOME"
- valores <- values(x$R)
- n <- nrow(y)
- matriz <- matrix(0, ncol=n, nrow=length(valores))
- nomes <- y$NOME
- colnames(matriz) <- nomes
- xy <- xyFromCell(x$R, 1:length(valores))
- for(i in 1:n){
-  celu <- extract(x$R, y[i,], cellnumber=T, small=T,  weights=T)
-  celu2 <- do.call(rbind.data.frame, celu)
-  matriz[celu2[,1], i] <- celu2[,3]
- }
- r <- rasterize(xy, x$R, matriz)
- r_e <- extract(r, x$P[, 1:2])
- r_e <- as.matrix(r_e)
- colnames(r_e) <- nomes
- resultado <- cbind(x$P, r_e)
- if(onlyvar==T){
-  return(r_e) 
- }else{
-  return(resultado)
- }
+  
+  pos1 <- which(names(y)==z)
+  names(y)[pos1] <- "NOME"
+  valores <- values(x$R)
+  n <- nrow(y)
+  matriz <- matrix(0, ncol=n, nrow=length(valores))
+  nomes <- y$NOME
+  colnames(matriz) <- nomes
+  xy <- xyFromCell(x$R, 1:length(valores))
+  grid <- rasterToPolygons(x$R)
+  areagrid <- areaPolygon(grid)
+  areashape <- areaPolygon(y)
+  position <- which(!is.na(valores))
+  for(i in 1:n){
+    celu <- extract(x$R, y[i,], cellnumber=T, small=T,  weights=T)
+    celu2 <- do.call(rbind.data.frame, celu)
+    if(!is.null(celu2[, 2])){
+      celu2 <- celu2[!is.na(celu2[, 2]), ]
+    }
+    prop <- round((celu2[, 3]*areashape[i])/areagrid[position%in%celu2[, 1]], 2)
+    if(any(prop>1)){
+      prop[prop>1] <- 1
+    }
+    matriz[celu2[, 1], i] <- prop
+  }
+  
+  r <- rasterize(xy, x$R, matriz)
+  r_e <- extract(r, x$P[, 1:2])
+  r_e <- as.matrix(r_e)
+  colnames(r_e) <- nomes
+  
+  if(onlyvar==T){
+    return(r_e) 
+  }else{
+    resultado <- cbind(x$P, r_e)
+    return(resultado)
+  }
 }

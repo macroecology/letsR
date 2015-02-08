@@ -77,6 +77,7 @@
 #' 
 #' @export
 
+
 lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90, 
                         ymx=90, resol=1, remove.cells=TRUE, 
                         remove.sp=TRUE, show.matrix=FALSE, 
@@ -98,7 +99,13 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   coord <- xyFromCell(ras, 1:ncell(ras))
   colnames(coord) <- c("Longitude(x)", "Latitude(y)")
   
-  if(any(names(shapes)=="BINOMIAL")){  
+  if(cover>0){
+    grid <- rasterToPolygons(ras)
+    areagrid <- areaPolygon(grid)
+    areashape <- areaPolygon(shapes)
+  }
+  
+  if(any(names(shapes)=="BINOMIAL")){
     nomes <- levels(shapes$BINOMIAL)
     n <- length(shapes$BINOMIAL)
     nomes2 <- shapes$BINOMIAL
@@ -140,7 +147,16 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
       pos <- which(nomes2[i]==nomes)
       
       pos2 <- do.call(rbind.data.frame, celulas)
-      pos2 <- pos2[which(pos2[,3]>=cover), ]
+      if(cover==0){
+        pos2 <- pos2[which(pos2[,3]>=cover), ]
+      }else{
+        prop <- round((pos2[, 3]*areashape[i])/areagrid[pos2[, 1]], 2)
+        if(any(prop>1)){
+          prop[prop>1] <- 1
+        }
+        pos2 <- pos2[which(prop>=cover), ]
+      }
+      
       matriz[pos2[, 1], pos] <- 1
     }
     dev.off()
@@ -169,8 +185,16 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
       }
       
       pos <- which(nomes2[i]==nomes)
-      pos2 <- do.call(rbind.data.frame, celulas)
-      pos2 <- pos2[which(pos2[,3]>=cover), ]
+      pos2 <- do.call(rbind.data.frame, celulas)      
+      if(cover==0){
+        pos2 <- pos2[which(pos2[,3]>=cover), ]
+      }else{
+        prop <- round((pos2[, 3]*areashape[i])/areagrid[pos2[, 1]], 2)
+        if(any(prop>1)){
+          prop[prop>1] <- 1
+        }
+        pos2 <- pos2[which(prop>=cover), ]
+      }      
       matriz[pos2[, 1], pos] <- 1
     }
   }  
