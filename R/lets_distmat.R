@@ -2,11 +2,11 @@
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 
-#' @description Calculates geographic distance matrix based on a two column matrix of x(longitude) and y(latitude).
+#' @description Calculates a geographic distance matrix based on a two column matrix of x(longitude) and y(latitude).
 #'
 #' @usage lets.distmat(xy, count=TRUE)
 #' 
-#' @param xy Matrix with two columns, first the longitude and second the latitude.
+#' @param xy Matrix with two columns, the first one being the longitude and the second being the latitude.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
 #' @return Returns an object of class "dist". Distance values are given in kilometers.
