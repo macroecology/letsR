@@ -1,4 +1,4 @@
-#' Compute pairwise species' geographic overlapsa
+#' Compute pairwise species' geographic overlaps
 #' 
 #' @author Fabricio Villalobos & Bruno Vilela
 #' 
