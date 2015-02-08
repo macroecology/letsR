@@ -1,17 +1,17 @@
-#' Frequency distribution along a variable classes
+#' Frequency distribution of a variable within a species' range
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Based on a species Presence-Absence matrix including variables of interest (see \code{\link{lets.addvar}}), the function divides a continuous variable into classes and counts the frequency of each class in each species' range. 
+#' @description Based on a species Presence-Absence matrix including variables of interest (see \code{\link{lets.addvar}}), the function divides a continuous variable into classes and counts the frequency of each class within each species' range. 
 #' 
 #' @usage lets.classvar(x, groups="default", pos, xy)
 #' 
-#' @param x Presence-absence matrix with a unique variable added.
-#' @param pos Column position of the variables.
-#' @param groups The number of classes wanted for the variable. Default calculates the number of classes default for a histogram (\code{\link{hist}}). 
-#' @param xy Logical, if \code{TRUE} the matrix contains the coordinates in the first two columns.
+#' @param x Presence-absence matrix with a single variable added (see \code{\link{lets.addvar}}).
+#' @param pos Column number containing the variable of interest.
+#' @param groups The number of classes into which the variable will be divided. Default calculates the number of classes as the default for a histogram (\code{\link{hist}}). 
+#' @param xy Logical, if \code{TRUE} the input matrix contains the geographic coordinates in the first two columns.
 #' 
-#' @return A matrix with species in rows and class in columns.
+#' @return A matrix with species in the rows and the variable's classes in the columns.
 #' 
 #' @references Morales-Castilla et al. 2013. Range size patterns of New World oscine passerines (Aves): insights from differences among migratory and sedentary clades. Journal of Biogeography, 40, 2261-2273. 
 #'
