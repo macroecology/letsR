@@ -1,4 +1,4 @@
-#' Download species' information from IUCN
+#' Download species' information from the IUCN RedList online database
 #' 
 #' @author Bruno Vilela
 #' 
@@ -10,7 +10,7 @@
 #' or an object of class PresenceAbsence.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
-#' @return Returns a data frame with the Species name, Family, Status, 
+#' @return Returns a data frame with the Species Name, Family, Conservation Status, 
 #' Criteria used to estabilish the conservation status, Population Status, Year of Description, and the Countries where it occurs. If species do not have information (i.e. have not been evaluated), the result is: NE (Not evaluated).
 #' 
 #' @details Note that you must be connected to the internet to use this function. 
