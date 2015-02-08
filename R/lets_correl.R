@@ -1,8 +1,8 @@
-#' Compute correlogram based on Moran's I index
+#' Compute correlogram based on the Moran's I index
 #' 
 #' @author Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jose Alexandre Diniz-Filho
 #' 
-#' @description Compute Moran's I correlogram of a variable.
+#' @description Computes the Moran's I correlogram of a single or multiple variables.
 #'
 #' @usage lets.correl(x, y, z, equidistant=FALSE, plot=TRUE)
 #' 
@@ -12,7 +12,7 @@
 #' @param equidistant Logical, if \code{TRUE} the classes will be equidistant. If \code{FALSE} the classes will have equal number of observations.
 #' @param plot Logical, if \code{TRUE} the correlogram will be ploted. 
 #' 
-#' @return Returns a matrix with the Moran's I Observed value, Standard Deviation and Expected value. Also the p value of the null model, the mean distance between classes and the number of observations.   
+#' @return Returns a matrix with the Moran's I Observed value, Standard Deviation and Expected value. Also the p value of the randomization test, the mean distance between classes, and the number of observations.   
 #' 
 #' @references Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology. 1. Methodology. Biological Journal of the Linnean Society, 10, 199-228.
 #' @references Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology. 2. Some biological implications and four applications of evolutionary and ecological interest. Biological Journal of the Linnean Society, 10, 229-249.
