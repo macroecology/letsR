@@ -1,8 +1,8 @@
-#' Shapefiles to presence-absence matrix by folder location (Birdlife spatial data)
+#' Create a presence-absence matrix of species' geographic ranges within a grid for the Birdlife spatial data
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 
-#' @description Convert species' shapefiles into a presence-absence matrix. This function is specially designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
+#' @description Convert species' ranges (in shapefile format and stored in particular folders) into a presence-absence matrix based on a user-defined grid. This function is specially designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
 #'
 #' @usage lets.presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
 #' remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
