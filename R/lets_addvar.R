@@ -2,14 +2,14 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Add variables (in raster format) to a PresenceAbsence object.
+#' @description Add variables (in raster format), usually environmental, to a PresenceAbsence object. Variables are included as additional columns containing the aggregate/summarize value of the variable(s) in each cell of the presence-absence matrix.
 #'
 #' @usage lets.addvar(x, y, onlyvar=F, fun=mean)
 #' 
 #' @param x A PresenceAbsence object. 
 #' @param y Variables to be added in Raster or RasterStack format.
 #' @param onlyvar If \code{TRUE} only the matrix object will be returned.
-#' @param fun Function used to aggregate values.
+#' @param fun Function used to aggregate the variables(s) values over each cell.
 #' 
 #' @return The result is a presence-absence matrix of species with 
 #' the variables added as columns at the right-end of the matrix (but see the onlyvar argument).
