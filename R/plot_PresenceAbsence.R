@@ -2,16 +2,16 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Plots species richness map from an object of class PresenceAbsence or an
-#' specific species map.
+#' @description Plots species richness map from an object of class PresenceAbsence or a
+#' particular species' map.
 #'
 #' @usage 
 #' \method{plot}{PresenceAbsence}(x, name=NULL, world=TRUE, \dots)
 #' 
 #' @param x an object of class PresenceAbsence (see function presab).
-#' @param name you can specify a species to be ploted instead of the species richness map.
+#' @param name you can specify a species to be ploted instead of the complete species richness map.
 #' @param world if \code{TURE} a map of political divisions (countries) is added to the plot.
-#' @param ... Other plot parameters.
+#' @param ... Other parameters pass to the plot function.
 #' 
 #' @seealso \code{\link{lets.presab}}
 #' @seealso \code{\link{lets.presab.birds}}
