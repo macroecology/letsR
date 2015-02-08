@@ -1,4 +1,4 @@
-# Function to join the duplicated species in the matrix
+# Function to join the duplicated species (i.e. with more than one polygon/shapefile) in the presence-absence matrix
 # Bruno Vilela
 
 .unicas <- function(resu){
