@@ -1,8 +1,8 @@
-#' Transform IUCN conservation status to continuous values
+#' Transform IUCN RedList conservation status to continuous values
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Transform IUCN conservation status to continuous values from 0 to 5.
+#' @description Transform IUCN RedList conservation status to continuous values ranging from 0 to 5.
 #'
 #' @usage lets.iucncont(x, dd=NA, ne=NA)
 #' 
