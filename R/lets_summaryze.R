@@ -1,18 +1,21 @@
-#' Summary the variables in a presence-absence matrix for each species
+#' Summarize variable(s) values in a presence-absence matrix within species' ranges
 #' 
 #' @author Bruno Vilela & Fabricio Villalobos
 #' 
-#' @description Based on a Presence-Absence matrix with variables added (see \code{\link{lets.addvar}}) summarizes the values per species. 
+#' @description Based on a Presence-Absence matrix with added variables (see \code{\link{lets.addvar}}), this function summarizes the values of such variable(s) per species (across the species' occupied cells. i.e. within their ranges). 
 #'
 #' @usage lets.summarizer(x, pos, xy=TRUE, fun=mean)
 #' 
 #' @param x Presence-absence matrix with variables added.
-#' @param pos Column position of the variables.
-#' @param xy Logical, if \code{TRUE} the matrix contains the coordinates in the first two columns. 
-#' @param fun Function to be used to summary the variable per species.
+#' @param pos Column position of the variables of interest.
+#' @param xy Logical, if \code{TRUE} the input matrix contains geographic coordinates in the first two columns. 
+#' @param fun Function to be used to summarize the variable per species.
 #' 
+#' @references Villalobos, F. and Arita, H.T. 2010. The diversity field of New World leaf-nosed bats (Phyllostomidae). Global Ecology and Biogeography. 19, 200-211. 
+#'
 #' @seealso \code{\link{lets.addvar}}
 #' @seealso \code{\link{lets.addpoly}}
+#' @seealso \code{\link{lets.field}}
 #' 
 #' 
 #' @export

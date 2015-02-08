@@ -1,14 +1,14 @@
-#' Compute pairwise species' geographic range overlap
+#' Compute pairwise species' geographic overlaps
 #' 
 #' @author Fabricio Villalobos & Bruno Vilela
 #' 
-#' @description Creates geographic range overlap matrix from a species Presence-absence matrix.
+#' @description Creates a species geographic overlap matrix from a Presence-absence matrix.
 #' 
 #' @usage lets.overlap(pam, method="Chesser&Zink", xy=TRUE)
 #' 
-#' @param pam A presence-absence matrix (sites in rows and species in columns, with the first two columns being longitude and latitude coordinates, respectively), or an object of class PresenceAbsence. 
-#' @param method The method used to calculate the overlap matrix. "Chesser&Zink" calculates the degree of overlap as the proportion of the smaller range that overlaps within the larger range (Chesser & Zink 1994). "Proportional" calculates the proportion of a range that overlaps another range, the resultant matrix is not symmetric. "Cells" will show the number of overlapping grid cells between a pair of ranges (same for both species in a pair), the resultant matrix is symmetric.
-#' @param xy Logical, if \code{TRUE} the matrix has two columns of coordinates.
+#' @param pam A presence-absence matrix (sites in rows and species in columns, with the first two columns containing the longitudinal and latitudinal coordinates, respectively), or an object of class PresenceAbsence. 
+#' @param method The method used to calculate the overlap matrix. "Chesser&Zink" calculates the degree of overlap as the proportion of the smaller range that overlaps within the larger range (Chesser & Zink 1994). "Proportional" calculates the proportion of a range that overlaps another range, the resultant matrix is not symmetric. "Cells" will show the number of overlapping grid cells between a pair of species' ranges (same for both species in a pair), here the resultant matrix is symmetric.
+#' @param xy Logical, if \code{TRUE} the input matrix contains geographic coordinates in the first two columns.
 #'
 #' @references Chesser, R. Terry, and Robert M. Zink. "Modes of speciation in birds: a test of Lynch's method." Evolution (1994): 490-497.
 #' @references Barraclough, Timothy G., and Alfried P. Vogler. "Detecting the geographical pattern of speciation from species-level phylogenies." The American Naturalist 155.4 (2000): 419-434.

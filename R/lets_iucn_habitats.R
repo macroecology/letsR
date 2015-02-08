@@ -1,8 +1,8 @@
-#' Download species' habitat information from IUCN
+#' Download species' habitat information from the IUCN RedList online database
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Get species' habitat information from IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
+#' @description Get species' habitat information from the IUCN RedList website(\url{http://www.iucnredlist.org/}) for one or more species.
 #' 
 #' @usage lets.iucn.ha(input, count=FALSE)
 #' 
@@ -10,7 +10,7 @@
 #' or an object of the PresenceAbsence class.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
-#' @return A data frame with species names in the first column and the habitats in the remaining columns,
+#' @return A data frame with species names in the first column and the habitats where it occurs in the remaining columns,
 #' '1' if species is present in that habitat and '0' otherwise.
 #'
 #' @details Note that you must be connected to the internet to use this function. 
@@ -31,7 +31,7 @@
 #' @export
 
 lets.iucn.ha <- function(input, count=FALSE){
-  #keep species name
+  #keep species name(s)
   
   if(class(input)=="PresenceAbsence"){
     input <- input$S
@@ -41,10 +41,10 @@ lets.iucn.ha <- function(input, count=FALSE){
   sps <- input 
   
   
-  #enpty matrix
+  #create an empty matrix
   habitat <- matrix(0, nrow=length(input), ncol=19) 
   
-  #Habitat names (and the name "species" that will be used in the matrix columns names)
+  #Habitat names (and the name "Species" that will be used in the matrix columns names)
   names <- c("Species", "Forest", "Savanna", "Shrubland", "Grassland", 
              "Wetlands", "Rocky areas", "Caves and Subterranean Habitats", 
              "Desert", "Marine Neritic", "Marine Oceanic", "Marine Deep Ocean Floor", 
@@ -72,7 +72,7 @@ lets.iucn.ha <- function(input, count=FALSE){
     c <- as.numeric(gsub("\\D", "", b))
     h2 <- try(htmlParse(paste("http://www.iucnredlist.org/details/classify/", c, "/0", sep = "")), silent=TRUE)
     
-    #taking the specific parts that contains the habitat names
+    #taking the specific parts that contain the habitat names
     b2 <- try(xpathSApply(h2, '//html', xmlValue), silent=TRUE)
     
     #look for the habitat names inside the string (if the sting contains the name, it will be marked 1)
@@ -82,8 +82,8 @@ lets.iucn.ha <- function(input, count=FALSE){
       }
     }
     
-    #If none of the habitat names have been found or also if the species have not been found in IUCN archives.
-    #it will be marked 1 in the column Unknwon
+    #If none of the habitat names has been found or if the species has not been found in IUCN archives,
+    #it will have 1 in the column Unknwon
     if(sum(habitat[i, ])==0){
       habitat[i, 19] <- 1
     }
@@ -112,17 +112,17 @@ lets.iucn.ha <- function(input, count=FALSE){
       }
     }
     
-    #If none of the habitat names have been found or also if the species have not been found in IUCN archives.
-    #it will be marked 1 in the column Unknwon
+    #If none of the habitat names has been found or if the species has not been found in the IUCN archives.
+    #it will have 1 in the column Unknwon
     if(sum(habitat[i, ])==0){
       habitat[i, 19] <- 1
     }
   }  
  }
 
-  #Adding species names to the first column
+  #Putting species' names in the first column
   habitat[, 1] <- sps
   
-  #Return the matrix
+  #Return the resulting matrix
   return(as.data.frame(habitat))
 }

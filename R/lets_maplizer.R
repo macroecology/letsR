@@ -1,4 +1,4 @@
-#' Create a matrix summarizing species' attributes within cells 
+#' Create a matrix summarizing species' attributes within cells of a PresenceAbsence object
 #' 
 #' @author Bruno Vilela
 #' 
@@ -9,10 +9,10 @@
 #' @param x A PresenceAbsence object.
 #' @param y Species attribute to be considered.
 #' @param z Species names in the same order as the attributes.
-#' @param func function to summarize the atribute.
-#' @param ras If \code{TRUE} the raster file will be returned together with the matrix
+#' @param func function to summarize the species' atribute.
+#' @param ras If \code{TRUE} the raster object will be returned together with the matrix
 #' 
-#' @return Return a matrix with coordinates and the atributes summarized.
+#' @return Returns a matrix with the cells' geographic coordinates and the summarized species' attributes within them.
 #' 
 #' 
 #' @seealso \code{\link{lets.presab}}
