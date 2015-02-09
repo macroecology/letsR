@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_presab.R
 \name{lets.presab}
 \alias{lets.presab}
-\title{Shapefiles into a presence-absence matrix}
+\title{Create a presence-absence matrix of species' geographic ranges within a grid}
 \usage{
 lets.presab(shapes, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1,
 remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
@@ -11,7 +11,7 @@ origin=NULL, seasonal=NULL, count=FALSE)
 }
 \arguments{
 \item{shapes}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}}
-to open these files). Species name should be in a column (within the .DBF table of the shapefile)
+to open these files). Species names should be in a column (within the .DBF table of the shapefile)
 called BINOMIAL or binomial.}
 
 \item{xmn}{Minimun longitude used to construct the grid in which the matrix will be based
@@ -53,7 +53,7 @@ do not match any cell in the grid.}
 \item{count}{Logical, if \code{TRUE} a counting window will open.}
 }
 \value{
-The result is an object of class PresenceAbsence with the following objects:
+The result is a list object of class PresenceAbsence with the following objects:
 
 \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information.
 The first two columns contain the longitude (x) and latitude (y) of the cells' centroid
@@ -66,14 +66,14 @@ The first two columns contain the longitude (x) and latitude (y) of the cells' c
 *But see the optional argument \code{show.matrix}.
 }
 \description{
-Convert species shapefiles into a presence-absence matrix.
+Convert species' ranges (in shapefile format) into a presence-absence matrix based on a user-defined grid system
 }
 \details{
-The function creates the presence-absence matrix based on a raster file.
+The function creates the presence-absence matrix based on a raster object.
 Depending on the cell size, extension used and number of species it may require a lot of memory,
 and may take some time to process it. Thus, during the process, if \code{count} argument is
 set \code{TRUE}, a counting window will open so you can see the progress
-(i.e. in what polygon the function is working). Note that the number of
+(i.e. in what polygon/shapefile the function is working). Note that the number of
 polygons is not the same as the number of species that you have
 (i.e. a species may have more than one polygon/shapefiles).
 }

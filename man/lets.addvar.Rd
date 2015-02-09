@@ -13,14 +13,14 @@ lets.addvar(x, y, onlyvar=F, fun=mean)
 
 \item{onlyvar}{If \code{TRUE} only the matrix object will be returned.}
 
-\item{fun}{Function used to aggregate values.}
+\item{fun}{Function used to aggregate the variables(s) values over each cell.}
 }
 \value{
 The result is a presence-absence matrix of species with
 the variables added as columns at the right-end of the matrix (but see the onlyvar argument).
 }
 \description{
-Add variables (in raster format) to a PresenceAbsence object.
+Add variables (in raster format), usually environmental, to a PresenceAbsence object. Variables are included as additional columns containing the aggregate/summarize value of the variable(s) in each cell of the presence-absence matrix.
 }
 \examples{
 \dontrun{

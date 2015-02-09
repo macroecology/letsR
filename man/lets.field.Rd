@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_field.R
 \name{lets.field}
 \alias{lets.field}
-\title{Create species' variables based on species co-occurrences within focal ranges}
+\title{Create species' values based on the species co-occurrence within focal ranges}
 \usage{
 lets.field(x, y, z, weigth=TRUE, count=FALSE)
 }
@@ -14,13 +14,13 @@ lets.field(x, y, z, weigth=TRUE, count=FALSE)
 \item{z}{Species names in the same order as the attributes.}
 
 \item{weigth}{If \code{TRUE} the value is weighted by species' range size,
-if \code{FALSE} the value is the mean of all species that co-occur with the
+if \code{FALSE} the value is the mean of all species that co-occur within the
  focal species.}
 
 \item{count}{Logical, if \code{TRUE} a counting window will open.}
 }
 \description{
-Create species' attributes based on the attribute values of species co-occurring within individual ranges.
+Create single species' values based on the attributes of species co-occurring within individual ranges.
 }
 \details{
 If the species do not co-occur with any other species NaN will be returned.
@@ -33,7 +33,11 @@ field <- lets.field(PAM, range, PAM$S, weigth=TRUE)
 }
 }
 \author{
-Bruno Vilela
+Bruno Vilela & Fabricio Villalobos
+}
+\references{
+Villalobos, F. and Arita, H.T. 2010. The diversity field of New World leaf-nosed bats (Phyllostomidae). Global Ecology and Biogeography. 19, 200-211.
+Villalobos, F., Rangel, T.F., and Diniz-Filho, J.A.F. 2013. Phylogenetic fields of species: cross-species patterns of phylogenetic structure and geographical coexistence. Proceedings of the Royal Society B. 280, 20122570
 }
 \seealso{
 \code{\link{lets.presab.birds}}

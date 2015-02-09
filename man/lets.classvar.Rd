@@ -2,24 +2,24 @@
 % Please edit documentation in R/lets_classvar.R
 \name{lets.classvar}
 \alias{lets.classvar}
-\title{Frequency distribution along a variable classes}
+\title{Frequency distribution of a variable within a species' range}
 \usage{
 lets.classvar(x, groups="default", pos, xy)
 }
 \arguments{
-\item{x}{Presence-absence matrix with a unique variable added.}
+\item{x}{Presence-absence matrix with a single variable added (see \code{\link{lets.addvar}}).}
 
-\item{groups}{The number of classes wanted for the variable. Default calculates the number of classes default for a histogram (\code{\link{hist}}).}
+\item{groups}{The number of classes into which the variable will be divided. Default calculates the number of classes as the default for a histogram (\code{\link{hist}}).}
 
-\item{pos}{Column position of the variables.}
+\item{pos}{Column number containing the variable of interest.}
 
-\item{xy}{Logical, if \code{TRUE} the matrix contains the coordinates in the first two columns.}
+\item{xy}{Logical, if \code{TRUE} the input matrix contains the geographic coordinates in the first two columns.}
 }
 \value{
-A matrix with species in rows and class in columns.
+A matrix with species in the rows and the variable's classes in the columns.
 }
 \description{
-Based on a species Presence-Absence matrix including variables of interest (see \code{\link{lets.addvar}}), the function divides a continuous variable into classes and counts the frequency of each class in each species' range.
+Based on a species Presence-Absence matrix including variables of interest (see \code{\link{lets.addvar}}), the function divides a continuous variable into classes and counts the frequency of each class within each species' range.
 }
 \examples{
 \dontrun{

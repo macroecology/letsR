@@ -7,7 +7,7 @@
 lets.distmat(xy, count=TRUE)
 }
 \arguments{
-\item{xy}{Matrix with two columns, first the longitude and second the latitude.}
+\item{xy}{Matrix with two columns, the first one being the longitude and the second being the latitude.}
 
 \item{count}{Logical, if \code{TRUE} a counting window will open.}
 }
@@ -15,7 +15,7 @@ lets.distmat(xy, count=TRUE)
 Returns an object of class "dist". Distance values are given in kilometers.
 }
 \description{
-Calculates geographic distance matrix based on a two column matrix of x(longitude) and y(latitude).
+Calculates a geographic distance matrix based on a two column matrix of x(longitude) and y(latitude).
 }
 \author{
 Bruno Vilela & Fabricio Villalobos

@@ -2,20 +2,20 @@
 % Please edit documentation in R/lets_midpoint.R
 \name{lets.midpoint}
 \alias{lets.midpoint}
-\title{Compute species' geographical range midpoint}
+\title{Compute the midpoint of species' geographic ranges}
 \usage{
 lets.midpoint(pam, planar=FALSE)
 }
 \arguments{
-\item{pam}{A presence-absence matrix (sites in the rows and species in the columns, with the first two columns being longitude and latitude coordinates, respectively), or an object of class PresenceAbsence.}
+\item{pam}{A presence-absence matrix (sites in the rows and species in the columns, with the first two columns containing the longitudinal and latitudinal coordinates, respectively), or an object of class PresenceAbsence.}
 
 \item{planar}{Logical, if \code{FALSE} the coordinates are in Longitude/Latitude. If \code{TRUE} the coordinates are planar.}
 }
 \value{
-A matrix containing the species' names and coordinates (longitude [x], latitude [y]) of species' midpoints.
+A matrix containing the species' names and geographic coordinates (longitude [x], latitude [y]) of species' midpoints.
 }
 \description{
-Calculate species' geographical range midpoint from a presence-absence matrix.
+Calculate species' distributional midpoint from a presence-absence matrix.
 }
 \examples{
 \dontrun{

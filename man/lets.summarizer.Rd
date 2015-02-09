@@ -2,28 +2,33 @@
 % Please edit documentation in R/lets_summaryze.R
 \name{lets.summarizer}
 \alias{lets.summarizer}
-\title{Summary the variables in a presence-absence matrix for each species}
+\title{Summarize variable(s) values in a presence-absence matrix within species' ranges}
 \usage{
 lets.summarizer(x, pos, xy=TRUE, fun=mean)
 }
 \arguments{
 \item{x}{Presence-absence matrix with variables added.}
 
-\item{pos}{Column position of the variables.}
+\item{pos}{Column position of the variables of interest.}
 
-\item{xy}{Logical, if \code{TRUE} the matrix contains the coordinates in the first two columns.}
+\item{xy}{Logical, if \code{TRUE} the input matrix contains geographic coordinates in the first two columns.}
 
-\item{fun}{Function to be used to summary the variable per species.}
+\item{fun}{Function to be used to summarize the variable per species.}
 }
 \description{
-Based on a Presence-Absence matrix with variables added (see \code{\link{lets.addvar}}) summarizes the values per species.
+Based on a Presence-Absence matrix with added variables (see \code{\link{lets.addvar}}), this function summarizes the values of such variable(s) per species (across the species' occupied cells. i.e. within their ranges).
 }
 \author{
 Bruno Vilela & Fabricio Villalobos
+}
+\references{
+Villalobos, F. and Arita, H.T. 2010. The diversity field of New World leaf-nosed bats (Phyllostomidae). Global Ecology and Biogeography. 19, 200-211.
 }
 \seealso{
 \code{\link{lets.addvar}}
 
 \code{\link{lets.addpoly}}
+
+\code{\link{lets.field}}
 }
 

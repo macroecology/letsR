@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_correl.R
 \name{lets.correl}
 \alias{lets.correl}
-\title{Compute correlogram based on Moran's I index}
+\title{Compute correlogram based on the Moran's I index}
 \usage{
 lets.correl(x, y, z, equidistant=FALSE, plot=TRUE)
 }
@@ -18,10 +18,10 @@ lets.correl(x, y, z, equidistant=FALSE, plot=TRUE)
 \item{plot}{Logical, if \code{TRUE} the correlogram will be ploted.}
 }
 \value{
-Returns a matrix with the Moran's I Observed value, Standard Deviation and Expected value. Also the p value of the null model, the mean distance between classes and the number of observations.
+Returns a matrix with the Moran's I Observed value, Standard Deviation and Expected value. Also the p value of the randomization test, the mean distance between classes, and the number of observations.
 }
 \description{
-Compute Moran's I correlogram of a variable.
+Computes the Moran's I correlogram of a single or multiple variables.
 }
 \examples{
 \dontrun{

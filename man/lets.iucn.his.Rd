@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_iucn_historic.R
 \name{lets.iucn.his}
 \alias{lets.iucn.his}
-\title{Download species' historical conservation status from IUCN}
+\title{Download species' temporal trend in conservation status from the IUCN RedList online database}
 \usage{
 lets.iucn.his(input, count=FALSE)
 }
@@ -14,10 +14,10 @@ or an object of class PresenceAbsence.}
 }
 \value{
 A data frame with the species names in the first column rows and the years (1980 - present) in the remaining columns,
-the code represents the species' conservation status (see the IUCN website for details). If species do not have information (i.e. have not been evaluated), the result is: NE (Not evaluated).
+the code represents the species' conservation status (see the IUCN RedList website for details). If species do not have information (i.e. have not been evaluated), the result is: NE (Not evaluated).
 }
 \description{
-Get species conservation status through history (i.e. from 1980 to present date available) from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
+Get species conservation status over time (i.e. from 1980 to the present date available) from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
 }
 \details{
 Note that you must be connected to the internet to use this function.

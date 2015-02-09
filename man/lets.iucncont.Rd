@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_iucncont.R
 \name{lets.iucncont}
 \alias{lets.iucncont}
-\title{Transform IUCN conservation status to continuous values}
+\title{Transform IUCN RedList conservation status to continuous values}
 \usage{
 lets.iucncont(x, dd=NA, ne=NA)
 }
@@ -17,7 +17,7 @@ lets.iucncont(x, dd=NA, ne=NA)
 Returns a vector/matrix with continuos values from 0 to 5.
 }
 \description{
-Transform IUCN conservation status to continuous values from 0 to 5.
+Transform IUCN RedList conservation status to continuous values ranging from 0 to 5.
 }
 \details{
 EX and EW = 5

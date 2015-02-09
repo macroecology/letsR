@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_presab_birds.R
 \name{lets.presab.birds}
 \alias{lets.presab.birds}
-\title{Shapefiles to presence-absence matrix by folder location (Birdlife spatial data)}
+\title{Create a presence-absence matrix of species' geographic ranges within a grid for the Birdlife spatial data}
 \usage{
 lets.presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1,
 remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
@@ -52,7 +52,7 @@ The result is an object of class PresenceAbsence with the following objects:
 *But see the optional argument \code{show.matrix}.
 }
 \description{
-Convert species' shapefiles into a presence-absence matrix. This function is specially designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
+Convert species' ranges (in shapefile format and stored in particular folders) into a presence-absence matrix based on a user-defined grid. This function is specially designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
 }
 \details{
 The function creates the presence-absence matrix based on a raster file. Depending on the cell size, extension used and number of species it may require a lot of memory,

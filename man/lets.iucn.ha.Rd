@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_iucn_habitats.R
 \name{lets.iucn.ha}
 \alias{lets.iucn.ha}
-\title{Download species' habitat information from IUCN}
+\title{Download species' habitat information from the IUCN RedList online database}
 \usage{
 lets.iucn.ha(input, count=FALSE)
 }
@@ -13,11 +13,11 @@ or an object of the PresenceAbsence class.}
 \item{count}{Logical, if \code{TRUE} a counting window will open.}
 }
 \value{
-A data frame with species names in the first column and the habitats in the remaining columns,
+A data frame with species names in the first column and the habitats where it occurs in the remaining columns,
 '1' if species is present in that habitat and '0' otherwise.
 }
 \description{
-Get species' habitat information from IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
+Get species' habitat information from the IUCN RedList website(\url{http://www.iucnredlist.org/}) for one or more species.
 }
 \details{
 Note that you must be connected to the internet to use this function.

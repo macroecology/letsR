@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_maplizer.R
 \name{lets.maplizer}
 \alias{lets.maplizer}
-\title{Create a matrix summarizing species' attributes within cells}
+\title{Create a matrix summarizing species' attributes within cells of a PresenceAbsence object}
 \usage{
 lets.maplizer(x, y, z, func=mean, ras=FALSE)
 }
@@ -13,12 +13,12 @@ lets.maplizer(x, y, z, func=mean, ras=FALSE)
 
 \item{z}{Species names in the same order as the attributes.}
 
-\item{func}{function to summarize the atribute.}
+\item{func}{function to summarize the species' atribute.}
 
-\item{ras}{If \code{TRUE} the raster file will be returned together with the matrix}
+\item{ras}{If \code{TRUE} the raster object will be returned together with the matrix}
 }
 \value{
-Return a matrix with coordinates and the atributes summarized.
+Returns a matrix with the cells' geographic coordinates and the summarized species' attributes within them.
 }
 \description{
 Summarize species atributes per cell in a presence-absence matrix.

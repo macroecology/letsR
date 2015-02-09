@@ -2,14 +2,14 @@
 % Please edit documentation in R/lets_pamcrop.R
 \name{lets.pamcrop}
 \alias{lets.pamcrop}
-\title{Crop a PresenceAbsence object based on a specified shapefile}
+\title{Crop a PresenceAbsence object based on an input shapefile}
 \usage{
 lets.pamcrop(x, shp, remove.cells = TRUE, remove.sp = TRUE)
 }
 \arguments{
-\item{x}{A PresenceAbsence object to be croped.}
+\item{x}{A PresenceAbsence object.}
 
-\item{shp}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} to to crop the PresenceAbsence object.}
+\item{shp}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} to crop the PresenceAbsence object.}
 
 \item{remove.cells}{Logical, if \code{TRUE} the final matrix will not contain cells in the grid with a value of zero (i.e. sites with no species present).}
 
@@ -19,7 +19,7 @@ lets.pamcrop(x, shp, remove.cells = TRUE, remove.sp = TRUE)
 The result is an object of class PresenceAbsence croped.
 }
 \description{
-Crop a PresenceAbsence object based on a shapefile.
+Crop a PresenceAbsence object based on a shapefile provided by the user.
 }
 \author{
 Bruno Vilela

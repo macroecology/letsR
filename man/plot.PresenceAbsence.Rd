@@ -9,15 +9,15 @@
 \arguments{
 \item{x}{an object of class PresenceAbsence (see function presab).}
 
-\item{name}{you can specify a species to be ploted instead of the species richness map.}
+\item{name}{you can specify a species to be ploted instead of the complete species richness map.}
 
 \item{world}{if \code{TURE} a map of political divisions (countries) is added to the plot.}
 
-\item{...}{Other plot parameters.}
+\item{...}{Other parameters pass to the plot function.}
 }
 \description{
-Plots species richness map from an object of class PresenceAbsence or an
-specific species map.
+Plots species richness map from an object of class PresenceAbsence or a
+particular species' map.
 }
 \examples{
 \dontrun{

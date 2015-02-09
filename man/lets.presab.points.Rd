@@ -2,14 +2,14 @@
 % Please edit documentation in R/lets_presab_points.R
 \name{lets.presab.points}
 \alias{lets.presab.points}
-\title{Spatial occurrences into a presence-absence matrix}
+\title{Create a presence-absence matrix based on species' point occurrences}
 \usage{
 lets.presab.points(xy, species, xmn=-180, xmx=180, ymn=-90, ymx=90,
 resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
 crs=CRS("+proj=longlat +datum=WGS84"), count=FALSE)
 }
 \arguments{
-\item{xy}{A matrix with coordinates, first column is the longitude (or x), and the second latitude (or y).}
+\item{xy}{A matrix with geographic coordinates of species occurrences, first column is the longitude (or x), and the second latitude (or y).}
 
 \item{species}{Character vector with species names, in the same order as the coordinates.}
 
@@ -45,7 +45,7 @@ The result is an object of class PresenceAbsence with the following objects:
 *But see the optional argument \code{show.matrix}.
 }
 \description{
-Convert species shapefiles into a presence-absence matrix.
+Convert species' occurrences into a presence-absence matrix based on a user-defined grid.
 }
 \details{
 The function creates the presence-absence matrix based on a raster file. Depending on the cell size, extension used and number of species it may require a lot of memory,

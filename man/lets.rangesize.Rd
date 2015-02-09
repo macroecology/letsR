@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_rangesize.R
 \name{lets.rangesize}
 \alias{lets.rangesize}
-\title{Compute species' geographic range size}
+\title{Compute species' geographic range sizes}
 \usage{
 lets.rangesize(x, species_name = x@data[, 1], coordinates = "geographic",
   units = "cells")
@@ -10,15 +10,15 @@ lets.rangesize(x, species_name = x@data[, 1], coordinates = "geographic",
 \arguments{
 \item{x}{a PresenceAbsence object or an SpatialPolygonsDataFrame.}
 
-\item{species_name}{species name in the same other as in the SpatialPolygonsDataFrame (only needed if x is a SpatialPolygonsDataFrame).}
+\item{species_name}{species names in the same order as in the SpatialPolygonsDataFrame (only needed if x is a SpatialPolygonsDataFrame).}
 
 \item{coordinates}{"geographical" or "planar". Indicate wheter the shapefile has geographical or planar coordinates(only needed if x is a SpatialPolygonsDataFrame).}
 
-\item{units}{"cell" or "squaremeters". Indicate if the units wanted are in number of cells occupied or in square meters(only needed if x is a PresenceAbsence object).}
+\item{units}{"cell" or "squaremeters". Indicate if the size units wanted are in number of cells occupied or in square meters(only needed if x is a PresenceAbsence object).}
 }
 \value{
 The result is a matrix with the range size of each species.
-If the range size accounts for the earth curvature (Yes or No) or it's unit
+If the range size accounts for the earth curvature (Yes or No) or its size unit
 may differ for each argument combination:
 1) SpatialPolygonsDataFrame & geographical = Square meters. Yes.
 2) SpatialPolygonsDataFrame & planar = same units as the coordinates. No.
@@ -26,7 +26,7 @@ may differ for each argument combination:
 4) PresenceAbsence & squaremeters = squaremeters. Yes.
 }
 \description{
-This function calculate species range size from a PresenceAbsence object or direct from the species shapefiles.
+This function calculates species' range sizes from a PresenceAbsence object or directly from the species' shapefiles.
 }
 \examples{
 \dontrun{

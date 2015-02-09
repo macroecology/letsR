@@ -2,26 +2,26 @@
 % Please edit documentation in R/lets_addpoly.R
 \name{lets.addpoly}
 \alias{lets.addpoly}
-\title{Add polygon values to a PresenceAbscence object}
+\title{Add polygon coverage to a PresenceAbscence object}
 \usage{
 lets.addpoly(x, y, z, onlyvar=F)
 }
 \arguments{
 \item{x}{A PresenceAbsence object.}
 
-\item{y}{Polygon values to add.}
+\item{y}{Polygon of interest.}
 
-\item{z}{Column name of where is located the polygon names to be used.}
+\item{z}{Column name of the polygon containing the attributes to be used.}
 
 \item{onlyvar}{If \code{TRUE} only the matrix object will be returned.}
 }
 \value{
 The result is a presence-absence matrix of species with
-the polygons names added as columns at the right-end of the matrix . The Values represent
-the percentage of the cell covered by the polygon.
+the polygons' attributes used added as columns at the right-end of the matrix . The Values represent
+the percentage of the cell covered by the polygon attribute used.
 }
 \description{
-Add polygon values to a PresenceAbsence object.
+Add polygon coverage within cells of a PresenceAbsence object.
 }
 \examples{
 \dontrun{

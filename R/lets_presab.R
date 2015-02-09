@@ -101,8 +101,10 @@ lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90,
   
   if(cover>0){
     grid <- rasterToPolygons(ras)
-    areagrid <- areaPolygon(grid)
     areashape <- areaPolygon(shapes)
+    areagrid <- try(areaPolygon(grid), silent=TRUE)
+    if(class(areagrid)=="try-error"){areagrid <- values(area(r))*1000000}
+    
   }
   
   if(any(names(shapes)=="BINOMIAL")){

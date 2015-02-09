@@ -2,19 +2,19 @@
 % Please edit documentation in R/lets_overlap.R
 \name{lets.overlap}
 \alias{lets.overlap}
-\title{Compute pairwise species' geographic range overlap}
+\title{Compute pairwise species' geographic overlaps}
 \usage{
 lets.overlap(pam, method="Chesser&Zink", xy=TRUE)
 }
 \arguments{
-\item{pam}{A presence-absence matrix (sites in rows and species in columns, with the first two columns being longitude and latitude coordinates, respectively), or an object of class PresenceAbsence.}
+\item{pam}{A presence-absence matrix (sites in rows and species in columns, with the first two columns containing the longitudinal and latitudinal coordinates, respectively), or an object of class PresenceAbsence.}
 
-\item{method}{The method used to calculate the overlap matrix. "Chesser&Zink" calculates the degree of overlap as the proportion of the smaller range that overlaps within the larger range (Chesser & Zink 1994). "Proportional" calculates the proportion of a range that overlaps another range, the resultant matrix is not symmetric. "Cells" will show the number of overlapping grid cells between a pair of ranges (same for both species in a pair), the resultant matrix is symmetric.}
+\item{method}{The method used to calculate the overlap matrix. "Chesser&Zink" calculates the degree of overlap as the proportion of the smaller range that overlaps within the larger range (Chesser & Zink 1994). "Proportional" calculates the proportion of a range that overlaps another range, the resultant matrix is not symmetric. "Cells" will show the number of overlapping grid cells between a pair of species' ranges (same for both species in a pair), here the resultant matrix is symmetric.}
 
-\item{xy}{Logical, if \code{TRUE} the matrix has two columns of coordinates.}
+\item{xy}{Logical, if \code{TRUE} the input matrix contains geographic coordinates in the first two columns.}
 }
 \description{
-Creates geographic range overlap matrix from a species Presence-absence matrix.
+Creates a species geographic overlap matrix from a Presence-absence matrix.
 }
 \examples{
 \dontrun{

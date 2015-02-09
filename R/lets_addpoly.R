@@ -43,7 +43,8 @@ lets.addpoly <- function(x, y, z, onlyvar=F){
   colnames(matriz) <- nomes
   xy <- xyFromCell(x$R, 1:length(valores))
   grid <- rasterToPolygons(x$R)
-  areagrid <- areaPolygon(grid)
+  areagrid <- try(areaPolygon(grid), silent=TRUE)
+  if(class(areagrid)=="try-error"){areagrid <- values(area(r))*1000000}  
   areashape <- areaPolygon(y)
   position <- which(!is.na(valores))
   for(i in 1:n){
