@@ -15,11 +15,11 @@
 #' @details \tabular{ll}{
 #' Package: \tab lestR\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.0\cr
-#' Date: \tab 2014-05-05\cr
+#' Version: \tab 2.0\cr
+#' Date: \tab 2015-02-09\cr
 #' License: \tab GPL-2\cr
 #' }
 #' 
-#' @import raster geosphere XML maptools maps sp rgdal
+#' @import raster geosphere XML maptools maps sp rgdal fields
 
 NULL

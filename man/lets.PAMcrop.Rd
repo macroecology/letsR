@@ -9,7 +9,7 @@ lets.pamcrop(x, shp, remove.cells = TRUE, remove.sp = TRUE)
 \arguments{
 \item{x}{A PresenceAbsence object.}
 
-\item{shp}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} to crop the PresenceAbsence object.}
+\item{shp}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}}) to crop the PresenceAbsence object.}
 
 \item{remove.cells}{Logical, if \code{TRUE} the final matrix will not contain cells in the grid with a value of zero (i.e. sites with no species present).}
 

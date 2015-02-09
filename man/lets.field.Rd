@@ -37,6 +37,7 @@ Bruno Vilela & Fabricio Villalobos
 }
 \references{
 Villalobos, F. and Arita, H.T. 2010. The diversity field of New World leaf-nosed bats (Phyllostomidae). Global Ecology and Biogeography. 19, 200-211.
+
 Villalobos, F., Rangel, T.F., and Diniz-Filho, J.A.F. 2013. Phylogenetic fields of species: cross-species patterns of phylogenetic structure and geographical coexistence. Proceedings of the Royal Society B. 280, 20122570
 }
 \seealso{

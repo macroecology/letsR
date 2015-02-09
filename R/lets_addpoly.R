@@ -8,7 +8,7 @@
 #' 
 #' @param x A PresenceAbsence object. 
 #' @param y Polygon of interest.
-#' @param z Column name of the polygon containing the attributes to be used.
+#' @param z A character indicating the column name of the polygon containing the attributes to be used.
 #' @param onlyvar If \code{TRUE} only the matrix object will be returned.
 #' 
 #' @return The result is a presence-absence matrix of species with 

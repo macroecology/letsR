@@ -11,7 +11,7 @@ lets.addpoly(x, y, z, onlyvar=F)
 
 \item{y}{Polygon of interest.}
 
-\item{z}{Column name of the polygon containing the attributes to be used.}
+\item{z}{A character indicating the column name of the polygon containing the attributes to be used.}
 
 \item{onlyvar}{If \code{TRUE} only the matrix object will be returned.}
 }
