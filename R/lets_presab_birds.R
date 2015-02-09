@@ -73,9 +73,16 @@ lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90,
   k <- 0
   
   if(cover>0){
-    grid <- rasterToPolygons(r)
-    areagrid <- try(areaPolygon(grid), silent=TRUE)
-    if(class(areagrid)=="try-error"){areagrid <- values(area(r))*1000000}
+    if(!(xmn==-180 & xmx==180 & ymn==-90 & ymx==90)){
+      grid <- rasterToPolygons(r)
+      areagrid <- try(areaPolygon(grid), silent=TRUE)
+    }else{
+      areagrid <- values(area(r))*1000000  
+    }
+    if(class(areagrid)=="try-error"){
+      areagrid <- values(area(r))*1000000
+    }
+    
   }
   
   
