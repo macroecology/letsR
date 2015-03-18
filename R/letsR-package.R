@@ -5,7 +5,7 @@
 #' @name letsR
 #' @aliases letsR-package
 #' @docType package
-#' @title Tools for data handling and analysis in  macroecology.
+#' @title Tools for Data Handling and Analysis in  Macroecology.
 #' 
 #' @author Bruno Vilela \email{brunovilelasilva@@hotmal.com}
 #' @author Fabricio Villalobos \email{fabricio.villalobos@@gmail.com} 
@@ -21,5 +21,3 @@
 #' }
 #' 
 #' @import raster geosphere XML maptools maps sp rgdal fields
-
-NULL

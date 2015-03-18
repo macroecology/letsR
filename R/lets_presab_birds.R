@@ -4,10 +4,10 @@
 #' 
 #' @description Convert species' ranges (in shapefile format and stored in particular folders) into a presence-absence matrix based on a user-defined grid. This function is specially designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
 #'
-#' @usage lets.presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
-#' remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
-#' crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL, 
-#' origin=NULL, seasonal=NULL, count=FALSE)
+#' @usage lets.presab.birds(path, xmn = -180, xmx = 180, ymn = -90, ymx = 90, resol = 1, 
+#' remove.cells = TRUE, remove.sp = TRUE, show.matrix = FALSE, 
+#' crs=CRS("+proj=longlat +datum=WGS84"), cover = 0, presence = NULL, 
+#' origin = NULL, seasonal = NULL, count = FALSE)
 #' 
 #' @param path Path location of folders with one or more species' shapefiles.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)
@@ -41,9 +41,11 @@
 #' 
 #' @examples \dontrun{
 #' # Constructing a Presence/Absence matrix for birds 
-#' #(this will not work if do not change the path for the folder were you kept the spatial data) 
-#' PAM <- lets.presab.birds("YOURPATH/YOURPATH/BIRDS")
-#' require(maps)
+#' path.Ramphastos <- system.file("extdata", package = "letsR")
+#'   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=20, 
+#'   resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
+#'   crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
+#'   origin=NULL, seasonal=NULL, count=FALSE)
 #' plot(PAM)  # Species richness map
 #' 
 #' }
@@ -52,149 +54,202 @@
 
 
 
-lets.presab.birds <- function(path, xmn=-180, xmx=180, ymn=-90, 
-                              ymx=90, resol=1, remove.cells=TRUE,
-                              remove.sp=TRUE, show.matrix=FALSE, 
-                              crs=CRS("+proj=longlat +datum=WGS84"),
-                              cover=0, presence=NULL, origin=NULL, 
-                              seasonal=NULL, count=FALSE){
+lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90, 
+                              ymx = 90, resol = 1, remove.cells = TRUE,
+                              remove.sp = TRUE, show.matrix = FALSE, 
+                              crs = CRS("+proj=longlat +datum=WGS84"),
+                              cover = 0, presence = NULL, origin = NULL, 
+                              seasonal = NULL, count = FALSE) {
   
-  shapes <- list.files(path, pattern=".shp", full.names=T, recursive=T)
-  r <- raster(xmn=xmn, xmx=xmx, ymn=ymn, ymx=ymx, crs=crs)
+  # Shapefile list
+  shapes <- list.files(path, pattern = ".shp", 
+                       full.names = T, recursive = T)
+  
+  # Raster creation
+  r <- raster(xmn = xmn,
+              xmx = xmx,
+              ymn = ymn,
+              ymx = ymx,
+              crs = crs)
   res(r) <- resol
   values(r) <- 0
+  
+  # Corrdinates saved
   valores <- values(r)
   xy <- xyFromCell(r, 1:length(valores))
-  nomes <- numeric(length(shapes))
-  matriz <- matrix(0, nrow=nrow(xy),
-                   ncol=length(shapes))
-  matriz <- cbind(xy, matriz)
+  
+  # Generating the empty matrix
   n <- length(shapes)
+  nomes <- numeric()
+  matriz <- matrix(0, nrow = nrow(xy), ncol = n)
+  matriz <- cbind(xy, matriz)
+  
+  # Control for "after filtering none species distribution left" (see below) 
   k <- 0
   
-  if(cover>0){
-    if(!(xmn==-180 & xmx==180 & ymn==-90 & ymx==90)){
+  # Cell area calculation for cover metrics
+  areashape <- NULL
+  areagrid <- NULL
+  
+  if (cover > 0) {
+    global <- xmn == -180 & xmx == 180 & ymn == -90 & ymx == 90    
+    if (!global) {
       grid <- rasterToPolygons(r)
       areagrid <- try(areaPolygon(grid), silent=TRUE)
-    }else{
-      areagrid <- values(area(r))*1000000  
-    }
-    if(class(areagrid)=="try-error"){
-      areagrid <- values(area(r))*1000000
-    }
+    } 
     
+    if (class(areagrid) == "try-error" | global) {
+      areagrid <- values(area(r)) * 1000000
+    }  
   }
   
   
-  if(count){
+  
+  # With count window  
+  if (count) {
     
-    dev.new(width=2, height=2, pointsize = 12)
-    par(mar=c(0, 0, 0, 0))  
+    dev.new(width = 2, height = 2, pointsize = 12)
+    par(mar = c(0, 0, 0, 0))  
     
-    for(j in 1:n){    
+    # Loop start, running repetitions for the number of polygons (n) 
+    for (j in 1:n) {    
+      
+      # Count window
       plot.new()
-      text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n-j))))      
-      valores2 <- valores
-      shp <- readShapePoly(shapes[j], delete_null_obj=TRUE, force_ring=T)
-      nomes[j] <- levels(shp$SCINAME)[1]
-      shp <- lets.shFilter(shp, presence=presence, origin=origin, seasonal=seasonal)
-      if(!is.null(shp)){  
-        k <- k+1
-        cell <- extract(r, shp, cellnumber=T, small=T, weights=T)
-        cell <- cell[!sapply(cell, is.null)]
-        if(length(cell)>0){
-          cell <- lapply(cell, function(x){colnames(x)<-1:3;return(x)})
-        }
-        cell2 <- do.call(rbind.data.frame, cell)    
-        if(cover==0){
-          cell3 <- cell2[which(cell2[, 3]>=cover), ]
-        }else{
-          areashape <- areaPolygon(shp)
-          prop <- numeric()
-          for(k1 in 1:length(cell)){
-            prop <- c(prop, 
-                      cell[[k1]][, 3]*areashape[k1]/areagrid[cell[[k1]][, 1]])
-          }
-          
-          if(any(prop>1)){
-            prop[prop>1] <- 1
-          }
-          cell3 <- cell2[which(prop>=cover), ]
-        }
-        
-        valores2[cell3[, 1]] <- 1
-        matriz[,(j+2)] <- valores2
-      }
+      text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n-j))))
+      
+      # Getting species position in the matrix and set to 1
+      par.re <- .extractpos.birds(valores,  shapes[j], 
+                        k, r, areashape, areagrid,
+                        cover, presence, origin, 
+                        seasonal, crs)
+      
+      matriz[, (j + 2)] <- par.re[[1]]
+      nomes[j] <- par.re[[2]]
+      k <- par.re[[3]]
     }  
     dev.off()
   }
   
-  
-  if(!count){
+  # Without count window  
+  if (!count) {
     
-    for(j in 1:n){    
-      valores2 <- valores
-      shp <- readShapePoly(shapes[j], delete_null_obj=TRUE, force_ring=T)
-      nomes[j] <- levels(shp$SCINAME)[1]
-      shp <- lets.shFilter(shp, presence=presence, origin=origin, seasonal=seasonal)
-      if(!is.null(shp)){  
-        k <- k+1
-        cell <- extract(r, shp, cellnumber=T, small=T, weights=T)
-        cell <- cell[!sapply(cell, is.null)]
-        if(length(cell)>0){
-          cell <- lapply(cell, function(x){colnames(x)<-1:3;return(x)})
-        }
-        cell2 <- do.call(rbind.data.frame, cell)    
-        if(cover==0){
-          cell3 <- cell2[which(cell2[, 3]>=cover), ]
-        }else{
-          areashape <- areaPolygon(shp)
-          prop <- numeric()
-          for(k1 in 1:length(cell)){
-            prop <- c(prop, 
-                      cell[[k1]][, 3]*areashape[k1]/areagrid[cell[[k1]][, 1]])
-          }
-          
-          if(any(prop>1)){
-            prop[prop>1] <- 1
-          }
-          cell3 <- cell2[which(prop>=cover), ]
-        }
-        
-        valores2[cell3[, 1]] <- 1
-        matriz[,(j+2)] <- valores2
-      }
+    for(j in 1:n){
+      
+      # Getting species position in the matrix and set to 1
+      par.re <- .extractpos.birds(valores,  shapes[j], 
+                                  k, r, areashape, areagrid,
+                                  cover, presence, origin, 
+                                  seasonal, crs)      
+      matriz[, (j + 2)] <- par.re[[1]]
+      nomes[j] <- par.re[[2]]
+      k <- par.re[[3]]
     }  
   }
   
-  if(k==0){
+  if (k == 0) {
     stop("after filtering none species distribution left")
   }
   
   colnames(matriz) <- c("Longitude(x)", "Latitude(y)", nomes)
   
-  riqueza <- rowSums(as.matrix(matriz[,-c(1,2)]))  
+  riqueza <- rowSums(matriz[, -c(1, 2), drop = FALSE])  
   
-  
-  if(remove.cells){
+  # Remove cells without presence if TRUE
+  if (remove.cells) {
     matriz <- .removeCells(matriz)
   }
   
-  if(remove.sp){
+  # Remove species without presence if TRUE
+  if (remove.sp) {
     matriz <- .removeSp(matriz)
   }
   
-  
+  # Putting together species with more than one shapefile
   matriz <- .unicas(matriz)
   
-  if(show.matrix){
+  # Return result (depending on what the user want)
+  if (show.matrix) {
     return(matriz)
-  }else{
+  } else {
     values(r) <- riqueza
-    final <- list("Presence_and_Absence_Matrix"=matriz, "Richness_Raster"=r, 
-                  "Species_name"=(colnames(matriz)[-(1:2)]))
+    final <- list("Presence_and_Absence_Matrix" = matriz, "Richness_Raster" = r, 
+                  "Species_name" = (colnames(matriz)[-(1:2)]))
     class(final) <- "PresenceAbsence"
-    return(final)    
+    return(final)
   }
 }
 
+
+
+
+
+# Axuliar function to avoid code repetition inside the loop <<<<<<<<<
+
+# Function to extract cell positions in the raster
+
+.extractpos.birds <- function(valores, shapej, k, r,
+                              areashape, areagrid, cover,
+                              presence, origin, seasonal, crs) {
+
+# Vector to be filled
+valores2 <- valores
+
+# Read species shapefile, get its name and filter it
+shp <- readShapePoly(shapej, delete_null_obj = TRUE,
+                     force_ring = TRUE, proj4string = crs)
+nomesj <- levels(shp$SCINAME)[1]
+shp <- lets.shFilter(shp, 
+                     presence = presence,
+                     origin = origin,
+                     seasonal = seasonal)
+
+# Just run if after filtering the species has any polygon
+if (!is.null(shp)) {  
+  k <- k + 1 # for later error control (see below)
+  
+  #  Extract cell occurrence positions
+  cell <- extract(r, shp, cellnumber = T, 
+                  small = T, weights = T)
+  
+  # Remove null cells
+  cell <- cell[!sapply(cell, is.null)]
+  
+  # Changing colnames
+  l.cell <- length(cell)
+  
+  if(l.cell > 0){
+    .rename <- function(x) {
+      colnames(x) <- 1:3
+      return(x) 
+    }          
+    cell <- lapply(cell, .rename)
+  }
+  
+  # Getting row positions
+  cell2 <- do.call(rbind.data.frame, cell)    
+  
+  # Correcting presence based on the cover
+  
+  if (cover > 0) {
+    areashape <- areaPolygon(shp)
+    prop <- numeric()
+    
+    for (k1 in 1:l.cell) {
+      calc <- cell[[k1]][, 3] * areashape[k1] / areagrid[cell[[k1]][, 1]]
+      prop <- c(prop, calc)
+    }
+    prop.1 <- prop > 1
+    
+    if (any(prop.1)) {
+      prop[prop.1] <- 1
+    }
+    
+    cell2 <- cell2[prop >= cover, , drop = FALSE]
+  }
+  
+  valores2[cell2[, 1]] <- 1
+}
+
+return(list(valores2, nomesj, k))
+}

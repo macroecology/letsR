@@ -4,10 +4,10 @@
 \alias{lets.presab}
 \title{Create a presence-absence matrix of species' geographic ranges within a grid}
 \usage{
-lets.presab(shapes, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1,
-remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
-origin=NULL, seasonal=NULL, count=FALSE)
+lets.presab(shapes, xmn = -180, xmx = 180, ymn = -90, ymx = 90, resol = 1,
+remove.cells = TRUE, remove.sp = TRUE, show.matrix = FALSE,
+crs = CRS("+proj=longlat +datum=WGS84"), cover = 0, presence = NULL,
+origin = NULL, seasonal = NULL, count = FALSE)
 }
 \arguments{
 \item{shapes}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}}
@@ -82,7 +82,6 @@ polygons is not the same as the number of species that you have
 data(Phyllomedusa)  # Spatial distribution polygons of south american frogs of genus Phyllomedusa.
 PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15)
 summary(PAM)
-require(maps)
 plot(PAM)  # Species richness map
 plot(PAM, name="Phyllomedusa nordestina")  # Map of the specific species
 }

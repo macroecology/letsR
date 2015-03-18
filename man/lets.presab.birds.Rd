@@ -4,10 +4,10 @@
 \alias{lets.presab.birds}
 \title{Create a presence-absence matrix of species' geographic ranges within a grid for the Birdlife spatial data}
 \usage{
-lets.presab.birds(path, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1,
-remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
-origin=NULL, seasonal=NULL, count=FALSE)
+lets.presab.birds(path, xmn = -180, xmx = 180, ymn = -90, ymx = 90, resol = 1,
+remove.cells = TRUE, remove.sp = TRUE, show.matrix = FALSE,
+crs=CRS("+proj=longlat +datum=WGS84"), cover = 0, presence = NULL,
+origin = NULL, seasonal = NULL, count = FALSE)
 }
 \arguments{
 \item{path}{Path location of folders with one or more species' shapefiles.}
@@ -62,9 +62,11 @@ polygons is not the same as the number of species that you have (i.e. a species 
 \examples{
 \dontrun{
 # Constructing a Presence/Absence matrix for birds
-#(this will not work if do not change the path for the folder were you kept the spatial data)
-PAM <- lets.presab.birds("YOURPATH/YOURPATH/BIRDS")
-require(maps)
+path.Ramphastos <- system.file("extdata", package = "letsR")
+  PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=20,
+  resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
+  crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
+  origin=NULL, seasonal=NULL, count=FALSE)
 plot(PAM)  # Species richness map
 
 }

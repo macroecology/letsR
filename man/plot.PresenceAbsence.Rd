@@ -22,7 +22,6 @@ particular species' map.
 \examples{
 \dontrun{
 data(PAM)
-require(maps)
 plot(PAM)
 plot(PAM, name="Phyllomedusa atelopoides")
 plot(PAM, name="Phyllomedusa azurea")

@@ -4,10 +4,10 @@
 #' 
 #' @description Convert species' ranges (in shapefile format) into a presence-absence matrix based on a user-defined grid system
 #'
-#' @usage lets.presab(shapes, xmn=-180, xmx=180, ymn=-90, ymx=90, resol=1, 
-#' remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
-#' crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL, 
-#' origin=NULL, seasonal=NULL, count=FALSE)
+#' @usage lets.presab(shapes, xmn = -180, xmx = 180, ymn = -90, ymx = 90, resol = 1, 
+#' remove.cells = TRUE, remove.sp = TRUE, show.matrix = FALSE, 
+#' crs = CRS("+proj=longlat +datum=WGS84"), cover = 0, presence = NULL, 
+#' origin = NULL, seasonal = NULL, count = FALSE)
 #' 
 #' @param shapes Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} 
 #' to open these files). Species names should be in a column (within the .DBF table of the shapefile) 
@@ -63,7 +63,6 @@
 #' data(Phyllomedusa)  # Spatial distribution polygons of south american frogs of genus Phyllomedusa. 
 #' PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15)
 #' summary(PAM)
-#' require(maps)
 #' plot(PAM)  # Species richness map
 #' plot(PAM, name="Phyllomedusa nordestina")  # Map of the specific species
 #' }
@@ -78,149 +77,183 @@
 #' @export
 
 
-lets.presab <- function(shapes, xmn=-180, xmx=180, ymn=-90, 
-                        ymx=90, resol=1, remove.cells=TRUE, 
-                        remove.sp=TRUE, show.matrix=FALSE, 
-                        crs=CRS("+proj=longlat +datum=WGS84"),
-                        cover=0, presence=NULL, origin=NULL, 
-                        seasonal=NULL, count=FALSE){
+lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90, 
+                        ymx = 90, resol = 1, remove.cells = TRUE, 
+                        remove.sp = TRUE, show.matrix = FALSE, 
+                        crs = CRS("+proj=longlat +datum=WGS84"),
+                        cover = 0, presence = NULL, origin = NULL, 
+                        seasonal = NULL, count = FALSE) {
   
-  if(!all(is.null(presence), is.null(origin), is.null(seasonal))){
-    shapes <- lets.shFilter(shapes, presence=presence, origin=origin, seasonal=seasonal)
+  # Projection set for spatial polygosn
+  projection(shapes) <- crs
+  
+  # Filter the species range distribution
+  if (!all(is.null(presence), is.null(origin), is.null(seasonal))) {
+    shapes <- lets.shFilter(shapes = shapes, 
+                            presence = presence, 
+                            origin = origin, 
+                            seasonal = seasonal)
   }
   
-  if(is.null(shapes)){
-    stop("after filtering none species distribution left")
+  # Error control for no shapes after filtering
+  if (is.null(shapes)) {
+    stop("After filtering no species distributions left")
   }
   
-  ras <- raster(xmn=xmn, xmx=xmx, ymn=ymn, ymx=ymx, crs=crs)
+  # Raster creation
+  ras <- raster(xmn = xmn,
+                xmx = xmx,
+                ymn = ymn,
+                ymx = ymx,
+                crs = crs)
   res(ras) <- resol
   values(ras) <- 1
-  coord <- xyFromCell(ras, 1:ncell(ras))
+  
+  # Corrdinates saved
+  ncellras <- ncell(ras)
+  coord <- xyFromCell(object = ras, cell = 1:ncellras)
   colnames(coord) <- c("Longitude(x)", "Latitude(y)")
   
-  if(cover>0){
+  # Cell area calculation for cover metrics
+  areashape <- NULL
+  areagrid <- NULL
+  
+  if (cover > 0) {
     areashape <- areaPolygon(shapes)
-    if(!(xmn==-180 & xmx==180 & ymn==-90 & ymx==90)){
-    grid <- rasterToPolygons(ras)      
-    areagrid <- try(areaPolygon(grid), silent=TRUE)
-    }else{
-      areagrid <- values(area(ras))*1000000  
+    global <- xmn == -180 & xmx == 180 & ymn == -90 & ymx == 90
+    if (!global) {
+      grid <- rasterToPolygons(ras)      
+      areagrid <- try(areaPolygon(grid), silent = TRUE)
     }
-    if(class(areagrid)=="try-error"){
-      areagrid <- values(area(ras))*1000000
-    }    
+    if (class(areagrid) == "try-error" | global) {
+      areagrid <- values(area(ras)) * 1000000
+    }
   }
+    
+  # Getting species name 
+  names(shapes) <- toupper(names(shapes))
+  nomes <- levels(shapes$BINOMIAL)
+  n <- length(shapes$BINOMIAL)
+  nomes2 <- shapes$BINOMIAL
+  nomes <- nomes[nomes %in% nomes2]
   
-  if(any(names(shapes)=="BINOMIAL")){
-    nomes <- levels(shapes$BINOMIAL)
-    n <- length(shapes$BINOMIAL)
-    nomes2 <- shapes$BINOMIAL
-  }
-  
-  if(any(names(shapes)=="binomial")){  
-    nomes <- levels(shapes$binomial)
-    n <- length(shapes$binomial)
-    nomes2 <- shapes$binomial
-  }
-  
-  matriz <- matrix(0, ncol=length(nomes), nrow=ncell(ras))
+  # Generating the empty matrix
+  matriz <- matrix(0, ncol = length(nomes), nrow = ncellras)
   colnames(matriz) <- nomes
   
-  if(count){
-    dev.new(width=2, height=2, pointsize = 12)
-    par(mar=c(0, 0, 0, 0))
+  # With count window
+  if (count) {
+    dev.new(width = 2, height = 2, pointsize = 12)
+    par(mar = c(0, 0, 0, 0))
     
-    for(i in 1:n){
+    # Loop start, running repetitions for the number of polygons (n) 
+    for (i in 1:n) {
+
+      # Count window
       plot.new()
-      text(0.5, 0.5, paste(paste("Total:", n, "\n","Runs to go: ", (n-i))))
+      text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n - i))))
       
-      celulas <- try(celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])),
-                                        cellnumbers=T, weights=T, small=T), silent=T)
-      if(class(celulas)=="try-error"){
-        celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])),
-                           cellnumbers=T)
-        nen <- sapply(celulas, nrow)
-        for(ky in 1:length(nen)){
-          weigth <- rep(0, nen[ky]) 
-          celulas[[ky]] <- cbind(celulas[[ky]], weigth)  
-        } 
-      }
-      
-      celulas <- celulas[!sapply(celulas, is.null)]
-      if(length(celulas)>0){
-        celulas <- lapply(celulas, function(x){colnames(x)<-1:3;return(x)})
-      }
-      pos <- which(nomes2[i]==nomes)
-      
-      pos2 <- do.call(rbind.data.frame, celulas)
-      if(cover==0){
-        pos2 <- pos2[which(pos2[,3]>=cover), ]
-      }else{
-        prop <- round((pos2[, 3]*areashape[i])/areagrid[pos2[, 1]], 2)
-        if(any(prop>1)){
-          prop[prop>1] <- 1
-        }
-        pos2 <- pos2[which(prop>=cover), ]
-      }
-      
-      matriz[pos2[, 1], pos] <- 1
+      # Getting species position in the matrix and set to 1
+      pospos2 <- .extractpos(ras, shapes@polygons[[i]], nomes, nomes2,
+                            cover, areashape, areagrid, i)      
+      matriz[pospos2$pos2[, 1], pospos2$pos] <- 1      
     }
     dev.off()
   }
-  
-  
-  if(!count){
     
+  # Wihout count window
+  if (!count) {
+    
+    # Loop start, running repetitions for the number of polygons (n) 
     for(i in 1:n){
-      
-      celulas <- try(celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])),
-                                        cellnumbers=T, weights=T, small=T), silent=T)
-      if(class(celulas)=="try-error"){
-        celulas <- extract(ras, SpatialPolygons(list(shapes@polygons[[i]])),
-                           cellnumbers=T)
-        nen <- sapply(celulas, nrow)
-        for(ky in 1:length(nen)){
-          weigth <- rep(0, nen[ky]) 
-          celulas[[ky]] <- cbind(celulas[[ky]], weigth)  
-        } 
-      }
-      
-      celulas <- celulas[!sapply(celulas, is.null)]
-      if(length(celulas)>0){
-        celulas <- lapply(celulas, function(x){colnames(x)<-1:3;return(x)})
-      }
-      
-      pos <- which(nomes2[i]==nomes)
-      pos2 <- do.call(rbind.data.frame, celulas)      
-      if(cover==0){
-        pos2 <- pos2[which(pos2[,3]>=cover), ]
-      }else{
-        prop <- round((pos2[, 3]*areashape[i])/areagrid[pos2[, 1]], 2)
-        if(any(prop>1)){
-          prop[prop>1] <- 1
-        }
-        pos2 <- pos2[which(prop>=cover), ]
-      }      
-      matriz[pos2[, 1], pos] <- 1
+      # Getting species position in the matrix and set to 1
+      pospos2 <- .extractpos(ras, shapes@polygons[[i]], nomes, nomes2,
+                            cover, areashape, areagrid, i)      
+      matriz[pospos2$pos2[, 1], pospos2$pos] <- 1            
     }
   }  
   
-  cbind(coord,matriz)->Resultado
-  if(remove.cells){
+  # Adding the coordinates to the matrix
+  Resultado <- cbind(coord, matriz)
+  
+  # Remove cells without presence if TRUE
+  if (remove.cells) {
     Resultado <- .removeCells(Resultado)
   }
-  if(remove.sp){
+
+  # Remove species without presence if TRUE
+  if (remove.sp) {
     Resultado <- .removeSp(Resultado)
   }
   
-  if(show.matrix){
+  # Return result (depending on what the user want)
+  if (show.matrix) {
     return(Resultado)
-  }else{
+  } else {
     values(ras) <- rowSums(matriz)
-    final <- list("Presence_and_Absence_Matrix"=Resultado, "Richness_Raster"=ras, 
-                  "Species_name"=colnames(Resultado)[-(1:2)])
+    final <- list("Presence_and_Absence_Matrix" = Resultado,
+                  "Richness_Raster" = ras, 
+                  "Species_name" = colnames(Resultado)[-(1:2)])
     class(final) <- "PresenceAbsence"
     return(final)
   }
+}
+
+
+
+
+# Axuliar function to avoid code repetition inside the loop <<<<<<<<<
+
+# Function to extract cell positions in the raster
+.extractpos <- function(ras, shapepol, nomes, nomes2, cover, 
+                       areashape, areagrid, i) {
+  
+  # Try the extraction of cell occurrence positions
+  celulas <- try(celulas <- extract(ras, 
+                                    SpatialPolygons(list(shapepol)),
+                                    cellnumbers = TRUE,
+                                    weights = TRUE,
+                                    small = TRUE), 
+                silent=T)
+  
+  # Handdle the akward error that can appear with weights and small = TRUE 
+  if (class(celulas) == "try-error") {
+    celulas <- extract(ras, SpatialPolygons(list(shapepol)),
+                       cellnumbers = TRUE)
+    nen <- sapply(celulas, nrow)
+    for (ky in 1:length(nen)) {
+      weigth <- rep(0, nen[ky]) 
+      celulas[[ky]] <- cbind(celulas[[ky]], weigth)  
+    } 
+  }
+  
+  # Removing null cells 
+  celulas <- celulas[!sapply(celulas, is.null)]
+  
+  # Changing colnames
+  if (length(celulas) > 0) {
+    .rename <- function(x) {
+      colnames(x) <- 1:3
+      return(x) 
+    }
+    celulas <- lapply(celulas, .rename)
+  }
+  
+  # Getting col positions
+  pos <- which(nomes2[i] == nomes)
+  
+  # Getting row positions
+  pos2 <- do.call(rbind.data.frame, celulas)
+  
+  # Correcting presence based on the cover
+  if (cover > 0) {  
+    prop <- round((pos2[, 3] * areashape[i]) / areagrid[pos2[, 1]], 2)
+    if (any(prop > 1)) {
+      prop[prop > 1] <- 1
+    }
+    pos2 <- pos2[which(prop >= cover), , drop=FALSE]
+  }
+  
+  # Return row and column position
+  return (list("pos" = pos, "pos2" = pos2))
 }

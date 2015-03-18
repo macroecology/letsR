@@ -9,7 +9,7 @@
 #' @param x an object of class PresenceAbsence (see function presab).
 #' @param ... Other print parameters.
 #' 
-#' @export
+#' @S3method print PresenceAbsence
 
 
 print.PresenceAbsence <- function(x, ...){

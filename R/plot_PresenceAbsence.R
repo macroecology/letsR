@@ -18,13 +18,12 @@
 #' 
 #' @examples \dontrun{
 #' data(PAM)
-#' require(maps)
 #' plot(PAM)
 #' plot(PAM, name="Phyllomedusa atelopoides")
 #' plot(PAM, name="Phyllomedusa azurea")
 #' }
 #' 
-#' @export
+#' @S3method plot PresenceAbsence
 
 plot.PresenceAbsence <- function(x, name=NULL, world=TRUE, ...){
   if(is.null(name)){

@@ -9,7 +9,7 @@
 #' @param object an object of class PresenceAbsence (see function presab).
 #' @param ... Other summary parameters.
 #' 
-#' @export
+#' @S3method summary PresenceAbsence
 
 summary.PresenceAbsence <- function(object, ...){
   class <- class(object)
