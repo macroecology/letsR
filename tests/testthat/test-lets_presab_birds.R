@@ -1,11 +1,7 @@
 context("Test for lets.presab.birds")
 
 # Path
-# library(devtools)
-# load_all(".")
-# path.Ramphastos <- system.file("extdata", package = "letsR")
-# Will be changed
-path.Ramphastos <- "C:/Users/Bruno/SkyDrive/letsR/letsR/extdata/Ramphastos"
+path.Ramphastos <- system.file("extdata", package = "letsR")
 
 test_that("lets.presab.birds return a correct PresenceAbsence object", {
   skip_on_cran()
