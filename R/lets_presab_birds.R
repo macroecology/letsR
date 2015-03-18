@@ -42,11 +42,12 @@
 #' @examples \dontrun{
 #' # Constructing a Presence/Absence matrix for birds 
 #' path.Ramphastos <- system.file("extdata", package = "letsR")
-#'   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=20, 
-#'   resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE, 
-#'   crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
-#'   origin=NULL, seasonal=NULL, count=FALSE)
-#' plot(PAM)  # Species richness map
+#' PAM <- lets.presab.birds(path.Ramphastos, xmn = -93, xmx = -29, 
+#'                          ymn = -57, ymx = 25)
+#'                          
+#' # Species richness map
+#' plot(PAM, xlab = "Longitude", ylab = "Latitude",
+#'      main = "Ramphastos species Richness")  
 #' 
 #' }
 #' 

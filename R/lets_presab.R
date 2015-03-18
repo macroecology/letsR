@@ -61,10 +61,13 @@
 #' 
 #' @examples \dontrun{
 #' data(Phyllomedusa)  # Spatial distribution polygons of south american frogs of genus Phyllomedusa. 
-#' PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15)
+#' PAM <- lets.presab(Phyllomedusa, xmn = -93, xmx = -29, ymn = -57, ymx = 15)
 #' summary(PAM)
-#' plot(PAM)  # Species richness map
-#' plot(PAM, name="Phyllomedusa nordestina")  # Map of the specific species
+#' # Species richness map
+#' plot(PAM, xlab = "Longitude", ylab = "Latitude",
+#'      main = "Phyllomedusa species richness")
+#' # Map of the specific species      
+#' plot(PAM, name = "Phyllomedusa nordestina")
 #' }
 #' 
 #' 

@@ -6,11 +6,12 @@
 #' particular species' map.
 #'
 #' @usage 
-#' \method{plot}{PresenceAbsence}(x, name=NULL, world=TRUE, \dots)
+#' \method{plot}{PresenceAbsence}(x, name = NULL, world = TRUE, col = NULL, \dots)
 #' 
 #' @param x an object of class PresenceAbsence (see function presab).
 #' @param name you can specify a species to be ploted instead of the complete species richness map.
 #' @param world if \code{TURE} a map of political divisions (countries) is added to the plot.
+#' @param col color function (e.g. \code{\link{rainbow}}, \code{\link{heat.colors}}, \code{\link{colorRampPalette}}) to be used in the richness map.
 #' @param ... Other parameters pass to the plot function.
 #' 
 #' @seealso \code{\link{lets.presab}}
@@ -19,29 +20,50 @@
 #' @examples \dontrun{
 #' data(PAM)
 #' plot(PAM)
-#' plot(PAM, name="Phyllomedusa atelopoides")
-#' plot(PAM, name="Phyllomedusa azurea")
+#' plot(PAM, xlab = "Longitude", ylab = "Latitude",
+#'      main = "Phyllomedusa species richness")
+#' plot(PAM, name = "Phyllomedusa atelopoides")
+#' plot(PAM, name = "Phyllomedusa azurea")
 #' }
 #' 
 #' @S3method plot PresenceAbsence
 
-plot.PresenceAbsence <- function(x, name=NULL, world=TRUE, ...){
-  if(is.null(name)){
-  colfunc <- colorRampPalette(c("green", "yellow", "red"))
+plot.PresenceAbsence <- function(x, name = NULL, world = TRUE, col = NULL, ...){
+  
+  # Richness plot
+  if (is.null(name)) {
+    
+    # Creating the color function
+    if (is.null(col)) {      
+      # Colour ramp from colorbrewer (T. Lucas suggestion)
+      colfunc <- colorRampPalette(c("#fff5f0", "#fb6a4a", "#67000d"))
+    } else {
+      colfunc <- col
+    }
+  
+  # Getting values  
   v <- values(x$Rich)
   c <- max(v, na.rm=TRUE)
-  v[(v==0)] <- NA
-  values(x$Rich) <- v
-  plot(x$Rich, col=colfunc(c), ...)  
-  }
-  if(!is.null(name)){
-    pos <- which(x$Sp==name)
     
-    r <- rasterize(x$Presen[ ,1:2], x$Rich,  x$Presen[ ,(pos+2)])  
-    plot(r, col=c("white", "red"), legend=F, ...)
+  # Set zero to NA
+  v[(v == 0)] <- NA
+  values(x$Rich) <- v
+  
+  # Plot, add one and remove the first to not be white.
+  plot(x$Rich, col = colfunc(c + 1)[-1], ...)  
   }
-  if(world==T){
-    map(add=T)
+  
+  # Individual plot
+  if (!is.null(name)) {
+    # Species position in the PAM
+    pos <- which(x$Sp == name)
+    # Transform the one species in raster
+    r <- rasterize(x$Presen[ , 1:2], x$Rich,  x$Presen[ , (pos + 2)])
+    # Plot
+    plot(r, col = c("white", "red"), legend = FALSE, ...)
+  }
+  if (world) {
+    map(add = TRUE)
   }
 }
 
