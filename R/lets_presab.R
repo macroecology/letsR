@@ -4,11 +4,6 @@
 #' 
 #' @description Convert species' ranges (in shapefile format) into a presence-absence matrix based on a user-defined grid system
 #'
-#' @usage lets.presab(shapes, xmn = -180, xmx = 180, ymn = -90, ymx = 90, resol = 1, 
-#' remove.cells = TRUE, remove.sp = TRUE, show.matrix = FALSE, 
-#' crs = CRS("+proj=longlat +datum=WGS84"), cover = 0, presence = NULL, 
-#' origin = NULL, seasonal = NULL, count = FALSE)
-#' 
 #' @param shapes Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} 
 #' to open these files). Species names should be in a column (within the .DBF table of the shapefile) 
 #' called BINOMIAL or binomial.

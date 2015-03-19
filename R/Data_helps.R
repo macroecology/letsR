@@ -36,3 +36,13 @@ NULL
 #'@source Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
 
 NULL
+
+
+#'@name Brazil
+#'@aliases Brazil
+#'@docType data
+#'@title Shapefile of Brazil
+#'@usage data(Brazil)
+#'@description Brazilian political boundaries in shapefile format. 
+
+NULL

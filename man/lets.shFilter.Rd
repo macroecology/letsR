@@ -4,10 +4,11 @@
 \alias{lets.shFilter}
 \title{Filter species' shapefiles based on its presence, origin, and season}
 \usage{
-lets.shFilter(shapes, presence=NULL, origin=NULL, seasonal=NULL)
+lets.shFilter(shapes, presence = NULL, origin = NULL, seasonal = NULL)
 }
 \arguments{
-\item{shapes}{Object of class SpatialPolygonsDataFrame (see function readShapePoly to open this files).}
+\item{shapes}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}}
+to open these files).}
 
 \item{presence}{A vector with the code numbers for the presence type to be maintained.}
 
@@ -19,7 +20,7 @@ lets.shFilter(shapes, presence=NULL, origin=NULL, seasonal=NULL)
 The result is the shapefile(s) filtered according to the selected types. If the filters remove all polygons, the result will be NULL.
 }
 \description{
-Filter species shapefiles by origin, presence, and seasonal type (following IUCN types: \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata)).
+Filter species shapefiles by origin, presence, and seasonal type (following IUCN types: \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata).
 }
 \details{
 Presence codes:

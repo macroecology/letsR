@@ -8,10 +8,10 @@
 #' @usage 
 #' \method{plot}{PresenceAbsence}(x, name = NULL, world = TRUE, col = NULL, \dots)
 #' 
-#' @param x an object of class PresenceAbsence (see function presab).
-#' @param name you can specify a species to be ploted instead of the complete species richness map.
-#' @param world if \code{TURE} a map of political divisions (countries) is added to the plot.
-#' @param col color function (e.g. \code{\link{rainbow}}, \code{\link{heat.colors}}, \code{\link{colorRampPalette}}) to be used in the richness map.
+#' @param x An object of class PresenceAbsence (see function presab).
+#' @param name A character specifying a species to be ploted instead of the complete species richness map.
+#' @param world If \code{TURE} a map of political divisions (countries) is added to the plot.
+#' @param col Color function (e.g. \code{\link{rainbow}}, \code{\link{heat.colors}}, \code{\link{colorRampPalette}}) to be used in the richness map.
 #' @param ... Other parameters pass to the plot function.
 #' 
 #' @seealso \code{\link{lets.presab}}

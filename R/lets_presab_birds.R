@@ -4,10 +4,6 @@
 #' 
 #' @description Convert species' ranges (in shapefile format and stored in particular folders) into a presence-absence matrix based on a user-defined grid. This function is specially designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
 #'
-#' @usage lets.presab.birds(path, xmn = -180, xmx = 180, ymn = -90, ymx = 90, resol = 1, 
-#' remove.cells = TRUE, remove.sp = TRUE, show.matrix = FALSE, 
-#' crs=CRS("+proj=longlat +datum=WGS84"), cover = 0, presence = NULL, 
-#' origin = NULL, seasonal = NULL, count = FALSE)
 #' 
 #' @param path Path location of folders with one or more species' shapefiles.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based (i.e. the [gridded] geographic domain of interest)

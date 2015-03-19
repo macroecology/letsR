@@ -4,14 +4,12 @@
 \alias{lets.pamcrop}
 \title{Crop a PresenceAbsence object based on an input shapefile}
 \usage{
-lets.pamcrop(x, shp, remove.cells = TRUE, remove.sp = TRUE)
+lets.pamcrop(x, shp, remove.sp = TRUE)
 }
 \arguments{
 \item{x}{A PresenceAbsence object.}
 
 \item{shp}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}}) to crop the PresenceAbsence object.}
-
-\item{remove.cells}{Logical, if \code{TRUE} the final matrix will not contain cells in the grid with a value of zero (i.e. sites with no species present).}
 
 \item{remove.sp}{Logical, if \code{TRUE} the final matrix will not contain species that do not match any cell in the grid.}
 }
@@ -20,6 +18,20 @@ The result is an object of class PresenceAbsence croped.
 }
 \description{
 Crop a PresenceAbsence object based on a shapefile provided by the user.
+}
+\examples{
+\dontrun{
+data(PAM)
+# PAM before crop
+plot(PAM, xlab = "Longitude", ylab = "Latitude",
+     main = "Phyllomedusa species richness")
+# Crop PAM to Brazil
+data(Brazil)
+PAM_crop <- lets.pamcrop(PAM, Brazil, remove.sp = TRUE)
+plot(PAM_crop, xlab = "Longitude", ylab = "Latitude",
+     main = "Phyllomedusa species richness (Brazil crop)",
+     col = colorRampPalette(c("darkgreen", "yellow", "blue")))
+}
 }
 \author{
 Bruno Vilela

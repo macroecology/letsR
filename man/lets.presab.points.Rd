@@ -4,9 +4,10 @@
 \alias{lets.presab.points}
 \title{Create a presence-absence matrix based on species' point occurrences}
 \usage{
-lets.presab.points(xy, species, xmn=-180, xmx=180, ymn=-90, ymx=90,
-resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-crs=CRS("+proj=longlat +datum=WGS84"), count=FALSE)
+lets.presab.points(xy, species, xmn = -180, xmx = 180, ymn = -90,
+  ymx = 90, resol = 1, remove.cells = TRUE, remove.sp = TRUE,
+  show.matrix = FALSE, crs = CRS("+proj=longlat +datum=WGS84"),
+  count = FALSE)
 }
 \arguments{
 \item{xy}{A matrix with geographic coordinates of species occurrences, first column is the longitude (or x), and the second latitude (or y).}
@@ -62,11 +63,12 @@ xy <- cbind(x, y)
 PAM <- lets.presab.points(xy, species, xmn = -93, xmx = -29,
                           ymn = -57, ymx = 15)
 summary(PAM)
-require(maps)
 # Species richness map
 plot(PAM, xlab = "Longitude", ylab = "Latitude",
      main = "Species richness map (simulated)")
-plot(PAM, name = "sp1")  # Map of the specific species
+
+# Map of the specific species
+plot(PAM, name = "sp1")
 }
 }
 \author{
