@@ -39,15 +39,20 @@
 #' @seealso \code{\link{lets.shFilter}}
 #' 
 #' @examples \dontrun{
-#' species <- c(rep("sp1", 100), rep("sp2", 100), rep("sp3", 100), rep("sp4", 100))
+#' species <- c(rep("sp1", 100), rep("sp2", 100),
+#'              rep("sp3", 100), rep("sp4", 100))
 #' x <- runif(400, min = -69, max = -51)
 #' y <- runif(400, min = -23, max = -4)
-#' xy <- cbind(x,y)
-#' PAM <- lets.presab.points(xy, species, xmn=-93, xmx=-29, ymn= -57, ymx=15)
+#' xy <- cbind(x, y)
+#' PAM <- lets.presab.points(xy, species, xmn = -93, xmx = -29, 
+#'                           ymn = -57, ymx = 15)
 #' summary(PAM)
-#' require(maps)
-#' plot(PAM)  # Species richness map
-#' plot(PAM, name="sp1")  # Map of the specific species
+#' # Species richness map
+#' plot(PAM, xlab = "Longitude", ylab = "Latitude",
+#'      main = "Species richness map (simulated)")
+#' 
+#' # Map of the specific species  
+#' plot(PAM, name = "sp1")  
 #' }
 #' 
 #' 
@@ -55,68 +60,95 @@
 
 
 
-lets.presab.points <- function(xy, species, xmn=-180, xmx=180, ymn=-90, 
-                        ymx=90, resol=1, remove.cells=TRUE, 
-                        remove.sp=TRUE, show.matrix=FALSE, 
-                        crs=CRS("+proj=longlat +datum=WGS84"), 
-                        count=FALSE){
-  if(is.factor(species)){
-    species <- as.character(species)
-  }  
-  ras <- raster(xmn=xmn, xmx=xmx, ymn=ymn, ymx=ymx, crs=crs)
+lets.presab.points <- function(xy, species, xmn = -180, xmx = 180, ymn = -90, 
+                               ymx = 90, resol = 1, remove.cells = TRUE, 
+                               remove.sp = TRUE, show.matrix = FALSE, 
+                               crs = CRS("+proj=longlat +datum=WGS84"), 
+                               count = FALSE) {
+  
+  # Get species name
+  if (is.factor(species)) {
+    nomes <- levels(species)
+  } else {
+    nomes <- levels(factor(species))
+  }
+  
+  # Raster creation
+  ras <- raster(xmn = xmn,
+                xmx = xmx,
+                ymn = ymn,
+                ymx = ymx,
+                crs = crs)
   res(ras) <- resol
   values(ras) <- 1
-  coord <- xyFromCell(ras, 1:length(values(ras)))
+  
+  # Coordinates xy
+  l.values <- length(values(ras))
+  coord <- xyFromCell(ras, 1:l.values)
   colnames(coord) <- c("Longitude(x)", "Latitude(y)")
   
-  nomes <- levels(factor(species))
-  
+  # Matrix creation
   n <- length(nomes)
-  matriz <- matrix(0, ncol=n, nrow=length(values(ras)))
+  matriz <- matrix(0, ncol = n, nrow = l.values)
   colnames(matriz) <- nomes
   
-  if(count == TRUE){
-    dev.new(width=2, height=2, pointsize = 12)
-    par(mar=c(0, 0, 0, 0))
+  # With count window
+  if (count) {
     
-  for(i in 1:n){
-    plot.new()
-    text(0.5, 0.5, paste(paste("Total:", n, "\n","Runs to go: ", (n-i))))
-    pos <- which(species==nomes[i])
-    xy2 <- xy[pos, ]
-    celulas <- extract(ras, xy2, cellnumbers=T) [, 1]
-    matriz[celulas, i] <- 1
-  }
-  dev.off()
-  }
-  
-  
-  if(count == FALSE){    
+    # Do not set a new device in rstudio to avoid warnings()
+    if (!"tools:rstudio" %in% search()) {
+      dev.new(width = 2, height = 2, pointsize = 12)
+      par(mar = c(0, 0, 0, 0))
+    }
+    
+    # Loop start, running repetitions for the number of species (n) 
     for(i in 1:n){
-      pos <- which(species==nomes[i])
-      xy2 <- xy[pos, ]
-      celulas <- extract(ras, xy2, cellnumbers=T) [, 1]
-      matriz[celulas, i] <- 1
+      plot.new()
+      text(0.5, 0.5, paste(paste("Total:", n, "\n","Species to go: ", (n - i))))
+      celulas2 <- .extractpos.points(species, nomes[i], xy, ras)
+      matriz[celulas2, i] <- 1
+    }
+    dev.off()
+  }
+  
+  
+  if (!count) {    
+    for(i in 1:n) {
+      celulas2 <- .extractpos.points(species, nomes[i], xy, ras)
+      matriz[celulas2, i] <- 1
     }
   }  
   
   
-  Resultado <- cbind(coord,matriz)
+  Resultado <- cbind(coord, matriz)
   
-  if(remove.cells==TRUE){
+  if (remove.cells) {
     Resultado <- .removeCells(Resultado)
   }
-  if(remove.sp==TRUE){
+  if (remove.sp) {
     Resultado <- .removeSp(Resultado)
   }
   
-  if(show.matrix==TRUE){
+  if (show.matrix) {
     return(Resultado)
-  }else{
+  } else {
     values(ras) <- rowSums(matriz)
-    final <- list("Presence_and_Absence_Matrix"=Resultado, "Richness_Raster"=ras, 
-                  "Species_name"=colnames(Resultado)[-(1:2)])
+    final <- list("Presence_and_Absence_Matrix" = Resultado,
+                  "Richness_Raster"= ras, 
+                  "Species_name"= colnames(Resultado)[-(1:2)])
     class(final) <- "PresenceAbsence"
     return(final)
   }
+}
+
+
+# Axuliar function to avoid code repetition inside the loop <<<<<<<<<
+
+# Function to extract cell positions in the raster
+
+.extractpos.points <- function(species, nomesi, xy, ras) {
+  pos <- species == nomesi
+  xy2 <- xy[pos, , drop = FALSE]
+  celulas <- extract(ras, xy2, cellnumbers = T) [, 1]
+  return(celulas)
 }

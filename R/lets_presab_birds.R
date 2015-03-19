@@ -110,7 +110,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   if (count) {
     
     # Do not set a new device in rstudio to avoid warnings()
-    if(!"tools:rstudio" %in% search()){
+    if (!"tools:rstudio" %in% search()) {
       dev.new(width = 2, height = 2, pointsize = 12)
       par(mar = c(0, 0, 0, 0))
     }
@@ -120,7 +120,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       
       # Count window
       plot.new()
-      text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n-j))))
+      text(0.5, 0.5, paste(paste("Total:", n, "\n", "Polygons to go: ", (n-j))))
       
       # Getting species position in the matrix and set to 1
       par.re <- .extractpos.birds(valores,  shapes[j], 

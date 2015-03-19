@@ -54,15 +54,19 @@ polygons is not the same as the number of species that you have (i.e. a species 
 }
 \examples{
 \dontrun{
-species <- c(rep("sp1", 100), rep("sp2", 100), rep("sp3", 100), rep("sp4", 100))
+species <- c(rep("sp1", 100), rep("sp2", 100),
+             rep("sp3", 100), rep("sp4", 100))
 x <- runif(400, min = -69, max = -51)
 y <- runif(400, min = -23, max = -4)
-xy <- cbind(x,y)
-PAM <- lets.presab.points(xy, species, xmn=-93, xmx=-29, ymn= -57, ymx=15)
+xy <- cbind(x, y)
+PAM <- lets.presab.points(xy, species, xmn = -93, xmx = -29,
+                          ymn = -57, ymx = 15)
 summary(PAM)
 require(maps)
-plot(PAM)  # Species richness map
-plot(PAM, name="sp1")  # Map of the specific species
+# Species richness map
+plot(PAM, xlab = "Longitude", ylab = "Latitude",
+     main = "Species richness map (simulated)")
+plot(PAM, name = "sp1")  # Map of the specific species
 }
 }
 \author{

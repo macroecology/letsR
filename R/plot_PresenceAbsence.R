@@ -66,6 +66,6 @@ plot.PresenceAbsence <- function(x, name = NULL, world = TRUE, col = NULL, ...){
     map(add = TRUE)
   }
   # Avoid return map
-  return(NULL)
+  invisible(NULL)
 }
 
