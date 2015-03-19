@@ -17,13 +17,13 @@
 #' 
 #' @export
 
-lets.gridirizer <- function(x){
+lets.gridirizer <- function(x) {
   
-  grid <- rasterToPolygons(x$R)
-  r <- rasterize(grid, x$R, 1:nrow(grid@data))
-  SP_ID <- extract(r, x$P[, 1:2])
-  resultado <- cbind(SP_ID, x$P)
+  grid <- rasterToPolygons(x[[2]])
+  r <- rasterize(grid, x[[2]], 1:nrow(grid@data))
+  SP_ID <- extract(r, x[[1]][, 1:2])
+  resultado <- cbind(SP_ID, x[[1]])
   colnames(grid@data) <- "Species_Richness"
-  return(list("Grid"=grid, "Presence_Absence_Matrix"=resultado))
+  return(list("Grid" = grid, "Presence_Absence_Matrix" = resultado))
   
 }

@@ -2,7 +2,7 @@ context("Test for lets.pamcrop")
 data(Brazil)
 data(PAM)
 
-test_that(".letspamcrop works fine, remove.sp = TRUE", {
+test_that("lets.pamcrop works fine, remove.sp = TRUE", {
   skip_on_cran()
   
   resu_test <- lets.pamcrop(PAM, Brazil, remove.sp = TRUE)
@@ -18,7 +18,7 @@ test_that(".letspamcrop works fine, remove.sp = TRUE", {
 })
 
 
-test_that(".letspamcrop works fine, remove.sp = FALSE", {
+test_that("lets.pamcrop works fine, remove.sp = FALSE", {
   skip_on_cran()
   
   resu_test <- lets.pamcrop(PAM, Brazil, remove.sp = FALSE)
