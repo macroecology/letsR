@@ -43,7 +43,7 @@ plot.PresenceAbsence <- function(x, name = NULL, world = TRUE, col = NULL, ...){
   
   # Getting values  
   v <- values(x$Rich)
-  c <- max(v, na.rm=TRUE)
+  c <- max(v, na.rm = TRUE)
     
   # Set zero to NA
   v[(v == 0)] <- NA
@@ -65,5 +65,7 @@ plot.PresenceAbsence <- function(x, name = NULL, world = TRUE, col = NULL, ...){
   if (world) {
     map(add = TRUE)
   }
+  # Avoid return map
+  return(NULL)
 }
 

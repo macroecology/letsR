@@ -146,9 +146,11 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
   
   # With count window
   if (count) {
+    # Do not set a new device in rstudio to avoid warnings()
+    if(!"tools:rstudio" %in% search()){
     dev.new(width = 2, height = 2, pointsize = 12)
     par(mar = c(0, 0, 0, 0))
-    
+    }
     # Loop start, running repetitions for the number of polygons (n) 
     for (i in 1:n) {
 
@@ -254,7 +256,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
     if (any(prop > 1)) {
       prop[prop > 1] <- 1
     }
-    pos2 <- pos2[which(prop >= cover), , drop=FALSE]
+    pos2 <- pos2[which(prop >= cover), , drop = FALSE]
   }
   
   # Return row and column position

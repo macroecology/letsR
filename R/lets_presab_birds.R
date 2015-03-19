@@ -109,8 +109,11 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   # With count window  
   if (count) {
     
-    dev.new(width = 2, height = 2, pointsize = 12)
-    par(mar = c(0, 0, 0, 0))  
+    # Do not set a new device in rstudio to avoid warnings()
+    if(!"tools:rstudio" %in% search()){
+      dev.new(width = 2, height = 2, pointsize = 12)
+      par(mar = c(0, 0, 0, 0))
+    }
     
     # Loop start, running repetitions for the number of polygons (n) 
     for (j in 1:n) {    
