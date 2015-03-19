@@ -4,8 +4,6 @@
 #' 
 #' @description Add polygon coverage within cells of a PresenceAbsence object.
 #'
-#' @usage lets.addpoly(x, y, z, onlyvar=F)
-#' 
 #' @param x A PresenceAbsence object. 
 #' @param y Polygon of interest.
 #' @param z A character indicating the column name of the polygon containing the attributes to be used.
@@ -21,10 +19,12 @@
 #' 
 #' @examples \dontrun{
 #' data(PAM)  # Phyllomedusa presence-absence matrix
+#' require(maptools)
 #' data(wrld_simpl)  # World map
-#' Brazil <- wrld_simpl[wrld_simpl$NAME=="Brazil", ]  # Brazil (polygon)
+#' Brazil <- wrld_simpl[wrld_simpl$NAME == "Brazil", ]  # Brazil (polygon)
 #' 
-#' # Check where is the variable name (in this case it is in "NAME" which will be my z value)
+#' # Check where is the variable name 
+#' # (in this case it is in "NAME" which will be my z value)
 #' names(Brazil)
 #' 
 #' PAM_pol <- lets.addpoly(PAM, Brazil, "NAME")
@@ -32,43 +32,69 @@
 #' 
 #' @export
 
-lets.addpoly <- function(x, y, z, onlyvar=F){
+lets.addpoly <- function(x, y, z, onlyvar = FALSE){
   
-  pos1 <- which(names(y)==z)
+  # Get the column position and change the name to a common one
+  pos1 <- names(y) == z
   names(y)[pos1] <- "NOME"
-  valores <- values(x$R)
-  n <- nrow(y)
-  matriz <- matrix(0, ncol=n, nrow=length(valores))
   nomes <- y$NOME
+  
+  # Make the matrix
+  valores <- values(x[[2]])
+  LenValues <- length(valores)
+  n <- nrow(y)
+  matriz <- matrix(0, ncol = n, nrow = LenValues)
   colnames(matriz) <- nomes
-  xy <- xyFromCell(x$R, 1:length(valores))
-  grid <- rasterToPolygons(x$R)
-  areagrid <- try(areaPolygon(grid), silent=TRUE)
-  if(class(areagrid)=="try-error"){areagrid <- values(area(x$R))*1000000}  
+  
+  # Add coordinates
+  xy <- xyFromCell(x[[2]], 1:LenValues)
+  
+  # Calculate the cell area
   areashape <- areaPolygon(y)
+  areagrid <- NULL
+  global <- all(as.vector(extent(PAM[[2]])) == c(-180, 180, -90, 90))
+  
+  if (!global) {
+  grid <- rasterToPolygons(x[[2]])
+  areagrid <- try(areaPolygon(grid), silent=TRUE)
+  }
+  
+  if (class(areagrid) == "try-error" | global) {
+    areagrid <- values(area(x[[2]])) * 1000000
+  } 
+  
   position <- which(!is.na(valores))
+  
   for(i in 1:n){
-    celu <- extract(x$R, y[i,], cellnumber=T, small=T,  weights=T)
+    
+    celu <- extract(x[[2]], y[i, ], cellnumber = TRUE, 
+                    small = TRUE, weights = TRUE)
     celu2 <- do.call(rbind.data.frame, celu)
-    if(!is.null(celu2[, 2])){
+    
+    if (!is.null(celu2[, 2])) {
       celu2 <- celu2[!is.na(celu2[, 2]), ]
     }
-    prop <- round((celu2[, 3]*areashape[i])/areagrid[position%in%celu2[, 1]], 2)
-    if(any(prop>1)){
-      prop[prop>1] <- 1
+    
+    calc1 <- (celu2[, 3] * areashape[i])
+    calc2 <- areagrid[position%in%celu2[, 1]]
+    prop <- round(calc1 / calc2, 2)
+    prop1 <- prop > 1
+    
+    if (any(prop1)) {
+      prop[prop1] <- 1
     }
     matriz[celu2[, 1], i] <- prop
   }
   
-  r <- rasterize(xy, x$R, matriz)
-  r_e <- extract(r, x$P[, 1:2])
-  r_e <- as.matrix(r_e)
-  colnames(r_e) <- nomes
+  r <- rasterize(xy, x[[2]], matriz)
+  rExtract <- extract(r, x[[1]][, 1:2])
+  rExtract <- as.matrix(rExtract)
+  colnames(rExtract) <- nomes
   
-  if(onlyvar==T){
-    return(r_e) 
-  }else{
-    resultado <- cbind(x$P, r_e)
+  if (onlyvar) {
+    return(rExtract) 
+  } else {
+    resultado <- cbind(x[[1]], rExtract)
     return(resultado)
   }
 }

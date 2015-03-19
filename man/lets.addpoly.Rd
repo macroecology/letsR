@@ -4,7 +4,7 @@
 \alias{lets.addpoly}
 \title{Add polygon coverage to a PresenceAbscence object}
 \usage{
-lets.addpoly(x, y, z, onlyvar=F)
+lets.addpoly(x, y, z, onlyvar = FALSE)
 }
 \arguments{
 \item{x}{A PresenceAbsence object.}
@@ -26,10 +26,12 @@ Add polygon coverage within cells of a PresenceAbsence object.
 \examples{
 \dontrun{
 data(PAM)  # Phyllomedusa presence-absence matrix
+require(maptools)
 data(wrld_simpl)  # World map
-Brazil <- wrld_simpl[wrld_simpl$NAME=="Brazil", ]  # Brazil (polygon)
+Brazil <- wrld_simpl[wrld_simpl$NAME == "Brazil", ]  # Brazil (polygon)
 
-# Check where is the variable name (in this case it is in "NAME" which will be my z value)
+# Check where is the variable name
+# (in this case it is in "NAME" which will be my z value)
 names(Brazil)
 
 PAM_pol <- lets.addpoly(PAM, Brazil, "NAME")

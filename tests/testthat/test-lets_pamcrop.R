@@ -1,5 +1,8 @@
 context("Test for lets.pamcrop")
-data(Brazil)
+
+require(maptools)
+data(wrld_simpl)  # World map
+Brazil <- wrld_simpl[wrld_simpl$NAME == "Brazil", ]  # Brazil (polygon)
 data(PAM)
 
 test_that("lets.pamcrop works fine, remove.sp = TRUE", {
