@@ -4,46 +4,46 @@
 #' 
 #' @description Calculates a geographic distance matrix based on a two column matrix of x(longitude) and y(latitude).
 #'
-#' @usage lets.distmat(xy, count=TRUE)
 #' 
-#' @param xy Matrix with two columns, the first one being the longitude and the second being the latitude.
-#' @param count Logical, if \code{TRUE} a counting window will open.
-#' 
-#' @return Returns an object of class "dist". Distance values are given in kilometers.
+#' @param xy A PresenceAbsence object or a matrix with two columns (longitude, latitude).
+#' @param asdist Logical, if \code{TRUE} the result will be an object of class "dist",
+#' if \code{FALSE} the result will be an object of class "matrix".
+#' @param ... Arguments to be passed to the function \link{\code{rdist.earth}}.
 #'   
+#' @details This function basically facilitates the use of \link{\code{rdist.earth}} of 
+#' the package fields on a PresenceAbsence object, allowing also the user to have directly 
+#' a "dist" object.
+#' 
+#'  @return The user can choose between "dist" and "matrix" class object to be return.
+#'  The resulting values are in kilometers (but see the argument 'miles' in \link{\code{rdist.earth}}).  
+#'    
+#' @examples \dontrun{
+#' data(PAM)
+#' distPAM <- lets.distmat(PAM)   
+#' }       
 #' @export
 
 
-lets.distmat <- function(xy, count=TRUE){
-  n <- nrow(xy)
-  distan <- matrix(ncol=n, nrow=n)
+lets.distmat <- function(xy, asdist = TRUE, ...) {
   
-  if(count == TRUE){
-    dev.new(width=2, height=2, pointsize = 12)
-    par(mar=c(0, 0, 0, 0))
-    x <- 0 
-    n2 <- ((n*n)-n)/2
-  for(i in (1:(n-1))){
-    for(j in ((i+1):n)){
-      x <- x+1
-      plot.new()
-      text(0.5, 0.5, paste(paste("Total:", n2, "\n","Runs to go: ", (n2-x))))      
-      distan[j,i] <- rdist.earth(as.matrix(xy[i, ]), as.matrix(xy[j, ]), miles=F)      
-    }
-  }
+  # If a presence absence change to coordinates
+  if (class(xy) == "PresenceAbsence"){
+    xy <- xy[[1]][, 1:2]
   }
   
-  if(count == FALSE){
-    for(i in (1:(n-1))){
-      for(j in ((i+1):n)){
-        distan[j,i] <- rdist.earth(as.matrix(xy[i, ]), 
-                                   as.matrix(xy[j, ]),
-                                   miles=F)      
-      }
-    }
+  # Default in Km
+  if (exists("miles")) {
+    # Calculate the distance matrix
+    distan <- rdist.earth(xy, miles = FALSE, ...)
+  } else {
+    distan <- rdist.earth(xy, ...)
   }
   
+  # Transform in a distance matrix
+  if (asdist) {
+    distan <- as.dist(distan)
+  }
   
-  return(as.dist(distan))
+  return(distan)
 }
 

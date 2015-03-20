@@ -4,18 +4,33 @@
 \alias{lets.distmat}
 \title{Compute a geographic distance matrix}
 \usage{
-lets.distmat(xy, count=TRUE)
+lets.distmat(xy, asdist = TRUE, ...)
 }
 \arguments{
-\item{xy}{Matrix with two columns, the first one being the longitude and the second being the latitude.}
+\item{xy}{A PresenceAbsence object or a matrix with two columns (longitude, latitude).}
 
-\item{count}{Logical, if \code{TRUE} a counting window will open.}
+\item{asdist}{Logical, if \code{TRUE} the result will be an object of class "dist",
+if \code{FALSE} the result will be an object of class "matrix".}
+
+\item{...}{Arguments to be passed to the function \link{\code{rdist.earth}}.}
 }
 \value{
-Returns an object of class "dist". Distance values are given in kilometers.
+The user can choose between "dist" and "matrix" class object to be return.
+ The resulting values are in kilometers (but see the argument 'miles' in \link{\code{rdist.earth}}).
 }
 \description{
 Calculates a geographic distance matrix based on a two column matrix of x(longitude) and y(latitude).
+}
+\details{
+This function basically facilitates the use of \link{\code{rdist.earth}} of
+the package fields on a PresenceAbsence object, allowing also the user to have directly
+a "dist" object.
+}
+\examples{
+\dontrun{
+data(PAM)
+distPAM <- lets.distmat(PAM)
+}
 }
 \author{
 Bruno Vilela & Fabricio Villalobos
