@@ -4,29 +4,41 @@
 \alias{lets.addvar}
 \title{Add variables (in raster format) to a PresenceAbscence object}
 \usage{
-lets.addvar(x, y, onlyvar=F, fun=mean)
+lets.addvar(x, y, onlyvar = FALSE, fun = mean)
 }
 \arguments{
-\item{x}{A PresenceAbsence object.}
+\item{x}{A \code{PresenceAbsence} object.}
 
-\item{y}{Variables to be added in Raster or RasterStack format.}
+\item{y}{Variables to be added in \code{Raster} or \code{RasterStack} format.}
 
-\item{onlyvar}{If \code{TRUE} only the matrix object will be returned.}
+\item{onlyvar}{If \code{TRUE} only the \code{matrix} object will be returned.}
 
-\item{fun}{Function used to aggregate the variables(s) values over each cell.}
+\item{fun}{Function used to aggregate the variables(s) values over each cell.
+Note that this will only work for variables with a resolution value smaller
+(i.e. higher resolution) than the PAM.}
 }
 \value{
 The result is a presence-absence matrix of species with
-the variables added as columns at the right-end of the matrix (but see the onlyvar argument).
+the variables added as columns at the right-end of the matrix
+(but see the 'onlyvar' argument).
 }
 \description{
 Add variables (in raster format), usually environmental, to a PresenceAbsence object. Variables are included as additional columns containing the aggregate/summarize value of the variable(s) in each cell of the presence-absence matrix.
+}
+\note{
+The \code{PresenceAbsence} and the \code{Raster}
+variable must be in the same projection.
 }
 \examples{
 \dontrun{
 data(temp)  # Global mean temperature
 data(PAM)  # Phyllomedusa presence-absence matrix
-PAM_temp <- lets.addvar(PAM, temp)
+# Mean temperature
+PAM_temp_mean <- lets.addvar(PAM, temp)
+# Standard deviation of temperature
+PAM_temp_sd <- lets.addvar(PAM, temp, fun = sd, onlyvar = TRUE)
+# Mean and SD in the PAM
+PAM_temp_mean_sd <- cbind(PAM_temp_mean, PAM_temp_sd)
 }
 }
 \author{

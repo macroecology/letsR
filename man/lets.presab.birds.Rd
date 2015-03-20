@@ -62,6 +62,8 @@ polygons is not the same as the number of species that you have (i.e. a species 
 \examples{
 \dontrun{
 # Constructing a Presence/Absence matrix for birds
+# Attention: For your own files, omit the 'system.file' and 'package="letsR"',
+# these are just to get the path to files installed with the package.
 path.Ramphastos <- system.file("extdata", package = "letsR")
 PAM <- lets.presab.birds(path.Ramphastos, xmn = -93, xmx = -29,
                          ymn = -57, ymx = 25)

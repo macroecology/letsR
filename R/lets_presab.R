@@ -4,7 +4,7 @@
 #' 
 #' @description Convert species' ranges (in shapefile format) into a presence-absence matrix based on a user-defined grid system
 #'
-#' @param shapes Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} 
+#' @param shapes Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}} 
 #' to open these files). Species names should be in a column (within the .DBF table of the shapefile) 
 #' called BINOMIAL or binomial.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based 
@@ -33,7 +33,7 @@
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
 #' 
-#' @return The result is a list object of class PresenceAbsence with the following objects:
+#' @return The result is a list object of class \code{PresenceAbsence} with the following objects:
 #' @return \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information. 
 #' The first two columns contain the longitude (x) and latitude (y) of the cells' centroid 
 #' (from the gridded domain used);
@@ -55,8 +55,11 @@
 #' @seealso \code{\link{lets.shFilter}} 
 #' 
 #' @examples \dontrun{
-#' data(Phyllomedusa)  # Spatial distribution polygons of south american frogs of genus Phyllomedusa. 
-#' PAM <- lets.presab(Phyllomedusa, xmn = -93, xmx = -29, ymn = -57, ymx = 15)
+#' # Spatial distribution polygons of south american frogs 
+#' # of genus Phyllomedusa. 
+#' data(Phyllomedusa)
+#' PAM <- lets.presab(Phyllomedusa, xmn = -93, xmx = -29,
+#'                    ymn = -57, ymx = 15)
 #' summary(PAM)
 #' # Species richness map
 #' plot(PAM, xlab = "Longitude", ylab = "Latitude",
