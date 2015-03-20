@@ -52,7 +52,7 @@ lets.addpoly <- function(x, y, z, onlyvar = FALSE){
   # Calculate the cell area
   areashape <- areaPolygon(y)
   areagrid <- NULL
-  global <- all(as.vector(extent(PAM[[2]])) == c(-180, 180, -90, 90))
+  global <- all(as.vector(extent(x[[2]])) == c(-180, 180, -90, 90))
   
   if (!global) {
   grid <- rasterToPolygons(x[[2]])

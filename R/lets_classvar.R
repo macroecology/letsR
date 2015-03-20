@@ -27,7 +27,6 @@
 #' data(PAM)
 #' data(temp)
 #' pamvar <- lets.addvar(PAM, temp)
-#' head(pamvar)
 #' resu <- lets.classvar(x = pamvar, pos = ncol(pamvar), xy = TRUE)
 #' }
 #'   
