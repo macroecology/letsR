@@ -7,24 +7,25 @@
 lets.distmat(xy, asdist = TRUE, ...)
 }
 \arguments{
-\item{xy}{A PresenceAbsence object or a matrix with two columns (longitude, latitude).}
+\item{xy}{A \code{PresenceAbsence} object or a \code{matrix} with two columns (longitude, latitude).}
 
-\item{asdist}{Logical, if \code{TRUE} the result will be an object of class "dist",
-if \code{FALSE} the result will be an object of class "matrix".}
+\item{asdist}{Logical, if \code{TRUE} the result will be an object of class \code{dist},
+if \code{FALSE} the result will be an object of class \code{matrix}.}
 
-\item{...}{Arguments to be passed to the function \link{\code{rdist.earth}}.}
+\item{...}{Arguments to be passed to the function \code{rdist.earth} of package fields.}
 }
 \value{
-The user can choose between "dist" and "matrix" class object to be return.
- The resulting values are in kilometers (but see the argument 'miles' in \link{\code{rdist.earth}}).
+The user can choose between \code{dist} and \code{matrix} class object to be returned.
+The resulting values are in kilometers (but see the argument 'miles' in \code{rdist.earth}).
 }
 \description{
-Calculates a geographic distance matrix based on a two column matrix of x(longitude) and y(latitude).
+Calculates a geographic distance matrix based on a \code{PresenceAbsence} or
+a two column \code{matrix} of x(longitude) and y(latitude).
 }
 \details{
-This function basically facilitates the use of \link{\code{rdist.earth}} of
-the package fields on a PresenceAbsence object, allowing also the user to have directly
-a "dist" object.
+This function basically facilitates the use of \code{rdist.earth}
+on a \code{PresenceAbsence} object, allowing also the user to have directly
+a \code{dist} object.
 }
 \examples{
 \dontrun{
