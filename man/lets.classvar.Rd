@@ -4,22 +4,30 @@
 \alias{lets.classvar}
 \title{Frequency distribution of a variable within a species' range}
 \usage{
-lets.classvar(x, groups="default", pos, xy)
+lets.classvar(x, groups = "default", pos, xy)
 }
 \arguments{
-\item{x}{Presence-absence matrix with a single variable added (see \code{\link{lets.addvar}}).}
+\item{x}{Presence-absence \code{matrix} with a single variable
+added (see \code{\link{lets.addvar}}).}
 
-\item{groups}{The number of classes into which the variable will be divided. Default calculates the number of classes as the default for a histogram (\code{\link{hist}}).}
+\item{groups}{The number of classes into which the variable will be divided.
+Default calculates the number of classes as the
+default for a histogram (\code{\link{hist}}).}
 
 \item{pos}{Column number containing the variable of interest.}
 
-\item{xy}{Logical, if \code{TRUE} the input matrix contains the geographic coordinates in the first two columns.}
+\item{xy}{Logical, if \code{TRUE} the input matrix contains the geographic
+coordinates in the first two columns.}
 }
 \value{
-A matrix with species in the rows and the variable's classes in the columns.
+A \code{matrix} with species in the rows and the variable's
+classes in the columns.
 }
 \description{
-Based on a species Presence-Absence matrix including variables of interest (see \code{\link{lets.addvar}}), the function divides a continuous variable into classes and counts the frequency of each class within each species' range.
+Based on a species Presence-Absence matrix including
+ variables of interest (see \code{\link{lets.addvar}}), the
+ function divides a continuous variable into classes and counts
+ the frequency of each class within each species' range.
 }
 \examples{
 \dontrun{
@@ -27,13 +35,15 @@ data(PAM)
 data(temp)
 pamvar <- lets.addvar(PAM, temp)
 head(pamvar)
-resu <- lets.classvar(x=pamvar, pos=ncol(pamvar), xy=TRUE)
+resu <- lets.classvar(x = pamvar, pos = ncol(pamvar), xy = TRUE)
 }
 }
 \author{
 Bruno Vilela
 }
 \references{
-Morales-Castilla et al. 2013. Range size patterns of New World oscine passerines (Aves): insights from differences among migratory and sedentary clades. Journal of Biogeography, 40, 2261-2273.
+Morales-Castilla et al. 2013. Range size patterns of New
+World oscine passerines (Aves): insights from differences among migratory
+ and sedentary clades. Journal of Biogeography, 40, 2261-2273.
 }
 
