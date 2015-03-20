@@ -2,23 +2,33 @@
 % Please edit documentation in R/lets_maplizer.R
 \name{lets.maplizer}
 \alias{lets.maplizer}
-\title{Create a matrix summarizing species' attributes within cells of a PresenceAbsence object}
+\title{Create a matrix summarizing species' attributes within
+cells of a PresenceAbsence object}
 \usage{
-lets.maplizer(x, y, z, func=mean, ras=FALSE)
+lets.maplizer(x, y, z, func = mean, ras = FALSE)
 }
 \arguments{
-\item{x}{A PresenceAbsence object.}
+\item{x}{A \code{PresenceAbsence} object.}
 
-\item{y}{Species attribute to be considered.}
+\item{y}{Species attribute to be considered. It must be a numeric attribute.}
 
-\item{z}{Species names in the same order as the attributes.}
+\item{z}{Species names in the same order as the attributes and exactly the
+same as named in the \code{PresenceAbsence} object.}
 
-\item{func}{function to summarize the species' atribute.}
+\item{func}{A function to summarize the species' atribute in each cell.}
 
-\item{ras}{If \code{TRUE} the raster object will be returned together with the matrix}
+\item{ras}{If \code{TRUE} the raster object will be returned
+together with the matrix.}
 }
 \value{
-Returns a matrix with the cells' geographic coordinates and the summarized species' attributes within them.
+The result can be both a \code{matrix} or a \code{list} cointaining
+the follow objects:
+
+\strong{Matrix}: a \code{matrix} object with the cells' geographic
+coordinates and the summarized species' attributes within them.
+
+\strong{Raster}: The summarized species'attributed maped in a
+\code{raster} object.
 }
 \description{
 Summarize species atributes per cell in a presence-absence matrix.
@@ -26,10 +36,12 @@ Summarize species atributes per cell in a presence-absence matrix.
 \examples{
 \dontrun{
 data(PAM)
-trait <- runif(32)
-resu <- lets.maplizer(PAM, trait, PAM$S, ras=TRUE)
+data(IUCN)
+trait <- IUCN$Description_Year
+resu <- lets.maplizer(PAM, trait, PAM$S, ras = TRUE)
 head(resu$Matrix)
-plot(resu$raster) ; map(add=T)
+plot(resu$Raster, xlab = "Longitude", ylab = "Latitude",
+main = "Mean description year per site") ; map(add = T)
 }
 }
 \author{
