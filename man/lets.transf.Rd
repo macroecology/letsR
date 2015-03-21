@@ -4,7 +4,7 @@
 \alias{lets.transf}
 \title{Transform values of a vector}
 \usage{
-lets.transf(x, y, z, NUMERIC=TRUE)
+lets.transf(x, y, z, NUMERIC = TRUE)
 }
 \arguments{
 \item{x}{A vector to be transformed.}

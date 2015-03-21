@@ -66,6 +66,7 @@ lets.presab.points <- function(xy, species, xmn = -180, xmx = 180, ymn = -90,
   # Get species name
   if (is.factor(species)) {
     nomes <- levels(species)
+    nomes <- nomes[nomes %in% species]
   } else {
     nomes <- levels(factor(species))
   }

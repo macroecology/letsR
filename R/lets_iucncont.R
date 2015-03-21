@@ -3,35 +3,28 @@
 #' @author Bruno Vilela
 #' 
 #' @description Transform IUCN RedList conservation status to continuous values ranging from 0 to 5.
-#'
-#' @usage lets.iucncont(x, dd=NA, ne=NA)
 #' 
 #' @param x A vector or a matrix containing IUCN codes to be transformed.
 #' @param dd The value to be attributed to DD (data-deficient) species, the default option is NA. 
 #' @param ne The value to be attributed to NE (not-evaluated) species, the default option is NA. 
 
 #' @return Returns a vector/matrix with continuos values from 0 to 5.
+#' 
 #' @details EX and EW = 5
-#' 
-#' EN = 4
-#' 
-#' CR = 3
-#' 
-#' VU = 2
-#' 
-#' NT = 1
-#' 
-#' LC = 0
-#' 
-#' DD = NA
-#' 
-#' NE = NA
+#' @details EN = 4
+#' @details CR = 3
+#' @details VU = 2
+#' @details NT = 1
+#' @details LC = 0
+#' @details DD = NA
+#' @details NE = NA
 #' 
 #' @seealso \code{\link{lets.iucn}}
 #' 
 #' @examples \dontrun{
 #' #Vector transformation
-#' status <- sample(c("EN","VU", "NT", "CR", "DD", "LC", "EX"), 30, replace=TRUE) 
+#' status <- sample(c("EN","VU", "NT", "CR", "DD", "LC", "EX"), 
+#'                  30, replace = TRUE) 
 #' transV <- lets.iucncont(status)
 #' 
 #' #matrix transformation
@@ -42,16 +35,17 @@
 #' 
 #' @export
 #'
-#' @references Purvis A et al., 2000. Predicting extinction risk in declining species. Proceedings of the Royal Society of London. Series B: Biological Sciences, 267.1456: 1947-1952. 
+#' @references Purvis A et al., 2000. Predicting extinction risk in
+#' declining species. Proceedings of the Royal Society of London.
+#' Series B: Biological Sciences, 267.1456: 1947-1952. 
 
 
 
-lets.iucncont <- function (x, dd=NA, ne=NA) 
-{
+lets.iucncont <- function (x, dd = NA, ne = NA) {
 
   x <- as.matrix(x)
   
-  for(i in 1:ncol(x)){
+  for(i in 1:ncol(x)) {
    if(is.factor(x[, i])){
     x[, i] <- as.numeric(levels(x[, i]))[x[, i]]
    }

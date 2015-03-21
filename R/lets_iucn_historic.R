@@ -4,8 +4,6 @@
 #' 
 #' @description Get species conservation status over time (i.e. from 1980 to the present date available) from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
 #' 
-#' @usage lets.iucn.his(input, count=FALSE)
-#' 
 #' @param input character vector with one or more species names,
 #' or an object of class PresenceAbsence.
 #' @param count Logical, if \code{TRUE} a counting window will open.
@@ -25,31 +23,30 @@
 #' lets.iucn.his("Panthera onca")
 #' 
 #' # Multiple species
-#' lets.iucn.his(c("Rhincodon typus", "Ailuropoda melanoleuca"))
+#' sp <- c("Rhincodon typus", "Ailuropoda melanoleuca")
+#' lets.iucn.his(sp)
 #' }
 #' 
 #' @export
 
 
-lets.iucn.his <- function(input, count=FALSE){  
+lets.iucn.his <- function(input, count = FALSE) {  
   
-  if(class(input)=="PresenceAbsence"){
+  if (class(input) == "PresenceAbsence") {
     input <- input$S
   }
   
-  input <- gsub(input, pattern="_", replacement=" ")
+  input <- gsub(input, pattern = "_", replacement = " ")
   resus <- c()
   n <- length(input)
 
-  if(count == TRUE){
-  dev.new(width=2, height=2, pointsize = 12)
-  par(mar=c(0, 0, 0, 0))  
+  if (count) {
+  dev.new(width = 2, height = 2, pointsize = 12)
+  par(mar = c(0, 0, 0, 0))  
     
-  for(i in 1:n){    
-
+  for(i in 1:n) {    
     plot.new()
-    text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n-i))))      
-    
+    text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n - i))))      
     resu <- .Hist(input[i])
     resus <- rbind(resus, resu)
   }   
@@ -57,7 +54,7 @@ lets.iucn.his <- function(input, count=FALSE){
   dev.off()
   }
   
-  if(count == FALSE){
+  if (!count) {
 
     for(i in 1:n){              
       resu <- .Hist(input[i])
@@ -71,33 +68,38 @@ lets.iucn.his <- function(input, count=FALSE){
 
 
 ###
-.Hist <- function(input){
+.Hist <- function(input) {
   
-  input <- gsub(as.matrix(input), pattern=" ", replacement="-")
-  h2 <- try(htmlParse(paste("http://api.iucnredlist.org/go/",input, sep = "")),silent=TRUE)
-  b <- try(xpathSApply(h2, '//div', xmlValue),silent=TRUE)[1]
+  input <- gsub(as.matrix(input), pattern = " ", replacement = "-")
+  h2 <- try(htmlParse(paste("http://api.iucnredlist.org/go/",input, sep = "")),
+            silent=TRUE)
+  b <- try(xpathSApply(h2, '//div', xmlValue), silent = TRUE)[1]
   c <- as.numeric(gsub("\\D", "", b))
   
-  ano1 <- try(xpathSApply(h2, '//div[@id="modified_year"]', xmlValue), silent=TRUE)
-  ameaca1 <- try(xpathSApply(h2, '//div[@id="red_list_category_code"]', xmlValue), silent=T)
+  ano1 <- try(xpathSApply(h2, '//div[@id="modified_year"]', xmlValue),
+              silent = TRUE)
+  ameaca1 <- try(xpathSApply(h2, '//div[@id="red_list_category_code"]', xmlValue), 
+                 silent = TRUE)
   anos <- 1980:2014
-  matriz <- matrix(ncol=length(anos))
+  matriz <- matrix(ncol = length(anos))
   colnames(matriz) <- anos
-  matriz[, ] <- "NE"
+  matriz <- "NE"
   
-  h <- try(htmlParse(paste("http://www.iucnredlist.org/details/full/", c, "/0", sep = "")), silent=TRUE)
-  a <- try(xpathSApply(h, '//td[table]', xmlValue),silent=T)
+  h <- try(htmlParse(paste("http://www.iucnredlist.org/details/full/", c, "/0", sep = "")), 
+           silent = TRUE)
+  a <- try(xpathSApply(h, '//td[table]', xmlValue),
+           silent = TRUE)
   a <- a[2]
   a <- gsub("\n", "", a)
   a <- gsub("\t", "", a)
   b <- strsplit(a, "          ")[[1]]
   b <- strsplit(b, "      ")
   c <- do.call("rbind", b)
-  c <- matrix(c, ncol=1)
+  c <- matrix(c, ncol = 1)
   c <- c[-which(duplicated(c)), ]
   ano <- substr(gsub("\\D", "", c), 1, 4)
   
-  if(length(ano)>=1){
+  if (length(ano) >= 1) {
     d <- gsub("[0-9]", "", c)
     d <- gsub("[[:punct:]]", "", d)
     d2 <- gsub("\\W", "", d)
@@ -135,8 +137,8 @@ lets.iucn.his <- function(input, count=FALSE){
     ameaca <- ameaca[which(!(duplicated(ano)))]
     ano <- ano[which(!(duplicated(ano)))]
     
-    for(i in 1:length(ano)){      
-      matriz[anos%in%ano[i]] <- ameaca[i]  
+    for(i in 1:length(ano)) {      
+      matriz[anos %in% ano[i]] <- ameaca[i]  
     }
     
     ameaca <- c(ameaca, ameaca1)
@@ -144,18 +146,18 @@ lets.iucn.his <- function(input, count=FALSE){
     ameaca <- ameaca[which(!(duplicated(ano)))]
     ano <- ano[which(!(duplicated(ano)))]        
     pos <- which(anos%in%ano)
-    pos2 <- sort(ano, index.return=T)$ix
+    pos2 <- sort(ano, index.return = TRUE)$ix
     ameaca <- ameaca[pos2]
     
-    for(i in 1:(length(ameaca)-1)){
-      matriz[seq(from=(pos[i]+1),(pos[i+1]-1))] <- ameaca[i]
+    for(i in 1:(length(ameaca) - 1)) {
+      matriz[seq(from = (pos[i] + 1), (pos[i + 1] - 1))] <- ameaca[i]
     }
   }
-  if(ano1%in%anos){
-    pos3 <- which(anos%in%ano1)
+  if (ano1 %in% anos) {
+    pos3 <- which(anos %in% ano1)
     matriz[pos3:ncol(matriz)] <- ameaca1
   }
-  Species <- gsub(as.matrix(input), pattern="-", replacement=" ")
+  Species <- gsub(as.matrix(input), pattern = "-", replacement = " ")
   matriz <- cbind(Species, matriz)
   colnames(matriz)[1] <- "Species"
   return(matriz)

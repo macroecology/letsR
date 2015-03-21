@@ -4,7 +4,7 @@
 \alias{lets.iucncont}
 \title{Transform IUCN RedList conservation status to continuous values}
 \usage{
-lets.iucncont(x, dd=NA, ne=NA)
+lets.iucncont(x, dd = NA, ne = NA)
 }
 \arguments{
 \item{x}{A vector or a matrix containing IUCN codes to be transformed.}
@@ -21,25 +21,12 @@ Transform IUCN RedList conservation status to continuous values ranging from 0 t
 }
 \details{
 EX and EW = 5
-
-EN = 4
-
-CR = 3
-
-VU = 2
-
-NT = 1
-
-LC = 0
-
-DD = NA
-
-NE = NA
 }
 \examples{
 \dontrun{
 #Vector transformation
-status <- sample(c("EN","VU", "NT", "CR", "DD", "LC", "EX"), 30, replace=TRUE)
+status <- sample(c("EN","VU", "NT", "CR", "DD", "LC", "EX"),
+                 30, replace = TRUE)
 transV <- lets.iucncont(status)
 
 #matrix transformation
@@ -52,7 +39,9 @@ transM <- lets.iucncont(iucn)
 Bruno Vilela
 }
 \references{
-Purvis A et al., 2000. Predicting extinction risk in declining species. Proceedings of the Royal Society of London. Series B: Biological Sciences, 267.1456: 1947-1952.
+Purvis A et al., 2000. Predicting extinction risk in
+declining species. Proceedings of the Royal Society of London.
+Series B: Biological Sciences, 267.1456: 1947-1952.
 }
 \seealso{
 \code{\link{lets.iucn}}

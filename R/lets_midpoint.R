@@ -5,13 +5,14 @@
 #' @description Calculate species' distributional midpoint from a 
 #' presence-absence matrix.
 #' 
-#' @param pam A presence-absence matrix (sites in the rows and species
+#' @param pam A presence-absence \code{matrix} (sites in the rows and species
 #' in the columns, with the first two columns containing the longitudinal
-#' and latitudinal coordinates, respectively), or an object of class PresenceAbsence.
+#' and latitudinal coordinates, respectively), or an object of class 
+#' \code{PresenceAbsence}.
 #' @param planar Logical, if \code{FALSE} the coordinates are in Longitude/Latitude.
 #' If \code{TRUE} the coordinates are planar.
 #' 
-#' @return A matrix containing the species' names and geographic coordinates 
+#' @return A \code{data.frame} containing the species' names and geographic coordinates 
 #' (longitude [x], latitude [y]) of species' midpoints.
 #'           
 #' @import fields

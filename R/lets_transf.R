@@ -3,8 +3,6 @@
 #' @author Bruno Vilela
 #' 
 #' @description Transform each element of a vector.
-#'
-#' @usage lets.transf(x, y, z, NUMERIC=TRUE)
 #' 
 #' @param x A vector to be transformed.
 #' @param y levels to be transformed. 
@@ -27,7 +25,7 @@
 
 
 
-lets.transf <- function (x, y, z, NUMERIC=TRUE) 
+lets.transf <- function (x, y, z, NUMERIC = TRUE) 
 {
     if(is.factor(x)){
       x <- as.numeric(levels(x))[x]
@@ -40,7 +38,7 @@ lets.transf <- function (x, y, z, NUMERIC=TRUE)
   for(i in 1:length(y)){  
   x[x == y[i]] <- z[i]
   }
-  if(NUMERIC==TRUE){
+  if(NUMERIC){
     x <- as.numeric(x)
   }
   return(x)

@@ -4,7 +4,7 @@
 \alias{lets.iucn.his}
 \title{Download species' temporal trend in conservation status from the IUCN RedList online database}
 \usage{
-lets.iucn.his(input, count=FALSE)
+lets.iucn.his(input, count = FALSE)
 }
 \arguments{
 \item{input}{character vector with one or more species names,
@@ -28,7 +28,8 @@ Note that you must be connected to the internet to use this function.
 lets.iucn.his("Panthera onca")
 
 # Multiple species
-lets.iucn.his(c("Rhincodon typus", "Ailuropoda melanoleuca"))
+sp <- c("Rhincodon typus", "Ailuropoda melanoleuca")
+lets.iucn.his(sp)
 }
 }
 \author{

@@ -7,15 +7,16 @@
 lets.midpoint(pam, planar = FALSE)
 }
 \arguments{
-\item{pam}{A presence-absence matrix (sites in the rows and species
+\item{pam}{A presence-absence \code{matrix} (sites in the rows and species
 in the columns, with the first two columns containing the longitudinal
-and latitudinal coordinates, respectively), or an object of class PresenceAbsence.}
+and latitudinal coordinates, respectively), or an object of class
+\code{PresenceAbsence}.}
 
 \item{planar}{Logical, if \code{FALSE} the coordinates are in Longitude/Latitude.
 If \code{TRUE} the coordinates are planar.}
 }
 \value{
-A matrix containing the species' names and geographic coordinates
+A \code{data.frame} containing the species' names and geographic coordinates
 (longitude [x], latitude [y]) of species' midpoints.
 }
 \description{

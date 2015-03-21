@@ -4,7 +4,7 @@
 \alias{lets.iucn}
 \title{Download species' information from the IUCN RedList online database}
 \usage{
-lets.iucn(input, count=FALSE)
+lets.iucn(input, count = FALSE)
 }
 \arguments{
 \item{input}{Character vector with one or more species names,
@@ -14,10 +14,14 @@ or an object of class PresenceAbsence.}
 }
 \value{
 Returns a data frame with the Species Name, Family, Conservation Status,
-Criteria used to estabilish the conservation status, Population Status, Year of Description, and the Countries where it occurs. If species do not have information (i.e. have not been evaluated), the result is: NE (Not evaluated).
+Criteria used to estabilish the conservation status, Population Status, Year of
+Description (only for animals), and the Countries where it occurs. If species do
+not have information (i.e. have not been evaluated), the result is: NE (Not
+evaluated).
 }
 \description{
-Get species' information from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
+Get species' information from the IUCN
+website(\url{http://www.iucnredlist.org/}) for one or more species.
 }
 \details{
 Note that you must be connected to the internet to use this function.
@@ -28,7 +32,8 @@ Note that you must be connected to the internet to use this function.
 lets.iucn("Pongo pygmaeus")
 
 # Multiple species
-lets.iucn(c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius"))
+sp <- c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius")
+lets.iucn(sp)
 }
 }
 \author{
