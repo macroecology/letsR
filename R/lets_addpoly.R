@@ -72,11 +72,11 @@ lets.addpoly <- function(x, y, z, onlyvar = FALSE){
     celu2 <- do.call(rbind.data.frame, celu)
     
     if (!is.null(celu2[, 2])) {
-      celu2 <- celu2[!is.na(celu2[, 2]), ]
+      celu2 <- celu2[!is.na(celu2[, 2]), , drop = FALSE]
     }
     
     calc1 <- (celu2[, 3] * areashape[i])
-    calc2 <- areagrid[position%in%celu2[, 1]]
+    calc2 <- areagrid[position %in% celu2[, 1]]
     prop <- round(calc1 / calc2, 2)
     prop1 <- prop > 1
     
