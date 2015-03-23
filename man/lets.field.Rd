@@ -4,7 +4,7 @@
 \alias{lets.field}
 \title{Create species' values based on the species co-occurrence within focal ranges}
 \usage{
-lets.field(x, y, z, weigth = TRUE, xy = NULL, count = FALSE)
+lets.field(x, y, z, weight = TRUE, xy = NULL, count = FALSE)
 }
 \arguments{
 \item{x}{A \code{PresenceAbsence} object or a presence-absence in \code{matrix}
@@ -15,7 +15,7 @@ format (see xy argument for matrix use) with the species named in the columns.}
 \item{z}{Species names in the same order as the attributes and exactly the
 same as named in the \code{matrix} or in the \code{PresenceAbsence} object.}
 
-\item{weigth}{If \code{TRUE} the value is weighted by species' range size,
+\item{weight}{If \code{TRUE} the value is weighted by species' range size,
 if \code{FALSE} the value is the mean of all species that co-occur within the
  focal species.}
 
@@ -36,7 +36,7 @@ returned.
 \dontrun{
 data(PAM)
 range <- lets.rangesize(x = PAM, units = "cell")
-field <- lets.field(PAM, range, PAM$S, weigth = TRUE)
+field <- lets.field(PAM, range, PAM$S, weight = TRUE)
 }
 }
 \author{

@@ -4,18 +4,18 @@
 #' 
 #' @description Computes the Moran's I correlogram of a single or multiple variables.
 #'
-#' @param x A single variable in vector format or multiple variables in matrix format 
+#' @param x A single numeric variable in vector format or multiple variables in matrix format 
 #' (as columns). 
-#' @param y A distance matrix of class \code{matrix}.
+#' @param y A distance matrix of class \code{matrix} or \code{dist}.
 #' @param z The number of distance classes to use in the correlogram.
 #' @param equidistant Logical, if \code{TRUE} the classes will be equidistant.
 #' If \code{FALSE} the classes will have equal number of observations.
 #' @param plot Logical, if \code{TRUE} the correlogram will be ploted. 
 #' 
-#' @return Returns a matrix with the Moran's I Observed value, Standard Deviation and 
-#' Expected value. Also the p value of the randomization test, the mean distance between
-#' classes, and the number of observations.   
-#' 
+#' @return Returns a matrix with the Moran's I Observed value, Confidence Interval (95%) 
+#' and Expected value. Also the p value of the randomization test, the mean distance 
+#' between classes, and the number of observations.   
+#' quase tudo 
 #' @references Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology.
 #' 1. Methodology. Biological Journal of the Linnean Society, 10, 199-228.
 #' @references Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology.
@@ -23,29 +23,41 @@
 #' ecological interest. Biological Journal of the Linnean Society, 10, 229-249.
 #' 
 #' @examples \dontrun{
-#' var <- runif(100)  # random variable
+#' data(PAM)
+#' data(IUCN)
 #' 
-#' # Correlated distance matrix
-#' distan <- matrix(runif(1000), ncol = 100, nrow = 100)
-#' diag(distan) <- 0
-#' ind <- lower.tri(distan)
-#' distan[ind] <- t(distan)[ind]
-#' distan[lower.tri(distan)] <- distan[upper.tri(distan)]   
-#' distan2 <- as.matrix(dist(var))
-#' distan <- (distan)*(distan2)
-#' 
-#' moran <- lets.correl(var, distan, 10, equidistant = FALSE,
+#' # Spatial autocorrelation in description year (species level)
+#' midpoint <- lets.midpoint(PAM)
+#' distan <- lets.distmat(midpoint[, 2:3])
+#' moran <- lets.correl(IUCN$Description, distan, 12,
+#'                      equidistant = FALSE, 
 #'                      plot = TRUE)
+#'                      
 #' }
 #' 
 #' @export
 
 
+
+
 lets.correl <- function(x, y, z, equidistant = FALSE,
                         plot = TRUE) {
   
+  
+  # Allow dist classes
+  if (class(y) == "dist") {
+    y <- as.matrix(y)
+  }
+  
   if(is.vector(x)){
-    return(.br.correlogram(x, y, z, equidistant, plot))
+    return1 <- .br.correlogram(x, y, z, equidistant, plot)
+    # Warning for removing some classes
+    if (nrow(return1) < z) {
+      warning(paste("Some of the distance classes", 
+                    "were removed due to small number",
+                    "of occurrences on it"))
+    }
+    return(return1)
   }
   
   if (!is.vector(x)) {
@@ -63,25 +75,21 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
     colnames(resu) <- c("Observed", "Standard_Deviation",
                         "Expected_value", "Mean_Distance",
                         "Count")
-    pos3 <- which(!is.na(media[, 1]))
     
     if (plot) {
-      plot(x = resu[pos3, 4], y = resu[pos3, 1], bty = "l",
-           ylab = "Moran's I", xlab = "Distance", type = "l",
-           lty = 3, ylim = c(-1.5, 1.5))
-      abline(h = mean(resu[pos3, 3]))
-      points(x = resu[pos3, 4], y = resu[pos3, 1],
-             pch = 20, cex = 1.5)
-      epsilon <- max(resu[pos3, 4]) / (14 * z)
-      up <- resu[pos3, 1] + resu[pos3, 2]
-      low <- resu[pos3, 1] - resu[pos3, 2]
-      segments(resu[pos3, 4], low,
-               resu[pos3, 4], up)
-      segments(resu[pos3, 4] - epsilon, up,
-               resu[pos3, 4] + epsilon, up)
-      segments(resu[pos3, 4] - epsilon, low,
-               resu[pos3, 4] + epsilon, low)
+      plotcorrel(plot1 = resu[, 4],
+                 plot2 = resu[, 1],
+                 plot3 = resu[, 2],
+                 plot4 = resu[, 3],
+                 z)
     }
+    
+    if (nrow(resu) < z) {
+      warning(paste("Some of the distance classes", 
+                    "were removed due to few number",
+                    "of occurrence on it"))
+    }
+    
     return(resu)
   }
 }
@@ -109,7 +117,7 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
   quant <- as.vector(quant)
   n <- length(quant)
   ob <- rep(NA, (n - 1))
-  sd1 <- rep(NA, (n - 1))
+  CI <- rep(NA, (n - 1))
   ex <- rep(NA, (n - 1))
   dist_cl <- rep(NA, (n - 1))
   p <- rep(NA, (n - 1))
@@ -118,11 +126,13 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
   for(i in 1:(n - 1)) {
     if (i > 1) {
       pos <- (y > quant[i] & y <= quant[i + 1])
+      diag(pos) <- FALSE
       count[i] <- sum(pos)
     }
     
     if (i == 1) {
       pos <- (y >= quant[i] & y <= quant[i + 1])
+      diag(pos) <- FALSE
       count[i] <- sum(pos)
     }
     dist_cl [i] <- mean(c(quant[i], quant[i + 1]))
@@ -132,38 +142,36 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
       y2[!pos] <- 0
       m <- .br.moran(y2, x)
       ob[i] <- m$observed
-      sd1[i] <- m$sd
+      CI[i] <- m$ci
       ex[i] <- m$expected
       dist_cl[i] <- mean(c(quant[i], quant[i + 1]))
       p[i] <- m$p.value
     }
   }
   
-  resu <- cbind(ob, sd1, ex, p, dist_cl, count)
-  colnames(resu) <- c("Observed", "Standard_Deviation",
+  if (all(is.na(ob))) {
+    stop(paste("None of the distance classes sets",
+               "has enough sample size to calculate",
+               "Moran's I. Set less classes or increase",
+               "the sample size"))
+    
+  }
+  
+  resu <- cbind(ob, CI, ex, p, dist_cl, count)
+  colnames(resu) <- c("Observed", "Confidence_Interval_(95%)",
                       "Expected_value", "p_value",
                       "Mean_Distance", "Count")
+  resu <- resu[!is.na(resu[, 1]), , drop = FALSE]
   
   if (plot) { 
-    pos3 <- which(!is.na(resu[, 1]))
-    plot(x = dist_cl[pos3], y = ob[pos3], bty = "l",
-         ylab = "Moran's I", xlab = "Distance", type = "l",
-         lty = 3, ylim = c(-1.5, 1.5))
-    abline(h = mean(ex[pos3]))
-    points(x = dist_cl[pos3], y = ob[pos3], pch = 20, cex = 1.5)
-    epsilon <- max(dist_cl[pos3]) / (14 * z)
     
-    for(i in 1:nrow(resu)) {
-      up <- resu[pos3, 1] + resu[pos3, 2]
-      low <- resu[pos3, 1] - resu[pos3, 2]
-      segments(resu[pos3, 5], low,
-               resu[pos3, 5], up)
-      segments(resu[pos3, 5] - epsilon, up,
-               resu[pos3, 5] + epsilon, up)
-   segments(resu[pos3, 5] - epsilon, low,
-            resu[pos3, 5] + epsilon, low)
+    plotcorrel(plot1 = resu[, 5],
+               plot2 = resu[, 1],
+               plot3 = resu[, 2],
+               plot4 = resu[, 3],
+               z)
     }
-  }
+  
   return(resu)
 }
 
@@ -171,26 +179,60 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
 ############
 
 .br.moran <- function(w, y) {
+  
   n <- sum(ifelse(rowSums(w) > 0, 1, 0))
-  z <- y - mean(y)
-  soma <- n * (sum(w * (z %o% z)))
-  divi <- sum(w) * sum((z ^ 2))
-  ob <- soma / divi
-  es <- -1 / (n - 1)
-  S1 <-  0.5 * sum((w + t(w)) ^ 2)
-  S2 <- sum((apply(w, 1, sum) + apply(w, 2, sum)) ^ 2)
-  k <- n * sum(z ^ 4) / ((sum(z ^ 2)) ^ 2)
-  s.sq <- sum(w) ^ 2
-  calc1 <- (n ^ 2 - 3 * n + 3) * S1 - n * S2 + 3 * s.sq
-  calc2 <- n * (n - 1) * S1 - 2 * n * S2 + 6 * s.sq
-  calc3 <- (n - 1) * (n - 2) * (n - 3) * s.sq
-  sdi <- sqrt((n * calc1 - k * calc2) / calc3 - 1/((n - 1) ^ 2))
-  pv <- pnorm(ob, mean = es, sd = sdi)
-  if (ob <= es) {
-    pv <- 2 * pv
+  
+  if (n > 3) {
+    z <- y - mean(y)
+    soma <- n * (sum(w * (z %o% z)))
+    divi <- sum(w) * sum((z ^ 2))
+    ob <- soma / divi
+    es <- -1 / (n - 1)
+    S1 <-  0.5 * sum((w + t(w)) ^ 2)
+    S2 <- sum((apply(w, 1, sum) + apply(w, 2, sum)) ^ 2)
+    k <- n * sum(z ^ 4) / ((sum(z ^ 2)) ^ 2)
+    s.sq <- sum(w) ^ 2
+    calc1 <- (n ^ 2 - 3 * n + 3) * S1 - n * S2 + 3 * s.sq
+    calc2 <- n * (n - 1) * S1 - 2 * n * S2 + 6 * s.sq
+    calc3 <- (n - 1) * (n - 2) * (n - 3) * s.sq
+    sdi <- sqrt((n * calc1 - k * calc2) / calc3 - 1/((n - 1) ^ 2))
+    ci <- sdi * 1.96
+    
+    pv <- pnorm(ob, mean = es, sd = sdi)
+    if (ob <= es) {
+      pv <- 2 * pv
     } else {
       pv <- 2 * (1 - pv)
     }
-  return(list("observed" = ob, "expected" = es, "sd" = sdi,
+  } else {
+    ob <- NA
+    es <- NA
+    ci <- NA
+    pv <- NA
+  } 
+  return(list("observed" = ob, "expected" = es, "ci" = ci,
               "p.value" = pv))
+}
+
+
+### Plot
+
+plotcorrel <- function(plot1, plot2, plot3, plot4, z) {
+  plot(x = plot1, y = plot2, bty = "l", 
+       ylab = "Moran's I", xlab = "Distance",
+       type = "l", lty = 3, 
+       ylim = c(-1.5, 1.5))
+  abline(h = mean(plot4))
+  points(x = plot1, y = plot2,
+         pch = 20, cex = 1.5)
+  epsilon <- max(plot1) / (14 * z)
+  up <- plot2 + plot3
+  low <- plot2 - plot3
+  segments(plot1, low,
+           plot1, up)
+  segments(plot1 - epsilon, up,
+           plot1 + epsilon, up)
+  segments(plot1 - epsilon, low,
+           plot1 + epsilon, low)
+  invisible(NULL)
 }

@@ -10,7 +10,7 @@
 #' @param y Species attribute to be considered. It must be a numeric attribute.
 #' @param z Species names in the same order as the attributes and exactly the 
 #' same as named in the \code{matrix} or in the \code{PresenceAbsence} object.
-#' @param weigth If \code{TRUE} the value is weighted by species' range size, 
+#' @param weight If \code{TRUE} the value is weighted by species' range size, 
 #' if \code{FALSE} the value is the mean of all species that co-occur within the
 #'  focal species.
 #' @param xy If \code{TRUE} the presence-absence \code{matrix} contains 
@@ -34,13 +34,13 @@
 #' @examples \dontrun{
 #' data(PAM)
 #' range <- lets.rangesize(x = PAM, units = "cell")
-#' field <- lets.field(PAM, range, PAM$S, weigth = TRUE)
+#' field <- lets.field(PAM, range, PAM$S, weight = TRUE)
 #' }
 #' 
 #' @export
 
 
-lets.field <- function(x, y, z, weigth = TRUE, 
+lets.field <- function(x, y, z, weight = TRUE, 
                        xy = NULL, count = FALSE) {
   
   # Get the matrix without the coordinates
@@ -94,7 +94,7 @@ lets.field <- function(x, y, z, weigth = TRUE,
     for(i in 1:n){
       plot.new()
       text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n - i))))
-      media[i] <- .InsiLoop(i, p, p2, weigth)
+      media[i] <- .InsiLoop(i, p, p2, weight)
     }
     dev.off()
   }
@@ -102,7 +102,7 @@ lets.field <- function(x, y, z, weigth = TRUE,
   # Without count
   if (!count) {
     for(i in 1:n){          
-      media[i] <- .InsiLoop(i, p, p2, weigth)
+      media[i] <- .InsiLoop(i, p, p2, weight)
     }
   }
   
@@ -119,12 +119,12 @@ lets.field <- function(x, y, z, weigth = TRUE,
 
 # Axuliar function to avoid code repetition inside the loop <<<<<<<<<
 
-.InsiLoop <- function(i, p, p2, weigth) {
+.InsiLoop <- function(i, p, p2, weight) {
   pos3 <- p[, i] == 1
   p3 <- p[pos3, -i, drop = FALSE]
   p4 <- p2[pos3, -i, drop = FALSE]
   mult <- p3 * p4
-  if (weigth) {
+  if (weight) {
     mediai <- mean(mult, na.rm = TRUE)
   }  else {
     mult <- matrix(mult, ncol = (ncol(p) - 1))

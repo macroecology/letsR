@@ -67,7 +67,6 @@ lets.rangesize <- function(x, species_name = x@data[, 1],
     
     if (units == "cell") {
       Range_Size <- colSums(x$P[, -(1:2), drop = FALSE])
-      Range_Size <- as.matrix(Range_Size)
     }
     
     if (units == "squaremeter") {
@@ -90,6 +89,7 @@ lets.rangesize <- function(x, species_name = x@data[, 1],
       multi <- x[[1]][, -(1:2), drop = FALSE] * cellsize2
       Range_Size <- colSums(multi)
     }
+    
   }
   
   # For SpatialPolygons
@@ -120,8 +120,9 @@ lets.rangesize <- function(x, species_name = x@data[, 1],
   }
   
   # Return
+  Range_Size <- as.matrix(Range_Size)
   colnames(Range_Size) <- 'Range_size'
-  return(as.matrix(Range_Size))    
+  return(Range_Size)    
 }
 
 
