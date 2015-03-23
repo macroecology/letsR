@@ -21,3 +21,4 @@
 #' }
 #' 
 #' @import raster geosphere XML maptools maps sp rgdal fields
+NULL

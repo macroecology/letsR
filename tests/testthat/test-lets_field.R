@@ -16,7 +16,7 @@ test_that("lets.field works fine", {
 test_that("lets.field works fine, weigth = FALSE", {
   skip_on_cran()
   
-  field <- lets.field(PAM, range, PAM$S, weigth = FALSE)
+  field <- lets.field(PAM, range, PAM$S, weight = FALSE)
   
   expect_equal(class(field), "data.frame")
   expect_true(ncol(field) == 2)

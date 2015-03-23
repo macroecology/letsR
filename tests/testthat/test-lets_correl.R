@@ -4,7 +4,8 @@ N <- 100
 x <- rnorm(nrow(PAM[[1]]))[1:N]
 y <- lets.distmat(PAM[[1]][1:N, 1:2])
 z <- 10
-
+equidistant <- FALSE
+plot <- FALSE
 
 test_that("lets.correl works fine", {
   correl <- lets.correl(x, y, z, equidistant, plot)
@@ -21,7 +22,7 @@ test_that("lets.correl works fine, equidistant = TRUE", {
 })
 
 test_that("lets.correl works fine, plot = TRUE", {
-  correl <- lets.correl(x, y, z, plot = FALSE)
+  correl <- lets.correl(x, y, z, plot = TRUE)
   
   expect_true(class(correl) == "matrix")
   expect_true(all(!is.na(correl)))
