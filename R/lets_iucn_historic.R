@@ -57,7 +57,8 @@ lets.iucn.his <- function(input, count = FALSE) {
     }
     
     
-    for(i in 1:n) {    
+    for(i in 1:n) {
+      plot.new()
       text(0.5, 0.5, paste(paste("Total:", n, "\n",
                                  "Species to go: ",
                                  (n - i))))

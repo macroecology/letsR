@@ -32,7 +32,8 @@ Note that you must be connected to the internet to use this function.
 lets.iucn("Pongo pygmaeus")
 
 # Multiple species
-sp <- c("Musonycteris harrisoni", "Ailuropoda melanoleuca", "Cebus flavius")
+sp <- c("Musonycteris harrisoni", "Ailuropoda melanoleuca",
+        "Cebus flavius")
 lets.iucn(sp)
 }
 }

@@ -3,12 +3,14 @@
 # Bruno Vilela
 
 .getcode <- function(input) {
+  
   input <- gsub(as.matrix(input), pattern = " ",
                 replacement = "-")
+  
   h <- try(htmlParse(paste("http://api.iucnredlist.org/go/",
                            input, sep = "")),
            silent = TRUE)
-  
+  if (class(h)[1] != "try-error") {
   b <- try(xpathSApply(h, '//div', xmlValue), silent = TRUE)[1]
   c <- as.numeric(gsub("\\D", "", b))
   
@@ -36,4 +38,7 @@
   }
   ################################################
   return(c)
+  } else{
+    return(NULL)
+  }
 }
