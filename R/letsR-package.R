@@ -1,5 +1,3 @@
-#'R functions for handling, processing, and analyzing geographic data on species’ distributions and environmental variables
-#'
 #'The letsR package is being developed to help researchers in the handling, processing, 
 #'and analysis of macroecological data. Its purpose is to integrate these methodological processes 
 #'into a single software platform for macroecological analyses. 
