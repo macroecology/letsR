@@ -5,7 +5,7 @@ letsR
 
 ## Package letsR
 
-This package provides different functions for data handling and analysis in macroecology. It is being developed at LETS (Laboratório de Ecologia Teórica e Síntese) in UFG (Universidade Federal de Goiás, Brazil) as part of a larger project looking to integrate recent advances in macroecological data handling and processing. Its purpose is to make some of our commonly used but unavailable R functions available to the larger public. The package provides useful R functions for researchers in ecology and evolution.
+This package provides different functions for  handling, processing, and analyzing geographic data on species' distributions and environmental variables as well as species' description and conservation information.
 
 The letsR package is in continuous development and suggestions are more than welcome!
 
