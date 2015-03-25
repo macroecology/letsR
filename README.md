@@ -1,4 +1,6 @@
-﻿letsR
+[![Travis-CI Build Status](https://travis-ci.org/BrunoVilela/letsR.png?branch=master)](https://travis-ci.org/BrunoVilela/letsR)
+
+letsR
 =====
 
 ## Package letsR
