@@ -4,7 +4,7 @@
 #' 
 #' @description Convert species' ranges (in shapefile format) into a presence-absence matrix based on a user-defined grid system
 #'
-#' @param shapes Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}} 
+#' @param shapes Object of class \code{\link[maptools]{SpatialPolygonsDataFrame}} (see function \code{\link{readShapePoly}} 
 #' to open these files). Species names should be in a column (within the .DBF table of the shapefile) 
 #' called BINOMIAL or binomial.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based 

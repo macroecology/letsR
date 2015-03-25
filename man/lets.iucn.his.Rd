@@ -13,11 +13,42 @@ or an object of class PresenceAbsence.}
 \item{count}{Logical, if \code{TRUE} a counting window will open.}
 }
 \value{
-A data frame with the species names in the first column rows and the years (1980 - present) in the remaining columns,
-the code represents the species' conservation status (see the IUCN RedList website for details). If species do not have information (i.e. have not been evaluated), the result is: NE (Not evaluated).
+A data frame with the species names in the first column rows and the years (1980 - present) in
+the remaining columns, the code represents the species' conservation status (see the IUCN RedList
+website for details). If species do not have information (i.e. have not been evaluated), the result
+is: NE (Not evaluated).
+
+Codes and categories:
+
+\strong{EX}: Extinct
+
+\strong{EW}: Extinct in the Wild
+
+\strong{VU}: Vulnerable
+
+\strong{EN}: Endangered
+
+\strong{CR}: Critically Endangered
+
+\strong{LC}: Least Concern
+
+\strong{NT}: Near Threatened
+
+\strong{DD}: Data Deficient
+
+\strong{CT}: Commercially Threatened
+
+\strong{IN}: Indeterminate
+
+\strong{IK}: Insufficiently Known
+
+\strong{LR}: Lower Risk
+
+\strong{RA}: Rare
 }
 \description{
-Get species conservation status over time (i.e. from 1980 to the present date available) from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
+Get species conservation status over time (i.e. from 1980 to the present date available)
+from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
 }
 \details{
 Note that you must be connected to the internet to use this function.

@@ -10,7 +10,7 @@ lets.presab(shapes, xmn = -180, xmx = 180, ymn = -90, ymx = 90,
   origin = NULL, seasonal = NULL, count = FALSE)
 }
 \arguments{
-\item{shapes}{Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}}
+\item{shapes}{Object of class \code{\link[maptools]{SpatialPolygonsDataFrame}} (see function \code{\link{readShapePoly}}
 to open these files). Species names should be in a column (within the .DBF table of the shapefile)
 called BINOMIAL or binomial.}
 
