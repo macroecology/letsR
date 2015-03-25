@@ -9,15 +9,18 @@
 #'All functions in this package use a prefix and a suffix separated by a dot. 
 #'The prefix refers to the package’s name and the suffix to the actual function. 
 #'This is done to avoid confusion with potentially similarly-named functions from other R packages. 
-#'For instance, the letsR function used to create presence-absence matrices is called lets.presab, 
-#'whereas the one used to add variables to a presence-absence matrix is called lets.addvar.  
-#'The package’s basic functions create and work on a particular S3 object class called ‘PresenceAbsence’. 
-#'Such ‘PresenceAbsence’ object class allows storing information beyond presence-absence data 
-#'(e.g. user-defined grid-cell system) and using the generic ‘plot’, ‘summary’ and ‘print’ functions of R. 
-#'Also, some package’s functions allow the user to input customary R objects (e.g. ‘vector’, ‘matrix’, ‘data.frame’). 
+#'For instance, the letsR function used to create presence-absence matrices is called \code{\link{lets.presab}} (but see also
+#'\code{\link{lets.presab.birds}} and \code{\link{lets.presab.points}}) whereas the one used to add variables to a 
+#'presence-absence matrix is called \code{\link{lets.addvar}}.  
+#'The package’s basic functions create and work on a particular S3 object class called \code{PresenceAbsence}. 
+#'Such \code{PresenceAbsence} object class allows storing information beyond presence-absence data 
+#'(e.g. user-defined grid-cell system) and using the generic \code{plot}, \code{summary} and \code{print} functions of R. 
+#'Also, some package’s functions allow the user to input customary R objects (e.g. \code{vector}, \code{matrix}, 
+#'\code{data.frame}). 
 #'
 #'Another set of functions in this package allow the user to download species’ information related to 
-#'their description and conservation status as provided by the IUCN’s REdList database. 
+#'their description and conservation status as provided by the IUCN’s REdList database (\code{\link{lets.iucn}},
+#'\code{\link{lets.iucn.ha}}, \code{\link{lets.iucn.his}}). 
 #'For this, such functions use the IUCN’s RedList API to retrieve information from its webpage.
 #'
 #'
