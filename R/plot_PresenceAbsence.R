@@ -8,7 +8,7 @@
 #' @usage 
 #' \method{plot}{PresenceAbsence}(x, name = NULL, world = TRUE, col = NULL, \dots)
 #' 
-#' @param x An object of class PresenceAbsence (see function presab).
+#' @param x An object of class \code{\link{PresenceAbsence}}.
 #' @param name A character specifying a species to be ploted instead of the complete species richness map.
 #' @param world If \code{TURE} a map of political divisions (countries) is added to the plot.
 #' @param col Color function (e.g. \code{\link{rainbow}}, \code{\link{heat.colors}}, \code{\link{colorRampPalette}}) to be used in the richness map.
@@ -40,17 +40,17 @@ plot.PresenceAbsence <- function(x, name = NULL, world = TRUE, col = NULL, ...){
     } else {
       colfunc <- col
     }
-  
-  # Getting values  
-  v <- values(x$Rich)
-  c <- max(v, na.rm = TRUE)
     
-  # Set zero to NA
-  v[(v == 0)] <- NA
-  values(x$Rich) <- v
-  
-  # Plot, add one and remove the first to not be white.
-  plot(x$Rich, col = colfunc(c + 1)[-1], ...)  
+    # Getting values  
+    v <- values(x$Rich)
+    c <- max(v, na.rm = TRUE)
+    
+    # Set zero to NA
+    v[(v == 0)] <- NA
+    values(x$Rich) <- v
+    
+    # Plot, add one and remove the first to not be white.
+    plot(x$Rich, col = colfunc(c + 1)[-1], ...)  
   }
   
   # Individual plot

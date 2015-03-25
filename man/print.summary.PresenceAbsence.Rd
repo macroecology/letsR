@@ -7,7 +7,7 @@
 \method{print.summary}{PresenceAbsence}(x, \dots)
 }
 \arguments{
-\item{x}{an object of class PresenceAbsence (see function presab).}
+\item{x}{an object of class \code{\link{PresenceAbsence}}.}
 
 \item{...}{Other print parameters.}
 }

@@ -8,7 +8,7 @@ cells of a PresenceAbsence object}
 lets.maplizer(x, y, z, func = mean, ras = FALSE)
 }
 \arguments{
-\item{x}{A \code{PresenceAbsence} object.}
+\item{x}{A \code{\link{PresenceAbsence}} object.}
 
 \item{y}{Species attribute to be considered. It must be a numeric attribute.}
 

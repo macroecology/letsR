@@ -42,13 +42,13 @@
 
 
 lets.iucncont <- function (x, dd = NA, ne = NA) {
-
+  
   x <- as.matrix(x)
   
   for(i in 1:ncol(x)) {
-   if(is.factor(x[, i])){
-    x[, i] <- as.numeric(levels(x[, i]))[x[, i]]
-   }
+    if(is.factor(x[, i])){
+      x[, i] <- as.numeric(levels(x[, i]))[x[, i]]
+    }
   }
   x[(x == "EX" | x == "EW")] <- 5
   x[x == "EN"] <- 4

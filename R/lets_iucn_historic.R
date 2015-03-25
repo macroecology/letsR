@@ -6,7 +6,7 @@
 #' from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
 #' 
 #' @param input character vector with one or more species names,
-#' or an object of class PresenceAbsence.
+#' or an object of class \code{\link{PresenceAbsence}}.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 
 #' @return A data frame with the species names in the first column rows and the years (1980 - present) in

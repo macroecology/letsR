@@ -7,7 +7,7 @@
 lets.field(x, y, z, weight = TRUE, xy = NULL, count = FALSE)
 }
 \arguments{
-\item{x}{A \code{PresenceAbsence} object or a presence-absence in \code{matrix}
+\item{x}{A \code{\link{PresenceAbsence}} object or a presence-absence in \code{matrix}
 format (see xy argument for matrix use) with the species named in the columns.}
 
 \item{y}{Species attribute to be considered. It must be a numeric attribute.}

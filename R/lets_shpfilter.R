@@ -49,43 +49,43 @@
 
 lets.shFilter <- function(shapes, presence = NULL, origin = NULL,
                           seasonal = NULL) {
-
- # No filtering applied control
+  
+  # No filtering applied control
   if (is.null(presence) & is.null(origin) & is.null(seasonal)) {
     return(shapes)
-    } else {
-      
- # Upper case shapes names     
+  } else {
+    
+    # Upper case shapes names     
     names(shapes) <- toupper(names(shapes))
- 
- # Presence filter
+    
+    # Presence filter
     if (!is.null(presence)) {
       pos <- shapes$PRESENCE %in% presence
       if (length(pos) > 0) {
         shapes <- shapes[pos, ]
-        } else {
-          shapes <-  NULL
-        }
+      } else {
+        shapes <-  NULL
+      }
     }
- 
- # Origin filter
+    
+    # Origin filter
     if (!is.null(origin)) {
       pos2 <- shapes$ORIGIN %in% origin
       if (length(pos2) > 0) {
         shapes <- shapes[pos2, ]
-        } else {
-          shapes <- NULL
-        }
+      } else {
+        shapes <- NULL
+      }
     }
- 
- # Seasonal filter
+    
+    # Seasonal filter
     if (!is.null(seasonal)) {
       pos3 <- shapes$SEASONAL %in% seasonal
       if (length(pos3) > 0) {
         shapes <- shapes[pos3, ]
-        } else {
-          shapes <- NULL
-        }
+      } else {
+        shapes <- NULL
+      }
     }
     return(shapes)
   }

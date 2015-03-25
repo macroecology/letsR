@@ -7,7 +7,7 @@
 lets.distmat(xy, asdist = TRUE, ...)
 }
 \arguments{
-\item{xy}{A \code{PresenceAbsence} object or a \code{matrix} with two columns (longitude, latitude).}
+\item{xy}{A \code{\link{PresenceAbsence}} object or a \code{matrix} with two columns (longitude, latitude).}
 
 \item{asdist}{Logical, if \code{TRUE} the result will be an object of class \code{dist},
 if \code{FALSE} the result will be an object of class \code{matrix}.}

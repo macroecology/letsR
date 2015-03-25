@@ -8,7 +8,7 @@ lets.iucn.ha(input, count = FALSE)
 }
 \arguments{
 \item{input}{Character vector with one or more species names,
-or an object of the PresenceAbsence class.}
+or an object of the \code{\link{PresenceAbsence}} class.}
 
 \item{count}{Logical, if \code{TRUE} a counting window will open.}
 }

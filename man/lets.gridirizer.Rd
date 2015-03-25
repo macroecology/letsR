@@ -7,7 +7,7 @@
 lets.gridirizer(x)
 }
 \arguments{
-\item{x}{A PresenceAbsence object.}
+\item{x}{A \code{\link{PresenceAbsence}} object.}
 }
 \value{
 The result is a list of two objects. The first is a grid in shapefile format;

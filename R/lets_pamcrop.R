@@ -4,7 +4,7 @@
 #' 
 #' @description Crop a PresenceAbsence object based on a shapefile provided by the user.
 #' 
-#' @param x A PresenceAbsence object.
+#' @param x A \code{\link{PresenceAbsence}} object.
 #' @param shp Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}}) to crop the PresenceAbsence object.
 #' @param remove.sp Logical, if \code{TRUE} the final matrix will not contain species that do not match any cell in the grid.
 #' 
@@ -49,7 +49,7 @@ lets.pamcrop <- function(x, shp, remove.sp = TRUE) {
   # Remove cells from the matrix
   manter <- extract(x[[2]], x[[1]][, 1:2])
   x[[1]] <- x[[1]][!is.na(manter), ]
-
+  
   # Remove species without presence
   if (remove.sp) {
     x[[1]] <- .removeSp(x[[1]])

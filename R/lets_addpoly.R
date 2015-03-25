@@ -4,7 +4,7 @@
 #' 
 #' @description Add polygon coverage within cells of a PresenceAbsence object.
 #'
-#' @param x A PresenceAbsence object. 
+#' @param x A \code{\link{PresenceAbsence}} object. 
 #' @param y Polygon of interest.
 #' @param z A character indicating the column name of the polygon containing the attributes to be used.
 #' @param onlyvar If \code{TRUE} only the matrix object will be returned.
@@ -55,8 +55,8 @@ lets.addpoly <- function(x, y, z, onlyvar = FALSE){
   global <- all(as.vector(extent(x[[2]])) == c(-180, 180, -90, 90))
   
   if (!global) {
-  grid <- rasterToPolygons(x[[2]])
-  areagrid <- try(areaPolygon(grid), silent=TRUE)
+    grid <- rasterToPolygons(x[[2]])
+    areagrid <- try(areaPolygon(grid), silent=TRUE)
   }
   
   if (class(areagrid) == "try-error" | global) {

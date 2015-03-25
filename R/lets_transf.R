@@ -27,16 +27,16 @@
 
 lets.transf <- function (x, y, z, NUMERIC = TRUE) 
 {
-    if(is.factor(x)){
-      x <- as.numeric(levels(x))[x]
-    }
-    
-    if(is.factor(y)){
-      y <- as.numeric(levels(y))[y]
-    }
-
+  if(is.factor(x)){
+    x <- as.numeric(levels(x))[x]
+  }
+  
+  if(is.factor(y)){
+    y <- as.numeric(levels(y))[y]
+  }
+  
   for(i in 1:length(y)){  
-  x[x == y[i]] <- z[i]
+    x[x == y[i]] <- z[i]
   }
   if(NUMERIC){
     x <- as.numeric(x)

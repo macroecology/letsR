@@ -10,7 +10,7 @@ lets.presab(shapes, xmn = -180, xmx = 180, ymn = -90, ymx = 90,
   origin = NULL, seasonal = NULL, count = FALSE)
 }
 \arguments{
-\item{shapes}{Object of class \code{\link[maptools]{SpatialPolygonsDataFrame}} (see function \code{\link{readShapePoly}}
+\item{shapes}{Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}}
 to open these files). Species names should be in a column (within the .DBF table of the shapefile)
 called BINOMIAL or binomial.}
 
@@ -53,7 +53,7 @@ do not match any cell in the grid.}
 \item{count}{Logical, if \code{TRUE} a counting window will open.}
 }
 \value{
-The result is a list object of class \code{PresenceAbsence} with the following objects:
+The result is a list object of class \code{\link{PresenceAbsence}} with the following objects:
 
 \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information.
 The first two columns contain the longitude (x) and latitude (y) of the cells' centroid

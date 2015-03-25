@@ -8,7 +8,7 @@ lets.rangesize(x, species_name = x@data[, 1], coordinates = "geographic",
   units = "cell")
 }
 \arguments{
-\item{x}{A \code{PresenceAbsence} object or an \code{SpatialPolygonsDataFrame}.}
+\item{x}{A \code{\link{PresenceAbsence}} object or an \code{SpatialPolygonsDataFrame}.}
 
 \item{species_name}{Species names in the same order as in the
 \code{SpatialPolygonsDataFrame} (only needed if x is a \code{SpatialPolygonsDataFrame}).}

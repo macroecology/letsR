@@ -5,7 +5,7 @@
 #' 
 #' @description Summarize species atributes per cell in a presence-absence matrix.
 #' 
-#' @param x A \code{PresenceAbsence} object.
+#' @param x A \code{\link{PresenceAbsence}} object.
 #' @param y Species attribute to be considered. It must be a numeric attribute.
 #' @param z Species names in the same order as the attributes and exactly the 
 #' same as named in the \code{PresenceAbsence} object.
@@ -52,9 +52,9 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
       p[, i] <- p[, i] * y[pos]
       pos2 <- p[, i] == 0
       p[pos2, i] <- NA
-      } else {
-        p[, i] <- NA
-      }
+    } else {
+      p[, i] <- NA
+    }
   }
   
   resum <- apply(p, 1, func, na.rm=T)
@@ -72,7 +72,7 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
   if (ras) {
     r <- rasterize(resu2[, 1:2], x[[2]], resu2[, 3])
     return(list(Matrix = resultado, Raster = r))
-    } else {
-      return(resultado)
-    }
+  } else {
+    return(resultado)
+  }
 }

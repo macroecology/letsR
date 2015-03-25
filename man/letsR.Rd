@@ -22,7 +22,7 @@ For instance, the letsR function used to create presence-absence matrices is cal
 \code{\link{lets.presab.birds}} and \code{\link{lets.presab.points}}) whereas the one used to add variables to a
 presence-absence matrix is called \code{\link{lets.addvar}}.
 The package's basic functions create and work on a particular S3 object class called \code{PresenceAbsence}.
-Such \code{PresenceAbsence} object class allows storing information beyond presence-absence data
+Such \code{\link{PresenceAbsence}} object class allows storing information beyond presence-absence data
 (e.g. user-defined grid-cell system) and using the generic \code{plot}, \code{summary} and \code{print} functions of R.
 Also, some package's functions allow the user to input customary R objects (e.g. \code{vector}, \code{matrix},
 \code{data.frame}).
@@ -38,16 +38,18 @@ of letsR on github (\url{http://www.github.com/macroecology/letsR}).
 \tabular{ll}{
 Package: \tab lestR\cr
 Type: \tab Package\cr
-Version: \tab 2.0\cr
-Date: \tab 2015-02-09\cr
+Version: \tab 2.1\cr
+Date: \tab 2015-03-25\cr
 License: \tab GPL-2\cr
 }
 }
 \author{
-Bruno Vilela (email: \email{brunovilelasilva@hotmal.com};
+\strong{Bruno Vilela}\cr
+(email: \email{brunovilelasilva@hotmal.com};
 Website: \url{http://bvilela.weebly.com/})
 
-Fabricio Villalobos (email: \email{fabricio.villalobos@gmail.com};
+\strong{Fabricio Villalobos}\cr
+(email: \email{fabricio.villalobos@gmail.com};
 Website: \url{https://sites.google.com/site/fabriciovillalobos/})
 }
 \keyword{package}

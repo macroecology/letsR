@@ -7,7 +7,7 @@
 \method{plot}{PresenceAbsence}(x, name = NULL, world = TRUE, col = NULL, \dots)
 }
 \arguments{
-\item{x}{An object of class PresenceAbsence (see function presab).}
+\item{x}{An object of class \code{\link{PresenceAbsence}}.}
 
 \item{name}{A character specifying a species to be ploted instead of the complete species richness map.}
 

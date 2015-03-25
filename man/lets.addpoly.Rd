@@ -7,7 +7,7 @@
 lets.addpoly(x, y, z, onlyvar = FALSE)
 }
 \arguments{
-\item{x}{A PresenceAbsence object.}
+\item{x}{A \code{\link{PresenceAbsence}} object.}
 
 \item{y}{Polygon of interest.}
 

@@ -7,7 +7,7 @@
 lets.addvar(x, y, onlyvar = FALSE, fun = mean)
 }
 \arguments{
-\item{x}{A \code{PresenceAbsence} object.}
+\item{x}{A \code{\link{PresenceAbsence}} object.}
 
 \item{y}{Variables to be added in \code{Raster} or \code{RasterStack} format.}
 

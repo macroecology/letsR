@@ -8,7 +8,7 @@
 #' @param pam A presence-absence \code{matrix} (sites in the rows and species
 #' in the columns, with the first two columns containing the longitudinal
 #' and latitudinal coordinates, respectively), or an object of class 
-#' \code{PresenceAbsence}.
+#' \code{\link{PresenceAbsence}}.
 #' @param planar Logical, if \code{FALSE} the coordinates are in Longitude/Latitude.
 #' If \code{TRUE} the coordinates are planar.
 #' 
@@ -36,11 +36,11 @@ lets.midpoint <- function(pam, planar = FALSE){
     n <- ncol(pam[[1]])
     species <- pam[[3]]
     pam2 <- pam[[1]]
-    } else {
-      n <- ncol(pam)
-      species <- colnames(pam)[-(1:2)]
-      pam2 <- pam
-    }
+  } else {
+    n <- ncol(pam)
+    species <- colnames(pam)[-(1:2)]
+    pam2 <- pam
+  }
   
   xm <- numeric((n - 2))
   ym <- xm
@@ -68,9 +68,9 @@ lets.midpoint <- function(pam, planar = FALSE){
         if (dif > 150) {
           if (dis2[1, 1] >= 0) {
             dis2[1, 1] <- dis2[1, 1] - 180
-            } else {
-              dis2[1, 1] <- dis2[1, 1] + 180
-            }
+          } else {
+            dis2[1, 1] <- dis2[1, 1] + 180
+          }
         }
       }
       xm[(i - 2)] <- dis2[1, 1]

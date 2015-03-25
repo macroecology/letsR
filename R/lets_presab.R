@@ -4,7 +4,7 @@
 #' 
 #' @description Convert species' ranges (in shapefile format) into a presence-absence matrix based on a user-defined grid system
 #'
-#' @param shapes Object of class \code{\link[maptools]{SpatialPolygonsDataFrame}} (see function \code{\link{readShapePoly}} 
+#' @param shapes Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}} 
 #' to open these files). Species names should be in a column (within the .DBF table of the shapefile) 
 #' called BINOMIAL or binomial.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based 
@@ -33,7 +33,7 @@
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
 #' 
-#' @return The result is a list object of class \code{PresenceAbsence} with the following objects:
+#' @return The result is a list object of class \code{\link{PresenceAbsence}} with the following objects:
 #' @return \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information. 
 #' The first two columns contain the longitude (x) and latitude (y) of the cells' centroid 
 #' (from the gridded domain used);
@@ -130,7 +130,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
       areagrid <- values(area(ras)) * 1000000
     }
   }
-    
+  
   # Getting species name 
   names(shapes) <- toupper(names(shapes))
   nomes <- levels(shapes$BINOMIAL)
@@ -146,24 +146,24 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
   if (count) {
     # Do not set a new device in rstudio to avoid warnings()
     if (!"tools:rstudio" %in% search()) {
-    dev.new(width = 2, height = 2, pointsize = 12)
-    par(mar = c(0, 0, 0, 0))
+      dev.new(width = 2, height = 2, pointsize = 12)
+      par(mar = c(0, 0, 0, 0))
     }
     # Loop start, running repetitions for the number of polygons (n) 
     for (i in 1:n) {
-
+      
       # Count window
       plot.new()
       text(0.5, 0.5, paste(paste("Total:", n, "\n", "Polygons to go: ", (n - i))))
       
       # Getting species position in the matrix and set to 1
       pospos2 <- .extractpos(ras, shapes@polygons[[i]], nomes, nomes2,
-                            cover, areashape, areagrid, i)      
+                             cover, areashape, areagrid, i)      
       matriz[pospos2$pos2[, 1], pospos2$pos] <- 1      
     }
     dev.off()
   }
-    
+  
   # Wihout count window
   if (!count) {
     
@@ -171,7 +171,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
     for(i in 1:n){
       # Getting species position in the matrix and set to 1
       pospos2 <- .extractpos(ras, shapes@polygons[[i]], nomes, nomes2,
-                            cover, areashape, areagrid, i)      
+                             cover, areashape, areagrid, i)      
       matriz[pospos2$pos2[, 1], pospos2$pos] <- 1            
     }
   }  
@@ -183,7 +183,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
   if (remove.cells) {
     Resultado <- .removeCells(Resultado)
   }
-
+  
   # Remove species without presence if TRUE
   if (remove.sp) {
     Resultado <- .removeSp(Resultado)
@@ -209,7 +209,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
 
 # Function to extract cell positions in the raster
 .extractpos <- function(ras, shapepol, nomes, nomes2, cover, 
-                       areashape, areagrid, i) {
+                        areashape, areagrid, i) {
   
   # Try the extraction of cell occurrence positions
   celulas <- try(celulas <- extract(ras, 
@@ -217,7 +217,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
                                     cellnumbers = TRUE,
                                     weights = TRUE,
                                     small = TRUE), 
-                silent=T)
+                 silent=T)
   
   # Handdle the akward error that can appear with weights and small = TRUE 
   if (class(celulas) == "try-error") {

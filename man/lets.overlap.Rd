@@ -9,7 +9,7 @@ lets.overlap(pam, method = "Chesser&Zink", xy = NULL)
 \arguments{
 \item{pam}{A presence-absence matrix (sites in rows and species in columns,
 with the first two columns containing the longitudinal and latitudinal coordinates,
-respectively), or an object of class PresenceAbsence.}
+respectively), or an object of class \code{\link{PresenceAbsence}}.}
 
 \item{method}{The method used to calculate the overlap matrix. "Chesser&Zink"
 calculates the degree of overlap as the proportion of the smaller range that overlaps

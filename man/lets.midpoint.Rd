@@ -10,7 +10,7 @@ lets.midpoint(pam, planar = FALSE)
 \item{pam}{A presence-absence \code{matrix} (sites in the rows and species
 in the columns, with the first two columns containing the longitudinal
 and latitudinal coordinates, respectively), or an object of class
-\code{PresenceAbsence}.}
+\code{\link{PresenceAbsence}}.}
 
 \item{planar}{Logical, if \code{FALSE} the coordinates are in Longitude/Latitude.
 If \code{TRUE} the coordinates are planar.}

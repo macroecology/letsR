@@ -7,7 +7,7 @@
 #' 
 #' @param pam A presence-absence matrix (sites in rows and species in columns,
 #' with the first two columns containing the longitudinal and latitudinal coordinates, 
-#' respectively), or an object of class PresenceAbsence. 
+#' respectively), or an object of class \code{\link{PresenceAbsence}}. 
 #' @param method The method used to calculate the overlap matrix. "Chesser&Zink"
 #' calculates the degree of overlap as the proportion of the smaller range that overlaps
 #' within the larger range (Chesser & Zink 1994). "Proportional" calculates the proportion 
@@ -38,7 +38,7 @@
 
 lets.overlap <- function(pam, method = "Chesser&Zink",
                          xy = NULL) {
-    
+  
   methods <- c("Chesser&Zink", "Proportional", "Cells")
   if (!any(method == methods)) {
     stop(paste("The method",  method , "is not implemented.", 
@@ -61,7 +61,7 @@ lets.overlap <- function(pam, method = "Chesser&Zink",
     pam <- pam[[1]][, -(1:2), drop = FALSE]    
   }
   
-    
+  
   nomes <- colnames(pam)
   n <- ncol(pam)
   resu <- matrix(NA, ncol = n, nrow = n)

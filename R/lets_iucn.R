@@ -7,7 +7,7 @@
 #' 
 #' 
 #' @param input Character vector with one or more species names,
-#' or an object of class PresenceAbsence.
+#' or an object of class \code{\link{PresenceAbsence}}.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
 #' @return Returns a data frame with the Species Name, Family, Conservation Status, 
@@ -180,7 +180,7 @@ lets.iucn <- function(input, count = FALSE) {
       autori <- gsub("\\D", "", autori)
       autori <- as.numeric(substr(autori, 1, 4))
     }
-        
+    
     # Countries
     distr1 <- try(xpathSApply(h, '//ul[@class="countries"]', 
                               xmlValue),

@@ -5,7 +5,7 @@
 #' @description This function creates a grid in shapefile format and adds its cells' IDs to the presence-absence matrix.
 #' The function was created to facilitate the use of the PresenceAbsence object for the ones who prefer to work with a grid in shapefile format. 
 #' 
-#' @param x A PresenceAbsence object.
+#' @param x A \code{\link{PresenceAbsence}} object.
 #' 
 #' @return The result is a list of two objects. The first is a grid in shapefile format;
 #' the second is a presence-absence matrix with an aditional column called SP_ID (shapefile cell identifier).

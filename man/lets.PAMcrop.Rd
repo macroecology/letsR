@@ -7,7 +7,7 @@
 lets.pamcrop(x, shp, remove.sp = TRUE)
 }
 \arguments{
-\item{x}{A PresenceAbsence object.}
+\item{x}{A \code{\link{PresenceAbsence}} object.}
 
 \item{shp}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}}) to crop the PresenceAbsence object.}
 

@@ -5,7 +5,7 @@
 #' @description This function calculates species' range sizes from a 
 #' PresenceAbsence object or directly from the species' shapefiles.
 #' 
-#' @param x A \code{PresenceAbsence} object or an \code{SpatialPolygonsDataFrame}.
+#' @param x A \code{\link{PresenceAbsence}} object or an \code{SpatialPolygonsDataFrame}.
 #' @param species_name  Species names in the same order as in the 
 #' \code{SpatialPolygonsDataFrame} (only needed if x is a \code{SpatialPolygonsDataFrame}).
 #' @param coordinates "geographical" or "planar". Indicate wheter the shapefile
@@ -53,7 +53,7 @@ lets.rangesize <- function(x, species_name = x@data[, 1],
   
   
   
-    
+  
   # For PresenceAbsence
   if (class(x) == "PresenceAbsence") {
     
@@ -102,7 +102,7 @@ lets.rangesize <- function(x, species_name = x@data[, 1],
                  "is not implemented.", 
                  "Please check the spelling."))
     }
-        
+    
     if (coordinates == "planar") {
       Range_Size <- sapply(slot(x, "polygons"), slot, "area")
       Range_Size <- as.matrix(Range_Size)

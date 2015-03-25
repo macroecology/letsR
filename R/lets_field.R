@@ -5,7 +5,7 @@
 #' @description Create single species' values based on the attributes of species 
 #' co-occurring within individual ranges.
 #' 
-#' @param x A \code{PresenceAbsence} object or a presence-absence in \code{matrix}
+#' @param x A \code{\link{PresenceAbsence}} object or a presence-absence in \code{matrix}
 #' format (see xy argument for matrix use) with the species named in the columns.
 #' @param y Species attribute to be considered. It must be a numeric attribute.
 #' @param z Species names in the same order as the attributes and exactly the 

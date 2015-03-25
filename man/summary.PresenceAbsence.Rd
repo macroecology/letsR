@@ -7,7 +7,7 @@
 \method{summary}{PresenceAbsence}(object, \dots)
 }
 \arguments{
-\item{object}{an object of class PresenceAbsence (see function presab).}
+\item{object}{an object of class \code{\link{PresenceAbsence}}.}
 
 \item{...}{Other summary parameters.}
 }

@@ -5,7 +5,7 @@
 #' @description Calculates a geographic distance matrix based on a \code{PresenceAbsence} or 
 #' a two column \code{matrix} of x(longitude) and y(latitude).
 #' 
-#' @param xy A \code{PresenceAbsence} object or a \code{matrix} with two columns (longitude, latitude).
+#' @param xy A \code{\link{PresenceAbsence}} object or a \code{matrix} with two columns (longitude, latitude).
 #' @param asdist Logical, if \code{TRUE} the result will be an object of class \code{dist},
 #' if \code{FALSE} the result will be an object of class \code{matrix}.
 #' @param ... Arguments to be passed to the function \code{rdist.earth} of package fields.

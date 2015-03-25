@@ -4,7 +4,7 @@
 #' 
 #' @description Add variables (in raster format), usually environmental, to a PresenceAbsence object. Variables are included as additional columns containing the aggregate/summarize value of the variable(s) in each cell of the presence-absence matrix.
 #'
-#' @param x A \code{PresenceAbsence} object. 
+#' @param x A \code{\link{PresenceAbsence}} object. 
 #' @param y Variables to be added in \code{Raster} or \code{RasterStack} format.
 #' @param onlyvar If \code{TRUE} only the \code{matrix} object will be returned.
 #' @param fun Function used to aggregate the variables(s) values over each cell.
@@ -76,7 +76,7 @@ lets.addvar <- function(x, y, onlyvar = FALSE, fun = mean) {
   resultado <- cbind(x[[1]], var_e)
   if (onlyvar) {
     return(var_e) 
-    } else {
-      return(resultado)
-    }
+  } else {
+    return(resultado)
+  }
 }

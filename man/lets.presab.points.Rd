@@ -35,7 +35,7 @@ lets.presab.points(xy, species, xmn = -180, xmx = 180, ymn = -90,
 \item{count}{Logical, if \code{TRUE} a counting window will open.}
 }
 \value{
-The result is an object of class PresenceAbsence with the following objects:
+The result is an object of class \code{\link{PresenceAbsence}} with the following objects:
 
 \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information. The first two columns contain the longitude (x) and latitude (y) of the cells' centroid (from the gridded domain used);
 

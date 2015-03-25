@@ -6,7 +6,7 @@
 #' @usage 
 #' \method{print.summary}{PresenceAbsence}(x, \dots)
 #' 
-#' @param x an object of class PresenceAbsence (see function presab).
+#' @param x an object of class \code{\link{PresenceAbsence}}.
 #' @param ... Other print parameters.
 #' 
 #' @S3method print summary.PresenceAbsence

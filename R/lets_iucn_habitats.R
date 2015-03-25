@@ -6,7 +6,7 @@
 #' website(\url{http://www.iucnredlist.org/}) for one or more species.
 #' 
 #' @param input Character vector with one or more species names,
-#' or an object of the PresenceAbsence class.
+#' or an object of the \code{\link{PresenceAbsence}} class.
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
 #' @return A data frame with species names in the first column and the 
@@ -93,8 +93,8 @@ lets.iucn.ha <- function(input, count = FALSE) {
       
       ncolumns <- ncol(habitat)
       habitat[i, 2:(ncolumns - 1)] <- .Habitat(input, i, 
-                                             habitat,
-                                             names)
+                                               habitat,
+                                               names)
       
       # If none of the habitat names has been found or if 
       # the species has not been found in IUCN archives, 
@@ -116,7 +116,7 @@ lets.iucn.ha <- function(input, count = FALSE) {
 # Auxiliar funciton inside the loop
 .Habitat <- function(input, i, habitat, names) {
   # Taking the Website code from the internet
-
+  
   c <- .getcode(input[i])
   httpclas <- "http://www.iucnredlist.org/details/classify/"
   h2 <- try(htmlParse(paste(httpclas, c, "/0", sep = "")),

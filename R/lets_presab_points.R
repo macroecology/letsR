@@ -19,7 +19,7 @@
 #' @param count Logical, if \code{TRUE} a counting window will open.
 #' 
 #' 
-#' @return The result is an object of class PresenceAbsence with the following objects:
+#' @return The result is an object of class \code{\link{PresenceAbsence}} with the following objects:
 #' @return \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information. The first two columns contain the longitude (x) and latitude (y) of the cells' centroid (from the gridded domain used);
 #' @return \strong{Richness Raster}: A raster containing species richness data;
 #' @return \strong{Species name}: A character vector with species' names contained in the matrix.

@@ -170,7 +170,7 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
                plot3 = resu[, 2],
                plot4 = resu[, 3],
                z)
-    }
+  }
   
   return(resu)
 }
