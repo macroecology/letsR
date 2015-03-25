@@ -1,14 +1,40 @@
-#'R functions for handling and analyzing macroecological data data, mainly species' geographic distributions (in ESRI shapefile format or point occurrences) and environmental variables (in raster format), as well as species' information related to their description (e.g. taxonomy and year of description) and conservation status (e.g. category of threat, population trend) as provided by the IUCN's RedList online database. The package includes functions to create presence-absence matrices based on species distributions and user-defined grid systems, from which several other functions could be applied to generate, for example, species richness rasters, geographical midpoints of species, and species- and site-based attributes. In addition, the package provides a function to create spatial correlograms of variables based on the Moran's I index, under the equiprobable or equidistant criterion to define distance classes.
-#'The letsR package is in continuous development and suggestions are more than welcome!
-#'We hope you enjoy it and find it useful.
+#'The letsR package is being developed to help researchers in the handling, processing, 
+#'and analysis of macroecological data. Its purpose is to integrate these methodological processes 
+#'into a single software platform for macroecological analyses. 
+#'The package's main functions allow users to build presence-absence matrices, the basic analytical tool in macroecology, 
+#'from species' geographical distributions and merge them with species' traits, conservation information 
+#'(downloadable using functions from this package) and spatial environmental layers.  
+#'In addition, other package's functions enable users to summarize and visualize information from presence-absence matrices.
+#'
+#'All functions in this package use a prefix and a suffix separated by a dot. 
+#'The prefix refers to the package's name and the suffix to the actual function. 
+#'This is done to avoid confusion with potentially similarly-named functions from other R packages. 
+#'For instance, the letsR function used to create presence-absence matrices is called \code{\link{lets.presab}} (but see also
+#'\code{\link{lets.presab.birds}} and \code{\link{lets.presab.points}}) whereas the one used to add variables to a 
+#'presence-absence matrix is called \code{\link{lets.addvar}}.  
+#'The package's basic functions create and work on a particular S3 object class called \code{PresenceAbsence}. 
+#'Such \code{PresenceAbsence} object class allows storing information beyond presence-absence data 
+#'(e.g. user-defined grid-cell system) and using the generic \code{plot}, \code{summary} and \code{print} functions of R. 
+#'Also, some package's functions allow the user to input customary R objects (e.g. \code{vector}, \code{matrix}, 
+#'\code{data.frame}). 
+#'
+#'Another set of functions in this package allow the user to download species' information related to 
+#'their description and conservation status as provided by the IUCN's REdList database (\code{\link{lets.iucn}},
+#'\code{\link{lets.iucn.ha}}, \code{\link{lets.iucn.his}}). 
+#'For this, such functions use the IUCN's RedList API to retrieve information from its webpage.
+#'
+#'If you are looking for the most recent version of the package, you can get the development version
+#'of letsR on github (\url{http://www.github.com/macroecology/letsR}).
 #'
 #' @name letsR
 #' @aliases letsR-package
 #' @docType package
 #' @title Tools for Data Handling and Analysis in  Macroecology.
 #' 
-#' @author Bruno Vilela \email{brunovilelasilva@@hotmal.com}
-#' @author Fabricio Villalobos \email{fabricio.villalobos@@gmail.com} 
+#' @author Bruno Vilela (email: \email{brunovilelasilva@@hotmal.com}; 
+#' Website: \url{http://bvilela.weebly.com/})
+#' @author Fabricio Villalobos (email: \email{fabricio.villalobos@@gmail.com}; 
+#' Website: \url{https://sites.google.com/site/fabriciovillalobos/})
 #' 
 #' @keywords package
 #'

@@ -5,18 +5,9 @@ Version: 2.1
 Date: 2015-03-18
 Author: Bruno Vilela & Fabricio Villalobos
 Maintainer: Bruno Vilela <brunovilelasilva@hotmail.com>
-Description: Includes R functions for handling and analyzing geographic data, mainly
-    species' geographic distributions (in ESRI shapefile format) and
-    environmental variables (in raster format), as well as species' information
-    related to their description (e.g. taxonomy and year of description) and
-    conservation status (e.g. category of threat, population trend) as provided
-    by the IUCN's RedList database. The package includes functions to create
-    presence-absence matrices based on species distributions and user-defined
-    grid systems, from which several other functions could be applied to
-    generate, for example, species richness rasters and maps, and geographical
-    midpoints of species. In addition, it provides a function to create spatial
-    correlograms of variables, based on the Moran's I index, under the
-    equiprobable or equidistant criterion to define distance classes.
+Description: R functions for handling, processing, and analyzing geographic data on 
+    species' distributions and environmental variables as well as species' description
+    and conservation information.
 License: GPL-2
 Imports: 
     XML,
