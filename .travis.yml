@@ -1,10 +1,17 @@
 language: r
 
-sudo: false
-
 # Be strict when checking our package
 warnings_are_errors: true
 
 r_binary_packages:
  - testthat
  - rgdal
+
+r_packages:
+  - XML
+  - geosphere
+  - fields
+  - maptools
+  - sp
+  - maps
+  - raster
