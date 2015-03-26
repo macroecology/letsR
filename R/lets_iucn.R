@@ -172,6 +172,9 @@ lets.iucn <- function(input, count = FALSE) {
     } else {
       autori <- gsub("\\D", "", autori)
       autori <- as.numeric(substr(autori, 1, 4))
+      if (is.na(autori)) {
+        autori <- ""
+      }
     }
     
     # Countries
