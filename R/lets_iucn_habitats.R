@@ -35,12 +35,7 @@
 lets.iucn.ha <- function(input, count = FALSE) {
   #keep species name(s)
   
-  if (class(input) == "PresenceAbsence") {
-    input <- input$S
-  }
-  
-  input <- gsub(input, pattern = "_", replacement = " ")
-  sps <- input 
+  sps <- .getnames(input) 
   
   
   #Habitat names (and the name "Species" that will be used in the matrix columns names)

@@ -51,11 +51,7 @@
 
 lets.iucn.his <- function(input, count = FALSE) {  
   
-  if (class(input) == "PresenceAbsence") {
-    input <- input$S
-  }
-  
-  input <- gsub(input, pattern = "_", replacement = " ")
+  input <- .getnames(input)
   n <- length(input)
   
   # Automate date

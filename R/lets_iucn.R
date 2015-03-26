@@ -37,14 +37,7 @@
 
 lets.iucn <- function(input, count = FALSE) {
   
-  # Get species from a PAM
-  if (class(input) == "PresenceAbsence") {
-    input <- input$S
-  }
-  
-  # Accept species separeted by underline or space
-  input <- gsub(as.matrix(input), pattern = "_", 
-                replacement = " ")
+  input <- .getnames(input)
   
   # Matrices to save the result
   ln <- length(input)
