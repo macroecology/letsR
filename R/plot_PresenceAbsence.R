@@ -28,7 +28,8 @@
 #' 
 #' @S3method plot PresenceAbsence
 
-plot.PresenceAbsence <- function(x, name = NULL, world = TRUE, col_rich = NULL, ...){
+plot.PresenceAbsence <- function(x, name = NULL, world = TRUE,
+                                 col_rich = NULL, ...) {
   
   # Richness plot
   if (is.null(name)) {
@@ -50,7 +51,7 @@ plot.PresenceAbsence <- function(x, name = NULL, world = TRUE, col_rich = NULL, 
     values(x$Rich) <- v
     
     # Plot, add one and remove the first to not be white.
-    plot(x$Rich, col_rich = colfunc(c + 1)[-1], ...)  
+    plot(x$Rich, col = colfunc(c + 1)[-1], ...)  
   }
   
   # Individual plot
