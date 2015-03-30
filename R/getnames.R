@@ -16,9 +16,9 @@
   # Remove space from the beggining and end
   trim <- function(x) {gsub("^\\s+|\\s+$", "", x)}
   input <- as.vector(trim(input))
-  
+  count2 <- function(x){length(x) != 2}
   binomialerror <- sapply((strsplit(input, " ")),
-                          function(x){length(x) != 2})
+                          count2)
   sps <- which(binomialerror)
   sps_name <- paste("\t", input[sps], "\n")
   # Error in species name control
