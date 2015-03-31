@@ -155,7 +155,8 @@ lets.iucn <- function(input, count = FALSE) {
       criterioi <- criterioi
     }
     
-    if (class(pop)[1] == "try-error") {
+    # Sometimes the pop is an empty list.
+    if (class(pop)[1] == "try-error" | class(pop) == "list") {
       populacaoi <-  "Unknown"
     } else {
       populacaoi <- pop
