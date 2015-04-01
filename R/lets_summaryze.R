@@ -33,7 +33,7 @@
 #' @export
 
 
-lets.summarizer <- function(x, pos, xy = TRUE, fun = mean){
+lets.summarizer <- function(x, pos, xy = TRUE, fun = mean) {
   
   var <- x[, pos, drop = FALSE]
   sp <- x[, -pos, drop = FALSE]
@@ -44,12 +44,22 @@ lets.summarizer <- function(x, pos, xy = TRUE, fun = mean){
   
   Species <- colnames(sp)
   n <- length(Species)
-  resum <- matrix(NA, nrow = n, ncol = length(pos))
+  lpos <- length(pos)
+  resum <- matrix(NA, nrow = n, ncol = lpos)
   colnames(resum) <- colnames(var)
   
   for(i in 1:n) {
     vari <- var[(sp[, i] == 1), , drop = FALSE]
-    resum[i, ] <- apply(vari, 2, fun, na.rm = TRUE)    
+    is_all_na <- apply(a, 2, function(x) {all(is.na(x))})
+    if (nrow(vari) == 0 | all(is_all_na)) {
+      resum[i, ] <- rep(NA, lpos)
+    } else {
+      if (any(is_all_na)) {
+        resum[i, is_all_na] <- NA
+      }
+      resum[i, !is_all_na] <- apply(vari[, !is_all_na], 2, 
+                                    fun, na.rm = TRUE)
+    }
   }
   
   resul <- as.data.frame(cbind(Species, resum))

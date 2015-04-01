@@ -18,9 +18,7 @@
     
     # Subsecies control
     http <- "http://www.iucnredlist.org/details/summary/"
-    h1 <- try(htmlParse(paste(http, c, "/0", sep = "")),
-              silent = TRUE)
-    
+    h1 <- htmlParse(paste(http, c, "/0", sep = ""))
     links <- xpathSApply(h1, "//a/@href")
     links <- strsplit(links, "\n")
     parents <- xpathSApply(h1, "//a")
