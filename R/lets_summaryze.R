@@ -57,8 +57,8 @@ lets.summarizer <- function(x, pos, xy = TRUE, fun = mean) {
       if (any(is_all_na)) {
         resum[i, is_all_na] <- NA
       }
-      resum[i, !is_all_na] <- apply(vari[, !is_all_na], 2, 
-                                    fun, na.rm = TRUE)
+      resum[i, !is_all_na] <- apply(vari[, !is_all_na, drop = FALSE],
+                                    2, fun, na.rm = TRUE)
     }
   }
   
