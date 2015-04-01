@@ -50,7 +50,7 @@ lets.summarizer <- function(x, pos, xy = TRUE, fun = mean) {
   
   for(i in 1:n) {
     vari <- var[(sp[, i] == 1), , drop = FALSE]
-    is_all_na <- apply(a, 2, function(x) {all(is.na(x))})
+    is_all_na <- apply(vari, 2, function(x) {all(is.na(x))})
     if (nrow(vari) == 0 | all(is_all_na)) {
       resum[i, ] <- rep(NA, lpos)
     } else {
