@@ -189,7 +189,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
     Resultado <- .removeSp(Resultado)
   }
   
-  # Return result (depending on what the user want)
+  # Return result (depending on what the user wants)
   if (show.matrix) {
     return(Resultado)
   } else {
