@@ -20,7 +20,7 @@
 #' grid with a value of zero (i.e. sites with no species present).
 #' @param remove.sp Logical, if \code{TRUE} the final matrix will not contain species that 
 #' do not match any cell in the grid.
-#' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be shown.
+#' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be returned.
 #' @param crs Character representign the PROJ.4 type description of a Coordinate Reference System (map projection).
 #' @param cover Porcentage of the cell covered by the shapefile that will be considered for presence 
 #' (values between 0 and 1).
@@ -219,7 +219,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
                                     small = TRUE), 
                  silent=T)
   
-  # Handdle the akward error that can appear with weights and small = TRUE 
+  # Handle the awkward error that can appear with weights and small = TRUE 
   if (class(celulas) == "try-error") {
     celulas <- extract(ras, SpatialPolygons(list(shapepol)),
                        cellnumbers = TRUE)
@@ -242,7 +242,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
     celulas <- lapply(celulas, .rename)
   }
   
-  # Getting col positions
+  # Getting column positions
   pos <- which(nomes2[i] == nomes)
   
   # Getting row positions
