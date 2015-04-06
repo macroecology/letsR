@@ -22,7 +22,7 @@
 #' grid with a value of zero (i.e. sites with no species present).
 #' @param remove.sp Logical, if \code{TRUE} the final matrix will not contain species that do 
 #' not match any cell in the grid.
-#' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be shown.
+#' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be returned.
 #' @param crs Character representign the PROJ.4 type description of a Coordinate Reference 
 #' System (map projection).
 #' @param cover Porcentage of the cell covered by the shapefile that will be considered for 
@@ -192,7 +192,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   # Putting together species with more than one shapefile
   matriz <- .unicas(matriz)
   
-  # Return result (depending on what the user want)
+  # Return result (depending on what the user wants)
   if (show.matrix) {
     return(matriz)
   } else {
