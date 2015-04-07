@@ -4,9 +4,8 @@
 
 .getcode <- function(input) {
   
-  input <- gsub(as.matrix(input), pattern = " ",
-                replacement = "-")
-  binomialerror <- length(unlist(strsplit(input, "-"))) == 2
+  binomialerror <- length(unlist(strsplit(input, " "))) == 2
+  input <- gsub(as.matrix(input), pattern = " ", replacement = "-")
   
   h <- try(htmlParse(paste("http://api.iucnredlist.org/go/",
                            input, sep = "")),

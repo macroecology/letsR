@@ -83,7 +83,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
                               seasonal = NULL, count = FALSE) {
   
   # Shapefile list
-  shapes <- list.files(path, pattern = ".shp", 
+  shapes <- list.files(path, pattern = ".shp$", 
                        full.names = T, recursive = T)
   
   # Raster creation

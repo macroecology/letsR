@@ -43,13 +43,25 @@
 lets.correl <- function(x, y, z, equidistant = FALSE,
                         plot = TRUE) {
   
+  # Absent values in x (better error message)
+  if (any(is.na(x))) {
+    stop("Missing values in x argument")
+  }
   
   # Allow dist classes
   if (class(y) == "dist") {
     y <- as.matrix(y)
   }
   
-  if(is.vector(x)){
+  # Check if it has one
+  if (is.matrix(x)) {
+    if (ncol(x) == 1) {
+      x <- as.vector(x)
+    }
+  }
+  
+  
+  if (is.vector(x)) {
     return1 <- .br.correlogram(x, y, z, equidistant, plot)
     # Warning for removing some classes
     if (nrow(return1) < z) {
@@ -77,11 +89,11 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
                         "Count")
     
     if (plot) {
-      plotcorrel(plot1 = resu[, 4],
-                 plot2 = resu[, 1],
-                 plot3 = resu[, 2],
-                 plot4 = resu[, 3],
-                 z)
+      .plotcorrel(plot1 = resu[, 4],
+                  plot2 = resu[, 1],
+                  plot3 = resu[, 2],
+                  plot4 = resu[, 3],
+                  z)
     }
     
     if (nrow(resu) < z) {
@@ -165,11 +177,11 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
   
   if (plot) { 
     
-    plotcorrel(plot1 = resu[, 5],
-               plot2 = resu[, 1],
-               plot3 = resu[, 2],
-               plot4 = resu[, 3],
-               z)
+    .plotcorrel(plot1 = resu[, 5],
+                plot2 = resu[, 1],
+                plot3 = resu[, 2],
+                plot4 = resu[, 3],
+                z)
   }
   
   return(resu)
@@ -195,9 +207,12 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
     calc1 <- (n ^ 2 - 3 * n + 3) * S1 - n * S2 + 3 * s.sq
     calc2 <- n * (n - 1) * S1 - 2 * n * S2 + 6 * s.sq
     calc3 <- (n - 1) * (n - 2) * (n - 3) * s.sq
-    sdi <- sqrt((n * calc1 - k * calc2) / calc3 - 1/((n - 1) ^ 2))
+    sdi0 <- (n * calc1 - k * calc2) / calc3 - 1/((n - 1) ^ 2)
+    if (sdi0 < 0) {
+      sdi0 <- 0
+    }
+    sdi <- sqrt(sdi0)
     ci <- sdi * 1.96
-    
     pv <- pnorm(ob, mean = es, sd = sdi)
     if (ob <= es) {
       pv <- 2 * pv
@@ -217,17 +232,17 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
 
 ### Plot
 
-plotcorrel <- function(plot1, plot2, plot3, plot4, z) {
+.plotcorrel <- function(plot1, plot2, plot3, plot4, z) {
+  epsilon <- max(plot1) / (14 * z)
+  up <- plot2 + plot3
+  low <- plot2 - plot3  
   plot(x = plot1, y = plot2, bty = "l", 
        ylab = "Moran's I", xlab = "Distance",
        type = "l", lty = 3, 
-       ylim = c(-1.5, 1.5))
+       ylim = c(min(low) - 0.2, max(up) + 0.2))
   abline(h = mean(plot4))
   points(x = plot1, y = plot2,
          pch = 20, cex = 1.5)
-  epsilon <- max(plot1) / (14 * z)
-  up <- plot2 + plot3
-  low <- plot2 - plot3
   segments(plot1, low,
            plot1, up)
   segments(plot1 - epsilon, up,

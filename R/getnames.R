@@ -13,14 +13,25 @@
   input <- gsub(as.matrix(input), pattern = "_", 
                 replacement = " ")
   
+  # Remove double or more spaces
+  input <- gsub("\\s{2, }", " ", input)
+  
   # Remove space from the beggining and end
-  trim <- function(x) {gsub("^\\s+|\\s+$", "", x)}
+  trim <- function(x) { 
+    return(gsub("^\\s+|\\s+$", "", x))
+  }
+  
   input <- as.vector(trim(input))
-  count2 <- function(x){length(x) != 2}
-  binomialerror <- sapply((strsplit(input, " ")),
-                          count2)
+  
+  # Species with wrong names
+  count2 <- function(x) {
+    return(length(x) != 2)
+  }
+  
+  binomialerror <- sapply((strsplit(input, " ")), count2)
   sps <- which(binomialerror)
   sps_name <- paste("\t", input[sps], "\n")
+  
   # Error in species name control
   if (length(sps) > 0) {
     warning(paste("The following species do not follow a binomial nomeclature:\n",
