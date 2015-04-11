@@ -3,3 +3,4 @@
 .gitignore
 .git
 ^\.travis\.yml$
+.DS_Store
