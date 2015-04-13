@@ -28,7 +28,7 @@ lets.presab.points(xy, species, xmn = -180, xmx = 180, ymn = -90,
 
 \item{remove.sp}{Logical, if \code{TRUE} the final matrix will not contain species that do not match any cell in the grid.}
 
-\item{show.matrix}{Logical, if \code{TRUE} only the presence-absence matrix will be shown.}
+\item{show.matrix}{Logical, if \code{TRUE} only the presence-absence matrix will be returned.}
 
 \item{crs}{Character representign the PROJ.4 type description of a Coordinate Reference System (map projection).}
 

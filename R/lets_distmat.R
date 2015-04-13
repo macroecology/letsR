@@ -40,6 +40,9 @@ lets.distmat <- function(xy, asdist = TRUE, ...) {
     distan <- rdist.earth(xy, ...)
   }
   
+  # Assuring that the diagonal of the matrix is zero
+  diag(distan) <- 0
+  
   # Transform in a distance matrix
   if (asdist) {
     distan <- as.dist(distan)
