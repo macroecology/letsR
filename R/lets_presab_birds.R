@@ -9,7 +9,7 @@
 #'
 #' 
 #' @param path Path location of folders with one or more species' individual shapefiles. 
-#' Shapefiles with more than one species will not work on this function, for this see 
+#' Shapefiles with more than one species will not work on this function. To use multi-species shapefiles see 
 #' \code{\link{lets.presab}}.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based 
 #' (i.e. the [gridded] geographic domain of interest).
