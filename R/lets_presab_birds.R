@@ -142,7 +142,9 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       
       # Count window
       plot.new()
-      text(0.5, 0.5, paste(paste("Total:", n, "\n", "Polygons to go: ", (n - j))))
+      text(0.5, 0.5, paste(paste("Total:", n, "\n",
+                                 "Polygons to go: ",
+                                 (n - j))))
       
       # Getting species position in the matrix and set to 1
       par.re <- .extractpos.birds(valores,  shapes[j], 
