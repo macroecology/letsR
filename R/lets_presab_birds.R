@@ -8,7 +8,7 @@
 #' designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
 #'
 #' 
-#' @param path Path location of folders with one or more species' shapefiles.
+#' @param path Path location of folders with one or more species' individual shapefiles.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based 
 #' (i.e. the [gridded] geographic domain of interest).
 #' @param xmn Minimun longitude used to construct the grid in which the matrix will be based 
