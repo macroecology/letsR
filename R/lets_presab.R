@@ -158,7 +158,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
       plot.new()
       text(0.5, 0.5, paste(paste("Total:", n, "\n",
                                  "Polygons to go: ",
-                                 (n - j))))
+                                 (n - i))))
       
       # Getting species position in the matrix and set to 1
       pospos2 <- .extractpos(ras, shapes@polygons[[i]], nomes, nomes2,

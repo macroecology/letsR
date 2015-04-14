@@ -12,7 +12,7 @@ lets.presab.birds(path, xmn = -180, xmx = 180, ymn = -90, ymx = 90,
 }
 \arguments{
 \item{path}{Path location of folders with one or more species' individual shapefiles.
-Shapefiles with more than one species will not work on this function, for this see
+Shapefiles with more than one species will not work on this function. To use multi-species shapefiles see
 \code{\link{lets.presab}}.}
 
 \item{xmn}{Minimun longitude used to construct the grid in which the matrix will be based
