@@ -7,7 +7,7 @@
 #' @param shapes Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}} 
 #' to open these files) containing the distribution of one or more species.
 #' Species names should be in a column (within the .DBF table of the shapefile) 
-#' called BINOMIAL or binomial.
+#' called BINOMIAL/binomial or SCINAME/sciname.
 #' @param xmx Maximun longitude used to construct the grid in which the matrix will be based 
 #' (i.e. the [gridded] geographic domain of interest)
 #' @param xmn Minimun longitude used to construct the grid in which the matrix will be based 
@@ -134,7 +134,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
   
   # Getting species name 
   names(shapes) <- toupper(names(shapes))
-  nomes <- levels(shapes$BINOMIAL)
+  names(shapes)[names(shapes) %in% "SCINAME"] <- "BINOMIAL" 
   n <- length(shapes$BINOMIAL)
   nomes2 <- shapes$BINOMIAL
   nomes <- nomes[nomes %in% nomes2]

@@ -13,7 +13,7 @@ lets.presab(shapes, xmn = -180, xmx = 180, ymn = -90, ymx = 90,
 \item{shapes}{Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}}
 to open these files) containing the distribution of one or more species.
 Species names should be in a column (within the .DBF table of the shapefile)
-called BINOMIAL or binomial.}
+called BINOMIAL/binomial or SCINAME/sciname.}
 
 \item{xmn}{Minimun longitude used to construct the grid in which the matrix will be based
 (i.e. the [gridded] geographic domain of interest)}
