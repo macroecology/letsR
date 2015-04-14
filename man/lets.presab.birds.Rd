@@ -11,7 +11,9 @@ lets.presab.birds(path, xmn = -180, xmx = 180, ymn = -90, ymx = 90,
   origin = NULL, seasonal = NULL, count = FALSE)
 }
 \arguments{
-\item{path}{Path location of folders with one or more species' individual shapefiles.}
+\item{path}{Path location of folders with one or more species' individual shapefiles.
+Shapefiles with more than one species will not work on this function, for this see
+\code{\link{lets.presab}}.}
 
 \item{xmn}{Minimun longitude used to construct the grid in which the matrix will be based
 (i.e. the [gridded] geographic domain of interest).}
