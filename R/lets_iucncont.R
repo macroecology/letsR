@@ -28,7 +28,7 @@
 #' 
 #' #matrix transformation
 #' data(IUCN)
-#' transM <- lets.iucncont(iucn)
+#' transM <- lets.iucncont(IUCN)
 #' 
 #' }
 #' 
