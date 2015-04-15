@@ -17,7 +17,7 @@ lets.rangesize(x, species_name = x@data[, 1], coordinates = "geographic",
 has geographical or planar coordinates(only needed if x is a
 \code{SpatialPolygonsDataFrame}).}
 
-\item{units}{"cell" or "squaremeters". Indicate if the size units wanted are
+\item{units}{"cell" or "squaremeter". Indicate if the size units wanted are
 in number of cells occupied or in square meters(only needed if x is a
 \code{PresenceAbsence} object).}
 }
@@ -32,7 +32,7 @@ may differ for each argument combination:
 
 3) PresenceAbsence & cell = number of cells. No.
 
-4) PresenceAbsence & squaremeters = squaremeters. Yes.
+4) PresenceAbsence & squaremeter = squaremeter. Yes.
 }
 \description{
 This function calculates species' range sizes from a

@@ -9,15 +9,14 @@
 #' @param ne The value to be attributed to NE (not-evaluated) species, the default option is NA. 
 
 #' @return Returns a vector/matrix with continuos values from 0 to 5.
-#' 
-#' @details EX and EW = 5
-#' @details EN = 4
-#' @details CR = 3
-#' @details VU = 2
-#' @details NT = 1
-#' @details LC = 0
-#' @details DD = NA
-#' @details NE = NA
+#' @return EX and EW = 5 
+#' @return EN = 4
+#' @return CR = 3
+#' @return VU = 2
+#' @return NT = 1
+#' @return LC = 0
+#' @return DD = NA
+#' @return NE = NA 
 #' 
 #' @seealso \code{\link{lets.iucn}}
 #' 

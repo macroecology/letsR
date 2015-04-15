@@ -11,7 +11,7 @@
 #' @param coordinates "geographical" or "planar". Indicate wheter the shapefile
 #' has geographical or planar coordinates(only needed if x is a 
 #' \code{SpatialPolygonsDataFrame}). 
-#' @param units "cell" or "squaremeters". Indicate if the size units wanted are 
+#' @param units "cell" or "squaremeter". Indicate if the size units wanted are 
 #' in number of cells occupied or in square meters(only needed if x is a 
 #' \code{PresenceAbsence} object).
 #'
@@ -21,7 +21,7 @@
 #' @return 1) SpatialPolygonsDataFrame & geographical = Square meters. Yes.
 #' @return 2) SpatialPolygonsDataFrame & planar = same units as the coordinates. No.
 #' @return 3) PresenceAbsence & cell = number of cells. No.
-#' @return 4) PresenceAbsence & squaremeters = squaremeters. Yes.
+#' @return 4) PresenceAbsence & squaremeter = squaremeter. Yes.
 #' 
 #' @examples \dontrun{
 #' # SpatialPolygonsDataFrame & geographical

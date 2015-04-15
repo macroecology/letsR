@@ -15,12 +15,25 @@ lets.iucncont(x, dd = NA, ne = NA)
 }
 \value{
 Returns a vector/matrix with continuos values from 0 to 5.
+
+EX and EW = 5
+
+EN = 4
+
+CR = 3
+
+VU = 2
+
+NT = 1
+
+LC = 0
+
+DD = NA
+
+NE = NA
 }
 \description{
 Transform IUCN RedList conservation status to continuous values ranging from 0 to 5.
-}
-\details{
-EX and EW = 5
 }
 \examples{
 \dontrun{
