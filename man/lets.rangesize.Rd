@@ -32,7 +32,7 @@ may differ for each argument combination:
 
 3) PresenceAbsence & cell = number of cells. No.
 
-4) PresenceAbsence & squaremeter = squaremeter. Yes.
+4) PresenceAbsence & squaremeter = Square meters. Yes.
 }
 \description{
 This function calculates species' range sizes from a

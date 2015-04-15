@@ -14,6 +14,15 @@
 #' @seealso \code{\link{plot.PresenceAbsence}}
 #' @seealso \code{\link{lets.presab.birds}} 
 #' 
+#' @examples \dontrun{
+#' data(PAM)
+#' PAM.grid <- lets.gridirizer(PAM)
+#' names(PAM.grid)
+#' # Grid in polygon format (can be saved in shapefile)
+#' PAM.grid$Grid
+#' # Presence-absence matrix (beggining only)
+#' head(PAM.grid$Presence[, 1:5])
+#' }
 #' 
 #' @export
 

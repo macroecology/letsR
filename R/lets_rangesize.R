@@ -21,7 +21,7 @@
 #' @return 1) SpatialPolygonsDataFrame & geographical = Square meters. Yes.
 #' @return 2) SpatialPolygonsDataFrame & planar = same units as the coordinates. No.
 #' @return 3) PresenceAbsence & cell = number of cells. No.
-#' @return 4) PresenceAbsence & squaremeter = squaremeter. Yes.
+#' @return 4) PresenceAbsence & squaremeter = Square meters. Yes.
 #' 
 #' @examples \dontrun{
 #' # SpatialPolygonsDataFrame & geographical
