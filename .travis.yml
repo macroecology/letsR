@@ -17,3 +17,9 @@ r_packages:
   - sp
   - maps
   - raster
+ 
+r_github_packages:
+  - jimhester/covr
+
+after_success:
+  - Rscript -e 'library(covr);coveralls()'
