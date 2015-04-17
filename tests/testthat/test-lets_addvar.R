@@ -5,7 +5,7 @@ data(temp)
 tempstack <- stack(temp, temp)
 
 test_that("lets.addvar works fine", {
-  skip_on_cran()
+  
   
   PAM_temp_mean <- lets.addvar(PAM, temp)
   expect_true(class(PAM_temp_mean) == "matrix")
@@ -14,7 +14,7 @@ test_that("lets.addvar works fine", {
 })
 
 test_that("lets.addvar works fine, different fun", {
-  skip_on_cran()
+  
   
   PAM_temp_mean <- lets.addvar(PAM, temp, fun = sd)
   expect_true(class(PAM_temp_mean) == "matrix")
@@ -23,7 +23,7 @@ test_that("lets.addvar works fine, different fun", {
 })
 
 test_that("lets.addvar works fine, onlyvar = TRUE", {
-  skip_on_cran()
+  
   
   PAM_temp_mean <- lets.addvar(PAM, temp, onlyvar = TRUE)
   expect_true(class(PAM_temp_mean) == "matrix")
@@ -32,7 +32,7 @@ test_that("lets.addvar works fine, onlyvar = TRUE", {
 })
 
 test_that("lets.addvar works fine, multiple rasters", {
-  skip_on_cran()
+  
   
   PAM_temp_mean <- lets.addvar(PAM, tempstack)
   expect_true(class(PAM_temp_mean) == "matrix")

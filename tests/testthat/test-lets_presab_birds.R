@@ -4,7 +4,7 @@ context("Test for lets.presab.birds")
 path.Ramphastos <- system.file("extdata", package = "letsR")
 
 test_that("lets.presab.birds return a correct PresenceAbsence object", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                      resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
@@ -21,7 +21,7 @@ test_that("lets.presab.birds return a correct PresenceAbsence object", {
 
 
 test_that("lets.presab.birdsreturn a correct PresenceAbsence object for the world", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.birds(path.Ramphastos, resol=5, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
                     crs=CRS("+proj=longlat +datum=WGS84"), cover=0.2, presence=NULL,
@@ -38,7 +38,7 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object for the worl
 
 
 test_that("lets.presab.birdsreturn a correct PresenceAbsence object (count=TRUE)", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                     resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
@@ -54,7 +54,7 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object (count=TRUE)
 
 
 test_that("lets.presab.birdsreturn a correct PresenceAbsence object, cover=0.2", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                     resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
@@ -71,7 +71,7 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object, cover=0.2",
 
 
 test_that("lets.presab.birdsreturn a correct PresenceAbsence object, remove.sp=FALSE", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                     resol=1, remove.cells=TRUE, remove.sp=FALSE, show.matrix=FALSE,
@@ -90,7 +90,7 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object, remove.sp=F
 
 
 test_that("lets.presab.birdsreturn a correct PresenceAbsence object, remove.cells=FALSE", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                     resol=1, remove.cells=FALSE, remove.sp=TRUE, show.matrix=FALSE,

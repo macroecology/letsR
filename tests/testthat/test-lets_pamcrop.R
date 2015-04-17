@@ -6,7 +6,7 @@ Brazil <- wrld_simpl[wrld_simpl$NAME == "Brazil", ]  # Brazil (polygon)
 data(PAM)
 
 test_that("lets.pamcrop works fine, remove.sp = TRUE", {
-  skip_on_cran()
+  
   
   resu_test <- lets.pamcrop(PAM, Brazil, remove.sp = TRUE)
   
@@ -22,7 +22,7 @@ test_that("lets.pamcrop works fine, remove.sp = TRUE", {
 
 
 test_that("lets.pamcrop works fine, remove.sp = FALSE", {
-  skip_on_cran()
+  
   
   resu_test <- lets.pamcrop(PAM, Brazil, remove.sp = FALSE)
   

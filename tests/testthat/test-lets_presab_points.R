@@ -13,7 +13,7 @@ xy <- cbind(x, y)
 
 
 test_that("lets.presab.points return a correct PresenceAbsence object", {
-  skip_on_cran()
+  
 
   PAM <- lets.presab.points(xy, species, xmn = -93,
                             xmx = -29, ymn = -57, 
@@ -29,7 +29,7 @@ test_that("lets.presab.points return a correct PresenceAbsence object", {
 
 
 test_that("lets.presab.points return a correct PresenceAbsence object for the world", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.points(xy, species)
   
@@ -44,7 +44,7 @@ test_that("lets.presab.points return a correct PresenceAbsence object for the wo
 
 
 test_that("lets.presab.points return a correct PresenceAbsence object (count=TRUE)", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.points(xy, species, xmn = -93,
                             xmx = -29, ymn = -57, 
@@ -62,7 +62,7 @@ test_that("lets.presab.points return a correct PresenceAbsence object (count=TRU
 
 
 test_that("lets.presab.points return a correct PresenceAbsence object, remove.sp=FALSE", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.points(xy, species, xmn = -93,
                             xmx = -29, ymn = -57, 
@@ -80,7 +80,7 @@ test_that("lets.presab.points return a correct PresenceAbsence object, remove.sp
 
 
 test_that("lets.presab.points return a correct PresenceAbsence object, remove.cells=FALSE", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab.points(xy, species, xmn = -93,
                             xmx = -29, ymn = -57, 

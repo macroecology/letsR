@@ -6,7 +6,7 @@ pamvar <- lets.addvar(PAM, temp)
 
 
 test_that("lets.summarizer works fine", {
-  skip_on_cran()
+  
   
   resu_test <- lets.summarizer(x = pamvar, pos = ncol(pamvar), xy = TRUE)
 
@@ -17,7 +17,7 @@ test_that("lets.summarizer works fine", {
 
 
 test_that("lets.summarizer works fine, xy = FALSE", {
-  skip_on_cran()
+  
   
   resu_test <- lets.summarizer(x = pamvar[, -(1:2)], 
                                pos = ncol(pamvar[, -(1:2)]),
@@ -30,7 +30,7 @@ test_that("lets.summarizer works fine, xy = FALSE", {
 
 
 test_that("lets.summarizer works fine, other fun", {
-  skip_on_cran()
+  
   
   resu_test <- lets.summarizer(x = pamvar, pos = ncol(pamvar), 
                                xy = TRUE, fun = sd)

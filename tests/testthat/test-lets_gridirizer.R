@@ -2,7 +2,7 @@ context("Test for lets.gridirizer")
 data(PAM)
 
 test_that("lets.gridirizer works fine", {
-  skip_on_cran()
+  
   
   resu_test <- lets.gridirizer(PAM)
   

@@ -6,7 +6,7 @@ coords <- PAM[[1]][1:10, 1:2]
 
 
 test_that("lets.distmat works fine, asdist = TRUE", {
-  skip_on_cran()
+  
   
   distPAM <- lets.distmat(PAM)   
   expect_true(class(distPAM) == "dist")
@@ -16,7 +16,7 @@ test_that("lets.distmat works fine, asdist = TRUE", {
 
 
 test_that("lets.distmat works fine, asdist = FALSE", {
-  skip_on_cran()
+  
   
   distPAM <- lets.distmat(PAM, asdist = FALSE)   
   expect_true(class(distPAM) == "matrix")
@@ -26,7 +26,7 @@ test_that("lets.distmat works fine, asdist = FALSE", {
 
 
 test_that("lets.distmat works fine, miles = TRUE", {
-  skip_on_cran()
+  
   
   distPAM <- lets.distmat(PAM, miles = TRUE)   
   expect_true(class(distPAM) == "dist")
@@ -35,7 +35,7 @@ test_that("lets.distmat works fine, miles = TRUE", {
 })
 
 test_that("lets.distmat works fine, xy as matrix ", {
-  skip_on_cran()
+  
   
   distPAM <- lets.distmat(coords, miles = TRUE)   
   expect_true(class(distPAM) == "dist")

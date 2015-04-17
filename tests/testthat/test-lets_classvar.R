@@ -6,7 +6,7 @@ context("Test for lets.classvar")
  
 
 test_that("lets.addpoly lets.classvar fine", {
-  skip_on_cran()
+  
  
   resu_test <- lets.classvar(x = pamvar, pos = ncol(pamvar), xy = TRUE)
   
@@ -15,7 +15,7 @@ test_that("lets.addpoly lets.classvar fine", {
 })
 
 test_that("lets.addpoly lets.classvar fine, xy = FALSE", {
-  skip_on_cran()
+  
   
   resu_test <- lets.classvar(x = pamvar[, -(1:2)], 
                              pos = (ncol(pamvar) - 2), 
@@ -27,7 +27,7 @@ test_that("lets.addpoly lets.classvar fine, xy = FALSE", {
 
 
 test_that("lets.addpoly lets.classvar fine, set groups", {
-  skip_on_cran()
+  
   gr <- 15
   resu_test <- lets.classvar(x = pamvar, pos = ncol(pamvar), 
                              xy = TRUE, groups = gr)

@@ -3,7 +3,7 @@ context("Test for lets.midpoint")
 data(PAM)
 
 test_that("lets.midpoint works fine", {
-  skip_on_cran()
+  
   
   resu_test <- lets.midpoint(PAM)
   
@@ -13,7 +13,7 @@ test_that("lets.midpoint works fine", {
 })
 
 test_that("lets.midpoint works fine, planar = TRUE", {
-  skip_on_cran()
+  
   
   resu_test <- lets.midpoint(PAM, planar = TRUE)
   

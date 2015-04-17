@@ -3,7 +3,7 @@ context("Test for lets.presab")
 data(Phyllomedusa)
 
 test_that("lets.presab return a correct PresenceAbsence object", {
-  skip_on_cran()
+  
   PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
                      resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
                      crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
@@ -19,7 +19,7 @@ test_that("lets.presab return a correct PresenceAbsence object", {
 
 
 test_that("lets.presab return a correct PresenceAbsence object for the world", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab(Phyllomedusa, resol=5, remove.cells=TRUE,
                      remove.sp=TRUE, show.matrix=FALSE,
@@ -38,7 +38,7 @@ test_that("lets.presab return a correct PresenceAbsence object for the world", {
 
 
 test_that("lets.presab return a correct PresenceAbsence object (count=TRUE)", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
                      resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
@@ -55,7 +55,7 @@ test_that("lets.presab return a correct PresenceAbsence object (count=TRUE)", {
 
 
 test_that("lets.presab return a correct PresenceAbsence object, cover=0.2", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
                      resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
@@ -72,7 +72,7 @@ test_that("lets.presab return a correct PresenceAbsence object, cover=0.2", {
 
 
 test_that("lets.presab return a correct PresenceAbsence object, remove.sp=FALSE", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
                      resol=1, remove.cells=TRUE, remove.sp=FALSE, show.matrix=FALSE,
@@ -92,7 +92,7 @@ test_that("lets.presab return a correct PresenceAbsence object, remove.sp=FALSE"
 
 
 test_that("lets.presab return a correct PresenceAbsence object, remove.cells=FALSE", {
-  skip_on_cran()
+  
   
   PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
                      resol=1, remove.cells=FALSE, remove.sp=TRUE, show.matrix=FALSE,
