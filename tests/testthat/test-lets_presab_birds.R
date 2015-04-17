@@ -4,7 +4,6 @@ context("Test for lets.presab.birds")
 path.Ramphastos <- system.file("extdata", package = "letsR")
 
 test_that("lets.presab.birds return a correct PresenceAbsence object", {
-  skip_on_cran()
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                      resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
