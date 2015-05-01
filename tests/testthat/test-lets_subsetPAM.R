@@ -39,6 +39,7 @@ test_that("lets.subsetPAM error check", {
   expect_error(lets.subsetPAM(PAM[[1]], PAM[[3]][1:20]))
   expect_error(lets.subsetPAM(PAM, 1))
   expect_error(lets.subsetPAM(PAM[[1]], PAM[[3]][1:20]))
+  expect_error(lets.subsetPAM(PAM, PAM[[3]][1:20], 1))  
   expect_warning(lets.subsetPAM(PAM, c("Bruno", PAM[[3]][1:20])))
   
 })
