@@ -1,0 +1,15 @@
+citHeader("To cite letsR in publications use:")
+
+citEntry(entry = "Article",
+   title          = "letsR: a new R package for data handling and analysis in macroecology",
+   journal		    = "Methods in Ecology and Evolution",
+   author         = personList(person("Bruno Vilela"), person("Fabricio Villalobos")),
+   year           = "2015",
+   url            = "http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract",
+
+   textVersion  =
+   paste("Bruno Vilela and Fabricio Villalobos (2015).",
+        "letsR: a new R package for data handling and analysis in macroecology.",
+        "Methods in Ecology and Evolution. DOI: 10.1111/2041-210X.12401.")
+)
+
