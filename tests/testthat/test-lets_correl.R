@@ -50,3 +50,10 @@ test_that("lets.correl gives error", {
   y <- lets.distmat(PAM[[1]][1:N, 1:2])
   expect_error(lets.correl(x, y, z, plot))
 })
+
+
+test_that("lets.correl gives error", {
+  y <- as.matrix(y)
+  y[1, 1] <- NA
+  expect_error(lets.correl(x, y, z, plot))
+})

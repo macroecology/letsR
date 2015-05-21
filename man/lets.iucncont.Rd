@@ -18,9 +18,9 @@ Returns a vector/matrix with continuos values from 0 to 5.
 
 EX and EW = 5
 
-EN = 4
+CR = 4
 
-CR = 3
+EN = 3
 
 VU = 2
 

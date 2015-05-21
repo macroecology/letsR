@@ -53,6 +53,12 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
     y <- as.matrix(y)
   }
   
+  # Absent values in y (better error message)
+  if (any(is.na(y))) {
+    stop("Missing values in y argument")
+  }
+  
+  
   # Check if it has one
   if (is.matrix(x)) {
     if (ncol(x) == 1) {

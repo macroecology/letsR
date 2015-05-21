@@ -10,8 +10,8 @@
 
 #' @return Returns a vector/matrix with continuos values from 0 to 5.
 #' @return EX and EW = 5 
-#' @return EN = 4
-#' @return CR = 3
+#' @return CR = 4
+#' @return EN = 3
 #' @return VU = 2
 #' @return NT = 1
 #' @return LC = 0
@@ -50,8 +50,8 @@ lets.iucncont <- function (x, dd = NA, ne = NA) {
     }
   }
   x[(x == "EX" | x == "EW")] <- 5
-  x[x == "EN"] <- 4
-  x[x == "CR"] <- 3
+  x[x == "CR"] <- 4
+  x[x == "EN"] <- 3
   x[x == "VU"] <- 2
   x[x == "NT"] <- 1
   x[x == "LC"] <- 0
