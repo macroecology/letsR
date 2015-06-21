@@ -26,9 +26,14 @@
 #' not match any cell in the grid.
 #' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be returned.
 #' @param crs Character representign the PROJ.4 type description of a Coordinate Reference 
-#' System (map projection).
+#' System (map projection) of the original polygons.
+#' @param crs.grid Character representign the PROJ.4 type description of
+#' a Coordinate Reference System (map projection) for the grid. 
+#' Note that when you change this options you may probably change 
+#' the extent coordinates and the resolution.
 #' @param cover Porcentage of the cell covered by the shapefile that will be considered for 
-#' presence (values between 0 and 1).
+#' presence (values between 0 and 1). This option is only available when the coordinates 
+#' are in degrees (longitude/latitude).
 #' @param presence A vector with the code numbers for the presence type to be considered 
 #' in the process (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data},
 #' see metadata). 
@@ -81,8 +86,8 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
                               ymx = 90, resol = 1, remove.cells = TRUE,
                               remove.sp = TRUE, show.matrix = FALSE, 
                               crs = CRS("+proj=longlat +datum=WGS84"),
-                              cover = 0, presence = NULL, origin = NULL, 
-                              seasonal = NULL, count = FALSE) {
+                              crs.grid = crs, cover = 0, presence = NULL,
+                              origin = NULL, seasonal = NULL, count = FALSE) {
   
   # Shapefile list
   shapes <- list.files(path, pattern = ".shp$", 
@@ -93,7 +98,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
               xmx = xmx,
               ymn = ymn,
               ymx = ymx,
-              crs = crs)
+              crs = crs.grid)
   res(r) <- resol
   values(r) <- 0
   
@@ -150,7 +155,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       par.re <- .extractpos.birds(valores,  shapes[j], 
                                   k, r, areashape, areagrid,
                                   cover, presence, origin, 
-                                  seasonal, crs)
+                                  seasonal, crs, crs.grid)
       
       matriz[, (j + 2)] <- par.re[[1]]
       nomes[j] <- par.re[[2]]
@@ -168,7 +173,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       par.re <- .extractpos.birds(valores,  shapes[j], 
                                   k, r, areashape, areagrid,
                                   cover, presence, origin, 
-                                  seasonal, crs)      
+                                  seasonal, crs, crs.grid)      
       matriz[, (j + 2)] <- par.re[[1]]
       nomes[j] <- par.re[[2]]
       k <- par.re[[3]]
@@ -218,7 +223,8 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
 
 .extractpos.birds <- function(valores, shapej, k, r,
                               areashape, areagrid, cover,
-                              presence, origin, seasonal, crs) {
+                              presence, origin, seasonal, crs,
+                              crs.grid) {
   
   # Vector to be filled
   valores2 <- valores
@@ -226,6 +232,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   # Read species shapefile, get its name and filter it
   shp <- readShapePoly(shapej, delete_null_obj = TRUE,
                        force_ring = TRUE, proj4string = crs)
+  shp <- spTransform(shp, crs.grid)
   nomesj <- levels(shp$SCINAME)[1]
   shp <- lets.shFilter(shp, 
                        presence = presence,

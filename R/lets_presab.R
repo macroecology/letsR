@@ -22,9 +22,15 @@
 #' @param remove.sp Logical, if \code{TRUE} the final matrix will not contain species that 
 #' do not match any cell in the grid.
 #' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be returned.
-#' @param crs Character representign the PROJ.4 type description of a Coordinate Reference System (map projection).
+#' @param crs Character representign the PROJ.4 type description of
+#' a Coordinate Reference System (map projection) of the polygons.
+#' @param crs.grid Character representign the PROJ.4 type description of
+#' a Coordinate Reference System (map projection) for the grid. 
+#' Note that when you change this options you may probably change 
+#' the extent coordinates and the resolution.
 #' @param cover Porcentage of the cell covered by the shapefile that will be considered for presence 
-#' (values between 0 and 1).
+#' (values between 0 and 1). This option is only available when the coordinates 
+#' are in degrees (longitude/latitude).
 #' @param presence A vector with the code numbers for the presence type to be considered in the process 
 #' (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata). 
 #' @param origin A vector with the code numbers for the origin type to be considered in the process 
@@ -83,12 +89,14 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
                         ymx = 90, resol = 1, remove.cells = TRUE, 
                         remove.sp = TRUE, show.matrix = FALSE, 
                         crs = CRS("+proj=longlat +datum=WGS84"),
-                        cover = 0, presence = NULL, origin = NULL, 
-                        seasonal = NULL, count = FALSE) {
+                        crs.grid = crs, cover = 0, presence = NULL,
+                        origin = NULL, seasonal = NULL, count = FALSE) {
   
-  # Projection set for spatial polygosn
-  projection(shapes) <- crs
-  
+  # Projection set for spatial polygons
+  proj4string(shapes) <- crs
+  if (as.character(crs) != as.character(crs.grid)) {
+    shapes <- spTransform(shapes, crs.grid)
+  }
   # Filter the species range distribution
   if (!all(is.null(presence), is.null(origin), is.null(seasonal))) {
     shapes <- lets.shFilter(shapes = shapes, 
@@ -107,7 +115,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
                 xmx = xmx,
                 ymn = ymn,
                 ymx = ymx,
-                crs = crs)
+                crs = crs.grid)
   res(ras) <- resol
   values(ras) <- 1
   

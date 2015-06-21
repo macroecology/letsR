@@ -18,6 +18,7 @@ test_that("lets.presab return a correct PresenceAbsence object", {
 })
 
 
+
 test_that("lets.presab return a correct PresenceAbsence object for the world", {
   skip_on_cran()
   
@@ -107,5 +108,21 @@ test_that("lets.presab return a correct PresenceAbsence object, remove.cells=FAL
     
   response <- summary(PAM)
   expect_true(response$Cellswithoutanypresence > 0)
+  
+})
+
+
+
+test_that("lets.presab new projection grid", {
+  skip_on_cran()
+  PAM2 <- lets.presab(Phyllomedusa, xmn = -3500000, xmx = 20000000,
+                      ymn = -9000000, ymx = 0, 
+                      crs.grid =  CRS("+init=epsg:26978"),
+                      res = 100000, count = TRUE)
+  
+  expect_equal(class(PAM), "PresenceAbsence")
+  expect_equal(class(PAM[[1]]), "matrix")
+  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_equal(class(PAM[[3]]), "character")  
   
 })
