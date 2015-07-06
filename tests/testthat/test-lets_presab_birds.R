@@ -108,6 +108,7 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object, remove.cell
 
 
 test_that("lets.presab.birds new projection", {
+  skip_on_cran()
   desiredcrs <- CRS("+proj=laea +lat_0=0 +lon_0=-80 +x_0=180 +y_0=70 +units=km") 
   PAM <- lets.presab.birds(path.Ramphastos, xmn = -3000,
                            xmx = 6000, ymn = -5000, 
