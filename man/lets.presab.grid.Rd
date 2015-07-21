@@ -45,8 +45,7 @@ This function is an alternative way to create a presence absence matrix when use
 already have their own grid.
 }
 \examples{
-\dontrun {
-
+\dontrun{
 # Grid
 sp.r <- rasterToPolygons(raster(resol = 5))
 slot(sp.r, "data") <- cbind("ID" = 1:length(sp.r),
@@ -66,7 +65,6 @@ colors <- c("white", colfunc(max(rich_plus1)))
 plot(resu$grid, border = "gray40",
      col = colors[rich_plus1])
 map(add = TRUE)
-
 }
 }
 \author{

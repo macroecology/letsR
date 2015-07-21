@@ -34,8 +34,7 @@
 #' @seealso \code{\link{lets.presab.birds}}
 #' @seealso \code{\link{lets.shFilter}} 
 #' 
-#' @examples \dontrun {
-#' 
+#' @examples \dontrun{
 #' # Grid 
 #' sp.r <- rasterToPolygons(raster(resol = 5))
 #' slot(sp.r, "data") <- cbind("ID" = 1:length(sp.r),
@@ -55,7 +54,6 @@
 #' plot(resu$grid, border = "gray40",
 #'      col = colors[rich_plus1])
 #' map(add = TRUE)
-#' 
 #' }
 #' 
 #' 
