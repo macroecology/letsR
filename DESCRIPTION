@@ -15,7 +15,8 @@ Imports:
     fields,
     maptools,
     sp,
-    rgdal
+    rgdal,
+    rgeos
 Depends: 
     R (>= 2.10),
     raster,
