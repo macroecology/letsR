@@ -20,7 +20,7 @@
       }
     }
     pos <- duplicated(nomes)
-    resu <- resu[, !pos]
+    resu <- resu[, !pos, drop = FALSE]
     if (is.vector(resu)) {
       nomes <- names(resu)
       resu <- matrix(resu, ncol = length(resu))
