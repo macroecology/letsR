@@ -1,6 +1,6 @@
-[![Travis-CI Build Status](https://travis-ci.org/BrunoVilela/letsR.png?branch=master)](https://travis-ci.org/BrunoVilela/letsR)
+﻿[![Travis-CI Build Status](https://travis-ci.org/BrunoVilela/letsR.png?branch=master)](https://travis-ci.org/BrunoVilela/letsR)
 [![Coverage Status](https://coveralls.io/repos/BrunoVilela/letsR/badge.svg)](https://coveralls.io/r/BrunoVilela/letsR)
-
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/letsR)](http://cran.r-project.org/package=letsR)
 letsR
 =====
 
