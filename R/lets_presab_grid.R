@@ -69,13 +69,24 @@ lets.presab.grid <- function(shapes,
                              origin = NULL, 
                              seasonal = NULL) {
   
-  # Check projection
-  if (projection(shapes) != projection(grid)) {
-    stop("The shapes object and the grid 
+  proj1 <- is.null(projection(shapes)) 
+  proj2 <- is.null(projection(grid))
+  
+  if (!(proj1 | proj2)) {
+    
+    # Check projection
+    if (projection(shapes) != projection(grid)) {
+      stop("The shapes object and the grid 
          should be in the same projection")
+    }
+    
+  } else {
+    
+    if (!(proj1 & proj2)) {
+      stop("The shapes object and the grid 
+         should be in the same projection")
+    }
   }
-  
-  
   # Filter the species range distribution
   if (!all(is.null(presence), is.null(origin), is.null(seasonal))) {
     shapes <- lets.shFilter(shapes = shapes, 
