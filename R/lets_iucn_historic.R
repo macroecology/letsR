@@ -144,6 +144,7 @@ lets.iucn.his <- function(input, count = FALSE) {
         c <- c[!dupc, , drop = FALSE]
       }
       ano <- substr(gsub("\\D", "", c), 1, 4)
+      ano <- ano[ano != "", , drop = FALSE]
       
       if (length(ano) >= 1) {
         d <- gsub("[0-9]", "", c)

@@ -69,8 +69,8 @@ lets.presab.grid <- function(shapes,
                              origin = NULL, 
                              seasonal = NULL) {
   
-  proj1 <- is.null(projection(shapes)) 
-  proj2 <- is.null(projection(grid))
+  proj1 <- is.null(projection(shapes)) | is.na(projection(shapes))
+  proj2 <- is.null(projection(grid)) | is.na(projection(grid))
   
   if (!(proj1 | proj2)) {
     
