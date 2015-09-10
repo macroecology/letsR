@@ -12,7 +12,7 @@
 #' @param grid Object of class shapefile representing the spatial grid (e.g. regular/irregular cells, 
 #' political divisions, hexagonal grids, etc). 
 #' The grid and the shapefiles must be in the same projection.
-#' @param sample.unit Object of class \code{character} with the name of the column 
+#' @param sample.unit Object of class \code{character} with the name of the column (in the grid) 
 #' representing the sample units of the presence absence matrix.
 #' @param presence A vector with the code numbers for the presence type to be considered in the process 
 #' (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata). 
@@ -69,6 +69,19 @@ lets.presab.grid <- function(shapes,
                              origin = NULL, 
                              seasonal = NULL) {
   
+  if (is.null(sample.unit)) {
+   stop("Object sample.unit not defined, without a default") 
+  }
+  if (is.null(shapes)) {
+    stop("Object shapes not defined, without a default") 
+  }
+  if (is.null(grid)) {
+    stop("Object grid not defined, without a default") 
+  }
+  if (!any(sample.unit %in% names(grid@data))) {
+    stop("sample.unit name not found in the grid object")
+  }
+  
   proj1 <- is.null(projection(shapes)) | is.na(projection(shapes))
   proj2 <- is.null(projection(grid)) | is.na(projection(grid))
   
@@ -102,10 +115,13 @@ lets.presab.grid <- function(shapes,
   }
   
   # Cover
-  gover <- gOverlaps(shapes, grid, byid = TRUE)*1
-  colnames(gover) <- shapes@data$binomial
-  gcontains <- gContains(shapes, grid, byid = TRUE)*1
-  colnames(gcontains) <- shapes@data$binomial
+  names(shapes) <- toupper(names(shapes))
+  names(shapes)[names(shapes) %in% "SCINAME"] <- "BINOMIAL" 
+  
+  gover <- gOverlaps(shapes, grid, byid = TRUE) * 1
+  colnames(gover) <- shapes@data$BINOMIAL
+  gcontains <- gContains(shapes, grid, byid = TRUE) * 1
+  colnames(gcontains) <- shapes@data$BINOMIAL
   
   # Sum
   pam.par <- ifelse(gover + gcontains > 0 , 1, 0)

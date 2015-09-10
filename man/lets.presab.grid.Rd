@@ -18,7 +18,7 @@ called BINOMIAL/binomial or SCINAME/sciname.}
 political divisions, hexagonal grids, etc).
 The grid and the shapefiles must be in the same projection.}
 
-\item{sample.unit}{Object of class \code{character} with the name of the column
+\item{sample.unit}{Object of class \code{character} with the name of the column (in the grid)
 representing the sample units of the presence absence matrix.}
 
 \item{presence}{A vector with the code numbers for the presence type to be considered in the process
