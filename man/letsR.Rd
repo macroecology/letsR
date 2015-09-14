@@ -38,8 +38,8 @@ of letsR on github (\url{http://www.github.com/macroecology/letsR}).
 \tabular{ll}{
 Package: \tab lestR\cr
 Type: \tab Package\cr
-Version: \tab 2.1\cr
-Date: \tab 2015-03-25\cr
+Version: \tab 2.2\cr
+Date: \tab 2015-09-14\cr
 License: \tab GPL-2\cr
 }
 }
@@ -51,6 +51,9 @@ Website: \url{http://bvilela.weebly.com/})
 \strong{Fabricio Villalobos}\cr
 (email: \email{fabricio.villalobos@gmail.com};
 Website: \url{https://sites.google.com/site/fabriciovillalobos/})
+}
+\references{
+Vilela, B., & Villalobos, F. (2015). letsR: a new R package for data handling and analysis in macroecology. Methods in Ecology and Evolution.
 }
 \keyword{package}
 

@@ -30,7 +30,6 @@
 #' @aliases letsR-package
 #' @docType package
 #' @title Tools for Data Handling and Analysis in  Macroecology.
-#' 
 #' @author \strong{Bruno Vilela}\cr
 #' (email: \email{brunovilelasilva@@hotmal.com}; 
 #' Website: \url{http://bvilela.weebly.com/})
@@ -43,10 +42,12 @@
 #' @details \tabular{ll}{
 #' Package: \tab lestR\cr
 #' Type: \tab Package\cr
-#' Version: \tab 2.1\cr
-#' Date: \tab 2015-03-25\cr
+#' Version: \tab 2.2\cr
+#' Date: \tab 2015-09-14\cr
 #' License: \tab GPL-2\cr
 #' }
+#' 
+#' @references Vilela, B., & Villalobos, F. (2015). letsR: a new R package for data handling and analysis in macroecology. Methods in Ecology and Evolution.
 #' 
 #' @import raster geosphere XML maptools maps sp rgdal fields
 #' @importFrom grDevices colorRampPalette dev.new dev.off
