@@ -26,7 +26,8 @@
 #'If you are looking for the most recent version of the package, you can get the development version
 #'of letsR on github (\url{http://www.github.com/macroecology/letsR}).
 #'
-#' @name letsR
+#' @name letsR-package
+#' @aliases letsR
 #' @aliases letsR-package
 #' @docType package
 #' @title Tools for Data Handling and Analysis in  Macroecology.
