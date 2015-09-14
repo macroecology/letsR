@@ -12,6 +12,8 @@
 #' @param grid Object of class shapefile representing the spatial grid (e.g. regular/irregular cells, 
 #' political divisions, hexagonal grids, etc). 
 #' The grid and the shapefiles must be in the same projection.
+#' @param remove.sp Logical, if \code{TRUE} the final matrix will not contain species that 
+#' do not match any cell in the grid.
 #' @param sample.unit Object of class \code{character} with the name of the column (in the grid) 
 #' representing the sample units of the presence absence matrix.
 #' @param presence A vector with the code numbers for the presence type to be considered in the process 
@@ -65,6 +67,7 @@
 lets.presab.grid <- function(shapes, 
                              grid,
                              sample.unit,
+                             remove.sp = TRUE,
                              presence = NULL,
                              origin = NULL, 
                              seasonal = NULL) {
@@ -131,6 +134,11 @@ lets.presab.grid <- function(shapes,
   
   # Final table names
   rownames(result) <- grid@data[, sample.unit]
+  
+  # Remove.sp
+  if (remove.sp) {
+  result <- result[, colSums(result) != 0, drop = FALSE] 
+  }
   
   # Return row and column position
   return (list("PAM" = result, "grid" = grid))

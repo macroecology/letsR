@@ -5,8 +5,8 @@
 \title{Create a presence-absence matrix of species' geographic ranges
 within a user's grid shapefile (beta version)}
 \usage{
-lets.presab.grid(shapes, grid, sample.unit, presence = NULL, origin = NULL,
-  seasonal = NULL)
+lets.presab.grid(shapes, grid, sample.unit, remove.sp = TRUE,
+  presence = NULL, origin = NULL, seasonal = NULL)
 }
 \arguments{
 \item{shapes}{Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}}
@@ -20,6 +20,9 @@ The grid and the shapefiles must be in the same projection.}
 
 \item{sample.unit}{Object of class \code{character} with the name of the column (in the grid)
 representing the sample units of the presence absence matrix.}
+
+\item{remove.sp}{Logical, if \code{TRUE} the final matrix will not contain species that
+do not match any cell in the grid.}
 
 \item{presence}{A vector with the code numbers for the presence type to be considered in the process
 (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata).}

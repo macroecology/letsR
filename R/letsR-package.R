@@ -49,4 +49,9 @@
 #' }
 #' 
 #' @import raster geosphere XML maptools maps sp rgdal fields
+#' @importFrom grDevices colorRampPalette dev.new dev.off
+#' @importFrom graphics abline par plot.new points segments
+#' @importFrom methods slot
+#' @importFrom stats as.dist na.omit pnorm sd
+#' @importFrom utils capture.output
 NULL

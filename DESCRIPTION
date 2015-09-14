@@ -1,7 +1,7 @@
 Package: letsR
 Type: Package
 Title: Tools for Data Handling and Analysis in Macroecology
-Version: 2.1
+Version: 2.2
 Date: 2015-04-15
 Author: Bruno Vilela & Fabricio Villalobos
 Maintainer: Bruno Vilela <brunovilelasilva@hotmail.com>
@@ -16,7 +16,8 @@ Imports:
     maptools,
     sp,
     rgdal,
-    rgeos
+    rgeos,
+    methods
 Depends: 
     R (>= 2.10),
     raster,
