@@ -75,7 +75,10 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
   name <- paste("Variable", as.character(substitute(func)),
                 sep = "_")
   colnames(resultado)[3] <- name 
-  resultado[resultado == 0.00000000000000000000000000000000000001] <- 0
+  
+  # Back to zero
+  resultado[resultado <= 0.0000000000000000000000000000000000001] <- 0
+  
   # Return result with or without the raster
   if (ras) {
     r <- rasterize(resu2[, 1:2], x[[2]], resu2[, 3])
