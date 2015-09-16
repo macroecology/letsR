@@ -89,19 +89,3 @@ test_that("Count does not change results in iucn", {
   expect_equal(x1, x2)
 
 })
-
-
-test_that("Long family name doesn't cause mistakes in iucn.", {
-  x <- "Dendroceros japonicus"
-  y <- lets.iucn(x)
-  
-  # Get raw family name
-  h <- try(htmlParse(paste("http://api.iucnredlist.org/go/",
-                           "Dendroceros-japonicus", sep = "")),
-           silent=TRUE)
-  f <- try(xpathSApply(h, '//div[@id="family"]', xmlValue), silent=TRUE)
-
-  expect_equal(as.character(y$Family), f)
-
-})
-

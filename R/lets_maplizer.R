@@ -9,7 +9,7 @@
 #' @param y Species attribute to be considered. It must be a numeric attribute.
 #' @param z Species names in the same order as the attributes and exactly the 
 #' same as named in the \code{PresenceAbsence} object.
-#' @param func A function to summarize the species' atribute in each cell.
+#' @param func A function to summarize the species' atribute in each cell (the function must return only one value).
 #' @param ras If \code{TRUE} the raster object will be returned 
 #' together with the matrix.
 #' 
@@ -43,6 +43,9 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
     y <- as.numeric(levels(y))[y]
   }
   
+  # To avoid being transformed in NA
+  y[y == 0] <- 0.00000000000000000000000000000000000001
+  
   # Get the matrix without coordinates
   p <- x[[1]][, -(1:2)]
   
@@ -57,7 +60,12 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
     }
   }
   
-  resum <- apply(p, 1, func, na.rm=T)
+  func2 <- function(x) {
+    pos <- is.na(x) 
+    resu <- func(x[!pos])
+  }
+  
+  resum <- apply(p, 1, func2)
   
   # Matrix of result 
   resultado <- cbind(x[[1]][, 1:2], resum)
