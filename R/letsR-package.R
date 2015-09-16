@@ -43,8 +43,8 @@
 #' @details \tabular{ll}{
 #' Package: \tab lestR\cr
 #' Type: \tab Package\cr
-#' Version: \tab 2.2\cr
-#' Date: \tab 2015-09-14\cr
+#' Version: \tab 2.3\cr
+#' Date: \tab 2015-09-16\cr
 #' License: \tab GPL-2\cr
 #' }
 #' 

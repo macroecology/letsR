@@ -22,7 +22,7 @@ test_that("lets.iucn works fine, one species, count = TRUE", {
 
 
 test_that("lets.iucn works fine, multiple species", {
-  
+  skip_on_cran()
   testiucn <- lets.iucn(sp)
   expect_equal(class(testiucn), "data.frame")
   testiucn2 <- lets.iucn(sp, count = TRUE)
