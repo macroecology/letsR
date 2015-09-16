@@ -15,7 +15,7 @@ lets.maplizer(x, y, z, func = mean, ras = FALSE)
 \item{z}{Species names in the same order as the attributes and exactly the
 same as named in the \code{PresenceAbsence} object.}
 
-\item{func}{A function to summarize the species' atribute in each cell.}
+\item{func}{A function to summarize the species' atribute in each cell (the function must return only one value).}
 
 \item{ras}{If \code{TRUE} the raster object will be returned
 together with the matrix.}
