@@ -27,11 +27,12 @@
       do.call(paste, as.list(capture.output(x)))
     }
     parents2 <- sapply(parents, tocharacter)
-    menos <- length(parents2) - length(links)
+    #menos <- length(parents2) - length(links)
     
     posParent <- grep("_parent", parents2)
     if (length(posParent) == 1) {
-      cpar <- gsub("\\D", "", (links[posParent - menos]))
+      #cpar <- gsub("\\D", "", (links[posParent - menos]))
+      cpar <- gsub("\\D", "", (parents2[posParent]))
       c <- as.numeric(substr(cpar, 1, nchar(cpar) - 1))
     }
     ################################################
