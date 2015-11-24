@@ -5,7 +5,7 @@ sp <- c("Musonycteris harrisoni", "Ailuropoda melanoleuca",
 
 
 test_that("lets.iucn.ha works fine, one species", {
-  
+  skip_on_cran()
   testiucn <- lets.iucn.ha("Panthera tigris")
   expect_equal(class(testiucn), "data.frame")
   testiucn2 <- lets.iucn.ha("Panthera onca")
@@ -13,7 +13,7 @@ test_that("lets.iucn.ha works fine, one species", {
 })
 
 test_that("lets.iucn.ha works fine, one species, count = TRUE", {
-  
+  skip_on_cran()
   testiucn <- lets.iucn.ha("Panthera tigris", count = TRUE)
   expect_equal(class(testiucn), "data.frame")
   testiucn2 <- lets.iucn.ha("Panthera onca", count = TRUE)
@@ -22,7 +22,7 @@ test_that("lets.iucn.ha works fine, one species, count = TRUE", {
 
 
 test_that("lets.iucn.ha works fine, multiple species", {
-  
+  skip_on_cran()
   testiucn <- lets.iucn.ha(sp)
   expect_equal(class(testiucn), "data.frame")
   testiucn2 <- lets.iucn.ha(sp, count = TRUE)

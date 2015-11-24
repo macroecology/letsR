@@ -80,7 +80,7 @@ test_that("Other parameters work", {
 
 
 test_that("Count does not change results in iucn", {
-
+  skip_on_cran()
   spp <- c("Milvus milvus", "Buteo buteo")
   
   x1 <- lets.iucn(spp, count = TRUE)
