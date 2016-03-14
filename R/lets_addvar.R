@@ -50,12 +50,22 @@ lets.addvar <- function(x, y, onlyvar = FALSE, fun = mean) {
   res1 <- res(var_c)[1]
   res2 <- res(x[[2]])[1]
   if (res2 > res1) {
-    var_a <- aggregate(var_c, fact = res2 / res1,
-                       na.rm = TRUE, fun)
+    fact1 <- res2 / res1
+    if(is.integer(fact1)) {
+      var_a <- aggregate(var_c, fact = fact1,
+                         na.rm = TRUE, fun)
+    } else {
+      var_a <- var_c
+    }
   }
   if (res2 < res1) {
-    var_a <- disaggregate(var_c, fact = res1 / res2,
-                          na.rm = TRUE)
+    fact1 <- res1 / res2
+    if(is.integer(fact1)) {
+      var_a <- disaggregate(var_c, fact = fact1,
+                            na.rm = TRUE)
+    } else {
+      var_a <- var_c
+    }
   }
   if (res2 == res1) {
     var_a <- var_c
