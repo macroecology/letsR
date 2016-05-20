@@ -240,7 +240,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
                        seasonal = seasonal)
   
   # Just run if after filtering the species has any polygon
-  if (nrow(shp) != 0) {  
+  if (nrow(shp) != 0 & !is.null(shp)) {  
     k <- k + 1 # for later error control (see below)
     
     #  Extract cell occurrence positions
