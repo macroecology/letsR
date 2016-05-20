@@ -38,8 +38,8 @@ of letsR on github (\url{http://www.github.com/macroecology/letsR}).
 \tabular{ll}{
 Package: \tab lestR\cr
 Type: \tab Package\cr
-Version: \tab 2.4\cr
-Date: \tab 2015-11-23\cr
+Version: \tab 2.5\cr
+Date: \tab 2015-05-20\cr
 License: \tab GPL-2\cr
 }
 }

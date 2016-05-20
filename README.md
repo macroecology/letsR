@@ -1,4 +1,4 @@
-﻿[![Travis-CI Build Status](https://travis-ci.org/BrunoVilela/letsR.png?branch=master)](https://travis-ci.org/BrunoVilela/letsR)
+[![Travis-CI Build Status](https://travis-ci.org/BrunoVilela/letsR.png?branch=master)](https://travis-ci.org/BrunoVilela/letsR)
 [![Coverage Status](https://coveralls.io/repos/BrunoVilela/letsR/badge.svg)](https://coveralls.io/r/BrunoVilela/letsR)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/letsR)](http://cran.r-project.org/package=letsR)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/letsR)](https://github.com/metacran/cranlogs.app)
@@ -6,7 +6,6 @@
 [![Research software impact](http://depsy.org/api/package/cran/letsR/badge.svg)](http://depsy.org/package/r/letsR)
 
 =====
-
 ## Package letsR
 
 The letsR package is being developed to help researchers in the handling, processing, and analysis of macroecological data. Its purpose is to integrate these methodological processes into a single software platform for macroecological analyses. The package's main functions allow users to build presence-absence matrices, the basic analytical tool in macroecology, from species' geographical distributions and merge them with species' traits, conservation information(downloadable using functions from this package) and spatial environmental layers. In addition, other package's functions enable users to summarize and visualize information from presence-absence matrices.
@@ -25,6 +24,9 @@ Another set of functions in this package allow the user to download species' inf
 The letsR package is in continuous development and suggestions are more than welcome!
 
 We hope you enjoy it and find it useful.
+
+## Package publication
+http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract
 
 ====
 ## Install
