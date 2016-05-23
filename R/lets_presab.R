@@ -106,7 +106,11 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
   }
   
   # Error control for no shapes after filtering
-  if (nrow(shapes) == 0 | is.null(shapes)) {
+  if (is.null(shapes)) {
+    stop("After filtering no species distributions left")
+  }
+  
+  if (nrow(shapes) == 0) {
     stop("After filtering no species distributions left")
   }
   

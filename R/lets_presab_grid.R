@@ -113,7 +113,12 @@ lets.presab.grid <- function(shapes,
   
   
   # Error control for no shapes after filtering
-  if (nrow(shapes) == 0 | is.null(shapes)) {
+  # Error control for no shapes after filtering
+  if (is.null(shapes)) {
+    stop("After filtering no species distributions left")
+  }
+  
+  if (nrow(shapes) == 0) {
     stop("After filtering no species distributions left")
   }
   
