@@ -101,7 +101,7 @@ lets.iucn.ha <- function(input, count = FALSE) {
   }
   
   #Putting species' names in the first column
-  habitat[, 1] <- sps
+  habitat[, 1] <- input
   
   #Return the resulting matrix
   return(as.data.frame(habitat))
