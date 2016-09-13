@@ -35,7 +35,7 @@
 lets.iucn.ha <- function(input, count = FALSE) {
   #keep species name(s)
   
-  sps <- .getnames(input) 
+  input <- .getnames(input) 
   
   
   #Habitat names (and the name "Species" that will be used in the matrix columns names)

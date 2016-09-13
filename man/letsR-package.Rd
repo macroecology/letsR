@@ -38,14 +38,14 @@ of letsR on github (\url{http://www.github.com/macroecology/letsR}).
 \tabular{ll}{
 Package: \tab lestR\cr
 Type: \tab Package\cr
-Version: \tab 2.5\cr
-Date: \tab 2015-05-20\cr
+Version: \tab 2.6\cr
+Date: \tab 2015-06-01\cr
 License: \tab GPL-2\cr
 }
 }
 \author{
 \strong{Bruno Vilela}\cr
-(email: \email{brunovilelasilva@hotmal.com}; 
+(email: \email{bvilela@wustl.edu}; 
 Website: \url{http://bvilela.weebly.com/})
 
 \strong{Fabricio Villalobos}\cr
