@@ -37,4 +37,3 @@ distPAM <- lets.distmat(PAM)
 \author{
 Bruno Vilela & Fabricio Villalobos
 }
-

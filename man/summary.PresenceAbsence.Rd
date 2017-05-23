@@ -17,4 +17,3 @@ Summary for objects of class PresenceAbsence.
 \author{
 Bruno Vilela
 }
-

@@ -38,9 +38,6 @@ PAM_pol <- lets.addpoly(PAM, Brazil, "NAME")
 }
 
 }
-\author{
-Bruno Vilela
-}
 \seealso{
 \code{\link{lets.presab.birds}}
 
@@ -48,4 +45,6 @@ Bruno Vilela
 
 \code{\link{lets.addvar}}
 }
-
+\author{
+Bruno Vilela
+}

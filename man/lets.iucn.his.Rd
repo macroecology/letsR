@@ -2,7 +2,8 @@
 % Please edit documentation in R/lets_iucn_historic.R
 \name{lets.iucn.his}
 \alias{lets.iucn.his}
-\title{Download species' temporal trend in conservation status from the IUCN RedList online database}
+\title{Download species' temporal trend in conservation status from the IUCN RedList online database
+(No longer supported)}
 \usage{
 lets.iucn.his(input, count = FALSE)
 }
@@ -64,12 +65,11 @@ lets.iucn.his(sp)
 }
 
 }
-\author{
-Bruno Vilela
-}
 \seealso{
 \code{\link{lets.iucn.ha}}
 
 \code{\link{lets.iucn}}
 }
-
+\author{
+Bruno Vilela
+}

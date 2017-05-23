@@ -64,4 +64,3 @@ rangesize4 <- lets.rangesize(x = PAM,
 \author{
 Bruno Vilela
 }
-

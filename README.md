@@ -6,6 +6,9 @@
 [![Research software impact](http://depsy.org/api/package/cran/letsR/badge.svg)](http://depsy.org/package/r/letsR)
 
 =====
+## IMPORTANT
+Due to changes in the IUCN API and to limitations in data distribution stabilished IUCN terms of use, we are no longer mataining the functions lets.iucn, lets.iucn.hist and lets.iucn.ha. These functions will be removed from the package in the next version. We apologize for any incovinience this may cause.  
+
 ## Package letsR
 
 The letsR package is being developed to help researchers in the handling, processing, and analysis of macroecological data. Its purpose is to integrate these methodological processes into a single software platform for macroecological analyses. The package's main functions allow users to build presence-absence matrices, the basic analytical tool in macroecology, from species' geographical distributions and merge them with species' traits, conservation information(downloadable using functions from this package) and spatial environmental layers. In addition, other package's functions enable users to summarize and visualize information from presence-absence matrices.

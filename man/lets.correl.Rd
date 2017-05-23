@@ -43,9 +43,6 @@ moran <- lets.correl(IUCN$Description, distan, 12,
 }
 
 }
-\author{
-Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jose Alexandre Diniz-Filho
-}
 \references{
 Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology.
 1. Methodology. Biological Journal of the Linnean Society, 10, 199-228.
@@ -54,4 +51,6 @@ Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology.
 2. Some biological implications and four applications of evolutionary and
 ecological interest. Biological Journal of the Linnean Society, 10, 229-249.
 }
-
+\author{
+Bruno Vilela, Fabricio Villalobos, Lucas Jardim & Jose Alexandre Diniz-Filho
+}

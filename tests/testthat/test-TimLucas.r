@@ -79,13 +79,13 @@ test_that("Other parameters work", {
 })
 
 
-test_that("Count does not change results in iucn", {
-  skip_on_cran()
-  spp <- c("Milvus milvus", "Buteo buteo")
-  
-  x1 <- lets.iucn(spp, count = TRUE)
-  x2 <- lets.iucn(spp, count = FALSE)
-
-  expect_equal(x1, x2)
-
-})
+# test_that("Count does not change results in iucn", {
+#   skip_on_cran()
+#   spp <- c("Milvus milvus", "Buteo buteo")
+#   
+#   x1 <- lets.iucn(spp, count = TRUE)
+#   x2 <- lets.iucn(spp, count = FALSE)
+# 
+#   expect_equal(x1, x2)
+# 
+# })

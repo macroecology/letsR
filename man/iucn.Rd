@@ -11,4 +11,3 @@ data(IUCN)
 Result of the function \code{\link{lets.iucn}} 
 applied to Southern American frog genera Phyllomedusa in 2014.
 }
-

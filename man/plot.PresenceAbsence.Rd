@@ -32,12 +32,11 @@ plot(PAM, name = "Phyllomedusa azurea")
 }
 
 }
-\author{
-Bruno Vilela
-}
 \seealso{
 \code{\link{lets.presab}}
 
 \code{\link{lets.presab.birds}}
 }
-
+\author{
+Bruno Vilela
+}

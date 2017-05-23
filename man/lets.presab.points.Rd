@@ -74,9 +74,6 @@ plot(PAM, name = "sp1")
 
 
 }
-\author{
-Bruno Vilela & Fabricio Villalobos
-}
 \seealso{
 \code{\link{plot.PresenceAbsence}}
 
@@ -86,4 +83,6 @@ Bruno Vilela & Fabricio Villalobos
 
 \code{\link{lets.shFilter}}
 }
-
+\author{
+Bruno Vilela & Fabricio Villalobos
+}

@@ -42,9 +42,6 @@ PAM_temp_mean_sd <- cbind(PAM_temp_mean, PAM_temp_sd)
 }
 
 }
-\author{
-Bruno Vilela
-}
 \seealso{
 \code{\link{lets.presab.birds}}
 
@@ -52,4 +49,6 @@ Bruno Vilela
 
 \code{\link{lets.addpoly}}
 }
-
+\author{
+Bruno Vilela
+}

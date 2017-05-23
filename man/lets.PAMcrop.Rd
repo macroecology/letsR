@@ -37,12 +37,11 @@ plot(PAM_crop, xlab = "Longitude", ylab = "Latitude",
 }
 
 }
-\author{
-Bruno Vilela
-}
 \seealso{
 \code{\link{plot.PresenceAbsence}}
 
 \code{\link{lets.presab.birds}}
 }
-
+\author{
+Bruno Vilela
+}

@@ -57,4 +57,3 @@ the \code{PresenceAbsence} object.\cr
 - \code{summary} (\code{\link{summary.PresenceAbsence}})\cr 
 - \code{plot} (\code{\link{plot.PresenceAbsence}})\cr\cr
 }
-

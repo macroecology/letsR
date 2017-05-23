@@ -47,9 +47,6 @@ Seasonal codes:
 
 More info in the shapefiles' metadata.
 }
-\author{
-Bruno Vilela
-}
 \seealso{
 \code{\link{plot.PresenceAbsence}}
 
@@ -57,4 +54,6 @@ Bruno Vilela
 
 \code{\link{lets.presab.birds}}
 }
-
+\author{
+Bruno Vilela
+}

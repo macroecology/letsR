@@ -4,7 +4,7 @@
 \alias{lets.midpoint}
 \title{Compute the midpoint of species' geographic ranges}
 \usage{
-lets.midpoint(pam, planar = FALSE)
+lets.midpoint(pam, planar = FALSE, method = "GM")
 }
 \arguments{
 \item{pam}{A presence-absence \code{matrix} (sites in the rows and species
@@ -14,6 +14,11 @@ and latitudinal coordinates, respectively), or an object of class
 
 \item{planar}{Logical, if \code{FALSE} the coordinates are in Longitude/Latitude.
 If \code{TRUE} the coordinates are planar.}
+
+\item{method}{Users can choose between the geographic midpoint (or center of gravity), 
+using the option "GM". Alternatively, the midpoint can be calculated as the point
+that minimize the distance between all cells of the PAM (center of minimun distance),
+using the method "CMD".}
 }
 \value{
 A \code{data.frame} containing the species' names and geographic coordinates 
@@ -30,12 +35,11 @@ mid <- lets.midpoint(PAM)
 } 
 
 }
-\author{
-Fabricio Villalobos & Bruno Vilela
-}
 \seealso{
 \code{\link{lets.presab}}
 
 \code{\link{lets.presab.birds}}
 }
-
+\author{
+Fabricio Villalobos & Bruno Vilela
+}

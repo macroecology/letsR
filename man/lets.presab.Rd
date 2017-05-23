@@ -102,9 +102,6 @@ plot(PAM, name = "Phyllomedusa nordestina")
 
 
 }
-\author{
-Bruno Vilela & Fabricio Villalobos
-}
 \seealso{
 \code{\link{plot.PresenceAbsence}}
 
@@ -112,4 +109,6 @@ Bruno Vilela & Fabricio Villalobos
 
 \code{\link{lets.shFilter}}
 }
-
+\author{
+Bruno Vilela & Fabricio Villalobos
+}

@@ -1,4 +1,5 @@
 #' Download species' temporal trend in conservation status from the IUCN RedList online database
+#' (No longer supported)
 #' 
 #' @author Bruno Vilela
 #' 
@@ -50,6 +51,9 @@
 
 
 lets.iucn.his <- function(input, count = FALSE) {  
+  stop(paste("This function is no longer supported by the letsR package.",
+             "Users can look for the package rredlist for similar functions.",
+             "See the note on our github page for more details."))
   
   input <- .getnames(input)
   n <- length(input)

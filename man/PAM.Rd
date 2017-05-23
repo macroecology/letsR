@@ -14,4 +14,3 @@ data(PAM)
 PresenceAbsence object obtained using the function \code{\link{lets.presab}} 
 in the Geographic distribution of the Southern American frog genus \link{Phyllomedusa}.
 }
-

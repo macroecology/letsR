@@ -45,12 +45,11 @@ main = "Mean description year per site") ; map(add = TRUE)
 }
 
 }
-\author{
-Bruno Vilela
-}
 \seealso{
 \code{\link{lets.presab}}
 
 \code{\link{lets.presab.birds}}
 }
-
+\author{
+Bruno Vilela
+}

@@ -32,9 +32,6 @@ resu <- lets.summarizer(x = pamvar, pos = ncol(pamvar),
 }
 
 }
-\author{
-Bruno Vilela & Fabricio Villalobos
-}
 \references{
 Villalobos, F. and Arita, H.T. 2010. The diversity field of 
 New World leaf-nosed bats (Phyllostomidae). 
@@ -47,4 +44,6 @@ Global Ecology and Biogeography. 19, 200-211.
 
 \code{\link{lets.field}}
 }
-
+\author{
+Bruno Vilela & Fabricio Villalobos
+}

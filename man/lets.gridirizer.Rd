@@ -29,12 +29,11 @@ head(PAM.grid$Presence[, 1:5])
 }
 
 }
-\author{
-Bruno Vilela
-}
 \seealso{
 \code{\link{plot.PresenceAbsence}}
 
 \code{\link{lets.presab.birds}}
 }
-
+\author{
+Bruno Vilela
+}

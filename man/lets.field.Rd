@@ -40,9 +40,6 @@ field <- lets.field(PAM, range, PAM$S, weight = TRUE)
 }
 
 }
-\author{
-Bruno Vilela & Fabricio Villalobos
-}
 \references{
 Villalobos, F. and Arita, H.T. 2010. The diversity field of 
 New World leaf-nosed bats (Phyllostomidae). Global Ecology and Biogeography. 
@@ -58,4 +55,6 @@ Society B. 280, 20122570.
 
 \code{\link{lets.presab}}
 }
-
+\author{
+Bruno Vilela & Fabricio Villalobos
+}

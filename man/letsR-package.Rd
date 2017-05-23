@@ -2,8 +2,8 @@
 % Please edit documentation in R/letsR-package.R
 \docType{package}
 \name{letsR-package}
-\alias{letsR}
 \alias{letsR-package}
+\alias{letsR}
 \title{Tools for Data Handling and Analysis in  Macroecology.}
 \description{
 The letsR package is being developed to help researchers in the handling, processing, 
@@ -43,6 +43,9 @@ Date: \tab 2015-06-01\cr
 License: \tab GPL-2\cr
 }
 }
+\references{
+Vilela, B., & Villalobos, F. (2015). letsR: a new R package for data handling and analysis in macroecology. Methods in Ecology and Evolution.
+}
 \author{
 \strong{Bruno Vilela}\cr
 (email: \email{bvilela@wustl.edu}; 
@@ -52,8 +55,4 @@ Website: \url{http://bvilela.weebly.com/})
 (email: \email{fabricio.villalobos@gmail.com}; 
 Website: \url{https://sites.google.com/site/fabriciovillalobos/})
 }
-\references{
-Vilela, B., & Villalobos, F. (2015). letsR: a new R package for data handling and analysis in macroecology. Methods in Ecology and Evolution.
-}
 \keyword{package}
-

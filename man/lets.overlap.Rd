@@ -34,9 +34,6 @@ cells <- lets.overlap(PAM, method = "Cells")
 }
    
 }
-\author{
-Fabricio Villalobos & Bruno Vilela
-}
 \references{
 Chesser, R. Terry, and Robert M. Zink. "Modes of speciation in birds: a 
 test of Lynch's method." Evolution (1994): 490-497.
@@ -50,4 +47,6 @@ pattern of speciation from species-level phylogenies." The American Naturalist 1
 
 \code{\link{lets.presab.birds}}
 }
-
+\author{
+Fabricio Villalobos & Bruno Vilela
+}

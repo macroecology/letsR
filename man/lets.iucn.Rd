@@ -2,7 +2,8 @@
 % Please edit documentation in R/lets_iucn.R
 \name{lets.iucn}
 \alias{lets.iucn}
-\title{Download species' information from the IUCN RedList online database}
+\title{Download species' information from the IUCN RedList online database 
+(No longer supported)}
 \usage{
 lets.iucn(input, count = FALSE)
 }
@@ -38,12 +39,11 @@ lets.iucn(sp)
 }
 
 }
-\author{
-Bruno Vilela
-}
 \seealso{
 \code{\link{lets.iucn.ha}}
 
 \code{\link{lets.iucn.his}}
 }
-
+\author{
+Bruno Vilela
+}

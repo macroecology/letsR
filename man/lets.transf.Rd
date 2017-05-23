@@ -36,4 +36,3 @@ statustrans <- lets.transf(status, old, new, NUMERIC=FALSE)
 \author{
 Bruno Vilela
 }
-

@@ -38,12 +38,11 @@ resu <- lets.classvar(x = pamvar, pos = ncol(pamvar), xy = TRUE)
 }
   
 }
-\author{
-Bruno Vilela
-}
 \references{
 Morales-Castilla et al. 2013. Range size patterns of New 
 World oscine passerines (Aves): insights from differences among migratory
  and sedentary clades. Journal of Biogeography, 40, 2261-2273.
 }
-
+\author{
+Bruno Vilela
+}
