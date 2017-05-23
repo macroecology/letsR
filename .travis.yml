@@ -20,3 +20,10 @@ r_github_packages:
 
 after_success:
   - Rscript -e 'library(covr);coveralls()'
+  
+cache: packages
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev

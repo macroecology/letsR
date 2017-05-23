@@ -54,6 +54,7 @@
 #' @importFrom grDevices colorRampPalette dev.new dev.off
 #' @importFrom graphics abline par plot.new points segments
 #' @importFrom methods slot
-#' @importFrom stats as.dist na.omit pnorm sd
+#' @importFrom stats as.dist na.omit pnorm sd dist
 #' @importFrom utils capture.output
+
 NULL
