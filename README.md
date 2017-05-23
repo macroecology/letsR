@@ -53,20 +53,3 @@ library(letsR)
 OBS.: To download the developers version you will need to have the git software installed (http://git-scm.com/).
 If you are a windows user you will also need to download the Rtools (http://cran.r-project.org/bin/windows/Rtools/).
 
-
-## Key functions
-
-The `letsR` package includes many different functions. Below we highlight some of them:
-
-- `lets.presab`: Builts a presence-absence matrix (sites x species) based on species’ range maps from shapefiles.
-- `lets.presab.birds`: Builts a presence-absence matrix (sites x species) based on species’ range maps from shapefiles (specially designed for the BirdLife International database).
-- `lets.addvar`: Add variables in raster format to a presence-absence matrix.
-- `lets.addpoly`: Add variables in polygon format to a presence-absence matrix.
-- `lets.iucn`: Get species’ information from the IUCN website.
-- `lets.iucn.ha`: Get species’ habitat information from the IUCN website.
-- `lets.iucn.his`: Get information on the history of species’ conservation status from the IUCN website.
-
-Take a look at the functions' help files for more information.
-
-
-
