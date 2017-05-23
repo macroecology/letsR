@@ -22,7 +22,8 @@ Depends:
     raster,
     maps
 Suggests:
-    testthat
+    testthat,
+    devtools
 LazyData: true
 URL: http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract,
     https://github.com/macroecology/letsR
