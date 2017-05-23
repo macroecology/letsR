@@ -5,15 +5,13 @@ sudo: required
 r_binary_packages:
  - testthat
  - rgdal
-
-r_packages:
-  - XML
-  - geosphere
-  - fields
-  - maptools
-  - sp
-  - maps
-  - raster
+ - XML
+ - geosphere
+ - fields
+ - maptools
+ - sp
+ - maps
+ - raster
 
 r_github_packages:
   - jimhester/covr
