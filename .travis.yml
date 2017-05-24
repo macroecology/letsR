@@ -1,6 +1,11 @@
 language: r
-
+dist: trusty
 sudo: required
+cache: packages
+
+r:
+  - release
+  - devel
 
 r_binary_packages:
  - testthat
@@ -23,3 +28,12 @@ after_success:
   
 install:
   - export GDAL_DATA=/home/vagrant/miniconda/share/gdal/
+  
+  
+env:
+   global:
+     - R_LIBS="https://cran.rstudio.com"
+     - R_BUILD_ARGS="--no-build-vignettes --no-manual"
+     - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
+     - BOOTSTRAP_LATEX=""
+
