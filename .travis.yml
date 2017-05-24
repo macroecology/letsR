@@ -1,24 +1,11 @@
 language: r
-dist: trusty
-sudo: required
+sudo: false
 cache: packages
 
 r:
+  - oldrel
   - release
   - devel
-
-r_binary_packages:
- - testthat
- - rgdal
- - XML
- - geosphere
- - fields
- - maptools
- - sp
- - maps
- - raster
- - devtools
-
 
 r_github_packages:
   - jimhester/covr
