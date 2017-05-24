@@ -13,14 +13,9 @@ r_github_packages:
 after_success:
   - Rscript -e 'library(covr);coveralls()'
   
-install:
-  - export GDAL_DATA=/home/vagrant/miniconda/share/gdal/
-  
-  
-env:
-   global:
-     - R_LIBS="https://cran.rstudio.com"
-     - R_BUILD_ARGS="--no-build-vignettes --no-manual"
-     - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
-     - BOOTSTRAP_LATEX=""
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev
 
