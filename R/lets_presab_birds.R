@@ -85,9 +85,9 @@
 lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90, 
                               ymx = 90, resol = 1, remove.cells = TRUE,
                               remove.sp = TRUE, show.matrix = FALSE, 
-                              crs = CRS("+proj=longlat +datum=WGS84"),
-                              crs.grid = crs, cover = 0, presence = NULL,
-                              origin = NULL, seasonal = NULL, count = FALSE) {
+                              crs = NULL, crs.grid = crs, cover = 0,
+                              presence = NULL, origin = NULL, seasonal = NULL,
+                              count = FALSE) {
   
   # Shapefile list
   shapes <- list.files(path, pattern = ".shp$", 
@@ -230,8 +230,18 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   valores2 <- valores
   
   # Read species shapefile, get its name and filter it
-  shp <- readShapePoly(shapej, delete_null_obj = TRUE,
-                       force_ring = TRUE, proj4string = crs)
+  if (is.null(crs)) {
+    shp <- rgdal::readOGR(shapej, dropNULLGeometries = TRUE,
+                          verbose = FALSE)
+    crs <- shp@proj4string
+  } else {
+    shp <- rgdal::readOGR(shapej, dropNULLGeometries = TRUE,
+                          p4s = as.character(crs), verbose = FALSE)
+  }
+  if (is.null(crs.grid)) {
+    crs.grid <- crs
+  }
+  
   shp <- spTransform(shp, crs.grid)
   nomesj <- levels(shp$SCINAME)[1]
   shp <- lets.shFilter(shp, 
@@ -242,50 +252,50 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   # Just run if after filtering the species has any polygon
   if (!is.null(shp)) {
     if (nrow(shp) != 0) {
-    k <- k + 1 # for later error control (see below)
-    
-    #  Extract cell occurrence positions
-    cell <- extract(r, shp, cellnumber = T, 
-                    small = T, weights = T)
-    
-    # Remove null cells
-    cell <- cell[!sapply(cell, is.null)]
-    
-    # Changing colnames
-    l.cell <- length(cell)
-    
-    if(l.cell > 0){
-      .rename <- function(x) {
-        colnames(x) <- 1:3
-        return(x) 
-      }          
-      cell <- lapply(cell, .rename)
-    }
-    
-    # Getting row positions
-    cell2 <- do.call(rbind.data.frame, cell)    
-    
-    # Correcting presence based on the cover
-    
-    if (cover > 0) {
-      areashape <- areaPolygon(shp)
-      prop <- numeric()
+      k <- k + 1 # for later error control (see below)
       
-      for (k1 in 1:l.cell) {
-        calc <- cell[[k1]][, 3] * areashape[k1] / areagrid[cell[[k1]][, 1]]
-        prop <- c(prop, calc)
-      }
-      prop.1 <- prop > 1
+      #  Extract cell occurrence positions
+      cell <- extract(r, shp, cellnumber = T, 
+                      small = T, weights = T)
       
-      if (any(prop.1)) {
-        prop[prop.1] <- 1
+      # Remove null cells
+      cell <- cell[!sapply(cell, is.null)]
+      
+      # Changing colnames
+      l.cell <- length(cell)
+      
+      if(l.cell > 0){
+        .rename <- function(x) {
+          colnames(x) <- 1:3
+          return(x) 
+        }          
+        cell <- lapply(cell, .rename)
       }
       
-      cell2 <- cell2[prop >= cover, , drop = FALSE]
-    }
-    
-    valores2[cell2[, 1]] <- 1
-  }}
+      # Getting row positions
+      cell2 <- do.call(rbind.data.frame, cell)    
+      
+      # Correcting presence based on the cover
+      
+      if (cover > 0) {
+        areashape <- areaPolygon(shp)
+        prop <- numeric()
+        
+        for (k1 in 1:l.cell) {
+          calc <- cell[[k1]][, 3] * areashape[k1] / areagrid[cell[[k1]][, 1]]
+          prop <- c(prop, calc)
+        }
+        prop.1 <- prop > 1
+        
+        if (any(prop.1)) {
+          prop[prop.1] <- 1
+        }
+        
+        cell2 <- cell2[prop >= cover, , drop = FALSE]
+      }
+      
+      valores2[cell2[, 1]] <- 1
+    }}
   
   return(list(valores2, nomesj, k))
 }
