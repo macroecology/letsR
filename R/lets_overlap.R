@@ -45,7 +45,11 @@ lets.overlap <- function(pam, method = "Chesser&Zink",
                "Please check the spelling."))
   }
   
-  
+  if (!any(class(pam) %in% c("matrix", "PresenceAbsence"))) {
+    stop(paste("Object pam should be either a PresenceAbsence or a matrix.
+         Not a", class(pam)))
+  }
+    
   if (is.matrix(pam)) {
     if (is.null(xy)) {
       stop(paste("Please set if your matrix contains ",
@@ -83,7 +87,11 @@ lets.overlap <- function(pam, method = "Chesser&Zink",
     for(i in 1:n) {
       for(j in 1:n) {
         over <- sum(rowSums(pam[, c(i, j)]) == 2)
-        over2 <- over/range[i]
+        if(range[i] == 0) {
+          over2 <- 0
+        } else {
+          over2 <- over/range[i]  
+        }
         resu[i, j] <- over2
       }
     }
@@ -95,7 +103,11 @@ lets.overlap <- function(pam, method = "Chesser&Zink",
     for(i in 1:(n - 1)) {
       for(j in ((i + 1):n)) {
         over <- sum(rowSums(pam[, c(i, j)]) == 2)
-        resu[i, j] <- over / min(range[c(i, j)])
+        if(any(range[c(i, j)] %in% 0)) {
+          resu[i, j] <- 0
+        } else {
+          resu[i, j] <- over / min(range[c(i, j)])  
+        }
       }
     }
     ind <- lower.tri(resu)
