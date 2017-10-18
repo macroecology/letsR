@@ -70,7 +70,7 @@ lets.subsetPAM <- function(x, names, remove.cells = TRUE) {
   
   rich <- rowSums(x[[1]][, -(1:2), drop = FALSE])
   x[[2]] <- rasterize(x[[1]][, c(1:2), drop = FALSE], x[[2]], rich)
-  x[[3]] <- x[[3]][pos]
+  x[[3]] <- colnames(x[[1]])[-c(1:2)]
   
   return(x)
 }
