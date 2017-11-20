@@ -47,7 +47,7 @@ lets.addpoly <- function(x, y, z, onlyvar = FALSE){
   colnames(matriz) <- nomes
   
   # Add coordinates
-  xy <- xyFromCell(x[[2]], 1:LenValues)
+  xy <- raster::xyFromCell(object = x[[2]], cell = 1:LenValues)
   
   # Calculate the cell area
   areashape <- areaPolygon(y)
