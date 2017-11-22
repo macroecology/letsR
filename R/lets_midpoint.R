@@ -11,10 +11,17 @@
 #' \code{\link{PresenceAbsence}}.
 #' @param planar Logical, if \code{FALSE} the coordinates are in Longitude/Latitude.
 #' If \code{TRUE} the coordinates are planar.
-#' @param method Users can choose between the geographic midpoint (or center of gravity), 
-#' using the option "GM". Alternatively, the midpoint can be calculated as the point
+#' @param method Default option, "PC" (polygon centroid) will generate a polygon from the raster, 
+#' and calculate the centroid of this polygon,
+#' using the function centroid of the package geosphere. 
+#' Note that "PC" will only work for PresenceAbsence objects and planar = FALSE.
+#' Users can also choose the geographic midpoint, 
+#' using the option "GM". "GM" will create a bouding box across the extremes of the 
+#' distribution and calculate the centroid.
+#' Alternatively, the midpoint can be calculated as the point
 #' that minimize the distance between all cells of the PAM (center of minimun distance),
 #' using the method "CMD". 
+#'  
 #' 
 #' 
 #' @return A \code{data.frame} containing the species' names and geographic coordinates 
@@ -29,13 +36,25 @@
 #' @examples \dontrun{
 #' data(PAM)
 #' mid <- lets.midpoint(PAM)
+#' mid2 <- lets.midpoint(PAM, method = "GM")
+#' mid3 <- lets.midpoint(PAM, method = "CMD")
+#' mid4 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
+#' for (sp in 1:nrow(mid)) {
+#'  #sp = 4 # Or choose a line or species
+#'  plot(PAM, name = mid[sp, 1])
+#'  points(mid[sp, -1], col = adjustcolor("blue", .6), pch = 20, cex = 1.5)
+#'  points(mid2[sp, -1], col = adjustcolor("green", .6), pch = 20, cex = 1.5)
+#'  points(mid3[sp, -1], col = adjustcolor("yellow", .6), pch = 20, cex = 1.5)
+#'  points(mid4[sp, -1], col = adjustcolor("purple", .6), pch = 20, cex = 1.5)
+#'  Sys.sleep(1)
+#' }
 #' } 
 #' 
 #' @export
 
 
 
-lets.midpoint <- function(pam, planar = FALSE, method = "GM") {
+lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
   
   if (class(pam) == "PresenceAbsence") {
     n <- ncol(pam[[1]])
@@ -50,42 +69,80 @@ lets.midpoint <- function(pam, planar = FALSE, method = "GM") {
   xm <- numeric((n - 2))
   ym <- xm
   
+  if (method == "PC") {
+    if (class(pam) != "PresenceAbsence") {
+      stop("This method only works for PresenceAbsence objects")
+    }
+    for(i in 3:n) {
+      pos <- which(pam2[, i] == 1)
+      if (length(pos) == 1) {
+        dis2 <- pam2[pos, 1:2, drop = FALSE]
+      } else {
+        ptemp <- pam[[2]]
+        pos2 <- raster::extract(ptemp, pam2[pos, 1:2, drop = FALSE], cellnumbers  = TRUE)[, 1]
+        values(ptemp)[-pos2] <- NA
+        values(ptemp)[pos2] <- 1
+        p <- rasterToPolygons(ptemp, dissolve=TRUE)
+        dis2 <- centroid(p)
+      }
+      xm[(i - 2)] <- dis2[1, 1]
+      ym[(i - 2)] <- dis2[1, 2]
+    }  
+  }
   if (method == "GM") {
     for(i in 3:n) {
       pos <- which(pam2[, i] == 1)
-      a <- max(pam2[pos, 1])
-      b <- min(pam2[pos, 1])
-      c <- max(pam2[pos, 2])
-      d <- min(pam2[pos, 2])
-      
-      if (!planar) {
-        dis2 <- midPoint(c(a, c), c(b, d))
-        
-        if (length(pam2[pos, 1]) > 1) {
-          dis <- geomean(cbind(pam2[pos, 1], pam2[pos, 2]))
-          dist1 <- rdist.earth(cbind(dis[1, 1], 0), 
-                               cbind(dis2[1, 1],0),
-                               miles = FALSE)
-          # An aroximation, not necessary to be so accurate, 
-          # to avoid computation time.
-          denomina <- (111.321 * 1000) 
-          dif <-  dist1 / denomina
-          
-          if (dif > 150) {
-            if (dis2[1, 1] >= 0) {
-              dis2[1, 1] <- dis2[1, 1] - 180
-            } else {
-              dis2[1, 1] <- dis2[1, 1] + 180
-            }
-          }
-        }
+      if (length(pos) == 1) { # Only one point
+        dis2 <- pam2[pos, 1:2, drop = FALSE]
         xm[(i - 2)] <- dis2[1, 1]
         ym[(i - 2)] <- dis2[1, 2]
-      }
-      
-      if (planar) {
-        xm[(i - 2)] <- mean(c(a, b))
-        ym[(i-2)] <- mean(c(c, d))
+        
+      } else {
+        a <- max(pam2[pos, 1])
+        b <- min(pam2[pos, 1])
+        c <- max(pam2[pos, 2])
+        d <- min(pam2[pos, 2])
+        
+        if (!planar) {
+          if (length(pos) == 2) { # Only two points
+            dis2 <- midPoint(pam2[pos[1], 1:2], pam2[pos[2], 1:2])
+          } else {
+            if (a == b | c == d) { # Same lat or long
+              if(a == b) {
+                dis2 <- midPoint(c(a, c), c(a, d))
+              } else {
+                dis2 <- midPoint(c(a, c), c(b, c))
+              }
+            }
+            pol <- matrix(c(a, a, b, b, c, d, d, c), ncol = 2)
+            dis2 <- centroid(pol)
+          }
+          # if (length(pam2[pos, 1]) > 1) {
+          #   dis <- geomean(cbind(pam2[pos, 1], pam2[pos, 2]))
+          #   dist1 <- rdist.earth(cbind(dis[1, 1], 0), 
+          #                        cbind(dis2[1, 1],0),
+          #                        miles = FALSE)
+          #   # An aroximation, not necessary to be so accurate, 
+          #   # to avoid computation time.
+          #   denomina <- (111.321 * 1000) 
+          #   dif <-  dist1 / denomina
+          #   
+          #   if (dif > 150) {
+          #     if (dis2[1, 1] >= 0) {
+          #       dis2[1, 1] <- dis2[1, 1] - 180
+          #     } else {
+          #       dis2[1, 1] <- dis2[1, 1] + 180
+          #     }
+          #   }
+          # }
+          xm[(i - 2)] <- dis2[1, 1]
+          ym[(i - 2)] <- dis2[1, 2]
+        }
+        
+        if (planar) {
+          xm[(i - 2)] <- mean(c(a, b))
+          ym[(i-2)] <- mean(c(c, d))
+        }
       }
     }
   }
