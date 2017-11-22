@@ -4,7 +4,7 @@
 \alias{lets.midpoint}
 \title{Compute the midpoint of species' geographic ranges}
 \usage{
-lets.midpoint(pam, planar = FALSE, method = "GM")
+lets.midpoint(pam, planar = FALSE, method = "PC")
 }
 \arguments{
 \item{pam}{A presence-absence \code{matrix} (sites in the rows and species
@@ -15,8 +15,14 @@ and latitudinal coordinates, respectively), or an object of class
 \item{planar}{Logical, if \code{FALSE} the coordinates are in Longitude/Latitude.
 If \code{TRUE} the coordinates are planar.}
 
-\item{method}{Users can choose between the geographic midpoint (or center of gravity), 
-using the option "GM". Alternatively, the midpoint can be calculated as the point
+\item{method}{Default option, "PC" (polygon centroid) will generate a polygon from the raster, 
+and calculate the centroid of this polygon,
+using the function centroid of the package geosphere. 
+Note that "PC" will only work for PresenceAbsence objects and planar = FALSE.
+Users can also choose the geographic midpoint, 
+using the option "GM". "GM" will create a bouding box across the extremes of the 
+distribution and calculate the centroid.
+Alternatively, the midpoint can be calculated as the point
 that minimize the distance between all cells of the PAM (center of minimun distance),
 using the method "CMD".}
 }
@@ -32,6 +38,20 @@ presence-absence matrix.
 \dontrun{
 data(PAM)
 mid <- lets.midpoint(PAM)
+mid2 <- lets.midpoint(PAM, method = "GM")
+mid3 <- lets.midpoint(PAM, method = "CMD")
+mid4 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
+mid5 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
+for (sp in 1:nrow(mid)) {
+ #sp = 4 # Or choose a line or species
+ plot(PAM, name = mid[sp, 1])
+ points(mid[sp, -1], col = adjustcolor("blue", .8), pch = 20, cex = 1.5)
+ points(mid2[sp, -1], col = adjustcolor("green", .8), pch = 20, cex = 1.5)
+ points(mid3[sp, -1], col = adjustcolor("yellow", .8), pch = 20, cex = 1.5)
+ points(mid4[sp, -1], col = adjustcolor("purple", .8), pch = 20, cex = 1.5)
+ points(mid5[sp, -1], col = adjustcolor("orange", .8), pch = 20, cex = 1.5)
+ Sys.sleep(1)
+}
 } 
 
 }

@@ -3,7 +3,7 @@
 #' @author Fabricio Villalobos & Bruno Vilela
 #' 
 #' @description Calculate species' distributional midpoint from a 
-#' presence-absence matrix.
+#' presence-absence matrix using several methods.
 #' 
 #' @param pam A presence-absence \code{matrix} (sites in the rows and species
 #' in the columns, with the first two columns containing the longitudinal
@@ -39,13 +39,15 @@
 #' mid2 <- lets.midpoint(PAM, method = "GM")
 #' mid3 <- lets.midpoint(PAM, method = "CMD")
 #' mid4 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
+#' mid5 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
 #' for (sp in 1:nrow(mid)) {
 #'  #sp = 4 # Or choose a line or species
 #'  plot(PAM, name = mid[sp, 1])
-#'  points(mid[sp, -1], col = adjustcolor("blue", .6), pch = 20, cex = 1.5)
-#'  points(mid2[sp, -1], col = adjustcolor("green", .6), pch = 20, cex = 1.5)
-#'  points(mid3[sp, -1], col = adjustcolor("yellow", .6), pch = 20, cex = 1.5)
-#'  points(mid4[sp, -1], col = adjustcolor("purple", .6), pch = 20, cex = 1.5)
+#'  points(mid[sp, -1], col = adjustcolor("blue", .8), pch = 20, cex = 1.5)
+#'  points(mid2[sp, -1], col = adjustcolor("green", .8), pch = 20, cex = 1.5)
+#'  points(mid3[sp, -1], col = adjustcolor("yellow", .8), pch = 20, cex = 1.5)
+#'  points(mid4[sp, -1], col = adjustcolor("purple", .8), pch = 20, cex = 1.5)
+#'  points(mid5[sp, -1], col = adjustcolor("orange", .8), pch = 20, cex = 1.5)
 #'  Sys.sleep(1)
 #' }
 #' } 
