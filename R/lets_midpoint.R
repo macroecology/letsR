@@ -12,15 +12,16 @@
 #' @param planar Logical, if \code{FALSE} the coordinates are in Longitude/Latitude.
 #' If \code{TRUE} the coordinates are planar.
 #' @param method Default option, "PC" (polygon centroid) will generate a polygon from the raster, 
-#' and calculate the centroid of this polygon,
-#' using the function centroid of the package geosphere. 
-#' Note that "PC" will only work for PresenceAbsence objects and planar = FALSE.
+#' and calculate the centroid of this polygon. If planar = TRUE, 
+#' the function centroid of the package geosphere is used. If planar = FALSE,
+#' the function gCentroid of the package rgeos is used. 
+#' Note that for the "PC" method, users can only use PresenceAbsence objects.
 #' Users can also choose the geographic midpoint, 
 #' using the option "GM". "GM" will create a bouding box across the extremes of the 
 #' distribution and calculate the centroid.
 #' Alternatively, the midpoint can be calculated as the point
-#' that minimize the distance between all cells of the PAM (center of minimun distance),
-#' using the method "CMD". 
+#' that minimize the distance between all cells of the PAM,
+#' using the method "CMD"(center of minimun distance). 
 #'  
 #' 
 #' 
@@ -40,6 +41,7 @@
 #' mid3 <- lets.midpoint(PAM, method = "CMD")
 #' mid4 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
 #' mid5 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
+#' mid6 <- lets.midpoint(PAM, method = "PC", planar = TRUE)
 #' for (sp in 1:nrow(mid)) {
 #'  #sp = 4 # Or choose a line or species
 #'  plot(PAM, name = mid[sp, 1])
@@ -48,6 +50,7 @@
 #'  points(mid3[sp, -1], col = adjustcolor("yellow", .8), pch = 20, cex = 1.5)
 #'  points(mid4[sp, -1], col = adjustcolor("purple", .8), pch = 20, cex = 1.5)
 #'  points(mid5[sp, -1], col = adjustcolor("orange", .8), pch = 20, cex = 1.5)
+#'  points(mid5[sp, -1], col = adjustcolor("black", .8), pch = 20, cex = 1.5)
 #'  Sys.sleep(1)
 #' }
 #' } 
@@ -85,7 +88,12 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
         values(ptemp)[-pos2] <- NA
         values(ptemp)[pos2] <- 1
         p <- rasterToPolygons(ptemp, dissolve=TRUE)
-        dis2 <- centroid(p)
+        if(!planar) {
+          dis2 <- centroid(p)  
+        } else {
+          dis2 <- gCentroid(p)@coords
+        }
+        
       }
       xm[(i - 2)] <- dis2[1, 1]
       ym[(i - 2)] <- dis2[1, 2]
