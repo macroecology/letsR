@@ -15,7 +15,9 @@
 #' and calculate the centroid of this polygon. If planar = TRUE, 
 #' the function centroid of the package geosphere is used. If planar = FALSE,
 #' the function gCentroid of the package rgeos is used. 
-#' Note that for the "PC" method, users can only use PresenceAbsence objects.
+#' Note that for the "PC" method, users can only use PresenceAbsence objects. 
+#' Note also that this method will not be the best for PresenceAbsence objects 
+#' made from occurrence records. 
 #' Users can also choose the geographic midpoint, 
 #' using the option "GM". "GM" will create a bouding box across the extremes of the 
 #' distribution and calculate the centroid.
