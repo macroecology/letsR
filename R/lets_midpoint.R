@@ -17,13 +17,16 @@
 #' the function gCentroid of the package rgeos is used. 
 #' Note that for the "PC" method, users can only use PresenceAbsence objects. 
 #' Note also that this method will not be the best for PresenceAbsence objects 
-#' made from occurrence records. 
+#' made from occurrence records, or that have multiple disjoint distributions. 
 #' Users can also choose the geographic midpoint, 
 #' using the option "GM". "GM" will create a bouding box across the extremes of the 
 #' distribution and calculate the centroid.
 #' Alternatively, the midpoint can be calculated as the point
 #' that minimize the distance between all cells of the PAM,
 #' using the method "CMD"(center of minimun distance). 
+#' The user can also calculate the midpoint, based on the centroid of the minimum
+#' convex polygon of the distribution, using the method "MCC". This last method is
+#' usefull when using a PresenceAbsence object made from occurrence records.
 #'  
 #' 
 #' 
@@ -38,12 +41,15 @@
 #' 
 #' @examples \dontrun{
 #' data(PAM)
-#' mid <- lets.midpoint(PAM)
+#' mid <- lets.midpoint(PAM, method = "PC")
 #' mid2 <- lets.midpoint(PAM, method = "GM")
 #' mid3 <- lets.midpoint(PAM, method = "CMD")
-#' mid4 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
-#' mid5 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
-#' mid6 <- lets.midpoint(PAM, method = "PC", planar = TRUE)
+#' mid4 <- lets.midpoint(PAM, method = "MCC")
+#' mid5 <- lets.midpoint(PAM, method = "PC", planar = TRUE)
+#' mid6 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
+#' mid7 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
+#' mid8 <- lets.midpoint(PAM, method = "MCC", planar = TRUE)
+#' 
 #' for (sp in 1:nrow(mid)) {
 #'  #sp = 4 # Or choose a line or species
 #'  plot(PAM, name = mid[sp, 1])
@@ -52,7 +58,9 @@
 #'  points(mid3[sp, -1], col = adjustcolor("yellow", .8), pch = 20, cex = 1.5)
 #'  points(mid4[sp, -1], col = adjustcolor("purple", .8), pch = 20, cex = 1.5)
 #'  points(mid5[sp, -1], col = adjustcolor("orange", .8), pch = 20, cex = 1.5)
-#'  points(mid5[sp, -1], col = adjustcolor("black", .8), pch = 20, cex = 1.5)
+#'  points(mid6[sp, -1], col = adjustcolor("black", .8), pch = 20, cex = 1.5)
+#'  points(mid7[sp, -1], col = adjustcolor("gray", .8), pch = 20, cex = 1.5)
+#'  points(mid8[sp, -1], col = adjustcolor("brown", .8), pch = 20, cex = 1.5)
 #'  Sys.sleep(1)
 #' }
 #' } 
@@ -129,24 +137,6 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
             pol <- matrix(c(a, a, b, b, c, d, d, c), ncol = 2)
             dis2 <- centroid(pol)
           }
-          # if (length(pam2[pos, 1]) > 1) {
-          #   dis <- geomean(cbind(pam2[pos, 1], pam2[pos, 2]))
-          #   dist1 <- rdist.earth(cbind(dis[1, 1], 0), 
-          #                        cbind(dis2[1, 1],0),
-          #                        miles = FALSE)
-          #   # An aroximation, not necessary to be so accurate, 
-          #   # to avoid computation time.
-          #   denomina <- (111.321 * 1000) 
-          #   dif <-  dist1 / denomina
-          #   
-          #   if (dif > 150) {
-          #     if (dis2[1, 1] >= 0) {
-          #       dis2[1, 1] <- dis2[1, 1] - 180
-          #     } else {
-          #       dis2[1, 1] <- dis2[1, 1] + 180
-          #     }
-          #   }
-          # }
           xm[(i - 2)] <- dis2[1, 1]
           ym[(i - 2)] <- dis2[1, 2]
         }
@@ -158,7 +148,6 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
       }
     }
   }
-  
   if (method == "CMD") {
     for (i in 3:n) {
       loc <- pam2[, i] == 1
@@ -183,7 +172,36 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
       }
     }
   }
-  
+  if (method == "MCC") { # Minimum convex centroid
+    for(i in 3:n) {
+      pos <- which(pam2[, i] == 1)
+      lpos <- length(pos)
+      if (lpos == 1) {
+        dis2 <- pam2[pos, 1:2, drop = FALSE]
+      } else {
+        if (lpos == 2) {
+          if (!planar) {
+            dis2 <- midPoint(pam2[pos[1], 1:2], pam2[pos[2], 1:2])
+          } else {
+            dis2 <- matrix(colMeans(pam2[pos, 1:2]), ncol = 2)
+          }
+        } else {
+          pam3 <- pam2[pos, 1:2]
+          hp <- chull(pam2[pos, 1], pam2[pos, 2])
+          hp <- c(hp, hp[1])
+          p <- SpatialPolygons(list(Polygons(list(Polygon(
+            pam3[hp, 1:2])), 1)))
+          if(!planar) {
+            dis2 <- centroid(p)  
+          } else {
+            dis2 <- gCentroid(p)@coords
+          }
+        }
+      }
+      xm[(i - 2)] <- dis2[1, 1]
+      ym[(i - 2)] <- dis2[1, 2]
+    }  
+  }
   resu <- as.data.frame(cbind(species, xm, ym))
   colnames(resu) <- c("Species", "x", "y")
   resu[, 2] <- as.numeric(levels(resu[, 2]))[resu[, 2]]
