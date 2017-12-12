@@ -71,6 +71,10 @@
 
 lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
   
+  if (!(method %in% c("PC", "CMD", "MCC", "GM"))) {
+    stop("method not found. The chosen method should be PC, CMD, MCC or GM.")
+  }
+  
   if (class(pam) == "PresenceAbsence") {
     n <- ncol(pam[[1]])
     species <- pam[[3]]
