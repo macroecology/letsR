@@ -146,8 +146,8 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
   
   # Getting species name 
   names(shapes) <- toupper(names(shapes))
-  names(shapes)[names(shapes) %in% "SCINAME"] <- "BINOMIAL" 
-  nomes <- levels(shapes$BINOMIAL)
+  names(shapes)[names(shapes) %in% "SCINAME"] <- "BINOMIAL"
+  nomes <- sort(unique(shapes$BINOMIAL))
   n <- length(shapes$BINOMIAL)
   nomes2 <- shapes$BINOMIAL
   nomes <- nomes[nomes %in% nomes2]

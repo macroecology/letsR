@@ -19,13 +19,18 @@ If \code{TRUE} the coordinates are planar.}
 and calculate the centroid of this polygon. If planar = TRUE, 
 the function centroid of the package geosphere is used. If planar = FALSE,
 the function gCentroid of the package rgeos is used. 
-Note that for the "PC" method, users can only use PresenceAbsence objects.
+Note that for the "PC" method, users can only use PresenceAbsence objects. 
+Note also that this method will not be the best for PresenceAbsence objects 
+made from occurrence records, or that have multiple disjoint distributions. 
 Users can also choose the geographic midpoint, 
 using the option "GM". "GM" will create a bouding box across the extremes of the 
 distribution and calculate the centroid.
 Alternatively, the midpoint can be calculated as the point
 that minimize the distance between all cells of the PAM,
-using the method "CMD"(center of minimun distance).}
+using the method "CMD"(center of minimun distance). 
+The user can also calculate the midpoint, based on the centroid of the minimum
+convex polygon of the distribution, using the method "MCC". This last method is
+usefull when using a PresenceAbsence object made from occurrence records.}
 }
 \value{
 A \code{data.frame} containing the species' names and geographic coordinates 
@@ -38,12 +43,15 @@ presence-absence matrix using several methods.
 \examples{
 \dontrun{
 data(PAM)
-mid <- lets.midpoint(PAM)
+mid <- lets.midpoint(PAM, method = "PC")
 mid2 <- lets.midpoint(PAM, method = "GM")
 mid3 <- lets.midpoint(PAM, method = "CMD")
-mid4 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
-mid5 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
-mid6 <- lets.midpoint(PAM, method = "PC", planar = TRUE)
+mid4 <- lets.midpoint(PAM, method = "MCC")
+mid5 <- lets.midpoint(PAM, method = "PC", planar = TRUE)
+mid6 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
+mid7 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
+mid8 <- lets.midpoint(PAM, method = "MCC", planar = TRUE)
+
 for (sp in 1:nrow(mid)) {
  #sp = 4 # Or choose a line or species
  plot(PAM, name = mid[sp, 1])
@@ -52,7 +60,9 @@ for (sp in 1:nrow(mid)) {
  points(mid3[sp, -1], col = adjustcolor("yellow", .8), pch = 20, cex = 1.5)
  points(mid4[sp, -1], col = adjustcolor("purple", .8), pch = 20, cex = 1.5)
  points(mid5[sp, -1], col = adjustcolor("orange", .8), pch = 20, cex = 1.5)
- points(mid5[sp, -1], col = adjustcolor("black", .8), pch = 20, cex = 1.5)
+ points(mid6[sp, -1], col = adjustcolor("black", .8), pch = 20, cex = 1.5)
+ points(mid7[sp, -1], col = adjustcolor("gray", .8), pch = 20, cex = 1.5)
+ points(mid8[sp, -1], col = adjustcolor("brown", .8), pch = 20, cex = 1.5)
  Sys.sleep(1)
 }
 } 
