@@ -6,12 +6,14 @@
 #'
 #' @param x A \code{\link{PresenceAbsence}} object. 
 #' @param y Polygon of interest.
-#' @param z A character indicating the column name of the polygon containing the attributes to be used.
+#' @param z A character indicating the column name of the polygon containing the
+#'  attributes to be used.
 #' @param onlyvar If \code{TRUE} only the matrix object will be returned.
 #' 
 #' @return The result is a presence-absence matrix of species with 
-#' the polygons' attributes used added as columns at the right-end of the matrix . The Values represent
-#' the percentage of the cell covered by the polygon attribute used.   
+#' the polygons' attributes used added as columns at the right-end of the matrix.
+#' The Values represent the percentage of the cell covered by the polygon 
+#' attribute used.   
 #'  
 #' @seealso \code{\link{lets.presab.birds}}
 #' @seealso \code{\link{lets.presab}}
@@ -76,7 +78,7 @@ lets.addpoly <- function(x, y, z, onlyvar = FALSE){
     }
     
     calc1 <- (celu2[, 3] * areashape[i])
-    calc2 <- areagrid[position %in% celu2[, 1]]
+    calc2 <- areagrid[which(position %in% celu2[, 1])]
     prop <- round(calc1 / calc2, 2)
     prop1 <- prop > 1
     
