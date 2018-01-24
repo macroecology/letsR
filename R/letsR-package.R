@@ -43,18 +43,19 @@
 #' @details \tabular{ll}{
 #' Package: \tab lestR\cr
 #' Type: \tab Package\cr
-#' Version: \tab 2.6\cr
-#' Date: \tab 2015-06-01\cr
+#' Version: \tab 3.1\cr
+#' Date: \tab 2018-01-24\cr
 #' License: \tab GPL-2\cr
 #' }
 #' 
 #' @references Vilela, B., & Villalobos, F. (2015). letsR: a new R package for data handling and analysis in macroecology. Methods in Ecology and Evolution.
 #' 
 #' @import raster geosphere XML maptools maps sp rgdal fields
-#' @importFrom grDevices colorRampPalette dev.new dev.off
+#' @importFrom grDevices colorRampPalette dev.new dev.off chull
 #' @importFrom graphics abline par plot.new points segments
 #' @importFrom methods slot
 #' @importFrom stats as.dist na.omit pnorm sd dist
 #' @importFrom utils capture.output
+
 
 NULL

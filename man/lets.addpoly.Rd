@@ -11,14 +11,16 @@ lets.addpoly(x, y, z, onlyvar = FALSE)
 
 \item{y}{Polygon of interest.}
 
-\item{z}{A character indicating the column name of the polygon containing the attributes to be used.}
+\item{z}{A character indicating the column name of the polygon containing the
+attributes to be used.}
 
 \item{onlyvar}{If \code{TRUE} only the matrix object will be returned.}
 }
 \value{
 The result is a presence-absence matrix of species with 
-the polygons' attributes used added as columns at the right-end of the matrix . The Values represent
-the percentage of the cell covered by the polygon attribute used.
+the polygons' attributes used added as columns at the right-end of the matrix.
+The Values represent the percentage of the cell covered by the polygon 
+attribute used.
 }
 \description{
 Add polygon coverage within cells of a PresenceAbsence object.
