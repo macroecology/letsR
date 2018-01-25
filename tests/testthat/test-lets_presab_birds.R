@@ -35,7 +35,7 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object for the worl
 })
 
 
-test_that("lets.presab.birdsreturn a correct PresenceAbsence object for cover", {
+test_that("lets.presab.birdsreturn a correct PresenceAbsence object for cover different projection", {
   skip_on_cran()
   pro <- paste("+proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5",
                "+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA", 
@@ -49,10 +49,10 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object for cover", 
                             crs.grid = SA_EC, cover = .9)
   
   
-  expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
-  expect_equal(class(PAM[[3]]), "character")
+  expect_equal(class(PAM3), "PresenceAbsence")
+  expect_equal(class(PAM3[[1]]), "matrix")
+  expect_true(inherits(PAM3[[2]], "RasterLayer"))
+  expect_equal(class(PAM3[[3]]), "character")
   
 })
 
