@@ -32,8 +32,7 @@
 #' Note that when you change this options you may probably change 
 #' the extent coordinates and the resolution.
 #' @param cover Porcentage of the cell covered by the shapefile that will be considered for 
-#' presence (values between 0 and 1). This option is only available when the coordinates 
-#' are in degrees (longitude/latitude).
+#' presence (values between 0 and 1).
 #' @param presence A vector with the code numbers for the presence type to be considered 
 #' in the process (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data},
 #' see metadata). 
@@ -118,25 +117,17 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   # Cell area calculation for cover metrics
   areashape <- NULL
   areagrid <- NULL
-  latlong <- NULL
   
   if (cover > 0) {
-    ex <- c(xmn, xmx, ymn, ymx)
-    latlong <- all(ex >= -180 & ex <= 180)
-    if (latlong) {
-      global <- xmn == -180 & xmx == 180 & ymn == -90 & ymx == 90    
-      if (!global) {
-        grid <- rasterToPolygons(r)
-        areagrid <- try(areaPolygon(grid), silent=TRUE)
-      } 
-      
-      if (class(areagrid) == "try-error" | global) {
-        areagrid <- values(area(r)) * 1000000
-      } 
-    } else {
+    global <- xmn == -180 & xmx == 180 & ymn == -90 & ymx == 90    
+    if (!global) {
       grid <- rasterToPolygons(r)
-      areagrid <- rgeos::gArea(grid, byid = TRUE)
-    }
+      areagrid <- try(areaPolygon(grid), silent=TRUE)
+    } 
+    
+    if (class(areagrid) == "try-error" | global) {
+      areagrid <- values(area(r)) * 1000000
+    }  
   }
   
   
@@ -163,8 +154,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       par.re <- .extractpos.birds(valores,  shapes[j], 
                                   k, r, areashape, areagrid,
                                   cover, presence, origin, 
-                                  seasonal, crs, crs.grid,
-                                  latlong)
+                                  seasonal, crs, crs.grid)
       
       matriz[, (j + 2)] <- par.re[[1]]
       nomes[j] <- par.re[[2]]
@@ -182,8 +172,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       par.re <- .extractpos.birds(valores,  shapes[j], 
                                   k, r, areashape, areagrid,
                                   cover, presence, origin, 
-                                  seasonal, crs, crs.grid,
-                                  latlong)      
+                                  seasonal, crs, crs.grid)      
       matriz[, (j + 2)] <- par.re[[1]]
       nomes[j] <- par.re[[2]]
       k <- par.re[[3]]
@@ -234,7 +223,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
 .extractpos.birds <- function(valores, shapej, k, r,
                               areashape, areagrid, cover,
                               presence, origin, seasonal, crs,
-                              crs.grid, latlong) {
+                              crs.grid) {
   
   # Vector to be filled
   valores2 <- valores
@@ -288,11 +277,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       # Correcting presence based on the cover
       
       if (cover > 0) {
-        if (latlong) {
-          areashape <- areaPolygon(shp)
-        } else {
-          areashape <- rgeos::gArea(shp)
-        }
+        areashape <- areaPolygon(shp)
         prop <- numeric()
         
         for (k1 in 1:l.cell) {

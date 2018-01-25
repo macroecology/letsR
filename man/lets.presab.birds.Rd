@@ -46,8 +46,7 @@ Note that when you change this options you may probably change
 the extent coordinates and the resolution.}
 
 \item{cover}{Porcentage of the cell covered by the shapefile that will be considered for 
-presence (values between 0 and 1). This option is only available when the coordinates 
-are in degrees (longitude/latitude).}
+presence (values between 0 and 1).}
 
 \item{presence}{A vector with the code numbers for the presence type to be considered 
 in the process (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data},
