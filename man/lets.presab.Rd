@@ -98,8 +98,16 @@ plot(PAM, xlab = "Longitude", ylab = "Latitude",
      main = "Phyllomedusa species richness")
 # Map of the specific species      
 plot(PAM, name = "Phyllomedusa nordestina")
-}
 
+# Other projections
+ pro <- paste("+proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5",
+              "+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA", 
+              "+units=m +no_defs")
+SA_EC <- CRS(pro)
+PAM_proj <- lets.presab(shapes = Phyllomedusa, xmn = -4135157,
+                        xmx = 4707602, ymn = -450000, ymx = 5774733,
+                        resol = 100000, crs.grid = SA_EC)
+}
 
 }
 \seealso{

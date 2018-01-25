@@ -35,6 +35,27 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object for the worl
 })
 
 
+test_that("lets.presab.birdsreturn a correct PresenceAbsence object for cover", {
+  skip_on_cran()
+  pro <- paste("+proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5",
+               "+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA", 
+               "+units=m +no_defs")
+  SA_EC <- CRS(pro)
+  
+  PAM3 <- lets.presab.birds(path.Ramphastos, xmn = -4135157,
+                            xmx = 4707602,
+                            ymn = -450000, ymx = 5774733,
+                            resol = 100000,
+                            crs.grid = SA_EC, cover = .9)
+  
+  
+  expect_equal(class(PAM), "PresenceAbsence")
+  expect_equal(class(PAM[[1]]), "matrix")
+  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_equal(class(PAM[[3]]), "character")
+  
+})
+
 
 test_that("lets.presab.birdsreturn a correct PresenceAbsence object (count=TRUE)", {
   skip_on_cran()
