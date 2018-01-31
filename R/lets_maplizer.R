@@ -67,6 +67,10 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
   
   resum <- apply(p, 1, func2)
   
+  
+  # Back to zero
+  resum[resum <= 0.0000000000000000000000000000000000001] <- 0
+  
   # Matrix of result 
   resultado <- cbind(x[[1]][, 1:2], resum)
   resu2 <- na.omit(resultado)
@@ -76,8 +80,6 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
                 sep = "_")
   colnames(resultado)[3] <- name 
   
-  # Back to zero
-  resultado[resultado <= 0.0000000000000000000000000000000000001] <- 0
   
   # Return result with or without the raster
   if (ras) {
