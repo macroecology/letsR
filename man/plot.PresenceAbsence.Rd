@@ -4,7 +4,8 @@
 \alias{plot.PresenceAbsence}
 \title{Plot an object of class PresenceAbsence}
 \usage{
-\method{plot}{PresenceAbsence}(x, name = NULL, world = TRUE, col_rich = NULL, \dots)
+plot.PresenceAbsence(x, name = NULL, world = TRUE, col_rich = NULL,
+  col_name = "red", ...)
 }
 \arguments{
 \item{x}{An object of class \code{\link{PresenceAbsence}}.}
@@ -14,6 +15,8 @@
 \item{world}{If \code{TURE} a map of political divisions (countries) is added to the plot.}
 
 \item{col_rich}{Color function (e.g. \code{\link{rainbow}}, \code{\link{heat.colors}}, \code{\link{colorRampPalette}}) to be used in the richness map.}
+
+\item{col_name}{The color to use when ploting single species.}
 
 \item{...}{Other parameters pass to the plot function.}
 }

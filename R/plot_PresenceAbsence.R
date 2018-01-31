@@ -5,13 +5,11 @@
 #' @description Plots species richness map from an object of class PresenceAbsence or a
 #' particular species' map.
 #'
-#' @usage 
-#' \method{plot}{PresenceAbsence}(x, name = NULL, world = TRUE, col_rich = NULL, \dots)
-#' 
 #' @param x An object of class \code{\link{PresenceAbsence}}.
 #' @param name A character specifying a species to be ploted instead of the complete species richness map.
 #' @param world If \code{TURE} a map of political divisions (countries) is added to the plot.
 #' @param col_rich Color function (e.g. \code{\link{rainbow}}, \code{\link{heat.colors}}, \code{\link{colorRampPalette}}) to be used in the richness map.
+#' @param col_name The color to use when ploting single species.
 #' @param ... Other parameters pass to the plot function.
 #' 
 #' @seealso \code{\link{lets.presab}}
@@ -29,7 +27,8 @@
 #' @S3method plot PresenceAbsence
 
 plot.PresenceAbsence <- function(x, name = NULL, world = TRUE,
-                                 col_rich = NULL, ...) {
+                                 col_rich = NULL, col_name = "red",
+                                 ...) {
   
   # Richness plot
   if (is.null(name)) {
@@ -61,7 +60,7 @@ plot.PresenceAbsence <- function(x, name = NULL, world = TRUE,
     # Transform the one species in raster
     r <- rasterize(x$Presen[ , 1:2], x$Rich,  x$Presen[ , (pos + 2)])
     # Plot
-    plot(r, col = c("white", "red"), legend = FALSE, ...)
+    plot(r, col = c("white", col_name), legend = FALSE, ...)
   }
   if (world) {
     map(add = TRUE)
