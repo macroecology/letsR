@@ -4,8 +4,8 @@
 \alias{lets.rangesize}
 \title{Compute species' geographic range sizes}
 \usage{
-lets.rangesize(x, species_name = x@data[, 1], coordinates = "geographic",
-  units = "cell")
+lets.rangesize(x, species_name = x@data[, 1],
+  coordinates = "geographic", units = "cell")
 }
 \arguments{
 \item{x}{A \code{\link{PresenceAbsence}} object or an \code{SpatialPolygonsDataFrame}.}

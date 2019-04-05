@@ -51,12 +51,8 @@ lets.addvar <- function(x, y, onlyvar = FALSE, fun = mean) {
   res2 <- res(x[[2]])[1]
   if (res2 > res1) {
     fact1 <- res2 / res1
-    if(is.integer(fact1)) {
-      var_a <- aggregate(var_c, fact = fact1,
-                         na.rm = TRUE, fun)
-    } else {
-      var_a <- var_c
-    }
+    var_a <- aggregate(var_c, fact = round(fact1), 
+                       na.rm = TRUE, fun)
   }
   if (res2 < res1) {
     fact1 <- res1 / res2
@@ -75,7 +71,7 @@ lets.addvar <- function(x, y, onlyvar = FALSE, fun = mean) {
   var_r <- resample(var_a, x[[2]])
   
   # Extract values
-  var_e <- extract(var_r, x[[1]][, 1:2]) 
+  var_e <- extract(var_r, x[[1]][, 1:2])
   var_e <- as.matrix(var_e)
   
   # Set the names

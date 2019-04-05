@@ -5,9 +5,10 @@
 \title{Create a presence-absence matrix of species' geographic ranges within a grid}
 \usage{
 lets.presab(shapes, xmn = -180, xmx = 180, ymn = -90, ymx = 90,
-  resol = 1, remove.cells = TRUE, remove.sp = TRUE, show.matrix = FALSE,
-  crs = CRS("+proj=longlat +datum=WGS84"), crs.grid = crs, cover = 0,
-  presence = NULL, origin = NULL, seasonal = NULL, count = FALSE)
+  resol = 1, remove.cells = TRUE, remove.sp = TRUE,
+  show.matrix = FALSE, crs = CRS("+proj=longlat +datum=WGS84"),
+  crs.grid = crs, cover = 0, presence = NULL, origin = NULL,
+  seasonal = NULL, count = FALSE)
 }
 \arguments{
 \item{shapes}{Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}} 

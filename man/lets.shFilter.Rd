@@ -4,7 +4,8 @@
 \alias{lets.shFilter}
 \title{Filter species' shapefiles based on its presence, origin, and season}
 \usage{
-lets.shFilter(shapes, presence = NULL, origin = NULL, seasonal = NULL)
+lets.shFilter(shapes, presence = NULL, origin = NULL,
+  seasonal = NULL)
 }
 \arguments{
 \item{shapes}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} 
