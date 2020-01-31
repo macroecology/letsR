@@ -5,8 +5,15 @@
 \title{Create a presence-absence matrix of species' geographic ranges 
 within a user's grid shapefile (beta version)}
 \usage{
-lets.presab.grid(shapes, grid, sample.unit, remove.sp = TRUE,
-  presence = NULL, origin = NULL, seasonal = NULL)
+lets.presab.grid(
+  shapes,
+  grid,
+  sample.unit,
+  remove.sp = TRUE,
+  presence = NULL,
+  origin = NULL,
+  seasonal = NULL
+)
 }
 \arguments{
 \item{shapes}{Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}} 

@@ -4,8 +4,7 @@
 \alias{plot.PresenceAbsence}
 \title{Plot an object of class PresenceAbsence}
 \usage{
-plot.PresenceAbsence(x, name = NULL, world = TRUE, col_rich = NULL,
-  col_name = "red", ...)
+\method{plot}{PresenceAbsence}(x, name = NULL, world = TRUE, col_rich = NULL, col_name = "red", ...)
 }
 \arguments{
 \item{x}{An object of class \code{\link{PresenceAbsence}}.}

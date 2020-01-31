@@ -9,7 +9,8 @@
 #' @param object an object of class \code{\link{PresenceAbsence}}.
 #' @param ... Other summary parameters.
 #' 
-#' @S3method summary PresenceAbsence
+#' @method summary PresenceAbsence
+#' @export
 
 summary.PresenceAbsence <- function(object, ...) {
   

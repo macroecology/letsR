@@ -25,7 +25,7 @@ The package's basic functions create and work on a particular S3 object class ca
 Such \code{\link{PresenceAbsence}} object class allows storing information beyond presence-absence data 
 (e.g. user-defined grid-cell system) and using the generic \code{plot}, \code{summary} and \code{print} functions of R. 
 Also, some package's functions allow the user to input customary R objects (e.g. \code{vector}, \code{matrix}, 
-\code{data.frame}).
+\code{data.frame}). 
 
 Another set of functions in this package allow the user to download species' information related to 
 their description and conservation status as provided by the IUCN's REdList database (\code{\link{lets.iucn}},

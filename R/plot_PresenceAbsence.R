@@ -24,7 +24,8 @@
 #' plot(PAM, name = "Phyllomedusa azurea")
 #' }
 #' 
-#' @S3method plot PresenceAbsence
+#' @method plot PresenceAbsence
+#' @export
 
 plot.PresenceAbsence <- function(x, name = NULL, world = TRUE,
                                  col_rich = NULL, col_name = "red",

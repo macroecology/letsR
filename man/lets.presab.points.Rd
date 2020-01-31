@@ -4,10 +4,20 @@
 \alias{lets.presab.points}
 \title{Create a presence-absence matrix based on species' point occurrences}
 \usage{
-lets.presab.points(xy, species, xmn = -180, xmx = 180, ymn = -90,
-  ymx = 90, resol = 1, remove.cells = TRUE, remove.sp = TRUE,
-  show.matrix = FALSE, crs = CRS("+proj=longlat +datum=WGS84"),
-  count = FALSE)
+lets.presab.points(
+  xy,
+  species,
+  xmn = -180,
+  xmx = 180,
+  ymn = -90,
+  ymx = 90,
+  resol = 1,
+  remove.cells = TRUE,
+  remove.sp = TRUE,
+  show.matrix = FALSE,
+  crs = CRS("+proj=longlat +datum=WGS84"),
+  count = FALSE
+)
 }
 \arguments{
 \item{xy}{A matrix with geographic coordinates of species occurrences, first column is the longitude (or x), and the second latitude (or y).}
