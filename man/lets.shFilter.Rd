@@ -20,7 +20,7 @@ to open these files).}
 The result is the shapefile(s) filtered according to the selected types. If the filters remove all polygons, the result will be NULL.
 }
 \description{
-Filter species shapefiles by origin, presence, and seasonal type (following IUCN types: \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata).
+Filter species shapefiles by origin, presence, and seasonal type (following IUCN types: \url{https://www.iucnredlist.org/resources/spatial-data-download}, see metadata).
 }
 \details{
 Presence codes:

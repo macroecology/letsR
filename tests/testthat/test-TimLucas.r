@@ -73,7 +73,7 @@ test_that("Other parameters work", {
 
 
 	PresAbMat4 <- lets.presab.points(xy, species, show.matrix = TRUE )
-	expect_equal(class(PresAbMat4), "matrix")
+	expect_true(is.matrix(PresAbMat4))
 
 
 })

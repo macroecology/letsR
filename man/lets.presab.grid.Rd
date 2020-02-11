@@ -32,7 +32,7 @@ representing the sample units of the presence absence matrix.}
 do not match any cell in the grid.}
 
 \item{presence}{A vector with the code numbers for the presence type to be considered in the process 
-(for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata).}
+(for IUCN spatial data \url{https://www.iucnredlist.org/resources/spatial-data-download}, see metadata).}
 
 \item{origin}{A vector with the code numbers for the origin type to be considered in the process 
 (for IUCN spatial data).}

@@ -4,7 +4,7 @@
 #' @author Bruno Vilela
 #' 
 #' @description Get species' information from the IUCN
-#' website(\url{http://www.iucnredlist.org/}) for one or more species.
+#' website(\url{https://www.iucnredlist.org/}) for one or more species.
 #' 
 #' 
 #' @param input Character vector with one or more species names,

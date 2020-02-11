@@ -15,7 +15,7 @@ NULL
 #'@usage data(PAM)
 #'@description PresenceAbsence object obtained using the function \code{\link{lets.presab}} 
 #'in the Geographic distribution of the Southern American frog genus \link{Phyllomedusa}.
-#'@source IUCN - \url{http://www.iucnredlist.org/}. 2014.
+#'@source IUCN - \url{https://www.iucnredlist.org/}. 2014.
 
 NULL
 
@@ -25,9 +25,9 @@ NULL
 #'@title Geographic distribution of Phyllomedusa genus
 #'@usage data(Phyllomedusa)
 #'@description Geographic distribution of the Southern American frog genera Phyllomedusa. 
-#'Data was modfied from IUCN (\url{http://www.iucnredlist.org/}, downloaded in 05/2014). 
+#'Data was modfied from IUCN (\url{https://www.iucnredlist.org/}, downloaded in 05/2014). 
 #'There are 32 species and 46 polygons.
-#'@source IUCN - \url{http://www.iucnredlist.org/}. 2014.
+#'@source IUCN - \url{https://www.iucnredlist.org/}. 2014.
 
 NULL
 

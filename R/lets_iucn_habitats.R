@@ -4,7 +4,7 @@
 #' @author Bruno Vilela
 #' 
 #' @description Get species' habitat information from the IUCN RedList 
-#' website(\url{http://www.iucnredlist.org/}) for one or more species.
+#' website(\url{https://www.iucnredlist.org/}) for one or more species.
 #' 
 #' @param input Character vector with one or more species names,
 #' or an object of the \code{\link{PresenceAbsence}} class.
@@ -117,7 +117,7 @@ lets.iucn.ha <- function(input, count = FALSE) {
   # Taking the Website code from the internet
   
   c <- .getcode(input[i])
-  httpclas <- "http://www.iucnredlist.org/details/classify/"
+  httpclas <- "https://www.iucnredlist.org/details/classify/"
   h2 <- try(htmlParse(paste(httpclas, c, "/0", sep = "")),
             silent = TRUE)
   

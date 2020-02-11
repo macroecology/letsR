@@ -34,7 +34,7 @@
 #' @param cover Porcentage of the cell covered by the shapefile that will be considered for 
 #' presence (values between 0 and 1).
 #' @param presence A vector with the code numbers for the presence type to be considered 
-#' in the process (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data},
+#' in the process (for IUCN spatial data \url{https://www.iucnredlist.org/resources/spatial-data-download},
 #' see metadata). 
 #' @param origin A vector with the code numbers for the origin type to be considered in the process 
 #' (for IUCN spatial data).

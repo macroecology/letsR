@@ -5,7 +5,7 @@
 \alias{PAM}
 \title{PresenceAbsence object for frogs of Phyllomedusa genus}
 \source{
-IUCN - \url{http://www.iucnredlist.org/}. 2014.
+IUCN - \url{https://www.iucnredlist.org/}. 2014.
 }
 \usage{
 data(PAM)

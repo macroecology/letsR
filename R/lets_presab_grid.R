@@ -17,7 +17,7 @@
 #' @param sample.unit Object of class \code{character} with the name of the column (in the grid) 
 #' representing the sample units of the presence absence matrix.
 #' @param presence A vector with the code numbers for the presence type to be considered in the process 
-#' (for IUCN spatial data \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata). 
+#' (for IUCN spatial data \url{https://www.iucnredlist.org/resources/spatial-data-download}, see metadata). 
 #' @param origin A vector with the code numbers for the origin type to be considered in the process 
 #' (for IUCN spatial data).
 #' @param seasonal A vector with the code numbers for the seasonal type to be considered in the process 

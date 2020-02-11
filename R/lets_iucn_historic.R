@@ -4,7 +4,7 @@
 #' @author Bruno Vilela
 #' 
 #' @description Get species conservation status over time (i.e. from 1980 to the present date available)
-#' from the IUCN website(\url{http://www.iucnredlist.org/}) for one or more species.
+#' from the IUCN website(\url{https://www.iucnredlist.org/}) for one or more species.
 #' 
 #' @param input character vector with one or more species names,
 #' or an object of class \code{\link{PresenceAbsence}}.
@@ -124,7 +124,7 @@ lets.iucn.his <- function(input, count = FALSE) {
     ano1 <- xpathSApply(h2, '//div[@id="modified_year"]', xmlValue)
     ameaca1 <- xpathSApply(h2, '//div[@id="red_list_category_code"]', xmlValue)
     
-    h <- try(htmlParse(paste("http://www.iucnredlist.org/details/full/", 
+    h <- try(htmlParse(paste("https://www.iucnredlist.org/details/full/", 
                              c, "/0", sep = "")), 
              silent = TRUE)
     

@@ -20,7 +20,7 @@ habitats where it occurs in the remaining columns,
 }
 \description{
 Get species' habitat information from the IUCN RedList 
-website(\url{http://www.iucnredlist.org/}) for one or more species.
+website(\url{https://www.iucnredlist.org/}) for one or more species.
 }
 \details{
 Note that you must be connected to the internet to use this function.

@@ -10,7 +10,7 @@ test_that("lets.addpoly lets.classvar fine", {
  
   resu_test <- lets.classvar(x = pamvar, pos = ncol(pamvar), xy = TRUE)
   
-  expect_equal(class(resu_test), "matrix")
+  expect_true(is.matrix(resu_test))
   expect_true(nrow(resu_test) == length(PAM[[3]]))
 })
 
@@ -21,7 +21,7 @@ test_that("lets.addpoly lets.classvar fine, xy = FALSE", {
                              pos = (ncol(pamvar) - 2), 
                              xy = FALSE)
   
-  expect_equal(class(resu_test), "matrix")
+  expect_true(is.matrix(resu_test))
   expect_true(nrow(resu_test) == length(PAM[[3]]))
 })
 
@@ -32,7 +32,7 @@ test_that("lets.addpoly lets.classvar fine, set groups", {
   resu_test <- lets.classvar(x = pamvar, pos = ncol(pamvar), 
                              xy = TRUE, groups = gr)
   
-  expect_equal(class(resu_test), "matrix")
+  expect_true(is.matrix(resu_test))
   expect_true(nrow(resu_test) == length(PAM[[3]]))
   expect_true(ncol(resu_test) == gr)
 })

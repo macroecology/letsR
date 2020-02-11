@@ -8,13 +8,13 @@ data(PAM)
 test_that("lets.addpoly works fine, onlyvar = FALSE", {
   
   resu_test <- lets.addpoly(PAM, Brazil, "NAME", onlyvar = FALSE)
-  expect_equal(class(resu_test), "matrix")
+  expect_true(is.matrix(resu_test))
   expect_true(ncol(resu_test) > 1)
 })
 
 test_that("lets.addpoly works fine, onlyvar = TRUE", {
   
   resu_test <- lets.addpoly(PAM, Brazil, "NAME", onlyvar = TRUE)
-  expect_equal(class(resu_test), "matrix")
+  expect_true(is.matrix(resu_test))
   expect_true(ncol(resu_test) == 1)
 })

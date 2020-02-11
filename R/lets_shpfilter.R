@@ -2,7 +2,7 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Filter species shapefiles by origin, presence, and seasonal type (following IUCN types: \url{http://www.iucnredlist.org/technical-documents/spatial-data}, see metadata).
+#' @description Filter species shapefiles by origin, presence, and seasonal type (following IUCN types: \url{https://www.iucnredlist.org/resources/spatial-data-download}, see metadata).
 #'
 #' 
 #' @param shapes Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} 
