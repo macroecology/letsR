@@ -12,7 +12,7 @@ projection(Phyllomedusa) <- projection(sp.r)
 
 test_that("lets.presab.grid works fine", {
   resu <- lets.presab.grid(Phyllomedusa, sp.r, "ID")
-  expect_equal(class(resu), "list")
-  expect_equal(class(resu[[1]]), "matrix")
+  expect_equal(class(resu)[1], "list")
+  expect_equal(class(resu[[1]])[1], "matrix")
 })
 

@@ -33,15 +33,15 @@
 
 lets.subsetPAM <- function(x, names, remove.cells = TRUE) {
   
-  if (class(x) != "PresenceAbsence") {
+  if (class(x)[1] != "PresenceAbsence") {
     stop("x argument must be a PresenceAbsence object")
   }
   
-  if (class(names) != "character") {
+  if (class(names)[1] != "character") {
     stop("names argument must be a character object")
   }
   
-  if (class(remove.cells) != "logical") {
+  if (class(remove.cells)[1] != "logical") {
     stop("remove.cells argument must be a TRUE or FALSE")
   }
   

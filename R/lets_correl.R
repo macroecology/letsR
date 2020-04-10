@@ -49,7 +49,7 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
   }
   
   # Allow dist classes
-  if (class(y) == "dist") {
+  if (class(y)[1] == "dist") {
     y <- as.matrix(y)
   }
   

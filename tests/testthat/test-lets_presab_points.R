@@ -19,10 +19,10 @@ test_that("lets.presab.points return a correct PresenceAbsence object", {
                             xmx = -29, ymn = -57, 
                             ymx = 15)
   
-  expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+  expect_equal(class(PAM)[1], "PresenceAbsence")
+  expect_equal(class(PAM[[1]])[1], "matrix")
   expect_true(inherits(PAM[[2]], "RasterLayer"))
-  expect_equal(class(PAM[[3]]), "character")
+  expect_equal(class(PAM[[3]])[1], "character")
   
   
 })
@@ -33,10 +33,10 @@ test_that("lets.presab.points return a correct PresenceAbsence object for the wo
   
   PAM <- lets.presab.points(xy, species)
   
-  expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+  expect_equal(class(PAM)[1], "PresenceAbsence")
+  expect_equal(class(PAM[[1]])[1], "matrix")
   expect_true(inherits(PAM[[2]], "RasterLayer"))
-  expect_equal(class(PAM[[3]]), "character")
+  expect_equal(class(PAM[[3]])[1], "character")
   
   
 })
@@ -50,10 +50,10 @@ test_that("lets.presab.points return a correct PresenceAbsence object (count=TRU
                             xmx = -29, ymn = -57, 
                             ymx = 15, count = TRUE)
   
-  expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+  expect_equal(class(PAM)[1], "PresenceAbsence")
+  expect_equal(class(PAM[[1]])[1], "matrix")
   expect_true(inherits(PAM[[2]], "RasterLayer"))
-  expect_equal(class(PAM[[3]]), "character")
+  expect_equal(class(PAM[[3]])[1], "character")
   
   
 })
@@ -68,10 +68,10 @@ test_that("lets.presab.points return a correct PresenceAbsence object, remove.sp
                             xmx = -29, ymn = -57, 
                             ymx = 15, remove.sp = FALSE)
   
-  expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+  expect_equal(class(PAM)[1], "PresenceAbsence")
+  expect_equal(class(PAM[[1]])[1], "matrix")
   expect_true(inherits(PAM[[2]], "RasterLayer"))
-  expect_equal(class(PAM[[3]]), "character")
+  expect_equal(class(PAM[[3]])[1], "character")
   
   response <- summary(PAM)
   expect_true(response$Specieswithoutanypresence > 0)
@@ -86,10 +86,10 @@ test_that("lets.presab.points return a correct PresenceAbsence object, remove.ce
                             xmx = -29, ymn = -57, 
                             ymx = 15, remove.cells = FALSE)
   
-  expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+  expect_equal(class(PAM)[1], "PresenceAbsence")
+  expect_equal(class(PAM[[1]])[1], "matrix")
   expect_true(inherits(PAM[[2]], "RasterLayer"))
-  expect_equal(class(PAM[[3]]), "character")
+  expect_equal(class(PAM[[3]])[1], "character")
   
   
   response <- summary(PAM)

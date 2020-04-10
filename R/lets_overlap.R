@@ -45,7 +45,7 @@ lets.overlap <- function(pam, method = "Chesser&Zink",
                "Please check the spelling."))
   }
   
-  if (!any(class(pam) %in% c("matrix", "PresenceAbsence"))) {
+  if (!any(class(pam)[1] %in% c("matrix", "PresenceAbsence"))) {
     stop(paste("Object pam should be either a PresenceAbsence or a matrix.
          Not a", class(pam)))
   }
@@ -61,7 +61,7 @@ lets.overlap <- function(pam, method = "Chesser&Zink",
     }
   }
   
-  if (class(pam) == "PresenceAbsence") {
+  if (class(pam)[1] == "PresenceAbsence") {
     pam <- pam[[1]][, -(1:2), drop = FALSE]    
   }
   

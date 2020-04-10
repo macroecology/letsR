@@ -10,10 +10,10 @@ test_that("lets.presab.birds return a correct PresenceAbsence object", {
                      crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
                      origin=NULL, seasonal=NULL, count=FALSE)
   
-  expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+  expect_equal(class(PAM)[1], "PresenceAbsence")
+  expect_equal(class(PAM[[1]])[1], "matrix")
   expect_true(inherits(PAM[[2]], "RasterLayer"))
-  expect_equal(class(PAM[[3]]), "character")
+  expect_equal(class(PAM[[3]])[1], "character")
   
   
 })

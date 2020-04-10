@@ -44,7 +44,7 @@ lets.field <- function(x, y, z, weight = TRUE,
                        xy = NULL, count = FALSE) {
   
   # Get the matrix without the coordinates
-  if (class(x) == "PresenceAbsence") {
+  if (class(x)[1] == "PresenceAbsence") {
     p <- x[[1]][, -(1:2)]
     namesSpe <- x[[3]]
   } 
