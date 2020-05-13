@@ -244,8 +244,8 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
                           verbose = FALSE)
     crs <- shp@proj4string
   } else {
-    shp <- rgdal::readOGR(shapej, dropNULLGeometries = TRUE,
-                          p4s = as.character(crs), verbose = FALSE)
+    shp <- suppressWarnings(rgdal::readOGR(shapej, dropNULLGeometries = TRUE,
+                          p4s = as.character(crs), verbose = FALSE))
   }
   if (is.null(crs.grid)) {
     crs.grid <- crs
@@ -264,8 +264,9 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       k <- k + 1 # for later error control (see below)
       
       #  Extract cell occurrence positions
-      cell <- extract(r, shp, cellnumber = T, 
-                      small = T, weights = T)
+      cell <- extract(r, shp, cellnumber = TRUE, 
+                      small = TRUE, weights = TRUE,
+                      normalizeWeights = FALSE)
       
       # Remove null cells
       cell <- cell[!sapply(cell, is.null)]

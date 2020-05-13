@@ -191,7 +191,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
                                  (n - i))))
       
       # Getting species position in the matrix and set to 1
-      pospos2 <- .extractpos(ras, shapes@polygons[[i]], nomes, nomes2,
+      pospos2 <- .extractpos(ras, shapes[i, ], nomes, nomes2,
                              cover, areashape, areagrid, i)      
       matriz[pospos2$pos2[, 1], pospos2$pos] <- 1      
     }
@@ -204,7 +204,7 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
     # Loop start, running repetitions for the number of polygons (n) 
     for(i in 1:n){
       # Getting species position in the matrix and set to 1
-      pospos2 <- .extractpos(ras, shapes@polygons[[i]], nomes, nomes2,
+      pospos2 <- .extractpos(ras, shapes[i, ], nomes, nomes2,
                              cover, areashape, areagrid, i)      
       matriz[pospos2$pos2[, 1], pospos2$pos] <- 1            
     }
@@ -246,16 +246,30 @@ lets.presab <- function(shapes, xmn = -180, xmx = 180, ymn = -90,
                         areashape, areagrid, i) {
   
   # Try the extraction of cell occurrence positions
+  shapepol1 <- shapepol
   celulas <- try(celulas <- extract(ras, 
-                                    SpatialPolygons(list(shapepol)),
+                                    shapepol1,
                                     cellnumbers = TRUE,
                                     weights = TRUE,
-                                    small = TRUE), 
+                                    small = TRUE,
+                                    normalizeWeights = FALSE), 
                  silent=T)
-  
+  if (class(celulas) != "try-error") {
+    celulas2 <- extract(
+      ras,
+      shapepol1,
+      cellnumbers = TRUE,
+      weights = FALSE,
+      small = TRUE,
+      normalizeWeights = FALSE
+    )
+    keep_this <- celulas[[1]][, 1] %in% celulas2[[1]][, 1]
+    celulas[[1]] <- celulas[[1]][keep_this, ,drop = FALSE]
+  }
+
   # Handle the awkward error that can appear with weights and small = TRUE 
   if (class(celulas) == "try-error") {
-    celulas <- extract(ras, SpatialPolygons(list(shapepol)),
+    celulas <- extract(ras, shapepol1,
                        cellnumbers = TRUE)
     nen <- sapply(celulas, nrow)
     for (ky in 1:length(nen)) {

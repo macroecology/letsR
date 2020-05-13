@@ -8,13 +8,10 @@ test_that("lets.presab return a correct PresenceAbsence object", {
                      resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
                      crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
                      origin=NULL, seasonal=NULL, count=FALSE)
-  
   expect_equal(class(PAM), "PresenceAbsence")
   expect_equal(class(PAM[[1]]), "matrix")
   expect_true(inherits(PAM[[2]], "RasterLayer"))
   expect_equal(class(PAM[[3]]), "character")
-  
-  
 })
 
 

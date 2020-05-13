@@ -1,12 +1,13 @@
 Package: letsR
 Type: Package
-Title: Tools for Data Handling and Analysis in Macroecology
+Title: Data Handling and Analysis in Macroecology
 Version: 3.2
-Date: 2020-01-31
+Date: 2020-04-11
 Author: Bruno Vilela & Fabricio Villalobos
 Maintainer: Bruno Vilela <bvilela.bv@gmail.com>
-Description: R functions for handling, processing, and analyzing geographic
-    data on species' distributions and environmental variables.
+Description: Handling, processing, and analyzing geographic
+    data on species' distributions and environmental variables. 
+    Read Vilela & Villalobos (2015) <doi: 10.1111/2041-210X.12401> for details.
 License: GPL-2
 Imports:
     XML,
@@ -28,5 +29,5 @@ LazyData: true
 URL: http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract,
     https://github.com/macroecology/letsR
 BugReports: https://github.com/macroecology/letsR/issues
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Encoding: UTF-8
