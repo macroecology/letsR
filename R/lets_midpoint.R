@@ -206,9 +206,8 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
       ym[(i - 2)] <- dis2[1, 2]
     }  
   }
-  resu <- as.data.frame(cbind(species, xm, ym))
-  colnames(resu) <- c("Species", "x", "y")
-  resu[, 2] <- as.numeric(levels(resu[, 2]))[resu[, 2]]
-  resu[, 3] <- as.numeric(levels(resu[, 3]))[resu[, 3]]  
+  resu <- data.frame("Species" = species,
+                        "x" = xm,
+                        "y" = ym)
   return(resu)
 }
