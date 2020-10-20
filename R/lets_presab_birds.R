@@ -252,7 +252,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   }
   
   shp <- spTransform(shp, crs.grid)
-  nomesj <- levels(shp$SCINAME)[1]
+  nomesj <- unique(shp$SCINAME)[1]
   shp <- lets.shFilter(shp, 
                        presence = presence,
                        origin = origin,
