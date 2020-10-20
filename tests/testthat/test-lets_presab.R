@@ -9,7 +9,7 @@ test_that("lets.presab return a correct PresenceAbsence object", {
                      crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
                      origin=NULL, seasonal=NULL, count=FALSE)
   expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+expect_true(is.matrix(PAM[[1]]))
   expect_true(inherits(PAM[[2]], "RasterLayer"))
   expect_equal(class(PAM[[3]]), "character")
 })
@@ -26,7 +26,7 @@ test_that("lets.presab return a correct PresenceAbsence object for the world", {
                      seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+expect_true(is.matrix(PAM[[1]]))
   expect_true(inherits(PAM[[2]], "RasterLayer"))
   expect_equal(class(PAM[[3]]), "character")
   
@@ -44,7 +44,7 @@ test_that("lets.presab return a correct PresenceAbsence object (count=TRUE)", {
                      origin=NULL, seasonal=NULL, count=TRUE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+expect_true(is.matrix(PAM[[1]]))
   expect_true(inherits(PAM[[2]], "RasterLayer"))
   expect_equal(class(PAM[[3]]), "character")
   
@@ -61,7 +61,7 @@ test_that("lets.presab return a correct PresenceAbsence object, cover=0.2", {
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+expect_true(is.matrix(PAM[[1]]))
   expect_true(inherits(PAM[[2]], "RasterLayer"))
   expect_equal(class(PAM[[3]]), "character")
   
@@ -82,7 +82,7 @@ test_that("lets.presab return a correct PresenceAbsence object different project
                           crs.grid = SA_EC, cover = .9)
   
   expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+expect_true(is.matrix(PAM[[1]]))
   expect_true(inherits(PAM[[2]], "RasterLayer"))
   expect_equal(class(PAM[[3]]), "character")
   
@@ -99,7 +99,7 @@ test_that("lets.presab return a correct PresenceAbsence object, remove.sp=FALSE"
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+expect_true(is.matrix(PAM[[1]]))
   expect_true(inherits(PAM[[2]], "RasterLayer"))
   expect_equal(class(PAM[[3]]), "character")
   
@@ -119,7 +119,7 @@ test_that("lets.presab return a correct PresenceAbsence object, remove.cells=FAL
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+expect_true(is.matrix(PAM[[1]]))
   expect_true(inherits(PAM[[2]], "RasterLayer"))
   expect_equal(class(PAM[[3]]), "character")
   
@@ -139,7 +139,7 @@ test_that("lets.presab new projection grid", {
                       res = 100000, count = TRUE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-  expect_equal(class(PAM[[1]]), "matrix")
+expect_true(is.matrix(PAM[[1]]))
   expect_true(inherits(PAM[[2]], "RasterLayer"))
   expect_equal(class(PAM[[3]]), "character")  
   

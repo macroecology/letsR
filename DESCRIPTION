@@ -1,8 +1,8 @@
 Package: letsR
 Type: Package
 Title: Data Handling and Analysis in Macroecology
-Version: 3.2
-Date: 2020-04-11
+Version: 3.3
+Date: 2020-10-20
 Author: Bruno Vilela & Fabricio Villalobos
 Maintainer: Bruno Vilela <bvilela.bv@gmail.com>
 Description: Handling, processing, and analyzing geographic
