@@ -24,7 +24,7 @@
 #'For this, such functions use the IUCN's RedList API to retrieve information from its webpage.
 #'
 #'If you are looking for the most recent version of the package, you can get the development version
-#'of letsR on github (\url{http://www.github.com/macroecology/letsR}).
+#'of letsR on github (\url{https://github.com/macroecology/letsR}).
 #'
 #' @name letsR-package
 #' @aliases letsR
@@ -33,10 +33,10 @@
 #' @title Tools for Data Handling and Analysis in  Macroecology.
 #' @author \strong{Bruno Vilela}\cr
 #' (email: \email{bvilela@@wustl.edu}; 
-#' Website: \url{http://bvilela.weebly.com/})
+#' Website: \url{https://bvilela.weebly.com/})
 #' @author \strong{Fabricio Villalobos}\cr
 #' (email: \email{fabricio.villalobos@@gmail.com}; 
-#' Website: \url{https://sites.google.com/site/fabriciovillalobos/})
+#' Website: \url{https://fabro.github.io})
 #' 
 #' @keywords package
 #'

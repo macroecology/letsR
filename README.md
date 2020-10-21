@@ -1,9 +1,9 @@
 [![Travis-CI Build Status](https://travis-ci.org/BrunoVilela/letsR.png?branch=master)](https://travis-ci.org/BrunoVilela/letsR)
-[![Coverage Status](https://coveralls.io/repos/BrunoVilela/letsR/badge.svg)](https://coveralls.io/r/BrunoVilela/letsR)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/letsR)](https://CRAN.R-project.org/package=letsR)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/letsR)](https://github.com/metacran/cranlogs.app)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/letsR)](https://github.com/metacran/cranlogs.app)
-[![Research software impact](http://depsy.org/api/package/cran/letsR/badge.svg)](http://depsy.org/package/r/letsR)
+[![Coverage Status](https://coveralls.io/repos/BrunoVilela/letsR/badge.svg)](https://coveralls.io/github/BrunoVilela/letsR)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/letsR)](https://CRAN.R-project.org/package=letsR)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/letsR)]( https://github.com/r-hub/cranlogs.app)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/letsR)]( https://github.com/r-hub/cranlogs.app)
+[![Research software impact](https://depsy.org/api/package/cran/letsR/badge.svg)](http://depsy.org/package/r/letsR)
 
 =====
 ## IMPORTANT

@@ -5,7 +5,7 @@ citEntry(entry = "Article",
    journal		    = "Methods in Ecology and Evolution",
    author         = personList(person("Bruno Vilela"), person("Fabricio Villalobos")),
    year           = "2015",
-   url            = "http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract",
+   url            = "https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.12401",
 
    textVersion  =
    paste("Bruno Vilela and Fabricio Villalobos (2015).",

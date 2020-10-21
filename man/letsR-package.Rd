@@ -33,7 +33,7 @@ their description and conservation status as provided by the IUCN's REdList data
 For this, such functions use the IUCN's RedList API to retrieve information from its webpage.
 
 If you are looking for the most recent version of the package, you can get the development version
-of letsR on github (\url{http://www.github.com/macroecology/letsR}).
+of letsR on github (\url{https://github.com/macroecology/letsR}).
 
 \tabular{ll}{
 Package: \tab lestR\cr
@@ -49,10 +49,10 @@ Vilela, B., & Villalobos, F. (2015). letsR: a new R package for data handling an
 \author{
 \strong{Bruno Vilela}\cr
 (email: \email{bvilela@wustl.edu}; 
-Website: \url{http://bvilela.weebly.com/})
+Website: \url{https://bvilela.weebly.com/})
 
 \strong{Fabricio Villalobos}\cr
 (email: \email{fabricio.villalobos@gmail.com}; 
-Website: \url{https://sites.google.com/site/fabriciovillalobos/})
+Website: \url{https://fabro.github.io})
 }
 \keyword{package}
