@@ -34,7 +34,7 @@ NULL
 #'@name temp
 #'@aliases temp
 #'@docType data
-#'@title Avarege temperature raster for the world.
+#'@title Average temperature raster for the world.
 #'@usage data(temp)
 #'@description Average temperature raster in Celsius degrees(multiplied by 100) 
 #'for the world in 10 arc min of resolution. Data was modfied from 
