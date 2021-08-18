@@ -44,11 +44,11 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object for cover di
                             xmx = 4707602,
                             ymn = -450000, ymx = 5774733,
                             resol = 100000,
-                            crs.grid = SA_EC, cover = .9)
+                            crs.grid = SA_EC, cover = 0.1)
   
   
   expect_equal(class(PAM3), "PresenceAbsence")
-expect_true(is.matrix(PAM3[[1]]))
+  expect_true(is.matrix(PAM3[[1]]))
   expect_true(inherits(PAM3[[2]], "RasterLayer"))
   expect_equal(class(PAM3[[3]]), "character")
   

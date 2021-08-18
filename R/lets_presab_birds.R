@@ -182,7 +182,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
                                   k, r, areashape, areagrid,
                                   cover, presence, origin, 
                                   seasonal, crs, crs.grid,
-                                  latlong)      
+                                  latlong)
       matriz[, (j + 2)] <- par.re[[1]]
       nomes[j] <- par.re[[2]]
       k <- par.re[[3]]

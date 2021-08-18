@@ -51,7 +51,7 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
   
   for(i in 1:ncol(p)) {
     pos <- x[[3]][i] == z
-    if (length(pos) > 0) {
+    if (sum(pos) > 0) {
       p[, i] <- p[, i] * y[pos]
       pos2 <- p[, i] == 0
       p[pos2, i] <- NA
