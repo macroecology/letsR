@@ -66,7 +66,7 @@ lets.summarizer <- function(x, pos, xy = TRUE, fun = mean) {
   
   # Transform in numeric
   for(i in 2:ncol(resul)) {
-    resul[, i] <- as.numeric(levels(resul[, i]))[resul[, i]]
+    resul[, i] <- as.numeric(resul[, i])
   }
   
   return(resul)
