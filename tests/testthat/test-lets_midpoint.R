@@ -43,3 +43,4 @@ test_that("lets.midpoint works fine, method = CMD", {
   expect_true(ncol(resu_test) == 3)
   # expect_true(!any(is.na(resu_test)))
 })
+

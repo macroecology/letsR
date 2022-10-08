@@ -5,7 +5,7 @@
 .getnames <- function(input) {
   
   # Get species from a PAM
-  if (class(input) == "PresenceAbsence") {
+  if (inherits(input, "PresenceAbsence")) {
     input <- input$S
   }
   

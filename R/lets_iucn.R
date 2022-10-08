@@ -61,7 +61,7 @@ lets.iucn <- function(input, count = FALSE) {
       par(mar = c(0, 0, 0, 0))
     }
     
-    for (i in 1:ln){
+    for (i in 1:ln) {
       plot.new()
       text(0.5, 0.5, paste(paste("Total:", ln, "\n",
                                  "Species to go: ",
@@ -78,8 +78,8 @@ lets.iucn <- function(input, count = FALSE) {
     dev.off()
   }
   
-  if(!count){
-    for (i in 1:ln){          
+  if (!count) {
+    for (i in 1:ln) {          
       
       loopresu        <- .LoopIUCN(input[i])
       status[i, ]    <- loopresu$Status
@@ -159,7 +159,7 @@ lets.iucn <- function(input, count = FALSE) {
     }
     
     # Sometimes the pop is an empty list.
-    if (class(pop)[1] == "try-error" | class(pop) == "list") {
+    if (class(pop)[1] == "try-error" | inherits(pop, "list")) {
       populacaoi <-  "Unknown"
     } else {
       populacaoi <- pop

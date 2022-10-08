@@ -5,7 +5,7 @@
 #' 
 #' @description Convert species' ranges (in shapefile format and stored in particular folders) 
 #' into a presence-absence matrix based on a user-defined grid. This function is specially 
-#' designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
+#' designed to work with BirdLife Intl. shapefiles (\url{https://www.birdlife.org}).
 #'
 #' 
 #' @param path Path location of folders with one or more species' individual shapefiles. 
@@ -126,10 +126,10 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       global <- xmn == -180 & xmx == 180 & ymn == -90 & ymx == 90    
       if (!global) {
         grid <- rasterToPolygons(r)
-        areagrid <- try(areaPolygon(grid), silent=TRUE)
+        areagrid <- try(areaPolygon(grid), silent = TRUE)
       } 
       
-      if (class(areagrid) == "try-error" | global) {
+      if (inherits(areagrid, "try-error") | global) {
         areagrid <- values(area(r)) * 1000000
       } 
     } else {
@@ -140,57 +140,34 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   
   
   
-  # With count window  
+  # progress bar
   if (count) {
+    pb <- utils::txtProgressBar(min = 0,
+                                max = n,
+                                style = 3)
+  }
+  
+  for (j in 1:n) {
     
-    # Do not set a new device in rstudio to avoid warnings()
-    if (!"tools:rstudio" %in% search()) {
-      dev.new(width = 2, height = 2, pointsize = 12)
-      par(mar = c(0, 0, 0, 0))
+    # Getting species position in the matrix and set to 1
+    par.re <- .extractpos.birds(valores,  shapes[j], 
+                                k, r, areashape, areagrid,
+                                cover, presence, origin, 
+                                seasonal, crs, crs.grid,
+                                latlong)
+    matriz[, (j + 2)] <- par.re[[1]]
+    nomes[j] <- par.re[[2]]
+    k <- par.re[[3]]
+    # progress bar
+    if (count) {
+      utils::setTxtProgressBar(pb, j)
     }
     
-    # Loop start, running repetitions for the number of polygons (n) 
-    for (j in 1:n) {    
-      
-      # Count window
-      plot.new()
-      text(0.5, 0.5, paste(paste("Total:", n, "\n",
-                                 "Polygons to go: ",
-                                 (n - j))))
-      
-      # Getting species position in the matrix and set to 1
-      par.re <- .extractpos.birds(valores,  shapes[j], 
-                                  k, r, areashape, areagrid,
-                                  cover, presence, origin, 
-                                  seasonal, crs, crs.grid,
-                                  latlong)
-      
-      matriz[, (j + 2)] <- par.re[[1]]
-      nomes[j] <- par.re[[2]]
-      k <- par.re[[3]]
-    }  
-    dev.off()
-  }
-  
-  # Without count window  
-  if (!count) {
-    
-    for(j in 1:n){
-      
-      # Getting species position in the matrix and set to 1
-      par.re <- .extractpos.birds(valores,  shapes[j], 
-                                  k, r, areashape, areagrid,
-                                  cover, presence, origin, 
-                                  seasonal, crs, crs.grid,
-                                  latlong)
-      matriz[, (j + 2)] <- par.re[[1]]
-      nomes[j] <- par.re[[2]]
-      k <- par.re[[3]]
-    }  
-  }
+  }  
+
   
   if (k == 0) {
-    stop("after filtering none species distribution left")
+    stop("after filtering, no species distribution left")
   }
   
   colnames(matriz) <- c("Longitude(x)", "Latitude(y)", nomes)
@@ -209,6 +186,11 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   
   # Putting together species with more than one shapefile
   matriz <- .unicas(matriz)
+  
+  # Close progress bar
+  if (count) {
+    close(pb)
+  }
   
   # Return result (depending on what the user wants)
   if (show.matrix) {
@@ -274,11 +256,7 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
       # Changing colnames
       l.cell <- length(cell)
       
-      if(l.cell > 0){
-        .rename <- function(x) {
-          colnames(x) <- 1:3
-          return(x) 
-        }          
+      if (l.cell > 0) {
         cell <- lapply(cell, .rename)
       }
       
@@ -313,3 +291,9 @@ lets.presab.birds <- function(path, xmn = -180, xmx = 180, ymn = -90,
   
   return(list(valores2, nomesj, k))
 }
+
+
+.rename <- function(x) {
+  colnames(x) <- 1:3
+  return(x) 
+}          

@@ -103,7 +103,7 @@ lets.presab <- function(shapes,
                         seasonal = NULL,
                         count = FALSE) {
   # Projection set for spatial polygons
-  proj4string(shapes) <- crs
+  suppressWarnings(proj4string(shapes) <- crs)
   if (as.character(crs) != as.character(crs.grid)) {
     shapes <- spTransform(shapes, crs.grid)
   }
@@ -156,7 +156,7 @@ lets.presab <- function(shapes,
         grid <- rasterToPolygons(ras)
         areagrid <- try(areaPolygon(grid), silent = TRUE)
       }
-      if (class(areagrid) == "try-error" | global) {
+      if (inherits(areagrid, "try-error") | global) {
         areagrid <- values(area(ras)) * 1000000
       }
     } else {
@@ -178,47 +178,26 @@ lets.presab <- function(shapes,
   matriz <- matrix(0, ncol = length(nomes), nrow = ncellras)
   colnames(matriz) <- nomes
   
-  # With count window
+  # progress bar
   if (count) {
-    # Do not set a new device in rstudio to avoid warnings()
-    if (!"tools:rstudio" %in% search()) {
-      dev.new(width = 2,
-              height = 2,
-              pointsize = 12)
-      par(mar = c(0, 0, 0, 0))
+    pb <- utils::txtProgressBar(min = 0,
+                                max = n,
+                                style = 3)
+  }
+  # Loop start, running repetitions for the number of polygons (n)
+  for (i in seq_len(n)) {
+    # Getting species position in the matrix and set to 1
+    pospos2 <- .extractpos(ras, shapes[i,], nomes, nomes2,
+                           cover, areashape, areagrid, i)
+    if (nrow(pospos2$pos2) != 0) {
+      matriz[pospos2$pos2[, 1], pospos2$pos] <- 1
     }
-    # Loop start, running repetitions for the number of polygons (n)
-    for (i in 1:n) {
-      # Count window
-      plot.new()
-      text(0.5, 0.5, paste(paste(
-        "Total:", n, "\n",
-        "Polygons to go: ",
-        (n - i)
-      )))
-      
-      # Getting species position in the matrix and set to 1
-      pospos2 <- .extractpos(ras, shapes[i,], nomes, nomes2,
-                             cover, areashape, areagrid, i)
-      if (nrow(pospos2$pos2) != 0) {
-        matriz[pospos2$pos2[, 1], pospos2$pos] <- 1
-      }
+    # progress bar
+    if (count) {
+      utils::setTxtProgressBar(pb, i)
     }
-    dev.off()
   }
   
-  # Wihout count window
-  if (!count) {
-    # Loop start, running repetitions for the number of polygons (n)
-    for (i in 1:n) {
-      # Getting species position in the matrix and set to 1
-      pospos2 <- .extractpos(ras, shapes[i,], nomes, nomes2,
-                             cover, areashape, areagrid, i)
-      if (nrow(pospos2$pos2) != 0) {
-        matriz[pospos2$pos2[, 1], pospos2$pos] <- 1
-      }
-    }
-  }
   
   # Adding the coordinates to the matrix
   Resultado <- cbind(coord, matriz)
@@ -232,7 +211,10 @@ lets.presab <- function(shapes,
   if (remove.sp) {
     Resultado <- .removeSp(Resultado)
   }
-  
+  # Close progress bar
+  if (count) {
+    close(pb)
+  }
   # Return result (depending on what the user wants)
   if (show.matrix) {
     return(Resultado)
@@ -264,7 +246,7 @@ lets.presab <- function(shapes,
                         i) {
   # Try the extraction of cell occurrence positions
   shapepol1 <- shapepol
-  celulas <- try(celulas <- extract(
+  celulas <- try(extract(
     ras,
     shapepol1,
     cellnumbers = TRUE,
@@ -287,7 +269,7 @@ lets.presab <- function(shapes,
   # }
   
   # Handle the awkward error that can appear with weights and small = TRUE
-  if (class(celulas) == "try-error") {
+  if (inherits(celulas, "try-error")) {
     celulas <- extract(ras, shapepol1,
                        cellnumbers = TRUE)
     nen <- sapply(celulas, nrow)

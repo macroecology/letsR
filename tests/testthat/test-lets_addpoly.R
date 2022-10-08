@@ -18,3 +18,4 @@ test_that("lets.addpoly works fine, onlyvar = TRUE", {
   expect_true(is.matrix(resu_test))
   expect_true(ncol(resu_test) == 1)
 })
+

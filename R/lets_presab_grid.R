@@ -146,5 +146,5 @@ lets.presab.grid <- function(shapes,
   }
   
   # Return row and column position
-  return (list("PAM" = result, "grid" = grid))
+  return(list("PAM" = result, "grid" = grid))
 }

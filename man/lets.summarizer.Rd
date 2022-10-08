@@ -4,7 +4,7 @@
 \alias{lets.summarizer}
 \title{Summarize variable(s) values in a presence-absence matrix within species' ranges}
 \usage{
-lets.summarizer(x, pos, xy = TRUE, fun = mean)
+lets.summarizer(x, pos, xy = TRUE, fun = mean, ...)
 }
 \arguments{
 \item{x}{Presence-absence matrix with variables added.}
@@ -14,7 +14,10 @@ lets.summarizer(x, pos, xy = TRUE, fun = mean)
 \item{xy}{Logical, if \code{TRUE} the input matrix contains geographic 
 coordinates in the first two columns.}
 
-\item{fun}{Function to be used to summarize the variable per species.}
+\item{fun}{Function to be used to summarize the variable per species. 
+Default is \code{mean}.}
+
+\item{...}{Other parameters passed to the function defined in \code{fun}.}
 }
 \description{
 Based on a Presence-Absence matrix with added variables 

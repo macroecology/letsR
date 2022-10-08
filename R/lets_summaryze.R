@@ -11,7 +11,9 @@
 #' @param pos Column position of the variables of interest.
 #' @param xy Logical, if \code{TRUE} the input matrix contains geographic 
 #' coordinates in the first two columns. 
-#' @param fun Function to be used to summarize the variable per species.
+#' @param fun Function to be used to summarize the variable per species. 
+#' Default is \code{mean}.
+#' @param ... Other parameters passed to the function defined in \code{fun}.
 #' 
 #' @references Villalobos, F. and Arita, H.T. 2010. The diversity field of 
 #' New World leaf-nosed bats (Phyllostomidae). 
@@ -33,7 +35,8 @@
 #' @export
 
 
-lets.summarizer <- function(x, pos, xy = TRUE, fun = mean) {
+lets.summarizer <- function(x, pos, xy = TRUE, fun = mean,
+                            ...) {
   
   var <- x[, pos, drop = FALSE]
   sp <- x[, -pos, drop = FALSE]
@@ -48,7 +51,7 @@ lets.summarizer <- function(x, pos, xy = TRUE, fun = mean) {
   resum <- matrix(NA, nrow = n, ncol = lpos)
   colnames(resum) <- colnames(var)
   
-  for(i in 1:n) {
+  for (i in seq_len(n)) {
     vari <- var[(sp[, i] == 1), , drop = FALSE]
     is_all_na <- apply(vari, 2, function(x) {all(is.na(x))})
     if (nrow(vari) == 0 | all(is_all_na)) {
@@ -58,14 +61,14 @@ lets.summarizer <- function(x, pos, xy = TRUE, fun = mean) {
         resum[i, is_all_na] <- NA
       }
       resum[i, !is_all_na] <- apply(vari[, !is_all_na, drop = FALSE],
-                                    2, fun, na.rm = TRUE)
+                                    2, fun, ...)
     }
   }
   
   resul <- as.data.frame(cbind(Species, resum))
   
   # Transform in numeric
-  for(i in 2:ncol(resul)) {
+  for (i in seq(2, ncol(resul))) {
     resul[, i] <- as.numeric(resul[, i])
   }
   

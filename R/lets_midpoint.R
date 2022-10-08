@@ -50,7 +50,7 @@
 #' mid7 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
 #' mid8 <- lets.midpoint(PAM, method = "MCC", planar = TRUE)
 #' 
-#' for (sp in 1:nrow(mid)) {
+#' for (sp in seq_len(nrow(mid))) {
 #'  #sp = 4 # Or choose a line or species
 #'  plot(PAM, name = mid[sp, 1])
 #'  points(mid[sp, -1], col = adjustcolor("blue", .8), pch = 20, cex = 1.5)
@@ -75,7 +75,7 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
     stop("method not found. The chosen method should be PC, CMD, MCC or GM.")
   }
   
-  if (class(pam) == "PresenceAbsence") {
+  if (inherits(pam, "PresenceAbsence")) {
     n <- ncol(pam[[1]])
     species <- pam[[3]]
     pam2 <- pam[[1]]
@@ -89,21 +89,22 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
   ym <- xm
   
   if (method == "PC") {
-    if (class(pam) != "PresenceAbsence") {
+    if (!inherits(pam, "PresenceAbsence")) {
       stop("This method only works for PresenceAbsence objects")
     }
-    for(i in 3:n) {
+    for (i in seq(3, n)) {
       pos <- which(pam2[, i] == 1)
       if (length(pos) == 1) {
         dis2 <- pam2[pos, 1:2, drop = FALSE]
       } else {
         ptemp <- pam[[2]]
-        pos2 <- raster::extract(ptemp, pam2[pos, 1:2, drop = FALSE], cellnumbers  = TRUE)[, 1]
+        pos2 <- raster::extract(ptemp, pam2[pos, 1:2, drop = FALSE],
+                                cellnumbers  = TRUE)[, 1]
         values(ptemp)[-pos2] <- NA
         values(ptemp)[pos2] <- 1
-        p <- rasterToPolygons(ptemp, dissolve=TRUE)
-        if(!planar) {
-          dis2 <- centroid(p)  
+        p <- rasterToPolygons(ptemp, dissolve = TRUE)
+        if (!planar) {
+          dis2 <- suppressWarnings(centroid(p))  
         } else {
           dis2 <- gCentroid(p)@coords
         }
@@ -114,7 +115,7 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
     }  
   }
   if (method == "GM") {
-    for(i in 3:n) {
+    for (i in seq(3, n)) {
       pos <- which(pam2[, i] == 1)
       if (length(pos) == 1) { # Only one point
         dis2 <- pam2[pos, 1:2, drop = FALSE]
@@ -132,14 +133,14 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
             dis2 <- midPoint(pam2[pos[1], 1:2], pam2[pos[2], 1:2])
           } else {
             if (a == b | c == d) { # Same lat or long
-              if(a == b) {
+              if (a == b) {
                 dis2 <- midPoint(c(a, c), c(a, d))
               } else {
                 dis2 <- midPoint(c(a, c), c(b, c))
               }
             }
             pol <- matrix(c(a, a, b, b, c, d, d, c), ncol = 2)
-            dis2 <- centroid(pol)
+            dis2 <- suppressWarnings(centroid(pol))
           }
           xm[(i - 2)] <- dis2[1, 1]
           ym[(i - 2)] <- dis2[1, 2]
@@ -153,7 +154,7 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
     }
   }
   if (method == "CMD") {
-    for (i in 3:n) {
+    for (i in seq(3, n)) {
       loc <- pam2[, i] == 1
       if (sum(loc) == 0) {
         ym[i - 2] <- xm[i - 2] <- NA
@@ -177,7 +178,7 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
     }
   }
   if (method == "MCC") { # Minimum convex centroid
-    for(i in 3:n) {
+    for (i in seq(3, n)) {
       pos <- which(pam2[, i] == 1)
       lpos <- length(pos)
       if (lpos == 1) {
@@ -195,8 +196,8 @@ lets.midpoint <- function(pam, planar = FALSE, method = "PC") {
           hp <- c(hp, hp[1])
           p <- SpatialPolygons(list(Polygons(list(Polygon(
             pam3[hp, 1:2])), 1)))
-          if(!planar) {
-            dis2 <- centroid(p)  
+          if (!planar) {
+            dis2 <- suppressWarnings(centroid(p))  
           } else {
             dis2 <- gCentroid(p)@coords
           }

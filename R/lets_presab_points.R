@@ -91,33 +91,22 @@ lets.presab.points <- function(xy, species, xmn = -180, xmx = 180, ymn = -90,
   matriz <- matrix(0, ncol = n, nrow = l.values)
   colnames(matriz) <- nomes
   
-  # With count window
+  # progress bar
   if (count) {
-    
-    # Do not set a new device in rstudio to avoid warnings()
-    if (!"tools:rstudio" %in% search()) {
-      dev.new(width = 2, height = 2, pointsize = 12)
-      par(mar = c(0, 0, 0, 0))
-    }
-    
-    # Loop start, running repetitions for the number of species (n) 
-    for(i in 1:n){
-      plot.new()
-      text(0.5, 0.5, paste(paste("Total:", n, "\n","Species to go: ", (n - i))))
-      celulas2 <- .extractpos.points(species, nomes[i], xy, ras)
-      matriz[celulas2, i] <- 1
-    }
-    dev.off()
+    pb <- utils::txtProgressBar(min = 0,
+                                max = n,
+                                style = 3)
   }
-  
-  
-  if (!count) {    
-    for(i in 1:n) {
-      celulas2 <- .extractpos.points(species, nomes[i], xy, ras)
-      matriz[celulas2, i] <- 1
+
+  for (i in seq_len(n)) {
+    celulas2 <- .extractpos.points(species, nomes[i], xy, ras)
+    matriz[celulas2, i] <- 1
+    if (count) {
+      utils::setTxtProgressBar(pb, i)
     }
-  }  
-  
+    
+  }
+
   
   Resultado <- cbind(coord, matriz)
   
@@ -128,13 +117,18 @@ lets.presab.points <- function(xy, species, xmn = -180, xmx = 180, ymn = -90,
     Resultado <- .removeSp(Resultado)
   }
   
+  # Close progress bar
+  if (count) {
+    close(pb)
+  }
+  
   if (show.matrix) {
     return(Resultado)
   } else {
     values(ras) <- rowSums(matriz)
     final <- list("Presence_and_Absence_Matrix" = Resultado,
-                  "Richness_Raster"= ras, 
-                  "Species_name"= colnames(Resultado)[-(1:2)])
+                  "Richness_Raster" = ras, 
+                  "Species_name" = colnames(Resultado)[-(1:2)])
     class(final) <- "PresenceAbsence"
     return(final)
   }

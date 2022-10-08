@@ -29,7 +29,7 @@ lets.distmat <- function(xy, asdist = TRUE, ...) {
   
   # If a presence absence change to coordinates
   if (!is.matrix(xy)) {
-    if (class(xy) == "PresenceAbsence"){
+    if (inherits(xy, "PresenceAbsence")) {
       xy <- xy[[1]][, 1:2]
     }
   }

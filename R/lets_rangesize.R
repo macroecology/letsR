@@ -55,7 +55,7 @@ lets.rangesize <- function(x, species_name = x@data[, 1],
   
   
   # For PresenceAbsence
-  if (class(x) == "PresenceAbsence") {
+  if (inherits(x, "PresenceAbsence")) {
     
     # Error control
     unt <- c("cell", "squaremeter")
@@ -77,10 +77,10 @@ lets.rangesize <- function(x, species_name = x@data[, 1],
       
       if (!global) {
         grid <- rasterToPolygons(x[[2]])
-        cellsize <- try(areaPolygon(grid), silent=TRUE)
+        cellsize <- suppressWarnings(try(areaPolygon(grid), silent = TRUE))
       }
       
-      if (class(cellsize) == "try-error" | global) {
+      if (inherits(cellsize, "try-error") | global) {
         cellsize <- values(area(x[[2]])) * 1000000
       } 
       r <- x[[2]]      
@@ -93,7 +93,7 @@ lets.rangesize <- function(x, species_name = x@data[, 1],
   }
   
   # For SpatialPolygons
-  if (class(x) == "SpatialPolygonsDataFrame") {
+  if (inherits(x, "SpatialPolygonsDataFrame")) {
     
     # Error control
     coords <- c("geographic", "planar")
@@ -109,7 +109,7 @@ lets.rangesize <- function(x, species_name = x@data[, 1],
     }
     
     if (coordinates == "geographic") {
-      Range_Size <- areaPolygon(x)
+      Range_Size <- suppressWarnings(areaPolygon(x))
       Range_Size <- as.matrix(Range_Size)
     }
     rownames(Range_Size) <- species_name

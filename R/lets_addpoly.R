@@ -52,22 +52,22 @@ lets.addpoly <- function(x, y, z, onlyvar = FALSE){
   xy <- raster::xyFromCell(object = x[[2]], cell = 1:LenValues)
   
   # Calculate the cell area
-  areashape <- areaPolygon(y)
+  areashape <- geosphere::areaPolygon(y)
   areagrid <- NULL
   global <- all(as.vector(extent(x[[2]])) == c(-180, 180, -90, 90))
   
   if (!global) {
     grid <- rasterToPolygons(x[[2]])
-    areagrid <- try(areaPolygon(grid), silent=TRUE)
+    areagrid <- suppressWarnings(try(areaPolygon(grid), silent = TRUE))
   }
   
-  if (class(areagrid) == "try-error" | global) {
+  if (inherits(areagrid, "try-error") | global) {
     areagrid <- values(area(x[[2]])) * 1000000
   } 
   
   position <- which(!is.na(valores))
   
-  for(i in 1:n){
+  for (i in seq_len(n)) {
     
     celu <- extract(x[[2]], y[i, ], cellnumber = TRUE, 
                     small = TRUE, weights = TRUE)

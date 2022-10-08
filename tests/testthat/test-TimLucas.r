@@ -22,8 +22,8 @@ test_that("Basic usage works", {
 	
 	
 	# Check other projections
-	crsdif <- CRS("+proj=lcc +lat_1=48 +lat_2=33 +lon_0=-100 +ellps=WGS84")
-	PresAbMat <- lets.presab.points(xy, species, crs=crsdif)
+	crsdif <- suppressWarnings(CRS("+proj=lcc +lat_1=48 +lat_2=33 +lon_0=-100 +ellps=WGS84"))
+	PresAbMat <- lets.presab.points(xy, species, crs = crsdif)
 	expect_equal(class(PresAbMat), "PresenceAbsence")
 
 	

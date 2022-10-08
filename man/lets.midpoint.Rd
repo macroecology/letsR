@@ -52,7 +52,7 @@ mid6 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
 mid7 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
 mid8 <- lets.midpoint(PAM, method = "MCC", planar = TRUE)
 
-for (sp in 1:nrow(mid)) {
+for (sp in seq_len(nrow(mid))) {
  #sp = 4 # Or choose a line or species
  plot(PAM, name = mid[sp, 1])
  points(mid[sp, -1], col = adjustcolor("blue", .8), pch = 20, cex = 1.5)

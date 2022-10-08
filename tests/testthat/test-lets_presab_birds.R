@@ -38,7 +38,7 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object for cover di
   pro <- paste("+proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5",
                "+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA", 
                "+units=m +no_defs")
-  SA_EC <- CRS(pro)
+  SA_EC <- suppressWarnings(CRS(pro))
   
   PAM3 <- lets.presab.birds(path.Ramphastos, xmn = -4135157,
                             xmx = 4707602,

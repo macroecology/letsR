@@ -90,7 +90,7 @@ centroid (from the gridded domain used);
 \description{
 Convert species' ranges (in shapefile format and stored in particular folders) 
 into a presence-absence matrix based on a user-defined grid. This function is specially 
-designed to work with BirdLife Intl. shapefiles (\url{http://www.birdlife.org}).
+designed to work with BirdLife Intl. shapefiles (\url{https://www.birdlife.org}).
 }
 \details{
 The function creates the presence-absence matrix based on a raster file. 
