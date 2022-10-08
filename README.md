@@ -3,7 +3,7 @@
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/letsR)](https://CRAN.R-project.org/package=letsR)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/letsR)]( https://github.com/r-hub/cranlogs.app)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/letsR)]( https://github.com/r-hub/cranlogs.app)
-[![Research software impact](https://depsy.org/api/package/cran/letsR/badge.svg)](http://depsy.org/package/r/letsR)
+[![Research software impact](http://depsy.org/api/package/cran/letsR/badge.svg)](http://depsy.org/package/r/letsR)
 
 =====
 ## IMPORTANT
