@@ -16,7 +16,6 @@
 #'
 #' @details Note that you must be connected to the internet to use this function. 
 #' 
-#' @import XML
 #' 
 #' @seealso \code{\link{lets.iucn}}
 #' @seealso \code{\link{lets.iucn.his}} 
