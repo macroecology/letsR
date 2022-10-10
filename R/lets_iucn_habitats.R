@@ -38,103 +38,103 @@ lets.iucn.ha <- function(input, count = FALSE) {
   stop(paste("This function is no longer supported by the letsR package.",
              "Users can look for the package rredlist for similar functions.",
              "See the note on our github page for more details."))
-  
-  input <- .getnames(input) 
-  
-  
-  #Habitat names (and the name "Species" that will be used in the matrix columns names)
-  names <- c("Species", "Forest", "Savanna", "Shrubland", "Grassland", 
-             "Wetlands", "Rocky areas", "Caves and Subterranean Habitats", 
-             "Desert", "Marine Neritic", "Marine Oceanic", "Marine Deep Ocean Floor", 
-             "Marine Intertidal", "Marine Coastal/Supratidal", "Artificial/Terrestrial", 
-             "Artificial/Aquatic", "Introduced Vegetation", "Other", "Unknown")
-  
-  #create an empty matrix
-  habitat <- matrix(0, nrow = length(input), ncol = length(names)) 
-  
-  #Adding the column names
-  colnames(habitat) <- names
-  
-  n <- length(input)
-  
-  # With count window
-  if (count) {
-    
-    # Do not set a new device in rstudio to avoid warnings()
-    if (!"tools:rstudio" %in% search()) {
-      dev.new(width = 2, height = 2, pointsize = 12)
-      par(mar = c(0, 0, 0, 0))
-    }
-    
-    for(i in 1:n){
-      plot.new()
-      text(0.5, 0.5, paste(paste("Total:", n, "\n",
-                                 "Species to go: ",
-                                 (n - i))))
-      
-      ncolumns <- ncol(habitat)
-      habitat[i, 2:(ncolumns - 1)] <- .Habitat(input, i, 
-                                               habitat,
-                                               names)
-      
-      # If none of the habitat names has been found or if 
-      # the species has not been found in IUCN archives, 
-      # it will have 1 in the column Unknwon
-      if (sum(habitat[i, ]) == 0) {
-        habitat[i, ncolumns] <- 1
-      }
-    }
-    dev.off()
-  }
-  
-  if (!count) {
-    for(i in 1:n){
-      
-      ncolumns <- ncol(habitat)
-      habitat[i, 2:(ncolumns - 1)] <- .Habitat(input, i, 
-                                               habitat,
-                                               names)
-      
-      # If none of the habitat names has been found or if 
-      # the species has not been found in IUCN archives, 
-      # it will have 1 in the column Unknwon
-      if (sum(habitat[i, ]) == 0) {
-        habitat[i, ncolumns] <- 1
-      }
-    }
-  }
-  
-  #Putting species' names in the first column
-  habitat[, 1] <- input
-  
-  #Return the resulting matrix
-  return(as.data.frame(habitat))
 }
-
-
-# Auxiliar funciton inside the loop
-.Habitat <- function(input, i, habitat, names) {
-  # Taking the Website code from the internet
-  
-  c <- .getcode(input[i])
-  httpclas <- "https://www.iucnredlist.org/details/classify/"
-  h2 <- try(htmlParse(paste(httpclas, c, "/0", sep = "")),
-            silent = TRUE)
-  
-  # Taking the specific parts that contain the habitat names
-  b2 <- try(xpathSApply(h2, '//html', xmlValue), silent = TRUE)
-  
-  # Look for the habitat names inside the string 
-  # (if the sting contains the name, it will be marked 1)
-  Nnames <- length(names)
-  habitatParcial <- numeric(Nnames - 2)
-  
-  for(t in 2:(Nnames - 1)) {
-    if (sum(grep(names[t], b2)) > 0) {
-      habitatParcial[(t - 1)] <- 1
-    }
-  }
-  return(habitatParcial)
-}
-
-
+#   input <- .getnames(input) 
+#   
+#   
+#   #Habitat names (and the name "Species" that will be used in the matrix columns names)
+#   names <- c("Species", "Forest", "Savanna", "Shrubland", "Grassland", 
+#              "Wetlands", "Rocky areas", "Caves and Subterranean Habitats", 
+#              "Desert", "Marine Neritic", "Marine Oceanic", "Marine Deep Ocean Floor", 
+#              "Marine Intertidal", "Marine Coastal/Supratidal", "Artificial/Terrestrial", 
+#              "Artificial/Aquatic", "Introduced Vegetation", "Other", "Unknown")
+#   
+#   #create an empty matrix
+#   habitat <- matrix(0, nrow = length(input), ncol = length(names)) 
+#   
+#   #Adding the column names
+#   colnames(habitat) <- names
+#   
+#   n <- length(input)
+#   
+#   # With count window
+#   if (count) {
+#     
+#     # Do not set a new device in rstudio to avoid warnings()
+#     if (!"tools:rstudio" %in% search()) {
+#       dev.new(width = 2, height = 2, pointsize = 12)
+#       par(mar = c(0, 0, 0, 0))
+#     }
+#     
+#     for(i in 1:n){
+#       plot.new()
+#       text(0.5, 0.5, paste(paste("Total:", n, "\n",
+#                                  "Species to go: ",
+#                                  (n - i))))
+#       
+#       ncolumns <- ncol(habitat)
+#       habitat[i, 2:(ncolumns - 1)] <- .Habitat(input, i, 
+#                                                habitat,
+#                                                names)
+#       
+#       # If none of the habitat names has been found or if 
+#       # the species has not been found in IUCN archives, 
+#       # it will have 1 in the column Unknwon
+#       if (sum(habitat[i, ]) == 0) {
+#         habitat[i, ncolumns] <- 1
+#       }
+#     }
+#     dev.off()
+#   }
+#   
+#   if (!count) {
+#     for(i in 1:n){
+#       
+#       ncolumns <- ncol(habitat)
+#       habitat[i, 2:(ncolumns - 1)] <- .Habitat(input, i, 
+#                                                habitat,
+#                                                names)
+#       
+#       # If none of the habitat names has been found or if 
+#       # the species has not been found in IUCN archives, 
+#       # it will have 1 in the column Unknwon
+#       if (sum(habitat[i, ]) == 0) {
+#         habitat[i, ncolumns] <- 1
+#       }
+#     }
+#   }
+#   
+#   #Putting species' names in the first column
+#   habitat[, 1] <- input
+#   
+#   #Return the resulting matrix
+#   return(as.data.frame(habitat))
+# }
+# 
+# 
+# # Auxiliar funciton inside the loop
+# .Habitat <- function(input, i, habitat, names) {
+#   # Taking the Website code from the internet
+#   
+#   c <- .getcode(input[i])
+#   httpclas <- "https://www.iucnredlist.org/details/classify/"
+#   h2 <- try(htmlParse(paste(httpclas, c, "/0", sep = "")),
+#             silent = TRUE)
+#   
+#   # Taking the specific parts that contain the habitat names
+#   b2 <- try(xpathSApply(h2, '//html', xmlValue), silent = TRUE)
+#   
+#   # Look for the habitat names inside the string 
+#   # (if the sting contains the name, it will be marked 1)
+#   Nnames <- length(names)
+#   habitatParcial <- numeric(Nnames - 2)
+#   
+#   for(t in 2:(Nnames - 1)) {
+#     if (sum(grep(names[t], b2)) > 0) {
+#       habitatParcial[(t - 1)] <- 1
+#     }
+#   }
+#   return(habitatParcial)
+# }
+# 
+# 

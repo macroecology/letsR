@@ -10,7 +10,6 @@ Description: Handling, processing, and analyzing geographic
     Read Vilela & Villalobos (2015) <doi:10.1111/2041-210X.12401> for details.
 License: GPL-2
 Imports:
-    XML,
     geosphere,
     fields,
     maptools,
