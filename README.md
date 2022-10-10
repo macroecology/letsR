@@ -1,4 +1,4 @@
-[![R-CMD-check](https://github.com/BrunoVilela/letsR/actions/workflows/R-CMD-check.yaml/badge.svg)](htt ps://github.com/BrunoVilela/letsR/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/BrunoVilela/letsR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/BrunoVilela/letsR/actions/workflows/R-CMD-check.yaml)
 [![Coverage Status](https://coveralls.io/repos/BrunoVilela/letsR/badge.svg)](https://coveralls.io/github/BrunoVilela/letsR)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/letsR)](https://CRAN.R-project.org/package=letsR)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/letsR)]( https://github.com/r-hub/cranlogs.app)
