@@ -4,15 +4,16 @@
 #' @description Summary for objects of class PresenceAbsence.
 #' 
 #' @usage 
-#' \method{summary}{PresenceAbsence}(object)
+#' \method{summary}{PresenceAbsence}(object, \dots)
 #' 
 #' @param object an object of class \code{\link{PresenceAbsence}}.
-#' 
+#' @param ... additional arguments affecting the summary produced.
+
 #' @method summary PresenceAbsence
 #' @export
 #' @import terra
 
-summary.PresenceAbsence <- function(object) {
+summary.PresenceAbsence <- function(object, ...) {
   object <- .check_pam(object)
   class <- class(object)
   Numberofspecies <- ncol(object$Pre) - 2

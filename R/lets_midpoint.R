@@ -25,7 +25,7 @@
 #'   centroid of the minimum convex polygon of the distribution, using the
 #'   method "MCC". This last method is useful when using a PresenceAbsence
 #'   object made from occurrence records.
-#'   @param inside logical. If TRUE the points returned are guaranteed to be
+#' @param inside logical. If TRUE the points returned are guaranteed to be
 #'     inside the polygons or on the lines, but they are not the true centroids.
 #'     True centroids may be outside a polygon, for example when a polygon is
 #'     "bean shaped", and they are unlikely to be on their line

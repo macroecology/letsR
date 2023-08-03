@@ -28,11 +28,12 @@ the distance between all cells of the PAM, using the method "CMD"(centre of
 minimum distance). The user can also calculate the midpoint, based on the
 centroid of the minimum convex polygon of the distribution, using the
 method "MCC". This last method is useful when using a PresenceAbsence
-object made from occurrence records.
-@param inside logical. If TRUE the points returned are guaranteed to be
-  inside the polygons or on the lines, but they are not the true centroids.
-  True centroids may be outside a polygon, for example when a polygon is
-  "bean shaped", and they are unlikely to be on their line}
+object made from occurrence records.}
+
+\item{inside}{logical. If TRUE the points returned are guaranteed to be
+inside the polygons or on the lines, but they are not the true centroids.
+True centroids may be outside a polygon, for example when a polygon is
+"bean shaped", and they are unlikely to be on their line}
 }
 \value{
 A \code{data.frame} containing the species' names and geographic

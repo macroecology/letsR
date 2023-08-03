@@ -4,10 +4,12 @@
 \alias{summary.PresenceAbsence}
 \title{Summary for object of class PresenceAbsence}
 \usage{
-\method{summary}{PresenceAbsence}(object)
+\method{summary}{PresenceAbsence}(object, \dots)
 }
 \arguments{
 \item{object}{an object of class \code{\link{PresenceAbsence}}.}
+
+\item{...}{additional arguments affecting the summary produced.}
 }
 \description{
 Summary for objects of class PresenceAbsence.

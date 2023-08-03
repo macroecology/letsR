@@ -2,8 +2,6 @@ context("Test for lets.rangesize")
 
 data(PAM)
 data(Phyllomedusa)
-Phyllomedusa <- terra::project(Phyllomedusa, 
-                               terra::crs(PAM[[2]]))
 
 test_that("lets.rangesize works fine, geographic", {
   
