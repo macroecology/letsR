@@ -10,7 +10,7 @@ test_that("lets.presab return a correct PresenceAbsence object", {
                      origin=NULL, seasonal=NULL, count=FALSE)
   expect_equal(class(PAM), "PresenceAbsence")
 expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]]), "character")
 })
 
@@ -26,8 +26,8 @@ test_that("lets.presab return a correct PresenceAbsence object for the world", {
                      seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(is.matrix(PAM[[1]]))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]]), "character")
   
   
@@ -44,8 +44,8 @@ test_that("lets.presab return a correct PresenceAbsence object (count=TRUE)", {
                      origin=NULL, seasonal=NULL, count=TRUE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(is.matrix(PAM[[1]]))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]]), "character")
   
   
@@ -61,8 +61,8 @@ test_that("lets.presab return a correct PresenceAbsence object, cover=0.2", {
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(is.matrix(PAM[[1]]))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]]), "character")
   
   
@@ -75,15 +75,17 @@ test_that("lets.presab return a correct PresenceAbsence object different project
                "+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA", 
                "+units=m +no_defs")
   SA_EC <- CRS(pro)
-  PAM_proj <- lets.presab(shapes = Phyllomedusa, xmn = -4135157,
+  PAM_proj <- lets.presab(shapes = Phyllomedusa,
+                          xmn = -4135157,
                           xmx = 4707602,
-                          ymn = -450000, ymx = 5774733,
+                          ymn = -450000, 
+                          ymx = 5774733,
                           resol = 100000,
                           crs.grid = SA_EC, cover = .9)
   
   expect_equal(class(PAM), "PresenceAbsence")
-expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(is.matrix(PAM[[1]]))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]]), "character")
   
   
@@ -99,8 +101,8 @@ test_that("lets.presab return a correct PresenceAbsence object, remove.sp=FALSE"
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(is.matrix(PAM[[1]]))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]]), "character")
   
   
@@ -119,8 +121,8 @@ test_that("lets.presab return a correct PresenceAbsence object, remove.cells=FAL
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(is.matrix(PAM[[1]]))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]]), "character")
   
     
@@ -131,16 +133,24 @@ expect_true(is.matrix(PAM[[1]]))
 
 
 
+
 test_that("lets.presab new projection grid", {
   skip_on_cran()
-  PAM2 <- lets.presab(Phyllomedusa, xmn = -3500000, xmx = 20000000,
-                      ymn = -9000000, ymx = 0, 
-                      crs.grid =  CRS("+init=epsg:26978"),
-                      res = 100000, count = TRUE)
+  pro <- paste("+proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5",
+               "+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA", 
+               "+units=m +no_defs")
+  PAM2 <- lets.presab(Phyllomedusa, 
+                      xmn = -4135157,
+                      xmx = 4707602,
+                      ymn = -450000, 
+                      ymx = 5774733,
+                      resol = 100000, 
+                      crs.grid =  pro,
+                      count = TRUE)
   
   expect_equal(class(PAM), "PresenceAbsence")
-expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(is.matrix(PAM[[1]]))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]]), "character")  
   
 })

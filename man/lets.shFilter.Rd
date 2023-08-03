@@ -7,45 +7,44 @@
 lets.shFilter(shapes, presence = NULL, origin = NULL, seasonal = NULL)
 }
 \arguments{
-\item{shapes}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} 
-to open these files).}
+\item{shapes}{Object of class \code{SpatVect} or \code{Spatial} (see packages
+\code{\link{terra}} and  \code{\link{sf}} to read these files) containing
+the distribution of one or more species. Species names should be stored in
+the object as BINOMIAL/binomial or SCINAME/sciname.}
 
-\item{presence}{A vector with the code numbers for the presence type to be maintained.}
+\item{presence}{A vector with the code numbers for the presence type to be
+considered in the process (for IUCN spatial data
+\url{https://www.iucnredlist.org/resources/spatial-data-download}, see
+metadata).}
 
-\item{origin}{A vector with the code numbers for the origin type to be maintained.}
+\item{origin}{A vector with the code numbers for the origin type to be
+considered in the process (for IUCN spatial data).}
 
-\item{seasonal}{A vector with the code numbers for the seasonal type to be maintained.}
+\item{seasonal}{A vector with the code numbers for the seasonal type to be
+considered in the process (for IUCN spatial data).}
 }
 \value{
-The result is the shapefile(s) filtered according to the selected types. If the filters remove all polygons, the result will be NULL.
+The result is the shapefile(s) filtered according to the selected
+  types. If the filters remove all polygons, the result will be NULL.
 }
 \description{
-Filter species shapefiles by origin, presence, and seasonal type (following IUCN types: \url{https://www.iucnredlist.org/resources/spatial-data-download}, see metadata).
+Filter species shapefiles by origin, presence, and seasonal type
+  (following IUCN types:
+  \url{https://www.iucnredlist.org/resources/spatial-data-download}, see
+  metadata).
 }
 \details{
-Presence codes:
-(1) Extant, 
-(2) Probably Extant, 
-(3) Possibly Extant, 
-(4) Possibly Extinct, 
-(5) Extinct (post 1500) &
-(6) Presence Uncertain.
+Presence codes: (1) Extant, (2) Probably Extant, (3) Possibly
+  Extant, (4) Possibly Extinct, (5) Extinct (post 1500) & (6) Presence
+  Uncertain.
 
-Origin codes:
-(1) Native, 
-(2) Reintroduced, 
-(3) Introduced, 
-(4) Vagrant &
-(5) Origin Uncertain.
+  Origin codes: (1) Native, (2) Reintroduced, (3) Introduced, (4) Vagrant &
+  (5) Origin Uncertain.
 
-Seasonal codes:
-(1) Resident, 
-(2) Breeding Season, 
-(3) Non-breeding Season, 
-(4) Passage &
-(5) Seasonal Occurrence Uncertain.
+  Seasonal codes: (1) Resident, (2) Breeding Season, (3) Non-breeding Season,
+  (4) Passage & (5) Seasonal Occurrence Uncertain.
 
-More info in the shapefiles' metadata.
+  More info in the shapefiles' metadata.
 }
 \seealso{
 \code{\link{plot.PresenceAbsence}}

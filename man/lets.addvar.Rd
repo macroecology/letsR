@@ -9,7 +9,7 @@ lets.addvar(x, y, onlyvar = FALSE, fun = mean)
 \arguments{
 \item{x}{A \code{\link{PresenceAbsence}} object.}
 
-\item{y}{Variables to be added in \code{Raster} or \code{RasterStack} format.}
+\item{y}{Variables to be added in \code{SpatRaster} format.}
 
 \item{onlyvar}{If \code{TRUE} only the \code{matrix} object will be returned.}
 
@@ -32,6 +32,7 @@ variable must be in the same projection.
 \examples{
 \dontrun{
 data(temp)  # Global mean temperature
+temp <- terra::unwrap(temp)
 data(PAM)  # Phyllomedusa presence-absence matrix
 # Mean temperature
 PAM_temp_mean <- lets.addvar(PAM, temp)

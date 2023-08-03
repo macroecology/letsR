@@ -32,19 +32,20 @@
 #' @export
 
 lets.subsetPAM <- function(x, names, remove.cells = TRUE) {
-  
-  if (class(x)[1] != "PresenceAbsence") {
-    stop("x argument must be a PresenceAbsence object")
+
+  if (!methods::is(x, "PresenceAbsence")) {
+    stop("x is not a PresenceAbsence object")
+  } else {
+    x <- .check_pam(x)
   }
   
-  if (class(names)[1] != "character") {
+  if (!inherits(names, "character")) {
     stop("names argument must be a character object")
   }
   
-  if (class(remove.cells)[1] != "logical") {
+  if (!inherits(remove.cells, "logical")) {
     stop("remove.cells argument must be a TRUE or FALSE")
   }
-  
   
   # Get species position name
   pos <- colnames(x[[1]]) %in% names  
@@ -69,7 +70,9 @@ lets.subsetPAM <- function(x, names, remove.cells = TRUE) {
   }
   
   rich <- rowSums(x[[1]][, -(1:2), drop = FALSE])
-  x[[2]] <- rasterize(x[[1]][, c(1:2), drop = FALSE], x[[2]], rich)
+  x[[2]] <- terra::rasterize(x[[1]][, c(1:2), drop = FALSE],
+                             x[[2]],
+                             rich)
   x[[3]] <- colnames(x[[1]])[-c(1:2)]
   
   return(x)

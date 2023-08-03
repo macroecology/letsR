@@ -6,56 +6,59 @@
 \usage{
 lets.rangesize(
   x,
-  species_name = x@data[, 1],
+  species_name = NULL,
   coordinates = "geographic",
   units = "cell"
 )
 }
 \arguments{
-\item{x}{A \code{\link{PresenceAbsence}} object or an \code{SpatialPolygonsDataFrame}.}
+\item{x}{A \code{\link{PresenceAbsence}} or an
+\code{SpatVector} object.}
 
-\item{species_name}{Species names in the same order as in the 
-\code{SpatialPolygonsDataFrame} (only needed if x is a \code{SpatialPolygonsDataFrame}).}
+\item{species_name}{Species names in the same order as in the
+\code{SpatVector} (only needed if x is a
+\code{SpatVector}).}
 
-\item{coordinates}{"geographical" or "planar". Indicate wheter the shapefile
-has geographical or planar coordinates(only needed if x is a 
-\code{SpatialPolygonsDataFrame}).}
+\item{coordinates}{"geographical" or "planar". Indicate whether the shapefile
+has geographical or planar coordinates(only needed if x is a
+\code{SpatVector}).}
 
-\item{units}{"cell" or "squaremeter". Indicate if the size units wanted are 
-in number of cells occupied or in square meters(only needed if x is a 
+\item{units}{"cell" or "squaremeter". Indicate if the size units wanted are
+in number of cells occupied or in square meters(only needed if x is a
 \code{PresenceAbsence} object).}
 }
 \value{
-The result is a matrix with the range size of each species.
-If the range size accounts for the earth curvature (Yes or No) or its size unit
-may differ for each argument combination:
+The result is a matrix with the range size of each species. If the
+  range size accounts for the earth curvature (Yes or No) or its size unit
+  may differ for each argument combination:
 
-1) SpatialPolygonsDataFrame & geographical = Square meters. Yes.
+1) SpatVector & geographical = Square meters. Yes.
 
-2) SpatialPolygonsDataFrame & planar = same units as the coordinates. No.
+2) SpatVector & planar = Square meters.
+  No.
 
 3) PresenceAbsence & cell = number of cells. No.
 
 4) PresenceAbsence & squaremeter = Square meters. Yes.
 }
 \description{
-This function calculates species' range sizes from a 
-PresenceAbsence object or directly from the species' shapefiles.
+This function calculates species' range sizes from a
+  PresenceAbsence object or directly from the species' shapefiles.
 }
 \examples{
 \dontrun{
 # SpatialPolygonsDataFrame & geographical
-data(Phyllomedusa)  
-rangesize <- lets.rangesize(x = Phyllomedusa, 
+data(Phyllomedusa)
+rangesize <- lets.rangesize(x = Phyllomedusa,
                             coordinates = "geographic")
 
 # SpatialPolygonsDataFrame & planar
-rangesize2 <- lets.rangesize(x = Phyllomedusa, 
+rangesize2 <- lets.rangesize(x = Phyllomedusa,
                              coordinates = "planar")
 
 # PresenceAbsence & cell
-data(PAM)  
-rangesize3 <- lets.rangesize(x = PAM, 
+data(PAM)
+rangesize3 <- lets.rangesize(x = PAM,
                              units = "cell")
 
 # PresenceAbsence & squaremeter

@@ -1,8 +1,9 @@
 context("Test for lets.addvar")
 data(PAM)
 data(temp)
+temp <- unwrap(temp)
 
-tempstack <- stack(temp, temp)
+tempstack <- c(temp, temp)
 
 test_that("lets.addvar works fine", {
   

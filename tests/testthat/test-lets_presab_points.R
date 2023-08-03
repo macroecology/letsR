@@ -21,7 +21,7 @@ test_that("lets.presab.points return a correct PresenceAbsence object", {
   
   expect_equal(class(PAM)[1], "PresenceAbsence")
   expect_equal(class(PAM[[1]])[1], "matrix")
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]])[1], "character")
   
   
@@ -35,7 +35,7 @@ test_that("lets.presab.points return a correct PresenceAbsence object for the wo
   
   expect_equal(class(PAM)[1], "PresenceAbsence")
   expect_equal(class(PAM[[1]])[1], "matrix")
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]])[1], "character")
   
   
@@ -52,7 +52,7 @@ test_that("lets.presab.points return a correct PresenceAbsence object (count=TRU
   
   expect_equal(class(PAM)[1], "PresenceAbsence")
   expect_equal(class(PAM[[1]])[1], "matrix")
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]])[1], "character")
   
   
@@ -70,7 +70,7 @@ test_that("lets.presab.points return a correct PresenceAbsence object, remove.sp
   
   expect_equal(class(PAM)[1], "PresenceAbsence")
   expect_equal(class(PAM[[1]])[1], "matrix")
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]])[1], "character")
   
   response <- summary(PAM)
@@ -88,7 +88,7 @@ test_that("lets.presab.points return a correct PresenceAbsence object, remove.ce
   
   expect_equal(class(PAM)[1], "PresenceAbsence")
   expect_equal(class(PAM[[1]])[1], "matrix")
-  expect_true(inherits(PAM[[2]], "RasterLayer"))
+  expect_true(inherits(PAM[[2]], "SpatRaster"))
   expect_equal(class(PAM[[3]])[1], "character")
   
   
@@ -96,3 +96,4 @@ test_that("lets.presab.points return a correct PresenceAbsence object, remove.ce
   expect_true(response$Cellswithoutanypresence > 0)
   
 })
+

@@ -87,7 +87,7 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
       parcial[[i]] <- parcial1[, c(1, 3, 5, 6)]
     }
     media <- apply(simplify2array(parcial), 1:2, mean)
-    desvio <- apply(simplify2array(parcial), 1:2, sd) 
+    desvio <- apply(simplify2array(parcial), 1:2, stats::sd) 
     resu <- cbind(media[, 1], desvio[, 1], media[, 2],
                   media[, 3], media[, 4] )
     colnames(resu) <- c("Observed", "Standard_Deviation",
@@ -219,7 +219,7 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
     }
     sdi <- sqrt(sdi0)
     ci <- sdi * 1.96
-    pv <- pnorm(ob, mean = es, sd = sdi)
+    pv <- stats::pnorm(ob, mean = es, sd = sdi)
     if (ob <= es) {
       pv <- 2 * pv
     } else {
@@ -246,12 +246,12 @@ lets.correl <- function(x, y, z, equidistant = FALSE,
        ylab = "Moran's I", xlab = "Distance",
        type = "l", lty = 3, 
        ylim = c(min(low) - 0.2, max(up) + 0.2))
-  abline(h = mean(plot4))
-  points(x = plot1, y = plot2,
+  graphics::abline(h = mean(plot4))
+  graphics::points(x = plot1, y = plot2,
          pch = 20, cex = 1.5)
-  segments(plot1, low,
+  graphics::segments(plot1, low,
            plot1, up)
-  segments(plot1 - epsilon, up,
+  graphics::segments(plot1 - epsilon, up,
            plot1 + epsilon, up)
   segments(plot1 - epsilon, low,
            plot1 + epsilon, low)

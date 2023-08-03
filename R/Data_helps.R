@@ -44,3 +44,21 @@ NULL
 #'International Journal of Climatology 25: 1965-1978.
 
 NULL
+
+
+
+#'@name wrld_simpl
+#'@aliases wrld_simpl
+#'@docType data
+#'@title Simplified world country polygons
+#'@usage data(temp)
+#'@description Shapefile in sf format. The object was obtained from maptools
+#'  package and converted to sf.
+#'@source Originally
+#'  “http://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip”, 
+#'  now available from
+#'  https://github.com/nasa/World-Wind-Java/tree/master/WorldWind/testData/shapefiles
+
+
+
+NULL

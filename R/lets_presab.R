@@ -1,64 +1,71 @@
-#' Create a presence-absence matrix of species' geographic ranges within a grid
+#'Create a presence-absence matrix of species' geographic ranges within a grid
 #'
-#' @author Bruno Vilela & Fabricio Villalobos
+#'@author Bruno Vilela & Fabricio Villalobos
 #'
-#' @description Convert species' ranges (in shapefile format) into a presence-absence matrix based on a user-defined grid system
+#'@description Convert species' ranges (in shapefile format) into a
+#'  presence-absence matrix based on a user-defined grid system
 #'
-#' @param shapes Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}}
-#' to open these files) containing the distribution of one or more species.
-#' Species names should be in a column (within the .DBF table of the shapefile)
-#' called BINOMIAL/binomial or SCINAME/sciname.
-#' @param xmx Maximun longitude used to construct the grid in which the matrix will be based
-#' (i.e. the [gridded] geographic domain of interest)
-#' @param xmn Minimun longitude used to construct the grid in which the matrix will be based
-#' (i.e. the [gridded] geographic domain of interest)
-#' @param ymx Maximun latitude used to construct the grid in which the matrix will be based
-#' (i.e. the [gridded] geographic domain of interest)
-#' @param ymn Minimun latitude used to construct the grid in which the matrix will be based
-#' (i.e. the [gridded] geographic domain of interest)
-#' @param resol Numeric vector of length 1 or 2 to set the grid resolution.
-#' @param remove.cells Logical, if \code{TRUE} the final matrix will not contain cells in the
-#' grid with a value of zero (i.e. sites with no species present).
-#' @param remove.sp Logical, if \code{TRUE} the final matrix will not contain species that
-#' do not match any cell in the grid.
-#' @param show.matrix Logical, if \code{TRUE} only the presence-absence matrix will be returned.
-#' @param crs Character representign the PROJ.4 type description of
-#' a Coordinate Reference System (map projection) of the polygons.
-#' @param crs.grid Character representign the PROJ.4 type description of
-#' a Coordinate Reference System (map projection) for the grid.
-#' Note that when you change this options you may probably change
-#' the extent coordinates and the resolution.
-#' @param cover Porcentage of the cell covered by the shapefile that will be considered for presence
-#' (values between 0 and 1).
-#' @param presence A vector with the code numbers for the presence type to be considered in the process
-#' (for IUCN spatial data \url{https://www.iucnredlist.org/resources/spatial-data-download}, see metadata).
-#' @param origin A vector with the code numbers for the origin type to be considered in the process
-#' (for IUCN spatial data).
-#' @param seasonal A vector with the code numbers for the seasonal type to be considered in the process
-#' (for IUCN spatial data).
-#' @param count Logical, if \code{TRUE} a counting window will open.
-#'
-#'
-#' @return The result is a list object of class \code{\link{PresenceAbsence}} with the following objects:
-#' @return \strong{Presence-Absence Matrix}: A matrix of species' presence(1) and absence(0) information.
-#' The first two columns contain the longitude (x) and latitude (y) of the cells' centroid
-#' (from the gridded domain used);
-#' @return \strong{Richness Raster}: A raster containing species richness data;
-#' @return \strong{Species name}: A character vector with species' names contained in the matrix.
-#' @return *But see the optional argument \code{show.matrix}.
+#'@param shapes Object of class \code{SpatVect} or \code{Spatial} (see packages
+#'  \code{\link{terra}} and  \code{\link{sf}} to read these files) containing
+#'  the distribution of one or more species. Species names should be stored in
+#'  the object as BINOMIAL/binomial or SCINAME/sciname.
+#'@param xmx Maximun longitude used to construct the grid in which the matrix
+#'  will be based (i.e. the [gridded] geographic domain of interest)
+#'@param xmn Minimun longitude used to construct the grid in which the matrix
+#'  will be based (i.e. the [gridded] geographic domain of interest)
+#'@param ymx Maximun latitude used to construct the grid in which the matrix
+#'  will be based (i.e. the [gridded] geographic domain of interest)
+#'@param ymn Minimun latitude used to construct the grid in which the matrix
+#'  will be based (i.e. the [gridded] geographic domain of interest)
+#'@param resol Numeric vector of length 1 or 2 to set the grid resolution.
+#'@param remove.cells Logical, if \code{TRUE} the final matrix will not contain
+#'  cells in the grid with a value of zero (i.e. sites with no species present).
+#'@param remove.sp Logical, if \code{TRUE} the final matrix will not contain
+#'  species that do not match any cell in the grid.
+#'@param show.matrix Logical, if \code{TRUE} only the presence-absence matrix
+#'  will be returned.
+#'@param crs Character representing the PROJ.4 type description of a Coordinate
+#'  Reference System (map projection) of the polygons.
+#'@param crs.grid Character representing the PROJ.4 type description of a
+#'  Coordinate Reference System (map projection) for the grid. Note that when
+#'  you change this options you may probably change the extent coordinates and
+#'  the resolution.
+#'@param cover Percentage of the cell covered by the shapefile that will be
+#'  considered for presence (values between 0 and 1).
+#'@param presence A vector with the code numbers for the presence type to be
+#'  considered in the process (for IUCN spatial data
+#'  \url{https://www.iucnredlist.org/resources/spatial-data-download}, see
+#'  metadata).
+#'@param origin A vector with the code numbers for the origin type to be
+#'  considered in the process (for IUCN spatial data).
+#'@param seasonal A vector with the code numbers for the seasonal type to be
+#'  considered in the process (for IUCN spatial data).
+#'@param count Logical, if \code{TRUE} a progress bar indicating the processing 
+#'progress will be shown.
 #'
 #'
-#' @details The function creates the presence-absence matrix based on a raster object.
-#' Depending on the cell size, extension used and number of species it may require a lot of memory,
-#'and may take some time to process it. Thus, during the process, if \code{count} argument is
-#' set \code{TRUE}, a counting window will open so you can see the progress
-#' (i.e. in what polygon/shapefile the function is working). Note that the number of
-#'polygons is not the same as the number of species that you have
-#' (i.e. a species may have more than one polygon/shapefiles).
+#'@return The result is a list object of class \code{\link{PresenceAbsence}}
+#'  with the following objects: \strong{Presence-Absence Matrix}: A matrix of
+#'  species' presence(1) and absence(0) information. The first two columns
+#'  contain the longitude (x) and latitude (y) of the cells' centroid (from the
+#'  gridded domain used); \strong{Richness Raster}: A raster containing species
+#'  richness data; \strong{Species name}: A character vector with species' names
+#'  contained in the matrix.
+#' *But see the optional argument \code{show.matrix}.
 #'
-#' @seealso \code{\link{plot.PresenceAbsence}}
-#' @seealso \code{\link{lets.presab.birds}}
-#' @seealso \code{\link{lets.shFilter}}
+#'
+#'@details The function creates the presence-absence matrix based on a raster
+#'  object. Depending on the cell size, extension used and number of species it
+#'  may require a lot of memory, and may take some time to process it. Thus,
+#'  during the process, if \code{count} argument is set \code{TRUE}, a counting
+#'  window will open so you can see the progress (i.e. in what polygon/shapefile
+#'  the function is working). Note that the number of polygons is not the same
+#'  as the number of species that you have (i.e. a species may have more than
+#'  one polygon/shapefiles).
+#'
+#'@seealso \code{\link{plot.PresenceAbsence}}
+#'@seealso \code{\link{lets.presab.birds}}
+#'@seealso \code{\link{lets.shFilter}}
 #'
 #' @examples \dontrun{
 #' # Spatial distribution polygons of south american frogs
@@ -73,17 +80,11 @@
 #' # Map of the specific species
 #' plot(PAM, name = "Phyllomedusa nordestina")
 #'}
-
-
-
 #'
-#' @import raster
-#' @import maptools
-#' @import maps
-#' @import sp
-#' @import rgdal
+#'@import terra
+#'@import sf
 #'
-#' @export
+#'@export
 
 
 lets.presab <- function(shapes,
@@ -95,18 +96,24 @@ lets.presab <- function(shapes,
                         remove.cells = TRUE,
                         remove.sp = TRUE,
                         show.matrix = FALSE,
-                        crs = CRS("+proj=longlat +datum=WGS84"),
+                        crs = "+proj=longlat +datum=WGS84",
                         crs.grid = crs,
                         cover = 0,
                         presence = NULL,
                         origin = NULL,
                         seasonal = NULL,
                         count = FALSE) {
+  
+  
+  shapes <- .check_shape(shapes)
+  
   # Projection set for spatial polygons
-  suppressWarnings(proj4string(shapes) <- crs)
+  terra::crs(shapes) <- as.character(crs)
+  
   if (as.character(crs) != as.character(crs.grid)) {
-    shapes <- spTransform(shapes, crs.grid)
+    shapes <- terra::project(shapes, crs.grid)
   }
+  
   # Filter the species range distribution
   if (!all(is.null(presence), is.null(origin), is.null(seasonal))) {
     shapes <- lets.shFilter(
@@ -118,61 +125,37 @@ lets.presab <- function(shapes,
   }
   
   # Error control for no shapes after filtering
-  if (is.null(shapes)) {
-    stop("After filtering no species distributions left")
-  }
-  
-  if (nrow(shapes) == 0) {
+  if (is.null(shapes) | nrow(shapes) == 0) {
     stop("After filtering no species distributions left")
   }
   
   # Raster creation
-  ras <- raster(
-    xmn = xmn,
-    xmx = xmx,
-    ymn = ymn,
-    ymx = ymx,
-    crs = crs.grid
+  ras <- terra::rast(
+    xmin = xmn,
+    xmax = xmx,
+    ymin = ymn,
+    ymax = ymx,
+    crs = as.character(crs.grid), 
+    resolution = resol
   )
-  res(ras) <- resol
-  values(ras) <- 1
+  terra::values(ras) <- 1
   
-  # Corrdinates saved
-  ncellras <- ncell(ras)
-  coord <- xyFromCell(object = ras, cell = 1:ncellras)
+  # Coordinates saved
+  ncellras <- terra::ncell(ras)
+  coord <- terra::xyFromCell(object = ras, cell = 1:ncellras)
   colnames(coord) <- c("Longitude(x)", "Latitude(y)")
   
-  # Cell area calculation for cover metrics
-  areashape <- NULL
-  areagrid <- NULL
-  
-  if (cover > 0) {
-    ex <- c(xmn, xmx, ymn, ymx)
-    latlong <- all(ex >= -180 & ex <= 180)
-    if (latlong) {
-      areashape <- areaPolygon(shapes)
-      global <- xmn == -180 & xmx == 180 & ymn == -90 & ymx == 90
-      if (!global) {
-        grid <- rasterToPolygons(ras)
-        areagrid <- try(areaPolygon(grid), silent = TRUE)
-      }
-      if (inherits(areagrid, "try-error") | global) {
-        areagrid <- values(area(ras)) * 1000000
-      }
-    } else {
-      grid <- rasterToPolygons(ras)
-      areashape <- rgeos::gArea(shapes, byid = TRUE)
-      areagrid <- rgeos::gArea(grid, byid = TRUE)
-    }
-  }
-  
+
   # Getting species name
   names(shapes) <- toupper(names(shapes))
-  names(shapes)[names(shapes) %in% "SCINAME"] <- "BINOMIAL"
+  names(shapes)[names(shapes) %in% c("SCINAME",
+                                     "SCI_NAME",
+                                     "SPECIES")] <- "BINOMIAL"
   nomes <- sort(unique(shapes$BINOMIAL))
-  n <- length(shapes$BINOMIAL)
   nomes2 <- shapes$BINOMIAL
   nomes <- nomes[nomes %in% nomes2]
+  
+  n <- length(shapes$BINOMIAL)
   
   # Generating the empty matrix
   matriz <- matrix(0, ncol = length(nomes), nrow = ncellras)
@@ -188,9 +171,9 @@ lets.presab <- function(shapes,
   for (i in seq_len(n)) {
     # Getting species position in the matrix and set to 1
     pospos2 <- .extractpos(ras, shapes[i,], nomes, nomes2,
-                           cover, areashape, areagrid, i)
-    if (nrow(pospos2$pos2) != 0) {
-      matriz[pospos2$pos2[, 1], pospos2$pos] <- 1
+                           cover, i)
+    if (length(pospos2$pos2) != 0) {
+      matriz[pospos2$pos2, pospos2$pos] <- 1
     }
     # progress bar
     if (count) {
@@ -238,73 +221,32 @@ lets.presab <- function(shapes,
 # Function to extract cell positions in the raster
 .extractpos <- function(ras,
                         shapepol,
-                        nomes,
-                        nomes2,
+                        nomes = NULL,
+                        nomes2 = NULL,
                         cover,
-                        areashape,
-                        areagrid,
                         i) {
   # Try the extraction of cell occurrence positions
   shapepol1 <- shapepol
-  celulas <- try(extract(
+  celulas <- terra::extract(
     ras,
     shapepol1,
-    cellnumbers = TRUE,
-    weights = TRUE,
-    small = TRUE,
-    normalizeWeights = FALSE
-  ),
-  silent = T)
-  # if (class(celulas) != "try-error") {
-  #   celulas2 <- extract(
-  #     ras,
-  #     shapepol1,
-  #     cellnumbers = TRUE,
-  #     weights = FALSE,
-  #     small = TRUE,
-  #     normalizeWeights = FALSE
-  #   )
-  #   keep_this <- celulas[[1]][, 1] %in% celulas2[[1]][, 1]
-  #   celulas[[1]] <- celulas[[1]][keep_this, ,drop = FALSE]
-  # }
+    cells = TRUE,
+    exact = TRUE
+  )
   
-  # Handle the awkward error that can appear with weights and small = TRUE
-  if (inherits(celulas, "try-error")) {
-    celulas <- extract(ras, shapepol1,
-                       cellnumbers = TRUE)
-    nen <- sapply(celulas, nrow)
-    for (ky in 1:length(nen)) {
-      weigth <- rep(0, nen[ky])
-      celulas[[ky]] <- cbind(celulas[[ky]], weigth)
-    }
+  # Getting column positions (not for birds)
+  if (!is.null(nomes2)) {
+    pos <- which(nomes2[i] == nomes)
+  } else {
+    pos <- NULL
   }
-  
-  # Removing null cells
-  celulas <- celulas[!sapply(celulas, is.null)]
-  
-  # Changing colnames
-  if (length(celulas) > 0) {
-    .rename <- function(x) {
-      colnames(x) <- 1:3
-      return(x)
-    }
-    celulas <- lapply(celulas, .rename)
-  }
-  
-  # Getting column positions
-  pos <- which(nomes2[i] == nomes)
-  
-  # Getting row positions
-  pos2 <- do.call(rbind.data.frame, celulas)
-  
   # Correcting presence based on the cover
   if (cover > 0) {
-    prop <- round((pos2[, 3] * areashape[i]) / areagrid[pos2[, 1]], 2)
-    if (any(prop > 1)) {
-      prop[prop > 1] <- 1
-    }
-    pos2 <- pos2[which(prop >= cover), , drop = FALSE]
+    celulas <- celulas[celulas$fraction >= cover, , drop = FALSE]
   }
+  
+  # Getting row positions
+  pos2 <- celulas$cell
   
   # Return row and column position
   return (list("pos" = pos, "pos2" = pos2))

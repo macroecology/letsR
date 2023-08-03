@@ -29,6 +29,7 @@ within their ranges).
 \dontrun{
 data(PAM)
 data(temp)
+temp <- terra::unwrap(temp)
 pamvar <- lets.addvar(PAM, temp)
 resu <- lets.summarizer(x = pamvar, pos = ncol(pamvar),
                         xy = TRUE)

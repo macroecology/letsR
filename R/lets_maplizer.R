@@ -18,7 +18,7 @@
 #' @return \strong{Matrix}: a \code{matrix} object with the cells' geographic 
 #' coordinates and the summarized species' attributes within them.
 #' @return \strong{Raster}: The summarized species'attributed maped in a 
-#' \code{raster} object.
+#' \code{SpatRaster} object.
 #' 
 #' @seealso \code{\link{lets.presab}}
 #' @seealso \code{\link{lets.presab.birds}}
@@ -37,6 +37,13 @@
 #' @export
 
 lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
+  
+  # Check PAM
+  if (!methods::is(x, "PresenceAbsence")) {
+    stop("x is not a PresenceAbsence object")
+  } else {
+    x <- .check_pam(x)
+  }
   
   # Change factor to numbers
   if (is.factor(y)) {
@@ -73,7 +80,7 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
   
   # Matrix of result 
   resultado <- cbind(x[[1]][, 1:2], resum)
-  resu2 <- na.omit(resultado)
+  resu2 <- stats::na.omit(resultado)
   
   # Name change
   name <- paste("Variable", as.character(substitute(func)),
@@ -83,7 +90,9 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
   
   # Return result with or without the raster
   if (ras) {
-    r <- rasterize(resu2[, 1:2], x[[2]], resu2[, 3])
+    r <- terra::rasterize(resu2[, 1:2], 
+                          x[[2]], 
+                          resu2[, 3])
     return(list(Matrix = resultado, Raster = r))
   } else {
     return(resultado)

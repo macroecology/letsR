@@ -4,41 +4,43 @@
 \alias{lets.midpoint}
 \title{Compute the midpoint of species' geographic ranges}
 \usage{
-lets.midpoint(pam, planar = FALSE, method = "PC")
+lets.midpoint(pam, planar = FALSE, method = "PC", inside = FALSE)
 }
 \arguments{
-\item{pam}{A presence-absence \code{matrix} (sites in the rows and species
-in the columns, with the first two columns containing the longitudinal
-and latitudinal coordinates, respectively), or an object of class 
+\item{pam}{A presence-absence \code{matrix} (sites in the rows and species in
+the columns, with the first two columns containing the longitudinal and
+latitudinal coordinates, respectively), or an object of class
 \code{\link{PresenceAbsence}}.}
 
-\item{planar}{Logical, if \code{FALSE} the coordinates are in Longitude/Latitude.
-If \code{TRUE} the coordinates are planar.}
+\item{planar}{Logical, if \code{FALSE} the coordinates are in
+Longitude/Latitude. If \code{TRUE} the coordinates are planar.}
 
-\item{method}{Default option, "PC" (polygon centroid) will generate a polygon from the raster, 
-and calculate the centroid of this polygon. If planar = TRUE, 
-the function centroid of the package geosphere is used. If planar = FALSE,
-the function gCentroid of the package rgeos is used. 
-Note that for the "PC" method, users can only use PresenceAbsence objects. 
-Note also that this method will not be the best for PresenceAbsence objects 
-made from occurrence records, or that have multiple disjoint distributions. 
-Users can also choose the geographic midpoint, 
-using the option "GM". "GM" will create a bouding box across the extremes of the 
-distribution and calculate the centroid.
-Alternatively, the midpoint can be calculated as the point
-that minimize the distance between all cells of the PAM,
-using the method "CMD"(center of minimun distance). 
-The user can also calculate the midpoint, based on the centroid of the minimum
-convex polygon of the distribution, using the method "MCC". This last method is
-usefull when using a PresenceAbsence object made from occurrence records.}
+\item{method}{Default option, "PC" (polygon centroid) will generate a polygon
+from the raster, and calculate the centroid of this polygon based on the
+function \code{terra::centroids}. Note that for the "PC" method,
+users can only use PresenceAbsence objects. Note also that this method will
+not be the best for PresenceAbsence objects made from occurrence records,
+or that have multiple disjoint distributions. Users can also choose the
+geographic midpoint, using the option "GM". "GM" will create a bounding box
+across the extremes of the distribution and calculate the centroid.
+Alternatively, the midpoint can be calculated as the point that minimize
+the distance between all cells of the PAM, using the method "CMD"(centre of
+minimum distance). The user can also calculate the midpoint, based on the
+centroid of the minimum convex polygon of the distribution, using the
+method "MCC". This last method is useful when using a PresenceAbsence
+object made from occurrence records.
+@param inside logical. If TRUE the points returned are guaranteed to be
+  inside the polygons or on the lines, but they are not the true centroids.
+  True centroids may be outside a polygon, for example when a polygon is
+  "bean shaped", and they are unlikely to be on their line}
 }
 \value{
-A \code{data.frame} containing the species' names and geographic coordinates 
-(longitude [x], latitude [y]) of species' midpoints.
+A \code{data.frame} containing the species' names and geographic
+  coordinates (longitude [x], latitude [y]) of species' midpoints.
 }
 \description{
-Calculate species' distributional midpoint from a 
-presence-absence matrix using several methods.
+Calculate species distribution midpoint from a
+  presence-absence matrix using several methods.
 }
 \examples{
 \dontrun{
@@ -65,7 +67,7 @@ for (sp in seq_len(nrow(mid))) {
  points(mid8[sp, -1], col = adjustcolor("brown", .8), pch = 20, cex = 1.5)
  Sys.sleep(1)
 }
-} 
+}
 
 }
 \seealso{

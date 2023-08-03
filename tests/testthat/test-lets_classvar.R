@@ -2,6 +2,7 @@ context("Test for lets.classvar")
 
  data(PAM)
  data(temp)
+ temp <- terra::unwrap(temp)
  pamvar <- lets.addvar(PAM, temp)
  
 

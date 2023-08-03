@@ -16,10 +16,10 @@ lets.presab.grid(
 )
 }
 \arguments{
-\item{shapes}{Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}} 
-to open these files) containing the distribution of one or more species.
-Species names should be in a column (within the .DBF table of the shapefile)
-called BINOMIAL/binomial or SCINAME/sciname.}
+\item{shapes}{Object of class \code{SpatVect} or \code{Spatial} (see packages
+\code{\link{terra}} and  \code{\link{sf}} to read these files) containing
+the distribution of one or more species. Species names should be stored in
+the object as BINOMIAL/binomial or SCINAME/sciname.}
 
 \item{grid}{Object of class shapefile representing the spatial grid (e.g. regular/irregular cells, 
 political divisions, hexagonal grids, etc). 
@@ -28,17 +28,19 @@ The grid and the shapefiles must be in the same projection.}
 \item{sample.unit}{Object of class \code{character} with the name of the column (in the grid) 
 representing the sample units of the presence absence matrix.}
 
-\item{remove.sp}{Logical, if \code{TRUE} the final matrix will not contain species that 
-do not match any cell in the grid.}
+\item{remove.sp}{Logical, if \code{TRUE} the final matrix will not contain
+species that do not match any cell in the grid.}
 
-\item{presence}{A vector with the code numbers for the presence type to be considered in the process 
-(for IUCN spatial data \url{https://www.iucnredlist.org/resources/spatial-data-download}, see metadata).}
+\item{presence}{A vector with the code numbers for the presence type to be
+considered in the process (for IUCN spatial data
+\url{https://www.iucnredlist.org/resources/spatial-data-download}, see
+metadata).}
 
-\item{origin}{A vector with the code numbers for the origin type to be considered in the process 
-(for IUCN spatial data).}
+\item{origin}{A vector with the code numbers for the origin type to be
+considered in the process (for IUCN spatial data).}
 
-\item{seasonal}{A vector with the code numbers for the seasonal type to be considered in the process 
-(for IUCN spatial data).}
+\item{seasonal}{A vector with the code numbers for the seasonal type to be
+considered in the process (for IUCN spatial data).}
 }
 \value{
 The result is a \code{list} containing two objects: 
@@ -56,20 +58,21 @@ already have their own grid.
 }
 \examples{
 \dontrun{
-# Grid 
-sp.r <- rasterToPolygons(raster(resol = 5))
-slot(sp.r, "data") <- cbind("ID" = 1:length(sp.r),
-                            slot(sp.r, "data"))
- 
 # Species polygons
-data(Phyllomedusa)
-projection(Phyllomedusa) <- projection(sp.r)
+data("Phyllomedusa")
+
+# Grid 
+sp.r <- terra::as.polygons(terra::rast(resol = 5, 
+crs = terra::crs(Phyllomedusa),
+xmin = -93, xmax = -29, ymin = -57, ymax = 15))
+sp.r$ID <- 1:length(sp.r)
+                         
 
 # PAM
 resu <- lets.presab.grid(Phyllomedusa, sp.r, "ID")
 
 # Plot
-rich_plus1 <- rowSums(resu$PAM) + 1
+rich_plus1 <- rowSums(resu$PAM[, -1]) + 1
 colfunc <- colorRampPalette(c("#fff5f0", "#fb6a4a", "#67000d"))
 colors <- c("white", colfunc(max(rich_plus1)))
 plot(resu$grid, border = "gray40",

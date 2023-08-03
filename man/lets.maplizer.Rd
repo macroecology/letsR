@@ -28,7 +28,7 @@ the follow objects:
 coordinates and the summarized species' attributes within them.
 
 \strong{Raster}: The summarized species'attributed maped in a 
-\code{raster} object.
+\code{SpatRaster} object.
 }
 \description{
 Summarize species atributes per cell in a presence-absence matrix.

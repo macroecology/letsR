@@ -2,12 +2,11 @@ context("Test for lets.summarizer")
 
 data(PAM)
 data(temp)
+temp <- terra::unwrap(temp)
 pamvar <- lets.addvar(PAM, temp)
 
 
 test_that("lets.summarizer works fine", {
-  
-  
   resu_test <- lets.summarizer(x = pamvar, pos = ncol(pamvar), xy = TRUE)
 
   expect_equal(class(resu_test), "data.frame")

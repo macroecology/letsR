@@ -10,12 +10,15 @@ lets.gridirizer(x)
 \item{x}{A \code{\link{PresenceAbsence}} object.}
 }
 \value{
-The result is a list of two objects. The first is a grid in shapefile format;
-the second is a presence-absence matrix with an aditional column called SP_ID (shapefile cell identifier).
+The result is a list of two objects. The first is a grid in shapefile
+  format; the second is a presence-absence matrix with an aditional column
+  called SP_ID (shapefile cell identifier).
 }
 \description{
-This function creates a grid in shapefile format and adds its cells' IDs to the presence-absence matrix.
-The function was created to facilitate the use of the PresenceAbsence object for the ones who prefer to work with a grid in shapefile format.
+This function creates a grid in shapefile format and adds its
+  cells' IDs to the presence-absence matrix. The function was created to
+  facilitate the use of the PresenceAbsence object for the ones who prefer to
+  work with a grid in shapefile format.
 }
 \examples{
 \dontrun{
@@ -26,6 +29,7 @@ names(PAM.grid)
 PAM.grid$Grid
 # Presence-absence matrix (beggining only)
 head(PAM.grid$Presence[, 1:5])
+
 }
 
 }

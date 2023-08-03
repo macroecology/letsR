@@ -1,55 +1,48 @@
 #' Filter species' shapefiles based on its presence, origin, and season
-#' 
-#' @author Bruno Vilela
-#' 
-#' @description Filter species shapefiles by origin, presence, and seasonal type (following IUCN types: \url{https://www.iucnredlist.org/resources/spatial-data-download}, see metadata).
 #'
-#' 
-#' @param shapes Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}} 
-#' to open these files).
-#' @param presence A vector with the code numbers for the presence type to be maintained.
-#' @param origin A vector with the code numbers for the origin type to be maintained.
-#' @param seasonal A vector with the code numbers for the seasonal type to be maintained.
-#' 
-#' @return The result is the shapefile(s) filtered according to the selected types. If the filters remove all polygons, the result will be NULL.
-#' 
-#'  
-#' @details Presence codes:
-#' (1) Extant, 
-#' (2) Probably Extant, 
-#' (3) Possibly Extant, 
-#' (4) Possibly Extinct, 
-#' (5) Extinct (post 1500) &
-#' (6) Presence Uncertain.
-#' 
-#' Origin codes:
-#' (1) Native, 
-#' (2) Reintroduced, 
-#' (3) Introduced, 
-#' (4) Vagrant &
-#' (5) Origin Uncertain.
-#' 
-#' Seasonal codes:
-#' (1) Resident, 
-#' (2) Breeding Season, 
-#' (3) Non-breeding Season, 
-#' (4) Passage &
-#' (5) Seasonal Occurrence Uncertain.
-#' 
-#' More info in the shapefiles' metadata.
-#' 
+#' @author Bruno Vilela
+#'
+#' @description Filter species shapefiles by origin, presence, and seasonal type
+#'   (following IUCN types:
+#'   \url{https://www.iucnredlist.org/resources/spatial-data-download}, see
+#'   metadata).
+#'
+#'
+#' @inheritParams lets.presab
+#'
+#' @return The result is the shapefile(s) filtered according to the selected
+#'   types. If the filters remove all polygons, the result will be NULL.
+#'
+#'
+#' @details Presence codes: (1) Extant, (2) Probably Extant, (3) Possibly
+#'   Extant, (4) Possibly Extinct, (5) Extinct (post 1500) & (6) Presence
+#'   Uncertain.
+#'
+#'   Origin codes: (1) Native, (2) Reintroduced, (3) Introduced, (4) Vagrant &
+#'   (5) Origin Uncertain.
+#'
+#'   Seasonal codes: (1) Resident, (2) Breeding Season, (3) Non-breeding Season,
+#'   (4) Passage & (5) Seasonal Occurrence Uncertain.
+#'
+#'   More info in the shapefiles' metadata.
+#'
 #' @seealso \code{\link{plot.PresenceAbsence}}
 #' @seealso \code{\link{lets.presab}}
 #' @seealso \code{\link{lets.presab.birds}}
-#' 
-#' 
+#'
+#' @import terra
+#' @import sf
+#'
 #' @export
 
 
 
-lets.shFilter <- function(shapes, presence = NULL, origin = NULL,
+lets.shFilter <- function(shapes, 
+                          presence = NULL,
+                          origin = NULL,
                           seasonal = NULL) {
   
+  shapes <- .check_shape(shapes)
   # No filtering applied control
   if (is.null(presence) & is.null(origin) & is.null(seasonal)) {
     return(shapes)

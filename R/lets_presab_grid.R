@@ -5,23 +5,12 @@
 #' 
 #' @description Convert species' ranges (in shapefile format) into a presence-absence matrix based on a grid in shapefile format.
 #'
-#' @param shapes Object of class \code{SpatialPolygonsDataFrame} (see function \code{\link{readShapePoly}} 
-#' to open these files) containing the distribution of one or more species.
-#' Species names should be in a column (within the .DBF table of the shapefile)
-#' called BINOMIAL/binomial or SCINAME/sciname.
+#' @inheritParams lets.presab 
 #' @param grid Object of class shapefile representing the spatial grid (e.g. regular/irregular cells, 
 #' political divisions, hexagonal grids, etc). 
 #' The grid and the shapefiles must be in the same projection.
-#' @param remove.sp Logical, if \code{TRUE} the final matrix will not contain species that 
-#' do not match any cell in the grid.
 #' @param sample.unit Object of class \code{character} with the name of the column (in the grid) 
 #' representing the sample units of the presence absence matrix.
-#' @param presence A vector with the code numbers for the presence type to be considered in the process 
-#' (for IUCN spatial data \url{https://www.iucnredlist.org/resources/spatial-data-download}, see metadata). 
-#' @param origin A vector with the code numbers for the origin type to be considered in the process 
-#' (for IUCN spatial data).
-#' @param seasonal A vector with the code numbers for the seasonal type to be considered in the process 
-#' (for IUCN spatial data).
 #' 
 #' @details This function is an alternative way to create a presence absence matrix when users
 #' already have their own grid. 
@@ -37,20 +26,21 @@
 #' @seealso \code{\link{lets.shFilter}} 
 #' 
 #' @examples \dontrun{
-#' # Grid 
-#' sp.r <- rasterToPolygons(raster(resol = 5))
-#' slot(sp.r, "data") <- cbind("ID" = 1:length(sp.r),
-#'                             slot(sp.r, "data"))
-#'  
 #' # Species polygons
-#' data(Phyllomedusa)
-#' projection(Phyllomedusa) <- projection(sp.r)
+#' data("Phyllomedusa")
+#' 
+#' # Grid 
+#' sp.r <- terra::as.polygons(terra::rast(resol = 5, 
+#' crs = terra::crs(Phyllomedusa),
+#' xmin = -93, xmax = -29, ymin = -57, ymax = 15))
+#' sp.r$ID <- 1:length(sp.r)
+#'                          
 #' 
 #' # PAM
 #' resu <- lets.presab.grid(Phyllomedusa, sp.r, "ID")
 #' 
 #' # Plot
-#' rich_plus1 <- rowSums(resu$PAM) + 1
+#' rich_plus1 <- rowSums(resu$PAM[, -1]) + 1
 #' colfunc <- colorRampPalette(c("#fff5f0", "#fb6a4a", "#67000d"))
 #' colors <- c("white", colfunc(max(rich_plus1)))
 #' plot(resu$grid, border = "gray40",
@@ -59,7 +49,7 @@
 #' }
 #' 
 #' 
-#' @import rgeos
+#' @import terra sf
 #' 
 #' @export
 
@@ -81,17 +71,23 @@ lets.presab.grid <- function(shapes,
   if (is.null(grid)) {
     stop("Object grid not defined, without a default") 
   }
-  if (!any(sample.unit %in% names(grid@data))) {
+  if (!any(sample.unit %in% names(grid))) {
     stop("sample.unit name not found in the grid object")
   }
   
-  proj1 <- is.null(projection(shapes)) | is.na(projection(shapes))
-  proj2 <- is.null(projection(grid)) | is.na(projection(grid))
+  shapes <- .check_shape(shapes)
+  
+  proj1 <-
+    is.null(terra::crs(shapes, proj = TRUE)) |
+    is.na(terra::crs(shapes, proj = TRUE))
+  proj2 <-
+    is.null(terra::crs(grid, proj = TRUE)) |
+    is.na(terra::crs(grid, proj = TRUE))
   
   if (!(proj1 | proj2)) {
     
     # Check projection
-    if (projection(shapes) != projection(grid)) {
+    if (terra::crs(shapes, proj = TRUE) != terra::crs(grid, proj = TRUE)) {
       stop("The shapes object and the grid 
          should be in the same projection")
     }
@@ -113,32 +109,36 @@ lets.presab.grid <- function(shapes,
   
   
   # Error control for no shapes after filtering
-  # Error control for no shapes after filtering
-  if (is.null(shapes)) {
+  if (is.null(shapes) | nrow(shapes) == 0) {
     stop("After filtering no species distributions left")
   }
+
+  # species
+  names(shapes) <- toupper(names(shapes))
+  names(shapes)[names(shapes) %in% c("SCINAME",
+                                     "SCI_NAME",
+                                     "SPECIES")] <- "BINOMIAL"
+  spp <- unique(shapes$BINOMIAL)
+  n <- length(spp)
+  su <- grid[[sample.unit]][, 1]
+  n_row <- length(su)
   
-  if (nrow(shapes) == 0) {
-    stop("After filtering no species distributions left")
-  }
+  # Matrix
+  pam.par <- matrix(0, ncol = n + 1, nrow = n_row)
   
   # Cover
-  names(shapes) <- toupper(names(shapes))
-  names(shapes)[names(shapes) %in% "SCINAME"] <- "BINOMIAL" 
+  a <- terra::intersect(grid, shapes)
+  gover <- as.data.frame(a[, c(sample.unit, "BINOMIAL")])
+  for (i in seq_len(nrow(gover))) {
+    pam.par[gover[i, 1], which(gover[i, 2] == spp) + 1] <- 1
+  }
   
-  gover <- gOverlaps(shapes, grid, byid = TRUE) * 1
-  colnames(gover) <- shapes@data$BINOMIAL
-  gcontains <- gContains(shapes, grid, byid = TRUE) * 1
-  colnames(gcontains) <- shapes@data$BINOMIAL
-  
-  # Sum
-  pam.par <- ifelse(gover + gcontains > 0 , 1, 0)
+  # Final table names
+  colnames(pam.par) <- c(sample.unit, as.character(spp))
+  pam.par[, 1] <- grid[[sample.unit]][, 1]
   
   # remove duplicated
   result <- .unicas(pam.par)
-  
-  # Final table names
-  rownames(result) <- grid@data[, sample.unit]
   
   # Remove.sp
   if (remove.sp) {

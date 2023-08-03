@@ -9,15 +9,18 @@ lets.pamcrop(x, shp, remove.sp = TRUE)
 \arguments{
 \item{x}{A \code{\link{PresenceAbsence}} object.}
 
-\item{shp}{Object of class SpatialPolygonsDataFrame (see function \code{\link{readShapePoly}}) to crop the PresenceAbsence object.}
+\item{shp}{Object of class SpatVector (see function
+\code{terra::vect}) to crop the PresenceAbsence object.}
 
-\item{remove.sp}{Logical, if \code{TRUE} the final matrix will not contain species that do not match any cell in the grid.}
+\item{remove.sp}{Logical, if \code{TRUE} the final matrix will not contain
+species that do not match any cell in the grid.}
 }
 \value{
 The result is an object of class PresenceAbsence croped.
 }
 \description{
-Crop a PresenceAbsence object based on a shapefile provided by the user.
+Crop a PresenceAbsence object based on a shapefile provided by
+  the user.
 }
 \examples{
 \dontrun{
@@ -27,13 +30,11 @@ plot(PAM, xlab = "Longitude", ylab = "Latitude",
      main = "Phyllomedusa species richness")
 
 # Crop PAM to Brazil
-require(maptools)    
 data(wrld_simpl)  # World map
 Brazil <- wrld_simpl[wrld_simpl$NAME == "Brazil", ]  # Brazil (polygon)
 PAM_crop <- lets.pamcrop(PAM, Brazil, remove.sp = TRUE)
 plot(PAM_crop, xlab = "Longitude", ylab = "Latitude",
-     main = "Phyllomedusa species richness (Brazil crop)",
-     col = colorRampPalette(c("darkgreen", "yellow", "blue")))
+     main = "Phyllomedusa species richness (Brazil crop)")
 }
 
 }

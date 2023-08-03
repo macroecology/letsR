@@ -14,6 +14,7 @@
 
 
 print.PresenceAbsence <- function(x, ...) {
+  x <- .check_pam(x)
   resolution <- res(x$Ric)
   cat("\nClass:", class(x),
       "\nNumber of species:", (ncol(x$Pre) - 2),

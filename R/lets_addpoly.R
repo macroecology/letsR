@@ -3,7 +3,7 @@
 #' @author Bruno Vilela
 #' 
 #' @description Add polygon coverage within cells of a PresenceAbsence object.
-#'
+#' @inheritParams lets.presab
 #' @param x A \code{\link{PresenceAbsence}} object. 
 #' @param y Polygon of interest.
 #' @param z A character indicating the column name of the polygon containing the
@@ -21,7 +21,6 @@
 #' 
 #' @examples \dontrun{
 #' data(PAM)  # Phyllomedusa presence-absence matrix
-#' require(maptools)
 #' data(wrld_simpl)  # World map
 #' Brazil <- wrld_simpl[wrld_simpl$NAME == "Brazil", ]  # Brazil (polygon)
 #' 
@@ -29,74 +28,63 @@
 #' # (in this case it is in "NAME" which will be my z value)
 #' names(Brazil)
 #' 
-#' PAM_pol <- lets.addpoly(PAM, Brazil, "NAME")
+#' PAM_pol <- lets.addpoly(PAM, Brazil, "NAME", onlyvar = TRUE)
 #' }
 #' 
+#' @import terra sf
 #' @export
 
-lets.addpoly <- function(x, y, z, onlyvar = FALSE){
+lets.addpoly <- function(x, y, z, onlyvar = FALSE, count = FALSE){
   
-  # Get the column position and change the name to a common one
-  pos1 <- names(y) == z
-  names(y)[pos1] <- "NOME"
-  nomes <- y$NOME
+  # Defensive functions
+  ## Check shape
+  y <- .check_shape(y)
   
-  # Make the matrix
-  valores <- values(x[[2]])
-  LenValues <- length(valores)
-  n <- nrow(y)
-  matriz <- matrix(0, ncol = n, nrow = LenValues)
-  colnames(matriz) <- nomes
-  
-  # Add coordinates
-  xy <- raster::xyFromCell(object = x[[2]], cell = 1:LenValues)
-  
-  # Calculate the cell area
-  areashape <- geosphere::areaPolygon(y)
-  areagrid <- NULL
-  global <- all(as.vector(extent(x[[2]])) == c(-180, 180, -90, 90))
-  
-  if (!global) {
-    grid <- rasterToPolygons(x[[2]])
-    areagrid <- suppressWarnings(try(areaPolygon(grid), silent = TRUE))
+  if (!z %in% names(y)) {
+    stop(paste("Couldn't find the atttribute", z, "in the polygon y"))
   }
   
-  if (inherits(areagrid, "try-error") | global) {
-    areagrid <- values(area(x[[2]])) * 1000000
-  } 
-  
-  position <- which(!is.na(valores))
-  
-  for (i in seq_len(n)) {
-    
-    celu <- extract(x[[2]], y[i, ], cellnumber = TRUE, 
-                    small = TRUE, weights = TRUE)
-    celu2 <- do.call(rbind.data.frame, celu)
-    
-    if (!is.null(celu2[, 2])) {
-      celu2 <- celu2[!is.na(celu2[, 2]), , drop = FALSE]
-    }
-    
-    calc1 <- (celu2[, 3] * areashape[i])
-    calc2 <- areagrid[which(position %in% celu2[, 1])]
-    prop <- round(calc1 / calc2, 2)
-    prop1 <- prop > 1
-    
-    if (any(prop1)) {
-      prop[prop1] <- 1
-    }
-    matriz[celu2[, 1], i] <- prop
+  if (!methods::is(x, "PresenceAbsence")) {
+    stop("x is not a PresenceAbsence object")
+  } else {
+    x <- .check_pam(x)
+  }
+  ## Projections
+  if (as.character(terra::crs(y)) != as.character(terra::crs(x[[2]]))) {
+    warning("Reprojecting y to match the projection in x")
+    y <- terra::project(y, terra::crs(x[[2]]))
   }
   
-  r <- rasterize(xy, x[[2]], matriz)
-  rExtract <- extract(r, x[[1]][, 1:2])
-  rExtract <- as.matrix(rExtract)
-  colnames(rExtract) <- nomes
+  n <- terra::ncell(x[[2]])
+  ids <- unique(y[[z]][[1]])
+  res <- matrix(0, nrow = n, ncol = length(ids))
+
+  # progress bar
+  if (count) {
+    pb <- utils::txtProgressBar(min = 0,
+                                max = length(ids),
+                                style = 3)
+  }
+
+  for (i in seq_along(ids)) {
+    cells_pos <- terra::extract(x[[2]],
+                                y[ids[i] == y[[z]][[1]], ],
+                                cells = TRUE,
+                                weights = TRUE)
+    res[cells_pos[, 3], i] <- round(cells_pos[, 4], 4)
+    # progress bar
+    if (count) {
+      utils::setTxtProgressBar(pb, i)
+    }
+    
+  }
+  colnames(res) <- ids
+  res <- res[terra::cellFromXY(x[[2]], x[[1]][, 1:2]), , drop = FALSE]
   
   if (onlyvar) {
-    return(rExtract) 
+    return(res) 
   } else {
-    resultado <- cbind(x[[1]], rExtract)
+    resultado <- cbind(x[[1]], res)
     return(resultado)
   }
 }
