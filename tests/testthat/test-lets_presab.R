@@ -4,10 +4,24 @@ data(Phyllomedusa)
 
 test_that("lets.presab return a correct PresenceAbsence object", {
   skip_on_cran()
-  PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
-                     resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-                     crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
-                     origin=NULL, seasonal=NULL, count=FALSE)
+  PAM <-
+    lets.presab(
+      Phyllomedusa,
+      xmn = -93,
+      xmx = -29,
+      ymn = -57,
+      ymx = 15,
+      resol = 1,
+      remove.cells = TRUE,
+      remove.sp = TRUE,
+      show.matrix = FALSE,
+      crs = terra::crs("+proj=longlat +datum=WGS84"),
+      cover = 0,
+      presence = NULL,
+      origin = NULL,
+      seasonal = NULL,
+      count = FALSE
+    )
   expect_equal(class(PAM), "PresenceAbsence")
 expect_true(is.matrix(PAM[[1]]))
   expect_true(inherits(PAM[[2]], "SpatRaster"))
@@ -21,7 +35,7 @@ test_that("lets.presab return a correct PresenceAbsence object for the world", {
   
   PAM <- lets.presab(Phyllomedusa, resol=5, remove.cells=TRUE,
                      remove.sp=TRUE, show.matrix=FALSE,
-                     crs=CRS("+proj=longlat +datum=WGS84"),
+                     crs=terra::crs("+proj=longlat +datum=WGS84"),
                      cover=0, presence=NULL, origin=NULL,
                      seasonal=NULL, count=FALSE)
   
@@ -40,7 +54,7 @@ test_that("lets.presab return a correct PresenceAbsence object (count=TRUE)", {
   
   PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
                      resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-                     crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
+                     crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
                      origin=NULL, seasonal=NULL, count=TRUE)
   
   expect_equal(class(PAM), "PresenceAbsence")
@@ -57,7 +71,7 @@ test_that("lets.presab return a correct PresenceAbsence object, cover=0.2", {
   
   PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
                      resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-                     crs=CRS("+proj=longlat +datum=WGS84"), cover=0.2, presence=NULL,
+                     crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0.2, presence=NULL,
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
@@ -74,7 +88,7 @@ test_that("lets.presab return a correct PresenceAbsence object different project
   pro <- paste("+proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5",
                "+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA", 
                "+units=m +no_defs")
-  SA_EC <- CRS(pro)
+  SA_EC <- terra::crs(pro)
   PAM_proj <- lets.presab(shapes = Phyllomedusa,
                           xmn = -4135157,
                           xmx = 4707602,
@@ -97,7 +111,7 @@ test_that("lets.presab return a correct PresenceAbsence object, remove.sp=FALSE"
   
   PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
                      resol=1, remove.cells=TRUE, remove.sp=FALSE, show.matrix=FALSE,
-                     crs=CRS("+proj=longlat +datum=WGS84"), cover=0.2, presence=NULL,
+                     crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0.2, presence=NULL,
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
@@ -117,7 +131,7 @@ test_that("lets.presab return a correct PresenceAbsence object, remove.cells=FAL
   
   PAM <- lets.presab(Phyllomedusa, xmn=-93, xmx=-29, ymn= -57, ymx=15,
                      resol=1, remove.cells=FALSE, remove.sp=TRUE, show.matrix=FALSE,
-                     crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
+                     crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")

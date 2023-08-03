@@ -23,7 +23,7 @@ test_that("lets.maplizer works fine", {
   resu_test <- lets.maplizer(PAM, trait, PAM$S, ras = TRUE)
   expect_equal(class(resu_test)[1], "list")
   expect_equal(class(resu_test[[1]])[1], "matrix")
-  expect_true(inherits(resu_test[[2]], "RasterLayer"))
+  expect_true(inherits(resu_test[[2]], "SpatRaster"))
   
   expect_true(ncol(resu_test[[1]]) == 3)
 })

@@ -7,7 +7,7 @@ test_that("lets.presab.birds return a correct PresenceAbsence object", {
   skip_on_cran()
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                      resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-                     crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
+                     crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
                      origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM)[1], "PresenceAbsence")
@@ -21,7 +21,7 @@ test_that("lets.presab.birds return a correct PresenceAbsence object for the wor
   skip_on_cran()
   
   PAM <- lets.presab.birds(path.Ramphastos, resol=5, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-                    crs=CRS("+proj=longlat +datum=WGS84"), cover=0.2, presence=NULL,
+                    crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0.2, presence=NULL,
                     origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
@@ -38,7 +38,7 @@ test_that("lets.presab.birds return a correct PresenceAbsence object for cover d
   pro <- paste("+proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5",
                "+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA", 
                "+units=m +no_defs")
-  SA_EC <- suppressWarnings(CRS(pro))
+  SA_EC <- suppressWarnings(terra::crs(pro))
   
   PAM3 <- lets.presab.birds(path.Ramphastos, xmn = -4135157,
                             xmx = 4707602,
@@ -60,7 +60,7 @@ test_that("lets.presab.birds return a correct PresenceAbsence object (count=TRUE
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                     resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-                    crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
+                    crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
                     origin=NULL, seasonal=NULL, count=TRUE)  
   expect_equal(class(PAM), "PresenceAbsence")
   expect_true(is.matrix(PAM[[1]]))
@@ -74,7 +74,7 @@ test_that("lets.presab.birds return a correct PresenceAbsence object, cover=0.2"
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                     resol=1, remove.cells=TRUE, remove.sp=TRUE, show.matrix=FALSE,
-                    crs=CRS("+proj=longlat +datum=WGS84"), cover=0.2, presence=NULL,
+                    crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0.2, presence=NULL,
                     origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
@@ -92,7 +92,7 @@ test_that("lets.presab.birds return a correct PresenceAbsence object,
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                     resol=1, remove.cells=TRUE, remove.sp=FALSE, show.matrix=FALSE,
-                    crs=CRS("+proj=longlat +datum=WGS84"), cover = 0.999999, presence=NULL,
+                    crs=terra::crs("+proj=longlat +datum=WGS84"), cover = 0.999999, presence=NULL,
                     origin=NULL, seasonal=NULL, count=FALSE)
   expect_equal(class(PAM), "PresenceAbsence")
   expect_true(is.matrix(PAM[[1]]))
@@ -106,7 +106,7 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object, remove.cell
   
   PAM <- lets.presab.birds(path.Ramphastos, xmn=-93, xmx=-29, ymn= -57, ymx=25,
                     resol=1, remove.cells=FALSE, remove.sp=TRUE, show.matrix=FALSE,
-                    crs=CRS("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
+                    crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0, presence=NULL,
                     origin=NULL, seasonal=NULL, count=FALSE)
   
   expect_equal(class(PAM), "PresenceAbsence")
@@ -124,12 +124,12 @@ test_that("lets.presab.birdsreturn a correct PresenceAbsence object, remove.cell
 
 test_that("lets.presab.birds new projection", {
   skip_on_cran()
-  desiredcrs <- CRS("+proj=laea +lat_0=0 +lon_0=-80 +x_0=180 +y_0=70 +units=km") 
+  desiredcrs <- terra::crs("+proj=laea +lat_0=0 +lon_0=-80 +x_0=180 +y_0=70 +units=km") 
   PAM <- lets.presab.birds(path.Ramphastos, xmn = -3000,
                            xmx = 6000, ymn = -5000, 
                            ymx = 3000, res = 100, remove.cells=TRUE,
                            remove.sp=TRUE, show.matrix=FALSE,
-                           crs=CRS("+proj=longlat +datum=WGS84"), cover=0, 
+                           crs=terra::crs("+proj=longlat +datum=WGS84"), cover=0, 
                            presence=NULL,
                            crs.grid = desiredcrs,
                            origin=NULL, seasonal=NULL, count=TRUE)

@@ -6,7 +6,10 @@
 #' @description Convert species' ranges (in shapefile format and stored in
 #'   particular folders) into a presence-absence matrix based on a user-defined
 #'   grid. This function is specially designed to work with BirdLife Intl.
-#'   shapefiles (\url{https://www.birdlife.org}).
+#'   shapefiles (\url{https://www.birdlife.org}). (Notice that new versions of
+#'   birds spatial data are in a similar format to other groups and should be
+#'   run using the lets.presab function. We will keep this function in case
+#'   someone needs to use on the previous data format.)
 #'
 #' @inheritParams lets.presab
 #' @param path Path location of folders with one or more species' individual

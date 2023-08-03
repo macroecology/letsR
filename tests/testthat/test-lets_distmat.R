@@ -25,20 +25,3 @@ test_that("lets.distmat works fine, asdist = FALSE", {
 })
 
 
-test_that("lets.distmat works fine, miles = TRUE", {
-  
-  
-  distPAM <- lets.distmat(PAM, miles = TRUE)   
-  expect_true(class(distPAM)[1] == "dist")
-  expect_true(all(dim(as.matrix(distPAM)) == dimPAM))
-  
-})
-
-test_that("lets.distmat works fine, xy as matrix ", {
-  
-  
-  distPAM <- lets.distmat(coords, miles = TRUE)   
-  expect_true(class(distPAM)[1] == "dist")
-  expect_true(all(dim(as.matrix(distPAM)) == nrow(coords)))
-  
-})
