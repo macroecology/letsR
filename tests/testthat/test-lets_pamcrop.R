@@ -11,7 +11,7 @@ test_that("lets.pamcrop works fine, remove.sp = TRUE", {
   
   expect_equal(class(resu_test)[1], "PresenceAbsence")
   expect_equal(class(resu_test[[1]])[1], "matrix")
-  expect_true(inherits(resu_test[[2]], "RasterLayer"))
+  expect_true(inherits(resu_test[[2]], "SpatRaster"))
   expect_equal(class(resu_test[[3]])[1], "character")
   
   response <- summary(resu_test)
@@ -27,7 +27,7 @@ test_that("lets.pamcrop works fine, remove.sp = FALSE", {
   
   expect_equal(class(resu_test)[1], "PresenceAbsence")
   expect_equal(class(resu_test[[1]])[1], "matrix")
-  expect_true(inherits(resu_test[[2]], "RasterLayer"))
+  expect_true(inherits(resu_test[[2]], "SpatRaster"))
   expect_equal(class(resu_test[[3]])[1], "character")
   
   response <- summary(resu_test)

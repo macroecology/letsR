@@ -97,10 +97,10 @@ test_that("lets.presab return a correct PresenceAbsence object different project
                           resol = 100000,
                           crs.grid = SA_EC, cover = .9)
   
-  expect_equal(class(PAM), "PresenceAbsence")
-  expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "SpatRaster"))
-  expect_equal(class(PAM[[3]]), "character")
+  expect_equal(class(PAM_proj), "PresenceAbsence")
+  expect_true(is.matrix(PAM_proj[[1]]))
+  expect_true(inherits(PAM_proj[[2]], "SpatRaster"))
+  expect_equal(class(PAM_proj[[3]]), "character")
   
   
 })
@@ -162,9 +162,9 @@ test_that("lets.presab new projection grid", {
                       crs.grid =  pro,
                       count = TRUE)
   
-  expect_equal(class(PAM), "PresenceAbsence")
-  expect_true(is.matrix(PAM[[1]]))
-  expect_true(inherits(PAM[[2]], "SpatRaster"))
-  expect_equal(class(PAM[[3]]), "character")  
+  expect_equal(class(PAM2), "PresenceAbsence")
+  expect_true(is.matrix(PAM2[[1]]))
+  expect_true(inherits(PAM2[[2]], "SpatRaster"))
+  expect_equal(class(PAM2[[3]]), "character")  
   
 })
