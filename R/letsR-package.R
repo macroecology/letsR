@@ -50,7 +50,7 @@
 #' 
 #' @references Vilela, B., & Villalobos, F. (2015). letsR: a new R package for data handling and analysis in macroecology. Methods in Ecology and Evolution.
 #' 
-#' @import geosphere maps terra sf
+#' @import geosphere terra sf
 #' @importFrom grDevices colorRampPalette dev.new dev.off
 #' @importFrom graphics abline par plot.new segments
 #' @importFrom methods is

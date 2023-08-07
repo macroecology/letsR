@@ -28,7 +28,7 @@
 #' @examples \dontrun{
 #' # Species polygons
 #' data("Phyllomedusa")
-#' 
+#' data("wrld_simpl")
 #' # Grid 
 #' sp.r <- terra::as.polygons(terra::rast(resol = 5, 
 #' crs = terra::crs(Phyllomedusa),
@@ -45,7 +45,7 @@
 #' colors <- c("white", colfunc(max(rich_plus1)))
 #' plot(resu$grid, border = "gray40",
 #'      col = colors[rich_plus1])
-#' map(add = TRUE)
+#' plot(sf::st_geometry(wrld_simpl), add = TRUE)
 #' }
 #' 
 #' 

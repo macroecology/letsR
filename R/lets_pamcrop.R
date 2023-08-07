@@ -20,6 +20,8 @@
 #'
 #' @examples \dontrun{
 #' data(PAM)
+#' data("wrld_simpl")
+#' 
 #' # PAM before crop
 #' plot(PAM, xlab = "Longitude", ylab = "Latitude",
 #'      main = "Phyllomedusa species richness")
@@ -30,6 +32,7 @@
 #' PAM_crop <- lets.pamcrop(PAM, Brazil, remove.sp = TRUE)
 #' plot(PAM_crop, xlab = "Longitude", ylab = "Latitude",
 #'      main = "Phyllomedusa species richness (Brazil crop)")
+#' plot(sf::st_geometry(wrld_simpl), add = TRUE)
 #' }
 #' 
 #' @export

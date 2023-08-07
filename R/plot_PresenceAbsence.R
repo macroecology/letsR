@@ -59,12 +59,15 @@ plot.PresenceAbsence <- function(x, name = NULL, world = TRUE,
     # Species position in the PAM
     pos <- which(x$Sp == name)
     # Transform the one species in raster
-    r <- rasterize(x$Presen[ , 1:2], x$Rich,  x$Presen[ , (pos + 2)])
+    r <- terra::rasterize(x$Presen[ , 1:2], 
+                          x$Rich, 
+                          x$Presen[ , (pos + 2)])
     # Plot
     plot(r, col = c("white", col_name), legend = FALSE, ...)
   }
   if (world) {
-    map(add = TRUE)
+    wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
+    plot(sf::st_geometry(wrld_simpl), add = TRUE)
   }
   # Avoid return map
   invisible(NULL)

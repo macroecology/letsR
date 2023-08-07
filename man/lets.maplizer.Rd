@@ -41,7 +41,8 @@ trait <- IUCN$Description_Year
 resu <- lets.maplizer(PAM, trait, PAM$S, ras = TRUE)
 head(resu$Matrix)
 plot(resu$Raster, xlab = "Longitude", ylab = "Latitude", 
-main = "Mean description year per site") ; map(add = TRUE)
+main = "Mean description year per site")
+
 }
 
 }

@@ -60,7 +60,7 @@ already have their own grid.
 \dontrun{
 # Species polygons
 data("Phyllomedusa")
-
+data("wrld_simpl")
 # Grid 
 sp.r <- terra::as.polygons(terra::rast(resol = 5, 
 crs = terra::crs(Phyllomedusa),
@@ -77,7 +77,7 @@ colfunc <- colorRampPalette(c("#fff5f0", "#fb6a4a", "#67000d"))
 colors <- c("white", colfunc(max(rich_plus1)))
 plot(resu$grid, border = "gray40",
      col = colors[rich_plus1])
-map(add = TRUE)
+plot(sf::st_geometry(wrld_simpl), add = TRUE)
 }
 
 

@@ -15,7 +15,6 @@ Imports:
 Depends:
     R (>= 3.1.0),
     terra,
-    maps,
     grDevices,
     graphics,
     methods,
