@@ -3,8 +3,9 @@ Type: Package
 Title: Data Handling and Analysis in Macroecology
 Version: 5.0
 Date: 2023-08-03
-Author: Bruno Vilela & Fabricio Villalobos
-Maintainer: Bruno Vilela <bvilela.bv@gmail.com>
+Authors@R: c(person(given = "Bruno", family = "Vilela", email = "bvilela.bv@gmail.com",
+                    role = c("aut", "cre")), 
+            person(given = "Fabricio", family = "Villalobos", role = "ctb"))
 Description: Handling, processing, and analyzing geographic
     data on species' distributions and environmental variables. 
     Read Vilela & Villalobos (2015) <doi:10.1111/2041-210X.12401> for details.
