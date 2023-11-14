@@ -10,14 +10,19 @@
 #'  the distribution of one or more species. Species names should be stored in
 #'  the object as BINOMIAL/binomial or SCINAME/sciname.
 #'@param xmx Maximun longitude used to construct the grid in which the matrix
-#'  will be based (i.e. the [gridded] geographic domain of interest)
+#'  will be based (i.e. the [gridded] geographic domain of interest). 
+#'  If NULL, limits will be calculated based on the limits of the shapes object.
 #'@param xmn Minimun longitude used to construct the grid in which the matrix
-#'  will be based (i.e. the [gridded] geographic domain of interest)
+#'  will be based (i.e. the [gridded] geographic domain of interest).
+#'  If NULL, limits will be calculated based on the limits of the shapes object.
 #'@param ymx Maximun latitude used to construct the grid in which the matrix
-#'  will be based (i.e. the [gridded] geographic domain of interest)
+#'  will be based (i.e. the [gridded] geographic domain of interest).
+#'  If NULL, limits will be calculated based on the limits of the shapes object.
 #'@param ymn Minimun latitude used to construct the grid in which the matrix
-#'  will be based (i.e. the [gridded] geographic domain of interest)
-#'@param resol Numeric vector of length 1 or 2 to set the grid resolution.
+#'  will be based (i.e. the [gridded] geographic domain of interest).
+#'  If NULL, limits will be calculated based on the limits of the shapes object.
+#'@param resol Numeric vector of length 1 or 2 to set the grid resolution. 
+#'If NULL, resolution will be equivalent to 1 degree of latitude and longitude.
 #'@param remove.cells Logical, if \code{TRUE} the final matrix will not contain
 #'  cells in the grid with a value of zero (i.e. sites with no species present).
 #'@param remove.sp Logical, if \code{TRUE} the final matrix will not contain
@@ -71,8 +76,7 @@
 #' # Spatial distribution polygons of south american frogs
 #' # of genus Phyllomedusa.
 #' data(Phyllomedusa)
-#' PAM <- lets.presab(Phyllomedusa, xmn = -93, xmx = -29,
-#'                    ymn = -57, ymx = 15)
+#' PAM <- lets.presab(Phyllomedusa)
 #' summary(PAM)
 #' # Species richness map
 #' plot(PAM, xlab = "Longitude", ylab = "Latitude",
@@ -88,11 +92,11 @@
 
 
 lets.presab <- function(shapes,
-                        xmn = -180,
-                        xmx = 180,
-                        ymn = -90,
-                        ymx = 90,
-                        resol = 1,
+                        xmn = NULL,
+                        xmx = NULL,
+                        ymn = NULL,
+                        ymx = NULL,
+                        resol = NULL,
                         remove.cells = TRUE,
                         remove.sp = TRUE,
                         show.matrix = FALSE,
@@ -104,7 +108,7 @@ lets.presab <- function(shapes,
                         seasonal = NULL,
                         count = FALSE) {
   
-  
+    
   shapes <- .check_shape(shapes)
   
   # Projection set for spatial polygons
@@ -127,6 +131,20 @@ lets.presab <- function(shapes,
   # Error control for no shapes after filtering
   if (is.null(shapes) | nrow(shapes) == 0) {
     stop("After filtering no species distributions left")
+  }
+  
+  
+  # Adjust null limits and resolution
+  if (any(is.null(c(xmn, xmx, ymn, ymx)))) {
+    limits <- terra::ext(shapes)
+    xmn <- limits[1]
+    xmx <- limits[2]
+    ymn <- limits[3]
+    ymx <- limits[4]
+  }
+  
+  if (is.null(resol)) {
+    resol <- terra::res(terra::project(terra::rast(), crs.grid))
   }
   
   # Raster creation

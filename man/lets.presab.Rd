@@ -6,11 +6,11 @@
 \usage{
 lets.presab(
   shapes,
-  xmn = -180,
-  xmx = 180,
-  ymn = -90,
-  ymx = 90,
-  resol = 1,
+  xmn = NULL,
+  xmx = NULL,
+  ymn = NULL,
+  ymx = NULL,
+  resol = NULL,
   remove.cells = TRUE,
   remove.sp = TRUE,
   show.matrix = FALSE,
@@ -30,18 +30,23 @@ the distribution of one or more species. Species names should be stored in
 the object as BINOMIAL/binomial or SCINAME/sciname.}
 
 \item{xmn}{Minimun longitude used to construct the grid in which the matrix
-will be based (i.e. the [gridded] geographic domain of interest)}
+will be based (i.e. the [gridded] geographic domain of interest).
+If NULL, limits will be calculated based on the limits of the shapes object.}
 
 \item{xmx}{Maximun longitude used to construct the grid in which the matrix
-will be based (i.e. the [gridded] geographic domain of interest)}
+will be based (i.e. the [gridded] geographic domain of interest). 
+If NULL, limits will be calculated based on the limits of the shapes object.}
 
 \item{ymn}{Minimun latitude used to construct the grid in which the matrix
-will be based (i.e. the [gridded] geographic domain of interest)}
+will be based (i.e. the [gridded] geographic domain of interest).
+If NULL, limits will be calculated based on the limits of the shapes object.}
 
 \item{ymx}{Maximun latitude used to construct the grid in which the matrix
-will be based (i.e. the [gridded] geographic domain of interest)}
+will be based (i.e. the [gridded] geographic domain of interest).
+If NULL, limits will be calculated based on the limits of the shapes object.}
 
-\item{resol}{Numeric vector of length 1 or 2 to set the grid resolution.}
+\item{resol}{Numeric vector of length 1 or 2 to set the grid resolution. 
+If NULL, resolution will be equivalent to 1 degree of latitude and longitude.}
 
 \item{remove.cells}{Logical, if \code{TRUE} the final matrix will not contain
 cells in the grid with a value of zero (i.e. sites with no species present).}
@@ -106,8 +111,7 @@ The function creates the presence-absence matrix based on a raster
 # Spatial distribution polygons of south american frogs
 # of genus Phyllomedusa.
 data(Phyllomedusa)
-PAM <- lets.presab(Phyllomedusa, xmn = -93, xmx = -29,
-                   ymn = -57, ymx = 15)
+PAM <- lets.presab(Phyllomedusa)
 summary(PAM)
 # Species richness map
 plot(PAM, xlab = "Longitude", ylab = "Latitude",

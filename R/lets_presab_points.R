@@ -51,10 +51,17 @@
 
 
 
-lets.presab.points <- function(xy, species, xmn = -180, xmx = 180, ymn = -90, 
-                               ymx = 90, resol = 1, remove.cells = TRUE, 
-                               remove.sp = TRUE, show.matrix = FALSE, 
-                               crs = "+proj=longlat +datum=WGS84", 
+lets.presab.points <- function(xy,
+                               species,
+                               xmn = NULL,
+                               xmx = NULL,
+                               ymn = NULL,
+                               ymx = NULL,
+                               resol = NULL,
+                               remove.cells = TRUE,
+                               remove.sp = TRUE,
+                               show.matrix = FALSE,
+                               crs = "+proj=longlat +datum=WGS84",
                                count = FALSE) {
   
   # Get species name
@@ -63,6 +70,19 @@ lets.presab.points <- function(xy, species, xmn = -180, xmx = 180, ymn = -90,
     nomes <- nomes[nomes %in% species]
   } else {
     nomes <- levels(factor(species))
+  }
+  
+  # Adjust null limits and resolution
+  if (any(is.null(c(xmn, xmx, ymn, ymx)))) {
+    limits <- terra::ext(terra::vect(xy, crs = crs))
+    xmn <- limits[1]
+    xmx <- limits[2]
+    ymn <- limits[3]
+    ymx <- limits[4]
+  }
+  
+  if (is.null(resol)) {
+    resol <- terra::res(terra::project(terra::rast(), crs))
   }
   
   # Raster creation

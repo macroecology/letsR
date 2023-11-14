@@ -54,11 +54,11 @@
 
 lets.presab.birds <-
   function(path,
-           xmn = -180,
-           xmx = 180,
-           ymn = -90,
-           ymx = 90,
-           resol = 1,
+           xmn = NULL,
+           xmx = NULL,
+           ymn = NULL,
+           ymx = NULL,
+           resol = NULL,
            remove.cells = TRUE,
            remove.sp = TRUE,
            show.matrix = FALSE,
@@ -73,6 +73,18 @@ lets.presab.birds <-
   # Shapefile list
   shapes <- list.files(path, pattern = ".shp$", 
                        full.names = TRUE, recursive = TRUE)
+  # Adjust null limits and resolution
+  if (any(is.null(c(xmn, xmx, ymn, ymx)))) {
+    limits <- terra::ext(terra::project(terra::rast(), crs.grid))
+    xmn <- limits[1]
+    xmx <- limits[2]
+    ymn <- limits[3]
+    ymx <- limits[4]
+  }
+  
+  if (is.null(resol)) {
+    resol <- terra::res(terra::project(terra::rast(), crs.grid))
+  }
   
   # Raster creation
   ras <- terra::rast(
