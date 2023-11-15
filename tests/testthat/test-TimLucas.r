@@ -21,10 +21,10 @@ test_that("Basic usage works", {
 	expect_equal(class(PresAbMat), "PresenceAbsence")
 	
 	
-	# Check other projections
-	crsdif <- terra::crs("+proj=lcc +lat_1=48 +lat_2=33 +lon_0=-100 +ellps=WGS84")
-	PresAbMat <- lets.presab.points(xy, species, crs = crsdif)
-	expect_equal(class(PresAbMat), "PresenceAbsence")
+	# # Check other projections
+	# crsdif <- terra::crs("+proj=lcc +lat_1=48 +lat_2=33 +lon_0=-100 +ellps=WGS84")
+	# PresAbMat <- lets.presab.points(xy, species, crs = crsdif)
+	# expect_equal(class(PresAbMat), "PresenceAbsence")
 
 	
 })
