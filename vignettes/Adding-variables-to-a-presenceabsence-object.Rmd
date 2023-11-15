@@ -1,0 +1,153 @@
+---
+title: Adding variables to a PresenceAbsence object
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Adding-variables-to-a-presenceabsence-object}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.height = 5, 
+  fig.width = 4, 
+  fig.align = 'center'
+)
+```
+
+Once you have transformed species distribution data into a presence absence matrix (PAM) in `PresenceAbsence` format, you may wish to enhance it by incorporating additional variables. These variables typically exist in raster format, such as WorldClim bioclimatic data, or in shapefile format, for instance, global ecoregions.
+
+### Adding variables in raster format
+
+To add variables in raster format to a `PresenceAbsence` object we can use the function `lets.addvar` from the `letsR` package. This function takes a `raster` object with any resolution and extent, and transform it to match the information in your `PresenceAbsence` object. Subsequently, the variables are included as additional columns containing the aggregate/summarize value of the variable(s) in each cell of the presence-absence matrix. Let's see an example using the bioclimatic data from WorldClim. 
+
+```{r, message=F, warning=F}
+library(letsR)
+```
+
+Here we will use the Average temperature raster in Celsius degrees (multiplied by 100) for the world in 10 arc min of resolution.
+```{r, fig.width=6, fig.height=4}
+data(temp)
+r <- terra::unwrap(temp) # example data
+
+plot(r)
+```
+
+Here I will use the `PresenceAbsence` object for Phyllomedusa species previously generated.
+```{r}
+data(PAM)
+plot(PAM, main = "Phyllomedusa\nRichness")
+```
+
+We can now run the `lets.addvar` function. Just make sure that the two objects are on the same projection before using the function. Also, note that the climatic data have a higher resolution than our PAM. In this case, we could choose a function to aggregate the values with the argument `fun`. In most of the situations, people will be interested in averaging values to aggregate multiple cells, but in some specific cases you may want to sum them, or get the standard deviation, or use any another function. 
+
+```{r}
+PAM_env <- lets.addvar(PAM, r, fun = mean)
+```
+
+
+The result is a presence absence matrix, where the last columns now include the raster values. Check the table:
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(knitr)
+library(dplyr)
+library(kableExtra)
+```
+
+```{r, eval=FALSE}
+head(PAM_env)
+```
+
+```{r, echo = FALSE}
+kable(head(PAM_env), "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "400px")
+```
+
+If you do not want the coordinates and species included you can set the argument `onlyvar = TRUE`.
+```{r}
+climate <- lets.addvar(PAM, r, fun = mean, onlyvar = TRUE)
+```
+```{r, eval=F}
+head(climate)
+```
+```{r, echo = FALSE}
+kable(head(climate), "html") %>%
+  kable_styling()
+```
+
+Now that we have the variables, we can use it to relate to our species data in many ways. For example, you could graph the relationship between temperature and species richness. 
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+```
+
+```{r, warning = FALSE, message = FALSE, fig.width = 6}
+rich <- rowSums(PAM$P[, -(1:2)])
+
+mpg1 <- data.frame("Temperature" = climate[, 1]/10,
+                   "Richness" = rich)
+ggplot(mpg1, aes(Temperature, Richness)) + 
+  geom_smooth() + 
+  geom_point(col = rgb(0, 0, 0, .6)) + 
+  theme_bw()
+```
+
+
+### Adding variables in polygon format
+
+Data in shapefile format like ecorregions, conservation units or countries, can be added to a PAM using the function `lets.addpoly`. This function adds polygons' attributes as columns at the right-end of the matrix. The values represent the percentage of the cell covered by the polygon attribute used. As an example, we can use the South America countries map available in the package `maptools`.
+
+```{r, warning = FALSE}
+data("wrld_simpl")
+SA <- c("Brazil", "Colombia",  "Argentina",
+        "Peru", "Venezuela", "Chile",
+        "Ecuador", "Bolivia", "Paraguay",
+        "Uruguay", "Guyana", "Suriname",
+        "French Guiana")
+south_ame <- wrld_simpl[wrld_simpl$NAME %in% SA, ]
+ggplot(data = south_ame) +
+  geom_sf() +
+  geom_sf_text(aes(label = ISO3)) +
+  theme_bw()
+```
+
+Now we can add this variables to our PAM.
+```{r}
+PAM_pol <- lets.addpoly(PAM, south_ame, "NAME")
+```
+```{r, eval=F}
+head(PAM_pol)
+```
+```{r, echo = FALSE}
+kable(head(PAM_pol), "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "400px")
+```
+
+This information can be used to calculate the number of species per country for example. 
+
+```{r}
+vars_col <- (ncol(PAM$P) + 1):ncol(PAM_pol)
+n <- length(vars_col)
+rich_count <- numeric(n)
+for (i in 1:n) {
+  rich_count[i] <- sum(colSums(PAM$P[PAM_pol[, vars_col[i]] > 0,
+                                     -(1:2)]) > 0)
+}
+labs <- as.factor(colnames(PAM_pol)[vars_col])
+names(rich_count) <- labs
+```
+
+```{r, fig.width = 7}
+mpg <- data.frame("Richness" = rich_count, "Country" = as.factor(labs))
+g <- ggplot(mpg, aes(labs, Richness))
+g + geom_bar(stat = "identity") + labs(x = "") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+**To cite letsR in publications use:**
+*Bruno Vilela and Fabricio Villalobos (2015). letsR: a new R package for data handling and analysis in macroecology. Methods in Ecology and Evolution. DOI: 10.1111/2041-210X.12401*

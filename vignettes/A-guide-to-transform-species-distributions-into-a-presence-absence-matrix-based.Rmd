@@ -37,8 +37,10 @@ position <- match(Phyllomedusa$binomial,
                   unique(Phyllomedusa$binomial))
 colors <- colors[position]
 ## Plot call
-plot(Phyllomedusa[1], col = colors, lty = 0,
+plot(sf::st_geometry(Phyllomedusa), col = colors, lty = 0,
      main = "Spatial polygons of Phyllomedusa")
+data("wrld_simpl")
+plot(sf::st_geometry(wrld_simpl), add = TRUE)
 ```
 
 ### Quick start

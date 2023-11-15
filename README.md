@@ -45,5 +45,5 @@ OBS.: To download the developers version you will need to have the git software 
 If you are a windows user you will also need to download the Rtools (http://cran.r-project.org/bin/windows/Rtools/).
 
 
-## IMPORTANT
+## Note
 Due to changes in the IUCN API and limitations in data distribution established IUCN terms of use, we are no longer maintaining the functions lets.iucn, lets.iucn.hist and lets.iucn.ha. These functions will be removed from the package in the next version. We apologize for any inconvenience this may cause.  
