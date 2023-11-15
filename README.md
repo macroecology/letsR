@@ -23,7 +23,6 @@ We hope you enjoy it and find it helpful.
 ## Package publication
 http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract
 
-====
 ## Install
 
 Install `letsR` from CRAN
