@@ -1,0 +1,11 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based: A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html
+  cropping-and-subseting-your-presence-absence-matrix: cropping-and-subseting-your-presence-absence-matrix.html
+last_built: 2023-11-15T00:49Z
+urls:
+  reference: http://brunovilela.github.io/letsR/reference
+  article: http://brunovilela.github.io/letsR/articles
+
