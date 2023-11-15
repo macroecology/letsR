@@ -11,7 +11,7 @@
   if (!terra_check) {
     stop("all shapefiles provided should be a SpatVector object.")
   }
-  if (!terra::is.valid(shape)) {
+  if (!all(terra::is.valid(shape))) {
     shape <- terra::makeValid(shape)
   }
   return(shape)
