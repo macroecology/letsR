@@ -22,7 +22,9 @@ Depends:
     stats
 Suggests:
     testthat,
-    devtools
+    devtools,
+    knitr,
+    rmarkdown
 LazyData: true
 URL: https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12401,
     https://github.com/macroecology/letsR,
@@ -30,3 +32,4 @@ URL: https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.1240
 BugReports: https://github.com/macroecology/letsR/issues
 RoxygenNote: 7.2.3
 Encoding: UTF-8
+VignetteBuilder: knitr
