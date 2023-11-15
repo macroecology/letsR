@@ -3,9 +3,12 @@ Type: Package
 Title: Data Handling and Analysis in Macroecology
 Version: 5.0
 Date: 2023-08-03
-Authors@R: c(person(given = "Bruno", family = "Vilela", email = "bvilela.bv@gmail.com",
-                    role = c("aut", "cre")), 
-            person(given = "Fabricio", family = "Villalobos", role = "ctb"))
+Authors@R: c(person(given = "Bruno", family = "Vilela",
+                    email = "bvilela.bv@gmail.com",
+                    role = c("aut", "cre"), 
+                    comment = c(ORCID = "0000-0003-4072-0558")), 
+            person(given = "Fabricio", family = "Villalobos", role = "aut",
+            comment = c(ORCID = "0000-0002-5230-2217")))
 Description: Handling, processing, and analyzing geographic
     data on species' distributions and environmental variables. 
     Read Vilela & Villalobos (2015) <doi:10.1111/2041-210X.12401> for details.
