@@ -6,8 +6,9 @@ articles:
   Adding-variables-to-a-presenceabsence-object: Adding-variables-to-a-presenceabsence-object.html
   cropping-and-subseting-your-presence-absence-matrix: cropping-and-subseting-your-presence-absence-matrix.html
   mapping-species-traits: mapping-species-traits.html
+  save-load-presenceabsence: save-load-presenceabsence.html
   species-level-macroecological-analysis: species-level-macroecological-analysis.html
-last_built: 2023-11-15T17:31Z
+last_built: 2023-11-15T18:02Z
 urls:
   reference: http://brunovilela.github.io/letsR/reference
   article: http://brunovilela.github.io/letsR/articles
