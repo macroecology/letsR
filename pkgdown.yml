@@ -3,8 +3,11 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based: A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html
+  Adding-variables-to-a-presenceabsence-object: Adding-variables-to-a-presenceabsence-object.html
   cropping-and-subseting-your-presence-absence-matrix: cropping-and-subseting-your-presence-absence-matrix.html
-last_built: 2023-11-15T00:53Z
+  mapping-species-traits: mapping-species-traits.html
+  species-level-macroecological-analysis: species-level-macroecological-analysis.html
+last_built: 2023-11-15T15:21Z
 urls:
   reference: http://brunovilela.github.io/letsR/reference
   article: http://brunovilela.github.io/letsR/articles

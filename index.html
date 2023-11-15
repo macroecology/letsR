@@ -46,7 +46,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html">A guide to transform species distributions into a presence absence matrix based on a user-defined grid in R</a>
+    <a class="dropdown-item" href="articles/Adding-variables-to-a-presenceabsence-object.html">Adding variables to a PresenceAbsence object</a>
     <a class="dropdown-item" href="articles/cropping-and-subseting-your-presence-absence-matrix.html">Cropping and subseting your presence absence matrix</a>
+    <a class="dropdown-item" href="articles/mapping-species-traits.html">Mapping species traits: community level analysis</a>
+    <a class="dropdown-item" href="articles/species-level-macroecological-analysis.html">Macroecological analysis at the species level</a>
   </div>
 </li>
       </ul>
@@ -69,8 +72,11 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9">
+<div class="section level1">
+<div class="page-header"><h1 id="letsr-">letsR <img src="reference/figures/letsr.png" align="right" height="200" style="float:right; height:200px;"><a class="anchor" aria-label="anchor" href="#letsr-"></a>
+</h1></div>
 <div class="section level2">
-<h2 id="package-letsr">Package letsR<a class="anchor" aria-label="anchor" href="#package-letsr"></a>
+<h2 id="the-package">The package<a class="anchor" aria-label="anchor" href="#the-package"></a>
 </h2>
 <p>The letsR package is being developed to help researchers handle, process, and analyze macroecological data. It aims to integrate these methodological processes into a single software platform for macroecological analyses. The package’s main functions allow users to build presence-absence matrices, the primary analytical tool in macroecology, from species’ geographical distributions and merge them with species’ traits, conservation information(downloadable using functions from this package) and spatial environmental layers. In addition, other packages’ functions enable users to summarize and visualize data from presence-absence matrices.</p>
 <p>All functions in this package use a prefix and a suffix separated by a dot; the prefix refers to the package’s name, and the suffix to the actual function. This nomenclature avoids confusion with potentially similarly-named functions from other R packages. For instance, the letsR function used to create presence-absence matrices is called <code>lets.presab</code> (but see also <code>lets.presab.birds</code> and <code>lets.presab.points</code>), whereas the one used to add variables to a presence-absence matrix is called <code>lets.addvar</code>.<br>
@@ -97,9 +103,10 @@ The package’s primary functions create and work on a particular S3 object clas
 <p>OBS.: To download the developers version you will need to have the git software installed (<a href="http://git-scm.com/" class="external-link uri">http://git-scm.com/</a>). If you are a windows user you will also need to download the Rtools (<a href="http://cran.r-project.org/bin/windows/Rtools/" class="external-link uri">http://cran.r-project.org/bin/windows/Rtools/</a>).</p>
 </div>
 <div class="section level2">
-<h2 id="important">IMPORTANT<a class="anchor" aria-label="anchor" href="#important"></a>
+<h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
 </h2>
 <p>Due to changes in the IUCN API and limitations in data distribution established IUCN terms of use, we are no longer maintaining the functions lets.iucn, lets.iucn.hist and lets.iucn.ha. These functions will be removed from the package in the next version. We apologize for any inconvenience this may cause.</p>
+</div>
 </div>
 
   </main><aside class="col-md-3"><div class="links">

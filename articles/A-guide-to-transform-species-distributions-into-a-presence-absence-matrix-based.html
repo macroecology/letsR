@@ -42,7 +42,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html">A guide to transform species distributions into a presence absence matrix based on a user-defined grid in R</a>
+    <a class="dropdown-item" href="../articles/Adding-variables-to-a-presenceabsence-object.html">Adding variables to a PresenceAbsence object</a>
     <a class="dropdown-item" href="../articles/cropping-and-subseting-your-presence-absence-matrix.html">Cropping and subseting your presence absence matrix</a>
+    <a class="dropdown-item" href="../articles/mapping-species-traits.html">Mapping species traits: community level analysis</a>
+    <a class="dropdown-item" href="../articles/species-level-macroecological-analysis.html">Macroecological analysis at the species level</a>
   </div>
 </li>
       </ul>
@@ -109,8 +112,10 @@ Phyllomedusa genus, which is conveniently pre-loaded within the
 <span>                  <span class="fu"><a href="https://rdrr.io/pkg/terra/man/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">$</span><span class="va">binomial</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="va">colors</span><span class="op">[</span><span class="va">position</span><span class="op">]</span></span>
 <span><span class="co">## Plot call</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="va">colors</span>, lty <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>     main <span class="op">=</span> <span class="st">"Spatial polygons of Phyllomedusa"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">colors</span>, lty <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"Spatial polygons of Phyllomedusa"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"wrld_simpl"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wrld_simpl</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based_files/figure-html/unnamed-chunk-2-1.png" width="384" style="display: block; margin: auto;"></p>
 <div class="section level3">
 <h3 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
