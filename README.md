@@ -5,8 +5,9 @@
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/letsR)]( https://github.com/r-hub/cranlogs.app)
 [![Research software impact](http://depsy.org/api/package/cran/letsR/badge.svg)](http://depsy.org/package/r/letsR)
 
+# letsR <img src="man/figures/letsr.png" align="right" height="200" style="float:right; height:200px;" />
 
-## Package letsR
+## The package
 
 The letsR package is being developed to help researchers handle, process, and analyze macroecological data. It aims to integrate these methodological processes into a single software platform for macroecological analyses. The package's main functions allow users to build presence-absence matrices, the primary analytical tool in macroecology, from species' geographical distributions and merge them with species' traits, conservation information(downloadable using functions from this package) and spatial environmental layers. In addition, other packages' functions enable users to summarize and visualize data from presence-absence matrices.
 
