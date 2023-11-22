@@ -117,7 +117,7 @@ kable(temp_mean, "html") %>%
 ```
 
 
-Following our example, we need to obtain the IUCN extinction risk data. Previous version of the package included functions to do this, but they are no longer supported. Luckily, there is a new package called [`rredlist`]https://docs.ropensci.org/rredlist/) that can do this for us. Yet, for now, we can use the example data in the `letsR` package  called `IUCN`.
+Following our example, we need to obtain the IUCN extinction risk data. Previous version of the package included functions to do this, but they are no longer supported. Luckily, there is a new package called [`rredlist`](https://docs.ropensci.org/rredlist/) that can do this for us. Yet, for now, we can use the example data in the `letsR` package  called `IUCN`.
 ```{r}
 data("IUCN")
 ```

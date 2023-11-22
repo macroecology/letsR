@@ -42,8 +42,8 @@ install_github("macroecology/letsR")
 library(letsR)
 ```
 
-OBS.: To download the developers version you will need to have the git software installed (http://git-scm.com/).
-If you are a windows user you will also need to download the Rtools (http://cran.r-project.org/bin/windows/Rtools/).
+OBS.: To download the developers version you will need to have the git software installed (https://git-scm.com/).
+If you are a windows user you will also need to download the Rtools (https://cran.r-project.org/bin/windows/Rtools/).
 
 
 ## Note
