@@ -22,7 +22,8 @@ The letsR package is in continuous development, and suggestions are more than we
 We hope you enjoy it and find it helpful.
 
 ## Package publication
-https://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract
+https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.12401
+
 
 ## Install
 
