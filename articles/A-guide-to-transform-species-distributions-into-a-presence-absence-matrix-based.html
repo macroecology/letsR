@@ -87,13 +87,13 @@ as the distribution ranges provided by IUCN or occurrence records found
 in GBIF. However, analyzing this type of data often requires
 transforming the spatial distribution of species into a presence-absence
 matrix or a grid format. In this tutorial, we will guide you through a
-straightforward process using the R package <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract" class="external-link"><code>letsR</code></a>,
-authored by <a href="http://bvilela.weebly.com" class="external-link">Bruno Vilela</a> and <a href="http://fabro.github.io" class="external-link">Fabricio Villalobos</a>.</p>
+straightforward process using the R package <a href="https://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract" class="external-link"><code>letsR</code></a>,
+authored by <a href="https://bvilela.weebly.com" class="external-link">Bruno Vilela</a> and <a href="https://fabro.github.io" class="external-link">Fabricio Villalobos</a>.</p>
 <div class="section level2">
 <h2 id="iucn-shapefiles">IUCN shapefiles<a class="anchor" aria-label="anchor" href="#iucn-shapefiles"></a>
 </h2>
 <p>To begin, download the species distribution shapefiles from the IUCN
-<a href="http://www.iucnredlist.org/technical-documents/spatial-data" class="external-link">website</a>.
+<a href="https://www.iucnredlist.org/resources/spatial-data-download" class="external-link">website</a>.
 You can import this data using the <code><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">terra::vect</a></code> or
 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">sf::st_read</a></code> functions. For the purpose of this tutorial, I
 will be utilizing the distribution data for frogs belonging to the
@@ -235,7 +235,7 @@ are extinct or retain only the breeding ranges. The
 <code>presence</code>, <code>origin</code>, and <code>seasonal</code>
 arguments enable users to filter species distributions based on the IUCN
 classification of different parts of a species’ range. To find the
-specific values for these arguments, consult the <a href="http://www.iucnredlist.org/technical-documents/spatial-data" class="external-link">IUCN
+specific values for these arguments, consult the <a href="https://www.iucnredlist.org/resources/spatial-data-download" class="external-link">IUCN
 metadata files</a>.</p>
 <p>In certain scenarios, it proves advantageous to consider a species
 present in a cell only if it covers more than a specified percentage

@@ -79,7 +79,7 @@
 <div class="section level2">
 <h2 id="the-package">The package<a class="anchor" aria-label="anchor" href="#the-package"></a>
 </h2>
-<p>The letsR package is being developed to help researchers handle, process, and analyze macroecological data. It aims to integrate these methodological processes into a single software platform for macroecological analyses. The package’s main functions allow users to build presence-absence matrices, the primary analytical tool in macroecology, from species’ geographical distributions and merge them with species’ traits, conservation information(downloadable using functions from this package) and spatial environmental layers. In addition, other packages’ functions enable users to summarize and visualize data from presence-absence matrices.</p>
+<p>The letsR package is being developed to help researchers handle, process, and analyze macroecological data. It aims to integrate these methodological processes into a single software platform for macroecological analyses. The package’s main functions allow users to build presence-absence matrices, the primary analytical tool in macroecology, from species’ geographical distributions and merge them with species’ traits, conservation information and spatial environmental layers. In addition, other packages’ functions enable users to summarize and visualize data from presence-absence matrices.</p>
 <p>All functions in this package use a prefix and a suffix separated by a dot; the prefix refers to the package’s name, and the suffix to the actual function. This nomenclature avoids confusion with potentially similarly-named functions from other R packages. For instance, the letsR function used to create presence-absence matrices is called <code>lets.presab</code> (but see also <code>lets.presab.birds</code> and <code>lets.presab.points</code>), whereas the one used to add variables to a presence-absence matrix is called <code>lets.addvar</code>.<br>
 The package’s primary functions create and work on a particular S3 object class called <code>PresenceAbsence</code>. Such <code>PresenceAbsence</code> object class allows storing information beyond presence-absence data (e.g. user-defined grid-cell system) and using the generic <code>plot</code>, <code>summary</code> and <code>print</code> functions of R. Also, some package’s functions allow the user to input customary R objects (e.g. <code>vector</code>, <code>matrix</code>, <code>data.frame</code>.</p>
 <p>The letsR package is in continuous development, and suggestions are more than welcome!</p>
@@ -88,7 +88,7 @@ The package’s primary functions create and work on a particular S3 object clas
 <div class="section level2">
 <h2 id="package-publication">Package publication<a class="anchor" aria-label="anchor" href="#package-publication"></a>
 </h2>
-<p><a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract" class="external-link uri">http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract</a></p>
+<p><a href="https://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract" class="external-link uri">https://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract</a></p>
 </div>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
@@ -101,12 +101,12 @@ The package’s primary functions create and work on a particular S3 object clas
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>library<span class="kw">(</span>devtools<span class="kw">)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>install_github<span class="kw">(</span><span class="st">"macroecology/letsR"</span><span class="kw">)</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>library<span class="kw">(</span>letsR<span class="kw">)</span></span></code></pre></div>
-<p>OBS.: To download the developers version you will need to have the git software installed (<a href="http://git-scm.com/" class="external-link uri">http://git-scm.com/</a>). If you are a windows user you will also need to download the Rtools (<a href="http://cran.r-project.org/bin/windows/Rtools/" class="external-link uri">http://cran.r-project.org/bin/windows/Rtools/</a>).</p>
+<p>OBS.: To download the developers version you will need to have the git software installed (<a href="https://git-scm.com/" class="external-link uri">https://git-scm.com/</a>). If you are a windows user you will also need to download the Rtools (<a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link uri">https://cran.r-project.org/bin/windows/Rtools/</a>).</p>
 </div>
 <div class="section level2">
 <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
 </h2>
-<p>Due to changes in the IUCN API and limitations in data distribution established IUCN terms of use, we are no longer maintaining the functions lets.iucn, lets.iucn.hist and lets.iucn.ha. These functions will be removed from the package in the next version. We apologize for any inconvenience this may cause.</p>
+<p>Due to changes in the IUCN API and limitations in data distribution established by IUCN terms of use, we are no longer maintaining the functions lets.iucn, lets.iucn.hist and lets.iucn.ha. These functions will be removed from the package in the next version. We apologize for any inconvenience this may cause.</p>
 </div>
 </div>
 
