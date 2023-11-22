@@ -8,8 +8,8 @@ articles:
   mapping-species-traits: mapping-species-traits.html
   save-load-presenceabsence: save-load-presenceabsence.html
   species-level-macroecological-analysis: species-level-macroecological-analysis.html
-last_built: 2023-11-22T19:36Z
+last_built: 2023-11-22T20:22Z
 urls:
-  reference: http://brunovilela.github.io/letsR/reference
-  article: http://brunovilela.github.io/letsR/articles
+  reference: https://brunovilela.github.io/letsR/reference
+  article: https://brunovilela.github.io/letsR/articles
 
