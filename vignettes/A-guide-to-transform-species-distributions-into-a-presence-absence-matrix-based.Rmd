@@ -14,12 +14,12 @@ editor_options:
 knitr::opts_chunk$set(fig.height = 5, fig.width = 4, fig.align = 'center')
 ```
 
-Species distributions are readily available in online databases, such as the distribution ranges provided by IUCN or occurrence records found in GBIF. However, analyzing this type of data often requires transforming the spatial distribution of species into a presence-absence matrix or a grid format. In this tutorial, we will guide you through a straightforward process using the R package [`letsR`](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract), authored by [Bruno Vilela](http://bvilela.weebly.com) and [Fabricio Villalobos](http://fabro.github.io).
+Species distributions are readily available in online databases, such as the distribution ranges provided by IUCN or occurrence records found in GBIF. However, analyzing this type of data often requires transforming the spatial distribution of species into a presence-absence matrix or a grid format. In this tutorial, we will guide you through a straightforward process using the R package [`letsR`](https://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract), authored by [Bruno Vilela](https://bvilela.weebly.com) and [Fabricio Villalobos](https://fabro.github.io).
 
 
 ## IUCN shapefiles
 
-To begin, download the species distribution shapefiles from the IUCN [website](http://www.iucnredlist.org/technical-documents/spatial-data). You can import this data using the `terra::vect` or `sf::st_read` functions. For the purpose of this tutorial, I will be utilizing the distribution data for frogs belonging to the Phyllomedusa genus, which is conveniently pre-loaded within the `letsR` package.
+To begin, download the species distribution shapefiles from the IUCN [website](https://www.iucnredlist.org/resources/spatial-data-download). You can import this data using the `terra::vect` or `sf::st_read` functions. For the purpose of this tutorial, I will be utilizing the distribution data for frogs belonging to the Phyllomedusa genus, which is conveniently pre-loaded within the `letsR` package.
 
 ```{r, message = FALSE, warning = FALSE}
 library(letsR)
@@ -109,7 +109,7 @@ plot(sf::st_transform(sf::st_geometry(wrld_simpl), pro), add = TRUE)
 
 ### Other features
 
-The function `lets.presab` has some other useful arguments. For instance, users may wish to exclude regions where species are extinct or retain only the breeding ranges. The `presence`, `origin`, and `seasonal` arguments enable users to filter species distributions based on the IUCN classification of different parts of a species' range. To find the specific values for these arguments, consult the [IUCN metadata files](http://www.iucnredlist.org/technical-documents/spatial-data).
+The function `lets.presab` has some other useful arguments. For instance, users may wish to exclude regions where species are extinct or retain only the breeding ranges. The `presence`, `origin`, and `seasonal` arguments enable users to filter species distributions based on the IUCN classification of different parts of a species' range. To find the specific values for these arguments, consult the [IUCN metadata files](https://www.iucnredlist.org/resources/spatial-data-download).
 
 In certain scenarios, it proves advantageous to consider a species present in a cell only if it covers more than a specified percentage value. Users can customize this threshold using the `cover` argument. It's important to note that initially, this option is exclusively available when the coordinates are in degrees (longitude/latitude). However, with the latest update on [GitHub](https://github.com/macroecology/letsR), users can now employ the `cover` argument with other projections as well.
 ```{r}

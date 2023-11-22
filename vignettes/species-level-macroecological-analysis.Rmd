@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
   fig.align = 'center')
 ```
 
-In another post, I have shown how to use [`letsR`](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract) to analyze species traits at the community level. But, in many cases this type of analysis can lead to spurious patterns ([click here for further discussion on this issue](http://onlinelibrary.wiley.com/doi/10.1111/jbi.12953/full)). An alternative can be analyzing the data at the species-level. In this post, I will show two examples on how to make macroecological analysis at the species level using the `letsR` package. In the first example, we will continue the test of Rapoport's rule on Phyllomedusa frogs using species centroids. In the second example, we will summarize climate spatial data at the species level to explore how temperature correlates with Phyllomedusa species extinction risk. 
+In another post, I have shown how to use [`letsR`](https://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12401/abstract) to analyze species traits at the community level. But, in many cases this type of analysis can lead to spurious patterns ([click here for further discussion on this issue](https://onlinelibrary.wiley.com/doi/10.1111/jbi.12953/full)). An alternative can be analyzing the data at the species-level. In this post, I will show two examples on how to make macroecological analysis at the species level using the `letsR` package. In the first example, we will continue the test of Rapoport's rule on Phyllomedusa frogs using species centroids. In the second example, we will summarize climate spatial data at the species level to explore how temperature correlates with Phyllomedusa species extinction risk. 
 
 To start this test we can load our example `PresenceAbsence` object.
 
@@ -117,7 +117,7 @@ kable(temp_mean, "html") %>%
 ```
 
 
-Following our example, we need to obtain the IUCN extinction risk data. Previous version of the package included functions to do this, but they are no longer supported. Luckily, there is a new package called [`rredlist`](https://ropensci.org/tutorials/rredlist_tutorial/) that can do this for us. Yet, for now, we can use the example data in the `letsR` package  called `IUCN`.
+Following our example, we need to obtain the IUCN extinction risk data. Previous version of the package included functions to do this, but they are no longer supported. Luckily, there is a new package called [`rredlist`]https://docs.ropensci.org/rredlist/) that can do this for us. Yet, for now, we can use the example data in the `letsR` package  called `IUCN`.
 ```{r}
 data("IUCN")
 ```
