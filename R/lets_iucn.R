@@ -113,7 +113,7 @@ lets.iucn <- function(input, count = FALSE) {
 #   # Get species code
 #   speciescode <- .getcode(input)
 #   # Find the web
-#   h <- try(htmlParse(paste("http://api.iucnredlist.org/details/",
+#   h <- try(htmlParse(paste("https://api.iucnredlist.org/details/",
 #                            speciescode, "/0", sep = "")),
 #            silent=TRUE)
 #   # If not find, species set to NE

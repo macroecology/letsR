@@ -7,7 +7,7 @@
 #   binomialerror <- length(unlist(strsplit(input, " "))) == 2
 #   input <- gsub(as.matrix(input), pattern = " ", replacement = "-")
 #   
-#   h <- try(htmlParse(paste("http://api.iucnredlist.org/go/",
+#   h <- try(htmlParse(paste("https://api.iucnredlist.org/go/",
 #                            input, sep = "")),
 #            silent = TRUE)
 #   if (class(h)[1] != "try-error" & binomialerror) {
@@ -16,7 +16,7 @@
 #     
 #     
 #     # Subsecies control
-#     http <- "http://www.iucnredlist.org/details/summary/"
+#     http <- "https://www.iucnredlist.org/details/summary/"
 #     h1 <- htmlParse(paste(http, c, "/0", sep = ""))
 #     links <- xpathSApply(h1, "//a/@href")
 #     links <- strsplit(links, "\n")

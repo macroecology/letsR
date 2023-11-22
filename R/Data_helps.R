@@ -38,7 +38,7 @@ NULL
 #'@usage data(temp)
 #'@description Average temperature raster in Celsius degrees(multiplied by 100) 
 #'for the world in 10 arc min of resolution. Data was modfied from 
-#'WorldClim (\url{http://worldclim.com/}, downloaded in 05/2014).
+#'WorldClim (\url{https://worldclim.com/}, downloaded in 05/2014).
 #'@source Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. 
 #'Very high resolution interpolated climate surfaces for global land areas. 
 #'International Journal of Climatology 25: 1965-1978.
@@ -55,7 +55,7 @@ NULL
 #'@description Shapefile in sf format. The object was obtained from maptools
 #'  package and converted to sf.
 #'@source Originally
-#'  “http://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip”, 
+#'  “https://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip”, 
 #'  now available from
 #'  https://github.com/nasa/World-Wind-Java/tree/master/WorldWind/testData/shapefiles
 

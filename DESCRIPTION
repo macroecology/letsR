@@ -34,7 +34,7 @@ Suggests:
 LazyData: true
 URL: https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12401,
     https://github.com/macroecology/letsR,
-    http://brunovilela.github.io/letsR/
+    https://brunovilela.github.io/letsR/
 BugReports: https://github.com/macroecology/letsR/issues
 RoxygenNote: 7.2.3
 Encoding: UTF-8

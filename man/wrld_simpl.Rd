@@ -6,7 +6,7 @@
 \title{Simplified world country polygons}
 \source{
 Originally
- “http://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip”, 
+ “https://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip”, 
  now available from
  https://github.com/nasa/World-Wind-Java/tree/master/WorldWind/testData/shapefiles
 }

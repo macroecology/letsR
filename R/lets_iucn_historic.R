@@ -118,7 +118,7 @@ lets.iucn.his <- function(input, count = FALSE) {
 #   if (is.null(c)) {
 #     return(matriz)
 #   } else {
-#     h2 <- htmlParse(paste("http://api.iucnredlist.org/details/", 
+#     h2 <- htmlParse(paste("https://api.iucnredlist.org/details/", 
 #                           c, "/0", sep = ""))
 #     ano1 <- xpathSApply(h2, '//div[@id="modified_year"]', xmlValue)
 #     ameaca1 <- xpathSApply(h2, '//div[@id="red_list_category_code"]', xmlValue)

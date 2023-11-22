@@ -15,5 +15,5 @@ data(temp)
 \description{
 Average temperature raster in Celsius degrees(multiplied by 100) 
 for the world in 10 arc min of resolution. Data was modfied from 
-WorldClim (\url{http://worldclim.com/}, downloaded in 05/2014).
+WorldClim (\url{https://worldclim.com/}, downloaded in 05/2014).
 }
