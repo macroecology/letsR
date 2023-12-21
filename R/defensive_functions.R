@@ -1,6 +1,9 @@
 # Defensive codes for letsR functions
 .check_shape <- function(shape) {
   sf_check <-  inherits(shape, "sf")
+  if (sf_check) {
+    shape <- st_cast(shape, "MULTIPOLYGON")
+  }
   spatial_check <- inherits(shape, "Spatial")
   sp_check <-  inherits(shape, "SpatialPolygonsDataFrame")
   if (sp_check | spatial_check | sf_check) {
@@ -16,6 +19,7 @@
   }
   return(shape)
 }
+
 
 # Check PAM
 .check_pam <- function(x) {
