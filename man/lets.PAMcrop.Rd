@@ -4,7 +4,7 @@
 \alias{lets.pamcrop}
 \title{Crop a PresenceAbsence object based on an input shapefile}
 \usage{
-lets.pamcrop(x, shp, remove.sp = TRUE)
+lets.pamcrop(x, shp, remove.sp = TRUE, remove.cells = FALSE)
 }
 \arguments{
 \item{x}{A \code{\link{PresenceAbsence}} object.}
@@ -14,6 +14,9 @@ lets.pamcrop(x, shp, remove.sp = TRUE)
 
 \item{remove.sp}{Logical, if \code{TRUE} the final matrix will not contain
 species that do not match any cell in the grid.}
+
+\item{remove.cells}{Logical, if \code{FALSE} the final matrix will not contain
+cells in the grid with a value of zero (i.e. sites with no species present).}
 }
 \value{
 The result is an object of class PresenceAbsence croped.
