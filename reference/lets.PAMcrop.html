@@ -62,7 +62,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lets.pamcrop</span><span class="op">(</span><span class="va">x</span>, <span class="va">shp</span>, remove.sp <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lets.pamcrop</span><span class="op">(</span><span class="va">x</span>, <span class="va">shp</span>, remove.sp <span class="op">=</span> <span class="cn">TRUE</span>, remove.cells <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -73,12 +73,17 @@
 
 <dt>shp</dt>
 <dd><p>Object of class SpatVector (see function
-<code><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">terra::vect</a></code>) to crop the PresenceAbsence object.</p></dd>
+<code><a href="https://rspatial.github.io/terra/reference/vect.html" class="external-link">terra::vect</a></code>) to crop the PresenceAbsence object.</p></dd>
 
 
 <dt>remove.sp</dt>
 <dd><p>Logical, if <code>TRUE</code> the final matrix will not contain
 species that do not match any cell in the grid.</p></dd>
+
+
+<dt>remove.cells</dt>
+<dd><p>Logical, if <code>FALSE</code> the final matrix will not contain
+cells in the grid with a value of zero (i.e. sites with no species present).</p></dd>
 
 </dl></div>
     <div class="section level2">

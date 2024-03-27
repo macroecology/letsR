@@ -94,7 +94,7 @@ authored by <a href="https://bvilela.weebly.com" class="external-link">Bruno Vil
 </h2>
 <p>To begin, download the species distribution shapefiles from the IUCN
 <a href="https://www.iucnredlist.org/resources/spatial-data-download" class="external-link">website</a>.
-You can import this data using the <code><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">terra::vect</a></code> or
+You can import this data using the <code><a href="https://rspatial.github.io/terra/reference/vect.html" class="external-link">terra::vect</a></code> or
 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">sf::st_read</a></code> functions. For the purpose of this tutorial, I
 will be utilizing the distribution data for frogs belonging to the
 Phyllomedusa genus, which is conveniently pre-loaded within the
@@ -107,16 +107,16 @@ Phyllomedusa genus, which is conveniently pre-loaded within the
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="co">## Color settings and assignment</span></span>
-<span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">$</span><span class="va">binomial</span><span class="op">)</span><span class="op">)</span>,</span>
+<span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">$</span><span class="va">binomial</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                  alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
-<span><span class="va">position</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">$</span><span class="va">binomial</span>,</span>
-<span>                  <span class="fu"><a href="https://rdrr.io/pkg/terra/man/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">$</span><span class="va">binomial</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">position</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">$</span><span class="va">binomial</span>,</span>
+<span>                  <span class="fu"><a href="https://rspatial.github.io/terra/reference/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">$</span><span class="va">binomial</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="va">colors</span><span class="op">[</span><span class="va">position</span><span class="op">]</span></span>
 <span><span class="co">## Plot call</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">colors</span>, lty <span class="op">=</span> <span class="fl">0</span>,</span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">Phyllomedusa</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">colors</span>, lty <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>     main <span class="op">=</span> <span class="st">"Spatial polygons of Phyllomedusa"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"wrld_simpl"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wrld_simpl</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wrld_simpl</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based_files/figure-html/unnamed-chunk-2-1.png" width="384" style="display: block; margin: auto;"></p>
 <div class="section level3">
 <h3 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
@@ -143,7 +143,7 @@ and the species names. For additional details, refer to
 generated Presence-Absence Matrix (PAM), the <code>summary</code>
 function can be employed.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">PAM</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">PAM</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Class: PresenceAbsence</span></span>
 <span><span class="co">## _ _</span></span>
@@ -161,13 +161,13 @@ function can be employed.</p>
 <p>You can also use the <code>plot</code> function directly to the PAM
 object.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM</span><span class="op">)</span></span></code></pre></div>
 <p><img src="A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based_files/figure-html/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;"></p>
 <p>The <code>plot</code> function also allow users to plot specific
 species distributions. For example, we can plot the map of
 <em>Phyllomedusa hypochondrialis</em>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM</span>, name <span class="op">=</span> <span class="st">"Phyllomedusa hypochondrialis"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM</span>, name <span class="op">=</span> <span class="st">"Phyllomedusa hypochondrialis"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based_files/figure-html/unnamed-chunk-6-1.png" width="384" style="display: block; margin: auto;"></p>
 <p>As said before, the PAM object contains the actual presence absence
 matrix, to access it we can use the following code:</p>
@@ -197,14 +197,14 @@ example using the South America Equidistant Conic projection.</p>
 <code class="sourceCode R"><span><span class="va">pro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"+proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5"</span>,</span>
 <span>             <span class="st">"+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA"</span>, </span>
 <span>             <span class="st">"+units=m +no_defs"</span><span class="op">)</span></span>
-<span><span class="va">SA_EC</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">pro</span><span class="op">)</span></span>
+<span><span class="va">SA_EC</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">pro</span><span class="op">)</span></span>
 <span><span class="va">PAM_proj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.presab.html">lets.presab</a></span><span class="op">(</span><span class="va">Phyllomedusa</span>, xmn <span class="op">=</span> <span class="op">-</span><span class="fl">4135157</span>,</span>
 <span>                        xmx <span class="op">=</span> <span class="fl">4707602</span>,</span>
 <span>                        ymn <span class="op">=</span> <span class="op">-</span><span class="fl">450000</span>, ymx <span class="op">=</span> <span class="fl">5774733</span>,</span>
 <span>                        res <span class="op">=</span> <span class="fl">100000</span>,</span>
 <span>                        crs.grid <span class="op">=</span> <span class="va">SA_EC</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">PAM_proj</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">PAM_proj</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Class: PresenceAbsence</span></span>
 <span><span class="co">## _ _</span></span>
@@ -220,10 +220,10 @@ example using the South America Equidistant Conic projection.</p>
 <span><span class="co">## Extention: -4135157, 4664843, -450000, 5750000 (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## Coord. Ref.:  +proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5 +lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA +units=m +no_defs</span></span></code></pre>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM_proj</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM_proj</span><span class="op">)</span></span>
 <span><span class="co"># Add projected country boundaries</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"wrld_simpl"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wrld_simpl</span><span class="op">)</span>, <span class="va">pro</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wrld_simpl</span><span class="op">)</span>, <span class="va">pro</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based_files/figure-html/unnamed-chunk-11-1.png" width="384" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -251,7 +251,7 @@ well.</p>
 <span>                      xmx <span class="op">=</span> <span class="op">-</span><span class="fl">29</span>, ymn <span class="op">=</span> <span class="op">-</span><span class="fl">57</span>,</span>
 <span>                      ymx <span class="op">=</span> <span class="fl">15</span>, res <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>                      cover <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM_90</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM_90</span><span class="op">)</span></span></code></pre></div>
 <p><img src="A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based_files/figure-html/unnamed-chunk-12-1.png" width="384" style="display: block; margin: auto;"></p>
 <p>Observing the plot above, it’s evident that cells near the
 continent’s border no longer reflect the presence of the species.</p>
@@ -270,7 +270,7 @@ where no species are present won’t be included.</p>
 <p>You can now employ the <code>summary</code> function to confirm
 whether the empty cells were retained.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">PAM_keep_cells</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">PAM_keep_cells</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Class: PresenceAbsence</span></span>
 <span><span class="co">## _ _</span></span>
@@ -311,7 +311,7 @@ occurrence points.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">PAM_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.presab.points.html">lets.presab.points</a></span><span class="op">(</span><span class="va">xy</span>, <span class="va">species</span>, xmn <span class="op">=</span> <span class="op">-</span><span class="fl">93</span>, xmx <span class="op">=</span> <span class="op">-</span><span class="fl">29</span>,</span>
 <span>                          ymn <span class="op">=</span> <span class="op">-</span><span class="fl">57</span>, ymx <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM_points</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM_points</span><span class="op">)</span></span></code></pre></div>
 <p><img src="A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based_files/figure-html/unnamed-chunk-16-1.png" width="384" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
@@ -328,13 +328,13 @@ some situations it is possible to convert this result to a
 soon. Let’s first create our grid:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Grid </span></span>
-<span><span class="va">sp.r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/as.polygons.html" class="external-link">as.polygons</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html" class="external-link">rast</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="op">-</span><span class="fl">93</span>, xmax <span class="op">=</span> <span class="op">-</span><span class="fl">29</span>,</span>
+<span><span class="va">sp.r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/as.polygons.html" class="external-link">as.polygons</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="op">-</span><span class="fl">93</span>, xmax <span class="op">=</span> <span class="op">-</span><span class="fl">29</span>,</span>
 <span>                                ymin <span class="op">=</span> <span class="op">-</span><span class="fl">57</span>, ymax <span class="op">=</span> <span class="fl">15</span>,</span>
 <span>                                resolution <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># Give an ID to the cell</span></span>
 <span><span class="va">sp.r</span><span class="op">$</span><span class="va">ID</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sp.r</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sp.r</span>, border <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wrld_simpl</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">T</span>, fill <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sp.r</span>, border <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wrld_simpl</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">T</span>, fill <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
 <p><img src="A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based_files/figure-html/unnamed-chunk-17-1.png" width="384" style="display: block; margin: auto;"></p>
 <p>Now we can build our presence absence matrix from the grid.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
@@ -345,9 +345,9 @@ To plot the richness map we can use the following code:</p>
 <code class="sourceCode R"><span><span class="va">rich_plus1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">resu</span><span class="op">$</span><span class="va">PAM</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span>
 <span><span class="va">colfunc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#fff5f0"</span>, <span class="st">"#fb6a4a"</span>, <span class="st">"#67000d"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="fu">colfunc</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">rich_plus1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">resu</span><span class="op">$</span><span class="va">grid</span>, border <span class="op">=</span> <span class="st">"gray40"</span>,</span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">resu</span><span class="op">$</span><span class="va">grid</span>, border <span class="op">=</span> <span class="st">"gray40"</span>,</span>
 <span>     col <span class="op">=</span> <span class="va">colors</span><span class="op">[</span><span class="va">rich_plus1</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wrld_simpl</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">wrld_simpl</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based_files/figure-html/unnamed-chunk-19-1.png" width="384" style="display: block; margin: auto;"></p>
 <p>This covers all the functions to convert species distribution into
 presence absence matrix using the <code>letsR</code> package. Let me
