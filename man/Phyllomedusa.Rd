@@ -3,15 +3,27 @@
 \docType{data}
 \name{Phyllomedusa}
 \alias{Phyllomedusa}
-\title{Geographic distribution of Phyllomedusa genus}
+\title{Phyllomedusa}
+\format{
+A simple feature collection for 32 species with 46 features and 4 fields.
+
+\describe{
+ \item{binomial}{Scientific name}
+ \item{presence}{IUCN Red List distributional code}
+ \item{origin}{IUCN Red List distributional code}
+ \item{seasonal}{IUCN Red List distributional code}
+}
+}
 \source{
 IUCN - \url{https://www.iucnredlist.org/}. 2014.
 }
 \usage{
-data(Phyllomedusa)
+Phyllomedusa
 }
 \description{
-Geographic distribution of the Southern American frog genera Phyllomedusa. 
-Data was modfied from IUCN (\url{https://www.iucnredlist.org/}, downloaded in 05/2014). 
-There are 32 species and 46 polygons.
+Geographic distribution of the South American frog genus Phyllomedusa.
 }
+\details{
+See the IUCN Red List Attribute Information for Species Ranges.
+}
+\keyword{datasets}

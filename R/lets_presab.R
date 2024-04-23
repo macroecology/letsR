@@ -8,17 +8,17 @@
 #'@param shapes Object of class \code{SpatVect} or \code{Spatial} (see packages
 #'  \code{\link{terra}} and  \code{\link{sf}} to read these files) containing
 #'  the distribution of one or more species. Species names should be stored in
-#'  the object as BINOMIAL/binomial or SCINAME/sciname.
-#'@param xmx Maximun longitude used to construct the grid in which the matrix
+#'  the object as BINOMIAL/binomial or SCINAME/sciname. 
+#'@param xmx Maximum longitude used to construct the grid in which the matrix
 #'  will be based (i.e. the [gridded] geographic domain of interest). 
 #'  If NULL, limits will be calculated based on the limits of the shapes object.
-#'@param xmn Minimun longitude used to construct the grid in which the matrix
+#'@param xmn Minimum longitude used to construct the grid in which the matrix
 #'  will be based (i.e. the [gridded] geographic domain of interest).
 #'  If NULL, limits will be calculated based on the limits of the shapes object.
-#'@param ymx Maximun latitude used to construct the grid in which the matrix
+#'@param ymx Maximum latitude used to construct the grid in which the matrix
 #'  will be based (i.e. the [gridded] geographic domain of interest).
 #'  If NULL, limits will be calculated based on the limits of the shapes object.
-#'@param ymn Minimun latitude used to construct the grid in which the matrix
+#'@param ymn Minimum latitude used to construct the grid in which the matrix
 #'  will be based (i.e. the [gridded] geographic domain of interest).
 #'  If NULL, limits will be calculated based on the limits of the shapes object.
 #'@param resol Numeric vector of length 1 or 2 to set the grid resolution. 
@@ -59,13 +59,13 @@
 #' *But see the optional argument \code{show.matrix}.
 #'
 #'
-#'@details The function creates the presence-absence matrix based on a raster
+#'@details This function creates the presence-absence matrix based on a raster
 #'  object. Depending on the cell size, extension used and number of species it
 #'  may require a lot of memory, and may take some time to process it. Thus,
 #'  during the process, if \code{count} argument is set \code{TRUE}, a counting
-#'  window will open so you can see the progress (i.e. in what polygon/shapefile
-#'  the function is working). Note that the number of polygons is not the same
-#'  as the number of species that you have (i.e. a species may have more than
+#'  window will open to display the progress (i.e. the polygon/shapefile
+#'  that the function is working on). Note that the number of polygons is not the same
+#'  as the number of species (i.e. a species may have more than
 #'  one polygon/shapefiles).
 #'
 #'@seealso \code{\link{plot.PresenceAbsence}}
@@ -73,7 +73,7 @@
 #'@seealso \code{\link{lets.shFilter}}
 #'
 #' @examples \dontrun{
-#' # Spatial distribution polygons of south american frogs
+#' # Spatial distribution polygons of South American frogs
 #' # of genus Phyllomedusa.
 #' data(Phyllomedusa)
 #' PAM <- lets.presab(Phyllomedusa)
@@ -81,7 +81,7 @@
 #' # Species richness map
 #' plot(PAM, xlab = "Longitude", ylab = "Latitude",
 #'      main = "Phyllomedusa species richness")
-#' # Map of the specific species
+#' # Map of individual species
 #' plot(PAM, name = "Phyllomedusa nordestina")
 #'}
 #'
@@ -108,7 +108,14 @@ lets.presab <- function(shapes,
                         seasonal = NULL,
                         count = FALSE) {
   
-    
+  # look for species names
+  if(!any(c("binomial","BINOMIAL","SCINAME","sciname") %in% names(shapes)))
+  {
+    stop(paste0("species names missing from shapes ",
+                "or column name in data does not match required names"))
+  }
+  
+  
   shapes <- .check_shape(shapes)
   
   # Projection set for spatial polygons
@@ -234,7 +241,7 @@ lets.presab <- function(shapes,
 
 
 
-# Axuliar function to avoid code repetition inside the loop <<<<<<<<<
+# Helper function to avoid code repetition inside the loop <<<<<<<<<
 
 # Function to extract cell positions in the raster
 .extractpos <- function(ras,

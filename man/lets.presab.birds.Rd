@@ -29,19 +29,19 @@ lets.presab.birds(
 shapefiles. Shapefiles with more than one species will not work on this
 function. To use multi-species shapefiles see \code{\link{lets.presab}}.}
 
-\item{xmn}{Minimun longitude used to construct the grid in which the matrix
+\item{xmn}{Minimum longitude used to construct the grid in which the matrix
 will be based (i.e. the [gridded] geographic domain of interest).
 If NULL, limits will be calculated based on the limits of the shapes object.}
 
-\item{xmx}{Maximun longitude used to construct the grid in which the matrix
+\item{xmx}{Maximum longitude used to construct the grid in which the matrix
 will be based (i.e. the [gridded] geographic domain of interest). 
 If NULL, limits will be calculated based on the limits of the shapes object.}
 
-\item{ymn}{Minimun latitude used to construct the grid in which the matrix
+\item{ymn}{Minimum latitude used to construct the grid in which the matrix
 will be based (i.e. the [gridded] geographic domain of interest).
 If NULL, limits will be calculated based on the limits of the shapes object.}
 
-\item{ymx}{Maximun latitude used to construct the grid in which the matrix
+\item{ymx}{Maximum latitude used to construct the grid in which the matrix
 will be based (i.e. the [gridded] geographic domain of interest).
 If NULL, limits will be calculated based on the limits of the shapes object.}
 

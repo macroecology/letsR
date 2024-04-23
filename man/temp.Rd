@@ -3,17 +3,22 @@
 \docType{data}
 \name{temp}
 \alias{temp}
-\title{Avarege temperature raster for the world.}
+\title{Mean temperature raster for the world.}
+\format{
+A PackedStatRaster object.
+}
 \source{
+Data was modified from WorldClim (\url{https://worldclim.com/}, downloaded 05/2014).
+
 Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. 
 Very high resolution interpolated climate surfaces for global land areas. 
 International Journal of Climatology 25: 1965-1978.
 }
 \usage{
-data(temp)
+temp
 }
 \description{
-Average temperature raster in Celsius degrees(multiplied by 100) 
-for the world in 10 arc min of resolution. Data was modfied from 
-WorldClim (\url{https://worldclim.com/}, downloaded in 05/2014).
+Mean temperature raster in degrees Celsius (multiplied by 100) 
+for the world in 10 arc min of resolution.
 }
+\keyword{datasets}

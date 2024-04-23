@@ -3,14 +3,18 @@
 \docType{data}
 \name{PAM}
 \alias{PAM}
-\title{PresenceAbsence object for frogs of Phyllomedusa genus}
+\title{PresenceAbsence object for frogs of the genus Phyllomedusa}
+\format{
+A PresenceAbsence object
+}
 \source{
-IUCN - \url{https://www.iucnredlist.org/}. 2014.
+Generated from IUCN Spatial Data - \url{https://www.iucnredlist.org/}. 2014.
 }
 \usage{
-data(PAM)
+PAM
 }
 \description{
 PresenceAbsence object obtained using the function \code{\link{lets.presab}} 
-in the Geographic distribution of the Southern American frog genus \link{Phyllomedusa}.
+for the Geographic distribution of the South American frog genus \link{Phyllomedusa}.
 }
+\keyword{datasets}
