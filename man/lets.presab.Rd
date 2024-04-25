@@ -29,19 +29,19 @@ lets.presab(
 the distribution of one or more species. Species names should be stored in
 the object as BINOMIAL/binomial or SCINAME/sciname.}
 
-\item{xmn}{Minimun longitude used to construct the grid in which the matrix
+\item{xmn}{Minimum longitude used to construct the grid in which the matrix
 will be based (i.e. the [gridded] geographic domain of interest).
 If NULL, limits will be calculated based on the limits of the shapes object.}
 
-\item{xmx}{Maximun longitude used to construct the grid in which the matrix
+\item{xmx}{Maximum longitude used to construct the grid in which the matrix
 will be based (i.e. the [gridded] geographic domain of interest). 
 If NULL, limits will be calculated based on the limits of the shapes object.}
 
-\item{ymn}{Minimun latitude used to construct the grid in which the matrix
+\item{ymn}{Minimum latitude used to construct the grid in which the matrix
 will be based (i.e. the [gridded] geographic domain of interest).
 If NULL, limits will be calculated based on the limits of the shapes object.}
 
-\item{ymx}{Maximun latitude used to construct the grid in which the matrix
+\item{ymx}{Maximum latitude used to construct the grid in which the matrix
 will be based (i.e. the [gridded] geographic domain of interest).
 If NULL, limits will be calculated based on the limits of the shapes object.}
 
@@ -97,18 +97,18 @@ Convert species' ranges (in shapefile format) into a
  presence-absence matrix based on a user-defined grid system
 }
 \details{
-The function creates the presence-absence matrix based on a raster
+This function creates the presence-absence matrix based on a raster
  object. Depending on the cell size, extension used and number of species it
  may require a lot of memory, and may take some time to process it. Thus,
  during the process, if \code{count} argument is set \code{TRUE}, a counting
- window will open so you can see the progress (i.e. in what polygon/shapefile
- the function is working). Note that the number of polygons is not the same
- as the number of species that you have (i.e. a species may have more than
+ window will open to display the progress (i.e. the polygon/shapefile
+ that the function is working on). Note that the number of polygons is not the same
+ as the number of species (i.e. a species may have more than
  one polygon/shapefiles).
 }
 \examples{
 \dontrun{
-# Spatial distribution polygons of south american frogs
+# Spatial distribution polygons of South American frogs
 # of genus Phyllomedusa.
 data(Phyllomedusa)
 PAM <- lets.presab(Phyllomedusa)
@@ -116,7 +116,7 @@ summary(PAM)
 # Species richness map
 plot(PAM, xlab = "Longitude", ylab = "Latitude",
      main = "Phyllomedusa species richness")
-# Map of the specific species
+# Map of individual species
 plot(PAM, name = "Phyllomedusa nordestina")
 }
 

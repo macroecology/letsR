@@ -168,3 +168,13 @@ test_that("lets.presab new projection grid", {
   expect_equal(class(PAM2[[3]]), "character")  
   
 })
+
+test_that("lets.presab stops when species names column is missing", {
+  
+  Phyllo2 <- Phyllomedusa
+  names(Phyllo2)[1] <- "species_name"
+  expect_error(
+  lets.presab(Phyllo2)
+  )
+
+})
