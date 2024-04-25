@@ -31,6 +31,9 @@
     <loc>https://brunovilela.github.io/letsR/index.html</loc>
   </url>
   <url>
+    <loc>https://brunovilela.github.io/letsR/reference/IUCN.html</loc>
+  </url>
+  <url>
     <loc>https://brunovilela.github.io/letsR/reference/PAM.html</loc>
   </url>
   <url>
@@ -41,12 +44,6 @@
   </url>
   <url>
     <loc>https://brunovilela.github.io/letsR/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://brunovilela.github.io/letsR/reference/iucn.html</loc>
-  </url>
-  <url>
-    <loc>https://brunovilela.github.io/letsR/reference/lets.PAMcrop.html</loc>
   </url>
   <url>
     <loc>https://brunovilela.github.io/letsR/reference/lets.addpoly.html</loc>
@@ -92,6 +89,9 @@
   </url>
   <url>
     <loc>https://brunovilela.github.io/letsR/reference/lets.overlap.html</loc>
+  </url>
+  <url>
+    <loc>https://brunovilela.github.io/letsR/reference/lets.pamcrop.html</loc>
   </url>
   <url>
     <loc>https://brunovilela.github.io/letsR/reference/lets.presab.birds.html</loc>
