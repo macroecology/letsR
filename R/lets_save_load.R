@@ -52,7 +52,7 @@ lets.save <- function(pam, ...) {
 lets.load <- function(file) {
   e <- base::new.env()
   name_file <- load(file, envir = e)
-  pam <- base::get(name_file)
+  pam <- base::get(name_file, envir = e)
   pam$Richness_Raster <- terra::unwrap(pam$Richness_Raster)
   return(pam)
 }
