@@ -29,7 +29,6 @@
 #' @name letsR-package
 #' @aliases letsR
 #' @aliases letsR-package
-#' @docType package
 #' @title Tools for Data Handling and Analysis in  Macroecology.
 #' @author \strong{Bruno Vilela}\cr
 #' (email: \email{bvilela@@wustl.edu}; 

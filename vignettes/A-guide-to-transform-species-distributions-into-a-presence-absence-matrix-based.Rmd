@@ -2,7 +2,7 @@
 title: "A guide to transform species distributions into a presence absence matrix based on a user-defined grid in R"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based}
+  %\VignetteIndexEntry{A guide-to-transform-species-distributions-into-a-presence-absence-matrix-based}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
