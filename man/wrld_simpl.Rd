@@ -4,16 +4,20 @@
 \name{wrld_simpl}
 \alias{wrld_simpl}
 \title{Simplified world country polygons}
+\format{
+A simple feature collection with 246 features and 11 fields.
+}
 \source{
 Originally
- “https://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip”, 
+ \url{https://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip}, 
  now available from
- https://github.com/nasa/World-Wind-Java/tree/master/WorldWind/testData/shapefiles
+ \url{https://github.com/nasa/World-Wind-Java/tree/master/WorldWind/testData/shapefiles}.
 }
 \usage{
-data(temp)
+wrld_simpl
 }
 \description{
-Shapefile in sf format. The object was obtained from maptools
- package and converted to sf.
+World map in sf format. Obtained from maptools 
+and converted to sf.
 }
+\keyword{datasets}
