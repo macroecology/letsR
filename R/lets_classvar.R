@@ -26,6 +26,7 @@
 #' @examples \dontrun{
 #' data(PAM)
 #' data(temp)
+#' temp <- terra::unwrap(temp)
 #' pamvar <- lets.addvar(PAM, temp)
 #' resu <- lets.classvar(x = pamvar, pos = ncol(pamvar), xy = TRUE)
 #' }

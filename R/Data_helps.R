@@ -22,6 +22,11 @@
 #' 
 #' PresenceAbsence object obtained using the function \code{\link{lets.presab}} 
 #' for the Geographic distribution of the South American frog genus \link{Phyllomedusa}.
+#' 
+#' Note that the raster element in this object is shipped as a wrapped
+#' \code{SpatRaster} object and may need to be unwrapped for use in some
+#' examples.
+#' 
 #' @format A PresenceAbsence object
 #' @source Generated from IUCN Spatial Data - \url{https://www.iucnredlist.org/}. 2014.
 "PAM"
