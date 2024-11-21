@@ -36,6 +36,6 @@ URL: https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.1240
     https://github.com/macroecology/letsR,
     https://brunovilela.github.io/letsR/
 BugReports: https://github.com/macroecology/letsR/issues
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.2.9000
 Encoding: UTF-8
 VignetteBuilder: knitr
