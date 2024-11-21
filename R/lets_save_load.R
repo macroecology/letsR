@@ -15,6 +15,7 @@
 #'
 #' @examples \dontrun{
 #' data(PAM)
+#' PAM$Richness_Raster <- terra::unwrap(PAM$Richness_Raster)
 #' lets.save(PAM, file = "PAM.RData")
 #' PAM <- lets.load(file = "PAM.RData")
 #' }
