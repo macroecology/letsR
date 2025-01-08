@@ -69,7 +69,6 @@ plot.PresenceAbsence <- function(x, name = NULL, world = TRUE,
     wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
     plot(sf::st_geometry(wrld_simpl), add = TRUE)
   }
-  # Avoid return map
-  invisible(NULL)
+
 }
 

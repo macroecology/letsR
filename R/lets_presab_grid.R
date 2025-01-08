@@ -49,7 +49,6 @@
 #' }
 #' 
 #' 
-#' @import terra sf
 #' 
 #' @export
 

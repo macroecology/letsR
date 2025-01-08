@@ -30,8 +30,6 @@
 #' @seealso \code{\link{lets.presab}}
 #' @seealso \code{\link{lets.presab.birds}}
 #'
-#' @import terra
-#' @import sf
 #'
 #' @export
 

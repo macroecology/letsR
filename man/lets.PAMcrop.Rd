@@ -42,7 +42,6 @@ plot(PAM_crop, xlab = "Longitude", ylab = "Latitude",
      main = "Phyllomedusa species richness (Brazil crop)")
 plot(sf::st_geometry(wrld_simpl), add = TRUE)
 }
-
 }
 \seealso{
 \code{\link{plot.PresenceAbsence}}

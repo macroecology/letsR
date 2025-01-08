@@ -120,6 +120,7 @@ plot(PAM, xlab = "Longitude", ylab = "Latitude",
 plot(PAM, name = "Phyllomedusa nordestina")
 }
 
+
 }
 \seealso{
 \code{\link{plot.PresenceAbsence}}

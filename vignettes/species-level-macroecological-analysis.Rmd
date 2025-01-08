@@ -102,7 +102,7 @@ PAM_env <- lets.addvar(PAM, r, fun = mean)
 Next step is to get the average temperature values per species. The `lets.summarizer` can do this directly on the resulting object of `lets.addvar` function (note that this can only be done if `onlyvar = FALSE`). We only have to indicate the position of the variable in the matrix using the argument `pos`. 
 
 ```{r}
-pos <- which(colnames(PAM_env) == "bio1_mean")
+pos <- which(colnames(PAM_env) == "wc2.1_10m_bio_1_mean")
 temp_mean <- lets.summarizer(PAM_env, pos)
 ```
 

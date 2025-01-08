@@ -85,8 +85,6 @@
 #' plot(PAM, name = "Phyllomedusa nordestina")
 #'}
 #'
-#'@import terra
-#'@import sf
 #'
 #'@export
 

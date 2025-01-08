@@ -81,6 +81,7 @@ plot(sf::st_geometry(wrld_simpl), add = TRUE)
 }
 
 
+
 }
 \seealso{
 \code{\link{plot.PresenceAbsence}}

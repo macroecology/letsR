@@ -58,6 +58,18 @@
 "temp"
 
 
+
+#' Annual Precipitation raster for the world.
+#'
+#' Annual Precipitation in mm for the world in 10 arc min of resolution. 
+#' @format A PackedStatRaster object.
+#' @source Data was modified from WorldClim (\url{https://worldclim.com/}, downloaded 10/2024).
+#' 
+#' Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. 
+#' Very high resolution interpolated climate surfaces for global land areas. 
+#' International Journal of Climatology 25: 1965-1978.
+"prec"
+
 #' Simplified world country polygons
 #' 
 #' World map in sf format. Obtained from maptools 

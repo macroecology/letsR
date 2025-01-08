@@ -35,7 +35,7 @@
 #'      main = "Phyllomedusa species richness (Brazil crop)")
 #' plot(sf::st_geometry(wrld_simpl), add = TRUE)
 #' }
-#' 
+#' @importFrom stats na.exclude
 #' @export
 
 
@@ -52,6 +52,7 @@ lets.pamcrop <- function(x, shp, remove.sp = TRUE,
   # Set NA to raster data outside shp
   remover <- terra::extract(x[[2]], shp, cells = TRUE, 
                       weights = TRUE)[, 3]
+  remover <- na.exclude(remover)
   terra::values(x[[2]])[-remover] <- NA
   
   if (all(is.na(terra::values(x[[2]])))) {
@@ -63,7 +64,7 @@ lets.pamcrop <- function(x, shp, remove.sp = TRUE,
   if (remove.cells) {
     x[[1]] <- x[[1]][!is.na(manter[, 1]), ]
   } else {
-    x[[1]][is.na(manter[, 1]), ] <- 0
+    x[[1]][is.na(manter[, 1]), -(1:2)] <- 0
   }
   # Remove species without presence
   if (remove.sp) {

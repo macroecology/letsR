@@ -89,31 +89,23 @@ lets.field <- function(x, y, z, weight = TRUE,
   
   # With count 
   if (count) {
-    if (!"tools:rstudio" %in% search()) {
-      grDevices::dev.new(width = 2, height = 2, pointsize = 12)
-      graphics::par(mar = c(0, 0, 0, 0))
-    }
-    for(i in 1:n){
-      graphics::plot.new()
-      text(0.5, 0.5, paste(paste("Total:", n, "\n", "Runs to go: ", (n - i))))
-      media[i] <- .InsiLoop(i, p, p2, weight)
-    }
-    grDevices::dev.off()
+    pb <- utils::txtProgressBar(min = 0,
+                                max = n,
+                                style = 3)
   }
-  
-  # Without count
-  if (!count) {
-    for(i in 1:n){          
-      media[i] <- .InsiLoop(i, p, p2, weight)
+  for(i in 1:n){
+    media[i] <- .InsiLoop(i, p, p2, weight)
+    if (count) {
+      utils::setTxtProgressBar(pb, i)
     }
   }
+  if (count) {
+    close(pb)
+  }
+
   
   # Return process
-  resultado <- cbind(namesSpe, media)
-  colnames(resultado) <- c("Species", "Value")
-  resultado <- as.data.frame(resultado)
-  # Changing the factors
-  resultado[, 2] <- as.numeric(levels(resultado[, 2]))[resultado[, 2]]
+  resultado <- data.frame("Species" = namesSpe, "Value" = media)
   return(resultado)
 }
 
