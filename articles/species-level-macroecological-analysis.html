@@ -8,8 +8,8 @@
 <title>Macroecological analysis at the species level • letsR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Macroecological analysis at the species level">
 </head>
 <body>
@@ -524,7 +524,9 @@ object.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/wrap.html" class="external-link">unwrap</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span></span>
-<span><span class="va">PAM_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.addvar.html">lets.addvar</a></span><span class="op">(</span><span class="va">PAM</span>, <span class="va">r</span>, fun <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">PAM_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.addvar.html">lets.addvar</a></span><span class="op">(</span><span class="va">PAM</span>, <span class="va">r</span>, fun <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in lets.addvar(PAM, r, fun = mean): Reprojecting y to match the</span></span>
+<span><span class="co">#&gt; projection in x</span></span></code></pre></div>
 <p>Next step is to get the average temperature values per species. The
 <code>lets.summarizer</code> can do this directly on the resulting
 object of <code>lets.addvar</code> function (note that this can only be
@@ -532,7 +534,7 @@ done if <code>onlyvar = FALSE</code>). We only have to indicate the
 position of the variable in the matrix using the argument
 <code>pos</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">PAM_env</span><span class="op">)</span> <span class="op">==</span> <span class="st">"bio1_mean"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">pos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">PAM_env</span><span class="op">)</span> <span class="op">==</span> <span class="st">"wc2.1_10m_bio_1_mean"</span><span class="op">)</span></span>
 <span><span class="va">temp_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.summarizer.html">lets.summarizer</a></span><span class="op">(</span><span class="va">PAM_env</span>, <span class="va">pos</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temp_mean</span></span></code></pre></div>
@@ -543,7 +545,7 @@ position of the variable in the matrix using the argument
 Species
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-bio1_mean
+wc2.1_10m_bio_1_mean
 </th>
 </tr></thead>
 <tbody>
@@ -552,7 +554,7 @@ bio1_mean
 Phyllomedusa araguari
 </td>
 <td style="text-align:right;">
-207.5278
+20.56603
 </td>
 </tr>
 <tr>
@@ -560,7 +562,7 @@ Phyllomedusa araguari
 Phyllomedusa atelopoides
 </td>
 <td style="text-align:right;">
-257.3056
+25.52649
 </td>
 </tr>
 <tr>
@@ -568,7 +570,7 @@ Phyllomedusa atelopoides
 Phyllomedusa ayeaye
 </td>
 <td style="text-align:right;">
-201.4074
+20.06813
 </td>
 </tr>
 <tr>
@@ -576,7 +578,7 @@ Phyllomedusa ayeaye
 Phyllomedusa azurea
 </td>
 <td style="text-align:right;">
-235.1530
+23.49658
 </td>
 </tr>
 <tr>
@@ -584,7 +586,7 @@ Phyllomedusa azurea
 Phyllomedusa bahiana
 </td>
 <td style="text-align:right;">
-230.6512
+23.10110
 </td>
 </tr>
 <tr>
@@ -592,7 +594,7 @@ Phyllomedusa bahiana
 Phyllomedusa baltea
 </td>
 <td style="text-align:right;">
-253.9167
+25.62387
 </td>
 </tr>
 <tr>
@@ -600,7 +602,7 @@ Phyllomedusa baltea
 Phyllomedusa bicolor
 </td>
 <td style="text-align:right;">
-260.1406
+NA
 </td>
 </tr>
 <tr>
@@ -608,7 +610,7 @@ Phyllomedusa bicolor
 Phyllomedusa boliviana
 </td>
 <td style="text-align:right;">
-236.0925
+24.17175
 </td>
 </tr>
 <tr>
@@ -616,7 +618,7 @@ Phyllomedusa boliviana
 Phyllomedusa burmeisteri
 </td>
 <td style="text-align:right;">
-220.2652
+21.86432
 </td>
 </tr>
 <tr>
@@ -624,7 +626,7 @@ Phyllomedusa burmeisteri
 Phyllomedusa camba
 </td>
 <td style="text-align:right;">
-248.1014
+24.93428
 </td>
 </tr>
 <tr>
@@ -632,7 +634,7 @@ Phyllomedusa camba
 Phyllomedusa centralis
 </td>
 <td style="text-align:right;">
-238.5556
+23.34730
 </td>
 </tr>
 <tr>
@@ -640,7 +642,7 @@ Phyllomedusa centralis
 Phyllomedusa coelestis
 </td>
 <td style="text-align:right;">
-247.5556
+24.96714
 </td>
 </tr>
 <tr>
@@ -648,7 +650,7 @@ Phyllomedusa coelestis
 Phyllomedusa distincta
 </td>
 <td style="text-align:right;">
-189.9268
+18.98532
 </td>
 </tr>
 <tr>
@@ -656,7 +658,7 @@ Phyllomedusa distincta
 Phyllomedusa duellmani
 </td>
 <td style="text-align:right;">
-214.6944
+21.59888
 </td>
 </tr>
 <tr>
@@ -664,7 +666,7 @@ Phyllomedusa duellmani
 Phyllomedusa ecuatoriana
 </td>
 <td style="text-align:right;">
-146.5556
+14.30585
 </td>
 </tr>
 <tr>
@@ -672,7 +674,7 @@ Phyllomedusa ecuatoriana
 Phyllomedusa hypochondrialis
 </td>
 <td style="text-align:right;">
-249.4254
+NA
 </td>
 </tr>
 <tr>
@@ -680,7 +682,7 @@ Phyllomedusa hypochondrialis
 Phyllomedusa iheringii
 </td>
 <td style="text-align:right;">
-179.0449
+18.08854
 </td>
 </tr>
 <tr>
@@ -688,7 +690,7 @@ Phyllomedusa iheringii
 Phyllomedusa itacolomi
 </td>
 <td style="text-align:right;">
-196.7222
+19.36243
 </td>
 </tr>
 <tr>
@@ -696,7 +698,7 @@ Phyllomedusa itacolomi
 Phyllomedusa megacephala
 </td>
 <td style="text-align:right;">
-212.2639
+20.85050
 </td>
 </tr>
 <tr>
@@ -704,7 +706,7 @@ Phyllomedusa megacephala
 Phyllomedusa neildi
 </td>
 <td style="text-align:right;">
-249.5278
+25.19995
 </td>
 </tr>
 <tr>
@@ -712,7 +714,7 @@ Phyllomedusa neildi
 Phyllomedusa nordestina
 </td>
 <td style="text-align:right;">
-240.2558
+23.96218
 </td>
 </tr>
 <tr>
@@ -720,7 +722,7 @@ Phyllomedusa nordestina
 Phyllomedusa oreades
 </td>
 <td style="text-align:right;">
-237.2083
+23.07010
 </td>
 </tr>
 <tr>
@@ -728,7 +730,7 @@ Phyllomedusa oreades
 Phyllomedusa palliata
 </td>
 <td style="text-align:right;">
-251.3197
+25.15378
 </td>
 </tr>
 <tr>
@@ -736,7 +738,7 @@ Phyllomedusa palliata
 Phyllomedusa perinesos
 </td>
 <td style="text-align:right;">
-221.5556
+22.04672
 </td>
 </tr>
 <tr>
@@ -744,7 +746,7 @@ Phyllomedusa perinesos
 Phyllomedusa rohdei
 </td>
 <td style="text-align:right;">
-208.1575
+20.62165
 </td>
 </tr>
 <tr>
@@ -752,7 +754,7 @@ Phyllomedusa rohdei
 Phyllomedusa sauvagii
 </td>
 <td style="text-align:right;">
-223.1641
+22.33336
 </td>
 </tr>
 <tr>
@@ -760,7 +762,7 @@ Phyllomedusa sauvagii
 Phyllomedusa tarsius
 </td>
 <td style="text-align:right;">
-254.4805
+25.48131
 </td>
 </tr>
 <tr>
@@ -768,7 +770,7 @@ Phyllomedusa tarsius
 Phyllomedusa tetraploidea
 </td>
 <td style="text-align:right;">
-204.5278
+20.37571
 </td>
 </tr>
 <tr>
@@ -776,7 +778,7 @@ Phyllomedusa tetraploidea
 Phyllomedusa tomopterna
 </td>
 <td style="text-align:right;">
-257.5273
+NA
 </td>
 </tr>
 <tr>
@@ -784,7 +786,7 @@ Phyllomedusa tomopterna
 Phyllomedusa trinitatis
 </td>
 <td style="text-align:right;">
-255.5166
+25.59346
 </td>
 </tr>
 <tr>
@@ -792,7 +794,7 @@ Phyllomedusa trinitatis
 Phyllomedusa vaillantii
 </td>
 <td style="text-align:right;">
-257.8461
+NA
 </td>
 </tr>
 <tr>
@@ -800,7 +802,7 @@ Phyllomedusa vaillantii
 Phyllomedusa venusta
 </td>
 <td style="text-align:right;">
-243.0564
+24.33024
 </td>
 </tr>
 </tbody>
@@ -1562,7 +1564,9 @@ extinction risk.</p>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"Status"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">IUCN</span><span class="op">$</span><span class="va">Status</span>, levels <span class="op">=</span> <span class="va">level_order</span><span class="op">)</span>,</span>
 <span>                   <span class="st">"Temperature"</span> <span class="op">=</span> <span class="va">temp_mean</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Status</span>, <span class="va">Temperature</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">g</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Removed 4 rows containing non-finite outside the scale range</span></span>
+<span><span class="co">#&gt; (`stat_boxplot()`).</span></span></code></pre></div>
 <p><img src="species-level-macroecological-analysis_files/figure-html/unnamed-chunk-17-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>The graph indicate that there is a tendency for threatened
 Phyllomedusa species to occur in colder regions. Still, further
