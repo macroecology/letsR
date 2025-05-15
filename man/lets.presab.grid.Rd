@@ -21,7 +21,8 @@ lets.presab.grid(
 the distribution of one or more species. Species names should be stored in
 the object as BINOMIAL/binomial or SCINAME/sciname.}
 
-\item{grid}{Object of class shapefile representing the spatial grid (e.g. regular/irregular cells, 
+\item{grid}{Object of class SpatVector (see function
+  \code{terra::vect}) representing the spatial grid (e.g. regular/irregular cells, 
 political divisions, hexagonal grids, etc). 
 The grid and the shapefiles must be in the same projection.}
 
