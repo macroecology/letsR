@@ -4,13 +4,13 @@
 .unicas <- function(resu) {
   nomes <- colnames(resu)
   
-  if(!any(duplicated(nomes))) {
+  if (!any(duplicated(nomes))) {
     return(resu)
   } else {
     n <- ncol(resu)
-    for(i in 1:(n - 1)){  
+    for (i in 1:(n - 1)) {  
       nome1 <- nomes[i]
-      for(j in 1:n){
+      for (j in 1:n) {
         nome2 <- nomes[j]    
         if (nome1 == nome2) {
           divid <- which((resu[, i] != 0 & resu[, j] != 0))    

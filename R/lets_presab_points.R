@@ -2,8 +2,8 @@
 #'
 #'@author Bruno Vilela & Fabricio Villalobos
 #'
-#'@description Convert species' occurrences into a presence-absence matrix based
-#'  on a user-defined grid.
+#'@description Convert species' occurrences points into a presence-absence
+#'  matrix based on a user-defined grid.
 #'
 #'@inheritParams lets.presab
 #'@param xy A matrix with geographic coordinates of species occurrences, first

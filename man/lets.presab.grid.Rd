@@ -17,7 +17,7 @@ lets.presab.grid(
 }
 \arguments{
 \item{shapes}{Object of class \code{SpatVect} or \code{Spatial} (see packages
-\code{\link{terra}} and  \code{\link{sf}} to read these files) containing
+terra and  sf to read these files) containing
 the distribution of one or more species. Species names should be stored in
 the object as BINOMIAL/binomial or SCINAME/sciname.}
 
@@ -85,9 +85,9 @@ plot(sf::st_geometry(wrld_simpl), add = TRUE)
 
 }
 \seealso{
-\code{\link{plot.PresenceAbsence}}
+\code{\link{lets.presab}}
 
-\code{\link{lets.presab.birds}}
+\code{\link{lets.presab.grid.points}}
 
 \code{\link{lets.shFilter}}
 }

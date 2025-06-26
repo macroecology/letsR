@@ -25,7 +25,7 @@ lets.presab(
 }
 \arguments{
 \item{shapes}{Object of class \code{SpatVect} or \code{Spatial} (see packages
-\code{\link{terra}} and  \code{\link{sf}} to read these files) containing
+terra and  sf to read these files) containing
 the distribution of one or more species. Species names should be stored in
 the object as BINOMIAL/binomial or SCINAME/sciname.}
 

@@ -22,8 +22,8 @@
 #'  
 #'  (II) The original grid.
 #' 
-#' @seealso \code{\link{plot.PresenceAbsence}}
-#' @seealso \code{\link{lets.presab.birds}}
+#' @seealso \code{\link{lets.presab}}
+#' @seealso \code{\link{lets.presab.grid.points}}
 #' @seealso \code{\link{lets.shFilter}} 
 #' 
 #' @examples \dontrun{

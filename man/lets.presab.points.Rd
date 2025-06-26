@@ -71,8 +71,8 @@ The result is a list object of class \code{\link{PresenceAbsence}}
 *But see the optional argument \code{show.matrix}.
 }
 \description{
-Convert species' occurrences into a presence-absence matrix based
- on a user-defined grid.
+Convert species' occurrences points into a presence-absence
+ matrix based on a user-defined grid.
 }
 \details{
 The function creates the presence-absence matrix based on a raster
