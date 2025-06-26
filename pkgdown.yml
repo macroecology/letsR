@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.1.2
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based: A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html
@@ -8,7 +8,7 @@ articles:
   mapping-species-traits: mapping-species-traits.html
   save-load-presenceabsence: save-load-presenceabsence.html
   species-level-macroecological-analysis: species-level-macroecological-analysis.html
-last_built: 2025-05-15T13:33Z
+last_built: 2025-06-26T20:02Z
 urls:
   reference: https://brunovilela.github.io/letsR/reference
   article: https://brunovilela.github.io/letsR/articles
