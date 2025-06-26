@@ -43,9 +43,6 @@ functions from the letsR package can be directly applied to a
 - \code{\link{lets.distmat}}\cr
 - \code{\link{lets.field}}\cr
 - \code{\link{lets.gridirizer}}\cr
-- \code{\link{lets.iucn}}\cr
-- \code{\link{lets.iucn.ha}}\cr
-- \code{\link{lets.iucn.his}}\cr
 - \code{\link{lets.maplizer}}\cr
 - \code{\link{lets.midpoint}}\cr
 - \code{\link{lets.overlap}}\cr

@@ -18,7 +18,6 @@
 #' @return DD = NA
 #' @return NE = NA 
 #' 
-#' @seealso \code{\link{lets.iucn}}
 #' 
 #' @examples \dontrun{
 #' #Vector transformation

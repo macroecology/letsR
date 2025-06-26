@@ -26,10 +26,6 @@ Such \code{\link{PresenceAbsence}} object class allows storing information beyon
 Also, some package's functions allow the user to input customary R objects (e.g. \code{vector}, \code{matrix}, 
 \code{data.frame}). 
 
-Another set of functions in this package allow the user to download species' information related to 
-their description and conservation status as provided by the IUCN's REdList database (\code{\link{lets.iucn}},
-\code{\link{lets.iucn.ha}}, \code{\link{lets.iucn.his}}). 
-For this, such functions use the IUCN's RedList API to retrieve information from its webpage.
 
 If you are looking for the most recent version of the package, you can get the development version
 of letsR on github (\url{https://github.com/macroecology/letsR}).

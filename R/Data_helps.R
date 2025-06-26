@@ -1,6 +1,6 @@
 #' IUCN evaluation for frogs of the genus Phyllomedusa
 #' 
-#' Result of the (deprecated) function \code{\link{lets.iucn}} 
+#' Result of the (deprecated) function lets.iucn. 
 #' applied to South American frog genus Phyllomedusa in 2014.
 #'
 #'@format A data frame with 32 rows and 7 columns:

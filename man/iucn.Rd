@@ -23,7 +23,7 @@ IUCN - \url{https://www.iucnredlist.org/}. 2014.
 IUCN
 }
 \description{
-Result of the (deprecated) function \code{\link{lets.iucn}} 
+Result of the (deprecated) function lets.iucn. 
 applied to South American frog genus Phyllomedusa in 2014.
 }
 \keyword{datasets}
