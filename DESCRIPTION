@@ -1,8 +1,8 @@
 Package: letsR
 Type: Package
 Title: Data Handling and Analysis in Macroecology
-Version: 5.0
-Date: 2023-11-22
+Version: 5.1
+Date: 2025-06-27
 Authors@R: c(person(given = "Bruno", family = "Vilela",
                     email = "bvilela.bv@gmail.com",
                     role = c("aut", "cre"), 
