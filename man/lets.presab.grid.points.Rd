@@ -5,7 +5,14 @@
 \title{Create a presence-absence matrix based on species' point occurrences 
 within a user's grid shapefile (beta version)}
 \usage{
-lets.presab.grid.points(xy, species, grid, sample.unit, remove.sp = TRUE)
+lets.presab.grid.points(
+  xy,
+  species,
+  grid,
+  sample.unit,
+  remove.sp = TRUE,
+  abundance = TRUE
+)
 }
 \arguments{
 \item{xy}{A matrix with geographic coordinates of species occurrences, first
@@ -24,6 +31,10 @@ representing the sample units of the presence absence matrix.}
 
 \item{remove.sp}{Logical, if \code{TRUE} the final matrix will not contain
 species that do not match any cell in the grid.}
+
+\item{abundance}{Logical. If TRUE, the resulting matrix will display number
+of occurrences per species in each cell. If FALSE, the resulting matrix
+will show presence-absence values.}
 }
 \value{
 The result is a \code{list} containing two objects: 
@@ -66,7 +77,7 @@ y <- runif(N * 4, min = -23, max = -4)
 xy <- cbind(x, y)
 
 # PAM
-resu <- lets.presab.grid.points(xy, species, sp.r, "ID")
+resu <- lets.presab.grid.points(xy, species, sp.r, "ID", abundance = FALSE)
 
 # Plot
 rich_plus1 <- rowSums(resu$PAM[, -1, drop = FALSE]) + 1

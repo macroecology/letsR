@@ -8,6 +8,9 @@
 #' @inheritParams lets.presab
 #' @inheritParams lets.presab.grid
 #' @inheritParams lets.presab.points
+#' @param abundance Logical. If TRUE, the resulting matrix will display number
+#'   of occurrences per species in each cell. If FALSE, the resulting matrix
+#'   will show presence-absence values.
 #' 
 #' @details This function is an alternative way to create a presence absence
 #'   matrix when users already have their own grid.
@@ -46,7 +49,7 @@
 #' xy <- cbind(x, y)
 #' 
 #' # PAM
-#' resu <- lets.presab.grid.points(xy, species, sp.r, "ID")
+#' resu <- lets.presab.grid.points(xy, species, sp.r, "ID", abundance = FALSE)
 #' 
 #' # Plot
 #' rich_plus1 <- rowSums(resu$PAM[, -1, drop = FALSE]) + 1
@@ -64,11 +67,13 @@
 #' @export
 
 
+
 lets.presab.grid.points <- function(xy,
-                             species, 
-                             grid,
-                             sample.unit,
-                             remove.sp = TRUE) {
+                                    species, 
+                                    grid,
+                                    sample.unit,
+                                    remove.sp = TRUE,
+                                    abundance = TRUE) {
   
   if (is.null(sample.unit)) {
     stop("Object sample.unit not defined, without a default") 
@@ -104,10 +109,13 @@ lets.presab.grid.points <- function(xy,
   pam.par <- matrix(0, ncol = n + 1, nrow = n_row)
   
   # Cover
-  a <- terra::intersect(grid, shapes)
-  gover <- as.data.frame(a[, c(sample.unit, "BINOMIAL")])
+  #a <- terra::intersect(grid, shapes)
+  a <- terra::relate(shapes, grid,  "within", pairs = TRUE)
+  gover <- data.frame("BINOMIAL" = species, sample.unit = a[, 2])
   for (i in seq_len(nrow(gover))) {
-    pam.par[gover[i, 1] == su, which(gover[i, 2] == spp) + 1] <- 1
+    ri <- gover[i, 2] == su
+    ci <- which(gover[i, 1] == spp) + 1
+    pam.par[ri, ci] <- 1 + pam.par[ri, ci]
   }
   
   # Final table names
@@ -121,6 +129,10 @@ lets.presab.grid.points <- function(xy,
   if (remove.sp) {
     result <- result[, colSums(result) != 0, drop = FALSE] 
   }
+  if (!abundance) {
+    result <- ifelse(result[, -1, drop = FALSE] > 0, 1, 0) 
+  }
+  
   
   # Return row and column position
   return(list("PAM" = result, "grid" = grid))
