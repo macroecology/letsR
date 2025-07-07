@@ -1,0 +1,145 @@
+---
+title: "Mapping species richness in environmental space"
+author: "Bruno Vilela"
+date: "2025-07-07"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mapping-species-richness-in-environmental-space}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  fig.height = 5, 
+  fig.width = 8,
+  fig.align = 'center'
+)
+```
+
+
+Species richness and distributions are often analyzed in geographic space. However, understanding biodiversity in environmental space (e.g., across gradients of temperature and precipitation) is fundamental to further understand ecological communities and species distribution.
+
+The new function `lets.envpam()` from the `letsR` package allows users to transform a geographic presence–absence matrix (PAM) into an environmental-space PAM, by binning species occurrences according to environmental variables.
+
+
+## Loading data
+
+To start this test we can load our example datasets of `Phyllomedusa` frog species occurrences and two environmental layers: temperature and precipitation.
+
+*Note: I recommend to use the latest version of the `letsR` package on [GitHub](https://github.com/macroecology/letsR)*
+```{r, message = FALSE, warning = FALSE, r, fig.width = 4}
+# Load the package
+library(letsR)
+
+# Load species occurrences
+data("Phyllomedusa")
+
+# Load and unwrap environmental rasters
+data("prec")
+data("temp")
+prec <- unwrap(prec)
+temp <- unwrap(temp)
+```
+
+Notice that we need to generate a PAM without removing the cells without records.
+We can also remove data beyond the geographic limits of continents as the example species are continental organisms.
+```{r}
+# Generate a geographic PAM
+pam <- lets.presab(Phyllomedusa, remove.cells = FALSE)
+
+# Crop the PAM to the world's landmasses
+data("wrld_simpl", package = "letsR")
+pam <- lets.pamcrop(pam, terra::vect(wrld_simpl))
+
+```
+
+Next, we need to add our environmental data to the pam using the `lets.addvar` function. Note that we only need to keep the variables, so set the `onlyvar` argument `TRUE`.
+```{r}
+# Extract environmental values
+envs <- lets.addvar(pam, c(temp, prec), onlyvar = TRUE)
+colnames(envs) <- c("Temperature", "Precipitation")
+```
+
+
+
+## Creating a PAM in environmental space
+
+We can now combine the `PresenceAbsence` object and the `envs` object to create the presence absence matrix in the environmental space using the `lets.envpam`function. 
+```{r}
+# Transform PAM into environmental space
+res <- lets.envpam(pam, envs)
+```
+
+The resulting object `res` contains:     
+
+- `Presence_and_Absence_Matrix_env`: a matrix of species presence across environmental cells.     
+- `Presence_and_Absence_Matrix_geo`: the original PAM coordinates associated with environmental cells.      
+- `Env_Richness_Raster`: raster showing richness in binned environmental space.     
+- `Geo_Richness_Raster`: the original richness raster in geographic space.     
+
+You will note that the environmental and geographic presence–absence matrices share a common identifier: the `Cell_env` column. This linkage allows users to perform integrated analyses, facilitating the transfer of information between environmental and geographic spaces in both directions.
+
+```{r}
+res$Presence_and_Absence_Matrix_env[1:5, 1:5]
+```
+
+
+```{r}
+res$Presence_and_Absence_Matrix_geo[1:5, 1:5]
+```
+
+
+
+
+## Visualizing environmental richness
+The `letsR` package also offers a function to plot richness plot in both environmental and geographic space.
+```{r}
+lets.plot.envpam(res,
+            world = TRUE)
+```
+
+This plot shows species richness both in geographic (left) and environmental (right) space.
+
+## Highlighting a single species
+
+To visualize where a specific species occurs in both spaces:
+
+```{r}
+lets.plot.envpam(res, species = "Phyllomedusa atelopoides")
+```
+
+
+# Mapping traits in environmental space
+
+The function `lets.maplizer.env` also allow users to map species attributes in both environmental and geographic spaces. Let's use the species description date available in the `IUCN` example object. 
+
+```{r}
+data("IUCN")
+# Map mean description year
+res_map <- lets.maplizer.env(res, 
+                             y = IUCN$Description_Year, 
+                             z = IUCN$Species)
+
+```
+
+The results are pretty similar to the `lets.envpam` results, except that now instead of presence-absence for each species there will be the summarized attribute. You can also use the `lets.plot.envpam` function to visualize the results (notice that you cannot plot individual species or cells in this case).
+```{r}
+# Plotting trait maps
+lets.plot.envpam(res_map)
+```
+
+
+In sum, the `lets.envpam()` function offers a simple yet powerful way to explore biodiversity patterns in environmental space. It enables users to:     
+- Bin species distributions along ecological gradients.     
+- Compare spatial and environmental richness.      
+- Perform niche-based or trait-environment studies.      
+
+For advanced analyses, the resulting matrices and rasters can be used in statistical models or overlaid with environmental constraints.
+
+## References
+
+- Vilela, B. & Villalobos, F. (2015). letsR: a new R package for data handling and analysis in macroecology. *Methods in Ecology and Evolution*, 6(10), 1229–1234.
