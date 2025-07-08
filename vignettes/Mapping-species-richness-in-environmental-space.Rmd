@@ -126,7 +126,7 @@ res_map <- lets.maplizer.env(res,
 
 ```
 
-The results are pretty similar to the `lets.envpam` results, except that now instead of presence-absence for each species there will be the summarized attribute. You can also use the `lets.plot.envpam` function to visualize the results (notice that you cannot plot individual species or cells in this case).
+The results are pretty similar to the `lets.envpam` results, except that now instead of presence-absence for each species there will be the summarized attribute. In this case the mean description year per cell. You can also use the `lets.plot.envpam` function to visualize the results (notice that you cannot plot individual species or cells in this case).
 ```{r}
 # Plotting trait maps
 lets.plot.envpam(res_map)

@@ -106,11 +106,14 @@ lets.presab.grid.points <- function(xy,
   n_row <- length(su)
   
   # Matrix
-  pam.par <- matrix(0, ncol = n + 1, nrow = n_row)
+  pam.par <- matrix(0, ncol = n, nrow = n_row)
   
   # Cover
   #a <- terra::intersect(grid, shapes)
-  a <- terra::relate(shapes, grid,  "within", pairs = TRUE)
+  a <- terra::relate(shapes, grid,  "within", pairs = TRUE, na.rm = FALSE)
+  keep_a <- !is.na(a[, 2])
+  a <- a[keep_a, ]
+  species <- species[keep_a]
   gover <- data.frame("BINOMIAL" = species, sample.unit = a[, 2])
   for (i in seq_len(nrow(gover))) {
     ri <- gover[i, 2] == su
@@ -118,21 +121,22 @@ lets.presab.grid.points <- function(xy,
     pam.par[ri, ci] <- 1 + pam.par[ri, ci]
   }
   
-  # Final table names
-  colnames(pam.par) <- c(sample.unit, as.character(spp))
-  pam.par[, 1] <- grid[[sample.unit]][, 1]
-  
-  # remove duplicated
-  result <- .unicas(pam.par)
+  colnames(pam.par) <- as.character(spp)
   
   # Remove.sp
   if (remove.sp) {
-    result <- result[, colSums(result) != 0, drop = FALSE] 
+    pam.par <- pam.par[, colSums(pam.par) != 0, drop = FALSE] 
   }
   if (!abundance) {
-    result <- ifelse(result[, -1, drop = FALSE] > 0, 1, 0) 
+    pam.par <- ifelse(pam.par > 0, 1, 0) 
   }
   
+  # Final table names
+  pam.par <- data.frame(sample.unit = grid[[sample.unit]][, 1],
+                        pam.par)
+  
+  # remove duplicated
+  result <- .unicas(pam.par)
   
   # Return row and column position
   return(list("PAM" = result, "grid" = grid))
