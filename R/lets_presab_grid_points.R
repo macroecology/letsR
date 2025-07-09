@@ -117,7 +117,7 @@ lets.presab.grid.points <- function(xy,
   gover <- data.frame("BINOMIAL" = species, sample.unit = a[, 2])
   for (i in seq_len(nrow(gover))) {
     ri <- gover[i, 2] == su
-    ci <- which(gover[i, 1] == spp) + 1
+    ci <- which(gover[i, 1] == spp)
     pam.par[ri, ci] <- 1 + pam.par[ri, ci]
   }
   

@@ -30,6 +30,6 @@ test_that("lets.presab.grid.points works fine", {
   # PAM
   resu <- lets.presab.grid.points(xy, species, sp.r, "ID")
   expect_equal(class(resu)[1], "list")
-  expect_equal(class(resu[[1]])[1], "matrix")
+  expect_equal(class(resu[[1]])[1], "data.frame")
 })
 
