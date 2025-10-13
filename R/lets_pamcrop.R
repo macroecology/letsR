@@ -35,7 +35,6 @@
 #'      main = "Phyllomedusa species richness (Brazil crop)")
 #' plot(sf::st_geometry(wrld_simpl), add = TRUE)
 #' }
-#' @importFrom stats na.exclude
 #' @export
 
 

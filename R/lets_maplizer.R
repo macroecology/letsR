@@ -77,7 +77,8 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
   
   
   # Back to zero
-  resum[resum <= 0.0000000000000000000000000000000000001] <- 0
+  resum[resum <= 0.0000000000000000000000000000000000001 &
+        resum >=  0] <- 0
   
   # Matrix of result 
   resultado <- cbind(x[[1]][, 1:2], resum)

@@ -116,9 +116,9 @@ lets.maplizer.env <- function(x, y, z, func = mean,
   
   resum <- apply(p, 1, func2)
   
-  
   # Back to zero
-  resum[resum <= 0.0000000000000000000000000000000000001] <- 0
+  resum[resum <= 0.0000000000000000000000000000000000001 &
+          resum > 0  ] <- 0
   
   # Matrix of result 
   resultado <- cbind(x[[k]][, k_p], resum)

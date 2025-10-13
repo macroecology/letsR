@@ -10,6 +10,7 @@ lets.plot.envpam(
   cell_id_env = NULL,
   cell_id_geo = NULL,
   geo_plot = TRUE,
+  env_plot = TRUE,
   world = TRUE,
   rast_return = FALSE,
   col_rich = NULL,
@@ -26,6 +27,8 @@ lets.plot.envpam(
 \item{cell_id_geo}{An integer or vector of integers indicating geographic cell(s) to be highlighted.}
 
 \item{geo_plot}{Logical. Should the geographic richness map also be plotted? Default is TRUE.}
+
+\item{env_plot}{Logical. Should the environmental space richness map also be plotted? Default is TRUE.}
 
 \item{world}{Logical. If TRUE, plots a base map using the `wrld_simpl` object from the `letsR` package over the geographic raster.}
 
@@ -73,7 +76,7 @@ lets.plot.envpam(x = res,
             mar = c(4, 4, 4, 4))
 
 # Highlight a single species
-plot.envpam(res, species = "Phyllomedusa_atlantica")
+lets.plot.envpam(res, species = "Phyllomedusa_atlantica")
 }
 
 }

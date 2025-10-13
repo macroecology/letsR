@@ -12,6 +12,7 @@
 #'@param cell_id_env An integer or vector of integers indicating environmental space cell(s) to be highlighted.
 #'@param cell_id_geo An integer or vector of integers indicating geographic cell(s) to be highlighted.
 #'@param geo_plot Logical. Should the geographic richness map also be plotted? Default is TRUE.
+#'@param env_plot Logical. Should the environmental space richness map also be plotted? Default is TRUE.
 #'@param world Logical. If TRUE, plots a base map using the `wrld_simpl` object from the `letsR` package over the geographic raster.
 #'@param rast_return Logical. If TRUE, returns the modified raster objects instead of plotting.
 #'@param col_rich A custom color ramp palette function to use for plotting richness (e.g., from \code{colorRampPalette}).
@@ -52,7 +53,7 @@
 #'             mar = c(4, 4, 4, 4))
 #'
 #' # Highlight a single species
-#' plot.envpam(res, species = "Phyllomedusa_atlantica")
+#' lets.plot.envpam(res, species = "Phyllomedusa_atlantica")
 #'}
 #'
 #'@export
@@ -64,6 +65,7 @@ lets.plot.envpam <- function(x,
                              cell_id_env = NULL,
                              cell_id_geo = NULL,
                              geo_plot = TRUE,
+                             env_plot = TRUE,
                              world = TRUE,
                              rast_return = FALSE,
                              col_rich = NULL,
@@ -89,9 +91,6 @@ lets.plot.envpam <- function(x,
     }
     cell_id_env <- x[[2]][pos, 1]
     cell_id_geo <- x[[2]][pos, 2]
-    if (geo_plot) {
-      par(mfrow = c(1, 2))
-    }
     n1 <- terra::ncell(x[[3]])
     n2 <- terra::ncell(x[[4]])
     
@@ -119,9 +118,11 @@ lets.plot.envpam <- function(x,
   } else {
     colfunc <- col_rich
   }
-  if (geo_plot) {
-    n_col <- max(terra::values(x[[4]]), na.rm = TRUE)
+  if ((geo_plot & env_plot)) {
     par(mfrow = c(1, 2))
+  } 
+  if (geo_plot) {
+    n_col <- length(table(terra::values(x[[4]])))
     plot(x[[4]], main = "Geographical space", 
          col =  colfunc(n_col + 1),
          ylab = "Latitude", xlab = "Longitude", 
@@ -131,8 +132,9 @@ lets.plot.envpam <- function(x,
       plot(sf::st_geometry(wrld_simpl), add = TRUE)
     }
   }
+  if (env_plot) {
   # Extract matrix of values (z)
-  n_col2 <- max(terra::values(x[[3]]), na.rm = TRUE)
+  n_col2 <- length(table(terra::values(x[[3]])))
   # Get raster extent
   ext_vals <- terra::ext(x[[3]])
   x_range <- ext_vals[2] - ext_vals[1]  # xmax - xmin
@@ -148,6 +150,10 @@ lets.plot.envpam <- function(x,
        xlab = labs[1],
        ylab = labs[2],
        ...)
-  
-  invisible(NULL)
+  }
+  if (rast_return) {
+    return(x[[3]])
+  } else {
+    invisible(NULL)
+  }
 }
