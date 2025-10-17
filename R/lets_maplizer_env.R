@@ -10,7 +10,9 @@
 #'@param z A character vector with species names corresponding to the values in \code{y}. These names must match the species columns in the presence-absence matrices in `x`. 
 #'@param func A function used to summarize the attribute across species in each cell (e.g., \code{mean}, \code{median}, \code{sum}). Must return a single numeric value.
 #'@param ras Logical. If \code{TRUE}, the result includes the attribute maps as \code{SpatRaster} objects.
-#'
+#' @param weighted If TRUE, argument func is ignored, and weighted mean is
+#'   calculated. Weights are attributed to each species according to 1/N cells that the species occur.
+#'   
 #'@return A list with the following elements:
 #'\itemize{
 #'  \item \code{Matrix_env}: A matrix with summarized attribute values in environmental space.
@@ -60,11 +62,11 @@
 
 
 lets.maplizer.env <- function(x, y, z, func = mean,
-                              ras = TRUE) {
-  temp_res_geo <- .map_env(x, y, z, func,
-           space = "geo")
-  temp_res_env <- .map_env(x, y, z, func,
-           space = "env")
+                              ras = TRUE, weighted = FALSE) {
+  temp_res_geo <- .map_all(x, y, z, func,
+           space = "geo", ras, weighted)
+  temp_res_env <- .map_all(x, y, z, func,
+           space = "env", ras, weighted)
   return(list(Matrix_env = temp_res_env[[1]], 
               Matrix_geo = temp_res_geo[[1]],
               Env_Raster = temp_res_env[[2]],
@@ -72,67 +74,3 @@ lets.maplizer.env <- function(x, y, z, func = mean,
   
 }
 
-# Auxiliary func
-.map_env <- function(x, y, z, func = mean, space = "geo") {
-  if (space == "geo") {
-    k = 2
-    k_p = 1:4
-    k_max = 5
-    k_p2 = 3:4
-  } 
-  if (space == "env") {
-    k = 1
-    k_p = 1:3
-    k_max = 4
-    k_p2 = 2:3
-  } 
-  
-  # Change factor to numbers
-  if (is.factor(y)) {
-    y <- as.numeric(levels(y))[y]
-  }
-  
-  # To avoid being transformed in NA
-  y[y == 0] <- 0.00000000000000000000000000000000000001
-  
-  # Get the matrix without coordinates
-  p <- x[[k]][, -(k_p)]
-  
-  for(i in 1:ncol(p)) {
-    pos <- colnames(p)[i] == z
-    if (sum(pos) > 0) {
-      p[, i] <- p[, i] * y[pos]
-      pos2 <- p[, i] == 0
-      p[pos2, i] <- NA
-    } else {
-      p[, i] <- NA
-    }
-  }
-  
-  func2 <- function(x) {
-    pos <- is.na(x) 
-    resu <- func(x[!pos])
-  }
-  
-  resum <- apply(p, 1, func2)
-  
-  # Back to zero
-  resum[resum <= 0.0000000000000000000000000000000000001 &
-          resum > 0  ] <- 0
-  
-  # Matrix of result 
-  resultado <- cbind(x[[k]][, k_p], resum)
-  resu2 <- stats::na.omit(resultado)
-  
-  # Name change
-  name <- paste("Variable", as.character(substitute(func)),
-                sep = "_")
-  colnames(resultado)[k_max] <- name 
-  
-  
-  # Return result with or without the raster
-    r <- terra::rasterize(resu2[, k_p2], 
-                          x[[k + 2]], 
-                          resu2[, k_max])
-    return(list(Matrix = resultado, Raster = r))
-}

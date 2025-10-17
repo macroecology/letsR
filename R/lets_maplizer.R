@@ -12,7 +12,9 @@
 #' @param func A function to summarize the species' atribute in each cell (the function must return only one value).
 #' @param ras If \code{TRUE} the raster object will be returned 
 #' together with the matrix.
-#' 
+#' @param weighted If TRUE, argument func is ignored, and weighted mean is
+#'   calculated. Weights are attributed to each species according to 1/N cells
+#'   that the species occur.
 #' @return The result can be both a \code{matrix} or a \code{list} cointaining 
 #' the follow objects:
 #' @return \strong{Matrix}: a \code{matrix} object with the cells' geographic 
@@ -37,13 +39,43 @@
 #' 
 #' @export
 
-lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
-  
-  # Check PAM
-  if (!methods::is(x, "PresenceAbsence")) {
-    stop("x is not a PresenceAbsence object")
-  } else {
-    x <- .check_pam(x)
+lets.maplizer <- function(x, y, z, func = mean, ras = FALSE, weighted = FALSE) {
+  .map_all(x, y, z, func = mean, space = "geo", ras,
+           weighted)
+}
+
+# Auxiliary func
+.map_all <- function(x, y, z, func, space, ras,
+                     weighted) {
+  if (space == "geo") {
+    if (class(x) == "PresenceAbsence") {
+      k = 1
+      k2 = 0
+      k_p = 1:2
+      k_max = 3
+      k_p2 = k_p
+      x$Richness_Raster = terra::unwrap(x$Richness_Raster)
+    } else {
+      k = 2
+      k2 = k
+      k_p = 1:4
+      k_max = 5
+      k_p2 = 3:4
+    }
+  } 
+  if (space == "env") {
+    k = 1
+    k2 = k
+    k_p = 1:3
+    k_max = 4
+    k_p2 = 2:3
+  } 
+  if (space == "att") {
+    k = 1
+    k2 = 0
+    k_p = 1:3
+    k_max = 4
+    k_p2 = 2:3
   }
   
   # Change factor to numbers
@@ -52,13 +84,13 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
   }
   
   # To avoid being transformed in NA
-  y[y == 0] <- 0.00000000000000000000000000000000000001
+  y[y == 0] <- 1e-38
   
   # Get the matrix without coordinates
-  p <- x[[1]][, -(1:2)]
+  p <- x[[k]][, -(k_p)]
   
-  for(i in 1:ncol(p)) {
-    pos <- x[[3]][i] == z
+  for (i in 1:ncol(p)) {
+    pos <- colnames(p)[i] == z
     if (sum(pos) > 0) {
       p[, i] <- p[, i] * y[pos]
       pos2 <- p[, i] == 0
@@ -73,28 +105,37 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE) {
     resu <- func(x[!pos])
   }
   
-  resum <- apply(p, 1, func2)
-  
-  
+  if (weighted) {
+    ranges <- colSums(p, na.rm = TRUE) 
+    w <- 1/ranges
+    w <- ifelse(is.infinite(w), 0, w)
+    n <- nrow(p)
+    resum <- numeric()
+    for (i in seq_len(n)) {
+      p_temp <- p[i, ]
+      resum[i] <- weighted.mean(p_temp, w, na.rm = TRUE)
+    }
+  } else {
+    resum <- apply(p, 1, func2)
+  }  
   # Back to zero
-  resum[resum <= 0.0000000000000000000000000000000000001 &
-        resum >=  0] <- 0
+  resum[resum <= 1e-38 & resum >= 0] <- 0
   
   # Matrix of result 
-  resultado <- cbind(x[[1]][, 1:2], resum)
+  resultado <- cbind(x[[k]][, k_p], resum)
   resu2 <- stats::na.omit(resultado)
   
   # Name change
   name <- paste("Variable", as.character(substitute(func)),
                 sep = "_")
-  colnames(resultado)[3] <- name 
+  colnames(resultado)[k_max] <- name 
   
   
   # Return result with or without the raster
   if (ras) {
-    r <- terra::rasterize(resu2[, 1:2], 
-                          x[[2]], 
-                          resu2[, 3])
+    r <- terra::rasterize(resu2[, k_p2], 
+                          x[[k2 + 2]], 
+                          resu2[, k_max])
     return(list(Matrix = resultado, Raster = r))
   } else {
     return(resultado)

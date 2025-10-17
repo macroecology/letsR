@@ -5,7 +5,7 @@
 \title{Create a matrix summarizing species' attributes within 
 cells of a PresenceAbsence object}
 \usage{
-lets.maplizer(x, y, z, func = mean, ras = FALSE)
+lets.maplizer(x, y, z, func = mean, ras = FALSE, weighted = FALSE)
 }
 \arguments{
 \item{x}{A \code{\link{PresenceAbsence}} object.}
@@ -19,6 +19,10 @@ same as named in the \code{PresenceAbsence} object.}
 
 \item{ras}{If \code{TRUE} the raster object will be returned 
 together with the matrix.}
+
+\item{weighted}{If TRUE, argument func is ignored, and weighted mean is
+calculated. Weights are attributed to each species according to 1/N cells
+that the species occur.}
 }
 \value{
 The result can be both a \code{matrix} or a \code{list} cointaining 

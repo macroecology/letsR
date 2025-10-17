@@ -4,7 +4,7 @@
 \alias{lets.maplizer.env}
 \title{Map species attributes in both environmental and geographic spaces}
 \usage{
-lets.maplizer.env(x, y, z, func = mean, ras = TRUE)
+lets.maplizer.env(x, y, z, func = mean, ras = TRUE, weighted = FALSE)
 }
 \arguments{
 \item{x}{An object produced by \code{\link{lets.envpam}}.}
@@ -16,6 +16,9 @@ lets.maplizer.env(x, y, z, func = mean, ras = TRUE)
 \item{func}{A function used to summarize the attribute across species in each cell (e.g., \code{mean}, \code{median}, \code{sum}). Must return a single numeric value.}
 
 \item{ras}{Logical. If \code{TRUE}, the result includes the attribute maps as \code{SpatRaster} objects.}
+
+\item{weighted}{If TRUE, argument func is ignored, and weighted mean is
+calculated. Weights are attributed to each species according to 1/N cells that the species occur.}
 }
 \value{
 A list with the following elements:

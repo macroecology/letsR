@@ -4,7 +4,7 @@
 \alias{lets.maplizer.attr}
 \title{Map species-level attributes over the attribute-space grid}
 \usage{
-lets.maplizer.attr(x, y, z, func = mean, ras = TRUE)
+lets.maplizer.attr(x, y, z, func = mean, ras = TRUE, weighted = FALSE)
 }
 \arguments{
 \item{x}{An object returned by \code{\link{lets.attrpam}}, containing the
@@ -22,6 +22,10 @@ names must match the species columns in the attribute-space PAM within \code{x}.
 
 \item{ras}{Logical; if \code{TRUE}, include the attribute map as a
 \link[terra]{SpatRaster} in the output.}
+
+\item{weighted}{If TRUE, argument func is ignored, and weighted mean is
+calculated. Weights are attributed to each species according to 1/N cells
+that the species occur.}
 }
 \value{
 A \code{list} with:
@@ -60,13 +64,12 @@ df <- data.frame(Species, trait_a, trait_b)
 
 # Build attribute-space PAM
 x <- lets.attrpam(df, n_bins = 30)
-lets.plot.attrpam(x)
 
 # Map species-level attribute (here, trait_b) by cell using the mean
-res <- lets.maplizer.attr(x, y = trait_b, z = Species, func = mean)
+res <- lets.maplizer.attr(x, y = trait_b, z = Species)
 
 # Plot attribute raster
-plot(res$Attr_Raster)
+lets.plot.attrpam(res)
 }
 
 }

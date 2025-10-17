@@ -170,7 +170,7 @@ Mapping descriptor layers
 
 We can plot every descriptor over the environmental raster grid. Optionally, set ras = TRUE to also retrieve the layers as a named list of SpatRaster objects for further use.
 
-# Plot the descriptors
+## Plot the descriptors
 Plot all descriptors (environmental grid)
 ```{r}
 lets.plot.envcells(res, out)
@@ -183,9 +183,7 @@ ras_list <- lets.plot.envcells(res, out, ras = TRUE, plot_ras = FALSE)
 
 # Diagnosing centrality vs. richness (optional)
 
-As a simple diagnostic, we may examine whether environmental centrality (negated distance to the weighted midpoint) co-varies with environmental richness:
-
-# Extract a centrality proxy and richness (first compute richness from env PAM)
+As a simple diagnostic, we may examine whether environmental centrality (negated distance to the weighted midpoint) co-varies with environmental richness.
 
 ```{r}
 centrality <- out[["Weighted Mean Distance to midpoint"]]   # larger = more central

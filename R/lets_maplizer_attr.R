@@ -22,6 +22,9 @@
 #'   (e.g., \code{mean}, \code{median}, \code{sum}). Must return a single numeric value.
 #' @param ras Logical; if \code{TRUE}, include the attribute map as a
 #'   \link[terra]{SpatRaster} in the output.
+#' @param weighted If TRUE, argument func is ignored, and weighted mean is
+#'   calculated. Weights are attributed to each species according to 1/N cells
+#'   that the species occur.
 #'
 #' @return A \code{list} with:
 #' \itemize{
@@ -49,13 +52,12 @@
 #'
 #' # Build attribute-space PAM
 #' x <- lets.attrpam(df, n_bins = 30)
-#' lets.plot.attrpam(x)
 #'
 #' # Map species-level attribute (here, trait_b) by cell using the mean
-#' res <- lets.maplizer.attr(x, y = trait_b, z = Species, func = mean)
+#' res <- lets.maplizer.attr(x, y = trait_b, z = Species)
 #'
 #' # Plot attribute raster
-#' plot(res$Attr_Raster)
+#' lets.plot.attrpam(res)
 #' }
 #'
 #' @seealso \code{\link{lets.attrpam}}, \code{\link{lets.plot.attrpam}},
@@ -63,70 +65,10 @@
 #' @import terra stats
 #' @export
 lets.maplizer.attr <- function(x, y, z, func = mean,
-                               ras = TRUE) {
+                               ras = TRUE, weighted = FALSE) {
   
   # Compute attribute summaries in attribute space (matrix + raster)
-  temp_res_attr <- .map_attr(x, y, z, func)
+  temp_res_attr <- .map_all(x, y, z, func, "att", ras, weighted)
   return(list(Matrix_attr = temp_res_attr[[1]], 
               Attr_Raster = temp_res_attr[[2]]))
-}
-
-# -------------------------------------------------------------------
-# Auxiliary function: attribute-space summarization
-# -------------------------------------------------------------------
-.map_attr <- function(x, y, z, func = mean) {
-  
-  # Index bookkeeping for attribute matrix/raster layout
-  k    <- 1        # index of PAM_attribute in list
-  k_p  <- 1:3      # cols: Cell_attr + 2 attributes
-  k_max <- 4       # col position for summary variable
-  k_p2 <- 2:3      # cols used as XY coords for rasterize
-  
-  # Convert factor attributes to numeric if needed
-  if (is.factor(y)) {
-    y <- as.numeric(levels(y))[y]
-  }
-  
-  # Tiny epsilon to avoid NA propagation when multiplying by zero
-  y[y == 0] <- 1e-38
-  
-  # Extract species presence/absence matrix only (drop ID and traits)
-  p <- x[[k]][, -(k_p)]
-  
-  # Multiply each species column by its attribute value; mark absences as NA
-  for (i in 1:ncol(p)) {
-    pos <- colnames(p)[i] == z
-    if (sum(pos) > 0) {
-      p[, i] <- p[, i] * y[pos]
-      pos2 <- p[, i] == 0
-      p[pos2, i] <- NA
-    } else {
-      p[, i] <- NA
-    }
-  }
-  
-  # Cell-wise summary across species (ignoring NAs)
-  func2 <- function(x) {
-    pos <- is.na(x) 
-    resu <- func(x[!pos])
-  }
-  resum <- apply(p, 1, func2)
-  
-  # Reset near-zero epsilons back to 0
-  resum[resum <= 1e-38 & resum >= 0] <- 0
-  
-  # Build final result matrix
-  resultado <- cbind(x[[k]][, k_p], resum)
-  resu2 <- stats::na.omit(resultado)
-  
-  # Name summary column dynamically by function
-  name <- paste("Variable", as.character(substitute(func)), sep = "_")
-  colnames(resultado)[k_max] <- name 
-  
-  # Rasterize attribute values back to grid
-  r <- terra::rasterize(resu2[, k_p2], 
-                        x[[k + 1]], 
-                        resu2[, k_max])
-  
-  return(list(Matrix = resultado, Raster = r))
 }

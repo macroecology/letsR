@@ -1,0 +1,101 @@
+---
+title: "Mapping species richness in attribute space"
+author: "Bruno Vilela"
+date: "2025-07-07"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mapping-species-richness-in-attribute-space}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE,
+  fig.height = 5,
+  fig.width  = 8,
+  fig.align  = "center"
+)
+```
+
+## Overview
+
+Species richness and community structure can also be represented in attribute space, where axes correspond to any quantitative information that can be attributed to a species. The `letsR` package provides tools to construct and analyze presence–absence matrices (PAMs) in attribute space, allowing researchers to examine biodiversity patterns beyond geography and environment.
+
+This vignette demonstrates how to:
+
+1. Build a PAM in attribute space using `lets.attrpam()`;
+2. Visualize species richness with `lets.plot.attrpam()`;
+3. Compute descriptors per attribute cell using `lets.attrcells()`;
+4. Aggregate descriptors to the species level with `lets.summarizer.cells()`; and
+5. Cross-map attribute metrics to geographic space for integrative analysis.
+
+
+```{r}
+# Load the package
+library(letsR)
+```
+
+## Simulating trait data and building the AttrPAM
+
+We begin by generating a dataset of 2,000 species with two correlated traits:
+
+```{r}
+set.seed(123)
+n <- 2000
+Species  <- paste0("sp", 1:n)
+trait_a  <- rnorm(n)
+trait_b  <- trait_a * 0.2 + rnorm(n)
+df       <- data.frame(Species, trait_a, trait_b)
+
+# Build the attribute-space PAM
+attr_obj <- lets.attrpam(df, n_bins = 30)
+```
+
+## Visualizing richness in attribute space
+
+The `lets.plot.attrpam()` function plots the richness surface across the bivariate trait space.
+
+```{r}
+lets.plot.attrpam(attr_obj)
+```
+
+Each cell represents a unique combination of traits (binned values of `trait_a` and `trait_b`), and the color intensity indicates the number of species falling within that bin.
+
+
+## Computing attribute-space descriptors
+
+The function `lets.attrcells()` quantifies structural properties of each cell in the trait space, including measures of centrality, isolation, and border proximity.
+
+```{r}
+attr_desc <- lets.attrcells(attr_obj, perc = 0.2)
+head(attr_desc)
+```
+
+We can visualize these metrics using `lets.plot.attrcells()`:
+
+```{r}
+lets.plot.attrcells(attr_obj, attr_desc)
+```
+
+Each panel represents a different descriptor (e.g., distance to midpoint, distance to border, weighted isolation) mapped across the trait space.
+
+
+## Summarizing descriptors by species
+
+To derive species-level summaries, we can aggregate descriptor values across all cells occupied by each species using the `lets.summarizer.cells()` function.
+
+```{r}
+attr_desc_by_sp <- lets.summaryze.cells(attr_obj, attr_desc, func = mean)
+head(attr_desc_by_sp)
+```
+
+This produces a data frame in which each row corresponds to a species, and each column corresponds to the mean descriptor value across the cells where that species occurs.
+
+
+## References
+
+Vilela, B. & Villalobos, F. (2015). letsR: a new R package for data handling and analysis in macroecology. Methods in Ecology and Evolution, 6(10), 1229–1234.
