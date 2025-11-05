@@ -93,7 +93,7 @@ lets.envcells <- function(x, perc = 0.2) {
     if (sum(sub) > 1) {
       # Pairwise distances using lon/lat (assumed at columns 3:4)
       dist_mat <- lets.distmat(x$Presence_and_Absence_Matrix_geo[sub, 3:4])
-      isolation[i, ] <- summary(dist_mat)
+      isolation[i, ] <- base::summary(dist_mat)
     }
   }
   
@@ -143,18 +143,19 @@ lets.envcells <- function(x, perc = 0.2) {
   
   # (4c) Min distance to the convex hull (MCP) border of occupied env cells
   envs2 <- x$Presence_and_Absence_Matrix_env[Frequency > 0, 2:3, drop = FALSE]
+  
   if (nrow(envs2) >= 3) {
-    hp <- grDevices::chull(envs2)
-    hp <- c(hp, hp[1])
-    p  <- terra::vect(envs2[hp, ], type = "polygons")
+    colnames(envs2) <- c("x", "y")
+    sf_env <- sf::st_as_sf(data.frame(envs2),
+                           coords = colnames(envs2))
+    
+    p  <- terra::vect(sf::st_concave_hull(sf_env, ratio = .5))
     
     # Extract raster cell ids overlapping the hull polygon
     ext_df <- terra::extract(x$Env_Richness_Raster, p, cells = TRUE)
     # Column 'cell' is typically the 3rd column returned by extract(..., cells=TRUE)
     cell_col <- if ("cell" %in% names(ext_df)) "cell" else names(ext_df)[3]
     out_bord <- ext_df[[cell_col]]
-    
-    # Guard against out-of-range indices
     keep <- setdiff(seq_len(n), unique(out_bord))
     if (length(keep) > 0) {
       dist_bord3 <- apply(dist_env[keep, , drop = FALSE], 2, min)
@@ -242,14 +243,15 @@ lets.envcells <- function(x, perc = 0.2) {
 lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
                                mfrow = c(4, 4),
                                which.plot = NULL,
-                               col_func = NULL) {
+                               col_func = NULL,
+                               ...) {
   
   # Work only with descriptor columns (drop the 'Cell_env' id)
   preds <- data.frame(y[, -1, drop = FALSE], check.names = FALSE)
   
   # Mask rows with zero frequency (column 2 after dropping id is 'Frequency')
   if (ncol(preds) >= 2) {
-    preds[preds[, 2] == 0 | is.na(preds[, 2]), ] <- NA
+    preds[preds[, 1] == 0 | is.na(preds[, 2]), ] <- NA
   }
   
   # 4x4 grid (adjust if needed)
@@ -280,7 +282,8 @@ lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
     asp_ratio <- (ext_vals[2] - ext_vals[1]) / (ext_vals[4] - ext_vals[3])
     if (plot_ras) {
       plot(r, main = colnames(preds)[i], asp = asp_ratio,
-           col = colfunc(n_col[i]))
+           col = colfunc(n_col[i]),
+           ...)
     }
     ras_list[[i]] <- r
   }

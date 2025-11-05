@@ -114,7 +114,7 @@ lets.presab.grid.points <- function(xy,
   keep_a <- !is.na(a[, 2])
   a <- a[keep_a, ]
   species <- species[keep_a]
-  gover <- data.frame("BINOMIAL" = species, sample.unit = a[, 2])
+  gover <- data.frame("BINOMIAL" = species, sample.unit = su[a[, 2]])
   for (i in seq_len(nrow(gover))) {
     ri <- gover[i, 2] == su
     ci <- which(gover[i, 1] == spp)

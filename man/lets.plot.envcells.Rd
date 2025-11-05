@@ -11,7 +11,8 @@ lets.plot.envcells(
   plot_ras = TRUE,
   mfrow = c(4, 4),
   which.plot = NULL,
-  col_func = NULL
+  col_func = NULL,
+  ...
 )
 }
 \arguments{
