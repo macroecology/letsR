@@ -48,7 +48,7 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE, weighted = FALSE) {
 .map_all <- function(x, y, z, func, space, ras,
                      weighted) {
   if (space == "geo") {
-    if (class(x) == "PresenceAbsence") {
+    if (methods::is(x, "PresenceAbsence")) {
       k = 1
       k2 = 0
       k_p = 1:2

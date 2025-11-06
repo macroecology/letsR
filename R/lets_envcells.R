@@ -215,6 +215,7 @@ lets.envcells <- function(x, perc = 0.2) {
 #'   in an nr-by-nc array on the device by rows as in par documentation.
 #' @param which.plot Indicate the number of the columns in y to be ploted.
 #' @param col_func A custom color ramp palette function to use for plotting variables (e.g., from \code{colorRampPalette}).
+#' @param ... other arguments passed to  \code{terra::plot} function.
 #' 
 #' @details
 #' Each descriptor column is assigned as values of the environmental raster template

@@ -34,6 +34,8 @@ in an nr-by-nc array on the device by rows as in par documentation.}
 \item{which.plot}{Indicate the number of the columns in y to be ploted.}
 
 \item{col_func}{A custom color ramp palette function to use for plotting variables (e.g., from \code{colorRampPalette}).}
+
+\item{...}{other arguments passed to  \code{terra::plot} function.}
 }
 \value{
 Invisibly returns \code{NULL}. If \code{ras = TRUE}, returns a named list of
