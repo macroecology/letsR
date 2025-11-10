@@ -32,6 +32,7 @@ This vignette demonstrates **cross-mapping** of biodiversity metrics between **e
 3. Summarize those descriptors to **species level**; and
 4. **Project** (cross-map) a chosen environmental metric into **geographic** and **attribute** spaces via the package connectors.
 
+*Note: I recommend using the latest development version (≥ v5.1) of the `letsR` package from [GitHub](https://github.com/macroecology/letsR), as the CRAN release (v5.0) does not yet include some of the example data used in this tutorial.*
 ---
 
 ## Data and environmental PAM (example with Phyllomedusa)
