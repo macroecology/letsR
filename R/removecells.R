@@ -2,7 +2,12 @@
 # Bruno Vilela
 
 .removeCells <- function(x) {
-  rem <- which(rowSums(x[, -c(1, 2), drop = FALSE]) == 0)
+  start_col <- which(apply(x, 2, function(col) all(col %in% c(0, 1, NA))))[1]
+  
+  if (is.na(start_col)) {
+    start_col <- 3
+  }
+  rem <- which(rowSums(x[, start_col:ncol(x), drop = FALSE]) == 0)
   if (length(rem) > 0) {
     x <- x[-rem, , drop = FALSE]
   }
