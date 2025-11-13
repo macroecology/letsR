@@ -73,7 +73,7 @@ colnames(envs) <- c("Temperature", "Precipitation")
 We can now combine the `PresenceAbsence` object and the `envs` object to create the presence absence matrix in the environmental space using the `lets.envpam`function. 
 ```{r}
 # Transform PAM into environmental space
-res <- lets.envpam(pam, envs)
+res <- lets.envpam(pam, envs, remove.cells = FALSE)
 ```
 
 The resulting object `res` contains:     

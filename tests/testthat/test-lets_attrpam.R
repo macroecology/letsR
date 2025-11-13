@@ -26,6 +26,7 @@ test_that("lets.attrpam returns correct output structure", {
 test_that("lets.attrpam works consistently with different n_bins", {
   for (nb in c(5, 10, 50)) {
     res <- lets.attrpam(x, n_bins = nb, remove.cells = FALSE)
+
     n_cells_raster <- nrow(res$Attr_Richness_Raster) * 
       ncol(res$Attr_Richness_Raster)
     expect_equal(n_cells_raster, nrow(res$PAM_attribute))
@@ -87,3 +88,4 @@ test_that("lets.attrpam with remove.sp = TRUE actually removes all-zero species
                                                  remove.sp = TRUE))
             expect_false("sp_zero" %in% colnames(res$PAM_attribute))
             })
+
