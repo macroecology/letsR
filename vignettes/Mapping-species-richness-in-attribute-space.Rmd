@@ -55,6 +55,8 @@ df       <- data.frame(Species, trait_a, trait_b)
 attr_obj <- lets.attrpam(df, n_bins = 30)
 ```
 
+Note that trait data are rarely complete, and missing values can bias the resulting attribute space.
+
 ## Visualizing richness in attribute space
 
 The `lets.plot.attrpam()` function plots the richness surface across the bivariate trait space.
