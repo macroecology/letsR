@@ -4,19 +4,17 @@ context("Test for general methods")
 data(PAM)
 
 test_that("Summary and print PresenceAbsence object", {
-
-print(PAM)
-summarPAM <- summary(PAM)  
-print.summary.PresenceAbsence(summarPAM) 
+  expect_output(print(PAM))
+  expect_output(print(summary(PAM)))
 
 })
 
 
 test_that("plot object", {
   
-  plot(PAM)
-  plot(PAM, name = "Phyllomedusa atelopoides")
-  plot(PAM, world = FALSE)
-  plot(PAM, col_rich = rainbow)
+  expect_no_error(plot(PAM))
+  expect_no_error(plot(PAM, name = "Phyllomedusa atelopoides"))
+  expect_no_error(plot(PAM, world = FALSE))
+  expect_no_error(plot(PAM, col_rich = rainbow))
   
 })
