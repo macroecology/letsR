@@ -52,10 +52,8 @@ trait_b  <- trait_a * 0.2 + rnorm(n)
 df       <- data.frame(Species, trait_a, trait_b)
 
 # Build the attribute-space PAM
-attr_obj <- lets.attrpam(df, n_bins = 30)
+attr_obj <- lets.attrpam(df, n_bins = 30, remove.cells = FALSE)
 ```
-
-Note that trait data are rarely complete, and missing values can bias the resulting attribute space.
 
 ## Visualizing richness in attribute space
 

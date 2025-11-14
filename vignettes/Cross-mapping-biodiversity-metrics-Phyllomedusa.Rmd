@@ -32,7 +32,6 @@ This vignette demonstrates **cross-mapping** of biodiversity metrics between **e
 3. Summarize those descriptors to **species level**; and
 4. **Project** (cross-map) a chosen environmental metric into **geographic** and **attribute** spaces via the package connectors.
 
-*Note: I recommend using the latest development version (≥ v5.1) of the `letsR` package from [GitHub](https://github.com/macroecology/letsR), as the CRAN release (v5.0) does not yet include some of the example data used in this tutorial.*
 ---
 
 ## Data and environmental PAM (example with Phyllomedusa)
@@ -58,7 +57,7 @@ envs <- lets.addvar(PAM, c(temp, prec), onlyvar = TRUE)
 colnames(envs) <- c("Temperature", "Precipitation")
 
 # Environmental-space PAM (envPAM)
-env_obj <- lets.envpam(PAM, envs, n_bins = 30)
+env_obj <- lets.envpam(PAM, envs, n_bins = 30, remove.cells = FALSE)
 
 # Plot
 lets.plot.envpam(env_obj, world = TRUE)
@@ -104,7 +103,7 @@ attr_df  <- data.frame(Species = sp_vec,
                        trait_b  = trait_b)
 
 # Attribute-space PAM (AttrPAM)
-attr_obj <- lets.attrpam(attr_df, n_bins = 5)
+attr_obj <- lets.attrpam(attr_df, n_bins = 5, remove.cells = FALSE)
 
 # Richness map in attribute space
 lets.plot.attrpam(attr_obj)
