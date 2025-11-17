@@ -112,9 +112,18 @@ lets.attrpam <- function(x,
   if (count) close(pb)
   
   ## --- Clean-up and richness raster -----------------------------------------
-  Result <- cbind("Cell_attr" = 1:n_cells, coord, pam_matrix)
-  if (remove.cells) Result <- .removeCells(Result)
-  if (remove.sp)    Result <- .removeSp(Result)
+  id_original <- seq_len(n_cells)
+  
+  tmp <- cbind(coord, pam_matrix) 
+  
+  rownames(tmp) <- id_original
+  
+  if (remove.cells) tmp <- .removeCells(tmp)
+  if (remove.sp)    tmp <- .removeSp(tmp)
+  
+  Cell_attr <- as.numeric(rownames(tmp))
+  
+  Result <- cbind("Cell_attr" = Cell_attr, tmp)
   
   # Richness raster
   ras_rich <- ras

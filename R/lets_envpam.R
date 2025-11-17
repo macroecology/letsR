@@ -71,9 +71,6 @@
 #'@export
 #'@import terra
 
-
-
-
 lets.envpam <- function(pam,
                         envs,
                         n_bins = 30,
@@ -156,32 +153,39 @@ lets.envpam <- function(pam,
 
   }
 
-  Resultado <- cbind("Cell_env" = 1:l.values,
-                     coord, matriz)
-  Resultado2 <- cbind("Cell_env" = celulas,
-                      "Cell_geo" = celulas_ras,
-                      pam$Presence_and_Absence_Matrix[keep, ])
-
-
+ tmp <- cbind(coord, matriz)
+ id_original <- seq_len(l.values)
+ rownames(tmp) <- id_original
+ 
+ Resultado2 <- cbind("Cell_env" = celulas,
+                     "Cell_geo" = celulas_ras,
+                     pam$Presence_and_Absence_Matrix[keep, ])
+ 
   if (remove.cells) {
-    Resultado <- .removeCells(Resultado)
+    tmp <- .removeCells(tmp)
   }
   if (remove.sp) {
-    Resultado <- .removeSp(Resultado)
+    tmp <- .removeSp(tmp)
   }
+ 
+  Cell_attr <- as.numeric(rownames(tmp))
+ 
+  Resultado <- cbind("Cell_env" = Cell_attr,
+                     tmp)
 
   # Close progress bar
   if (count) {
     close(pb)
   }
+  
+  
   ras_rich <- ras
   rich <- rowSums(matriz)
   terra::values(ras_rich) <- ifelse(rich == 0, NA, rich)
-
+  
   pos_0 <- which(is.na(terra::values(ras_rich)) &
-        !is.na(terra::values(ras)))
+                   !is.na(terra::values(ras)))
   terra::values(ras_rich)[pos_0] <- 0
-  # values(PAM$Richness_Raster)[values(PAM$Richness_Raster) == 0] <- NA
 
   final <- list("Presence_and_Absence_Matrix_env" = Resultado,
                 "Presence_and_Absence_Matrix_geo" = Resultado2,
