@@ -30,7 +30,19 @@
 #' @seealso \code{\link{lets.presab}}
 #' @seealso \code{\link{lets.presab.birds}}
 #'
-#'
+#' @examples \dontrun{
+#' data(Phyllomedusa)
+#' 
+#' filtered_shape <- lets.shFilter(
+#'   shape = Phyllomedusa,
+#'   presence = 1,
+#'   origin = 1,
+#'   seasonal = 1)
+#'   
+#' if (!is.null(filtered_shape)) {
+#'    plot(filtered_shape, col = "lightgreen", border = "darkgreen")
+#' }
+#'} 
 #' @export
 
 
