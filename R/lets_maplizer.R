@@ -40,7 +40,7 @@
 #' @export
 
 lets.maplizer <- function(x, y, z, func = mean, ras = FALSE, weighted = FALSE) {
-  .map_all(x, y, z, func = func, space = "geo", ras,
+  .map_all(x, y, z, func = mean, space = "geo", ras,
            weighted)
 }
 
@@ -126,27 +126,16 @@ lets.maplizer <- function(x, y, z, func = mean, ras = FALSE, weighted = FALSE) {
   resu2 <- stats::na.omit(resultado)
   
   # Name change
-  name <- paste("Variable", deparse(substitute(func)),
+  name <- paste("Variable", as.character(substitute(func)),
                 sep = "_")
   colnames(resultado)[k_max] <- name 
   
   
   # Return result with or without the raster
   if (ras) {
-    
-    resu2 <- stats::na.omit(resultado)
-    
-    if (nrow(resu2) == 0) {
-      warning("No valid cells to rasterize; returning Matrix only.")
-      return(list(Matrix = resultado, Raster = NULL))
-    }
-    
-    coords <- as.data.frame(resu2[, k_p2, drop = FALSE])
-    values <- resu2[, k_max]
-    
-    r <- terra::rasterize(coords, 
+    r <- terra::rasterize(resu2[, k_p2], 
                           x[[k2 + 2]], 
-                          values)
+                          resu2[, k_max])
     return(list(Matrix = resultado, Raster = r))
   } else {
     return(resultado)
