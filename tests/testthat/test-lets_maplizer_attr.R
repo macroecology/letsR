@@ -39,6 +39,8 @@ test_that("summary functions behave correctly", {
 
 
 test_that("weighted option overrides func", {
+  y <- c(1,2,3)
+  z <- colnames(pam_mat)[-(1:3)]
   
   res1 <- lets.maplizer.attr(x = x, y = y, z = z, func = sum, weighted = TRUE)
   res2 <- lets.maplizer.attr(x = x, y = y, z = z, func = mean, weighted = TRUE)
