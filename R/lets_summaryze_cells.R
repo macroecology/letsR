@@ -86,6 +86,15 @@ lets.summaryze.cells <- function(x, y, func = mean) {
   #  - columns 4:n = species presence/absence (0/1)
   pam_x <- x[[1]]
   
+  id_x <- pam_x[, 1]
+  id_y <- y[, 1]
+  
+  y <- y[match(id_x, id_y), , drop = FALSE]
+  
+  if (any(y[, 1] != pam_x[, 1])) {
+    stop("IDs in y do not match IDs in x after ordering.")
+  }
+  
   # Total number of columns in PAM (cells + coords + species)
   n <- ncol(pam_x)
   

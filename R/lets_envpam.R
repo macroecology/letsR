@@ -153,25 +153,24 @@ lets.envpam <- function(pam,
 
   }
 
- tmp <- cbind(coord, matriz)
- id_original <- seq_len(l.values)
- rownames(tmp) <- id_original
- 
- Resultado2 <- cbind("Cell_env" = celulas,
-                     "Cell_geo" = celulas_ras,
-                     pam$Presence_and_Absence_Matrix[keep, ])
- 
-  if (remove.cells) {
-    tmp <- .removeCells(tmp)
-  }
-  if (remove.sp) {
-    tmp <- .removeSp(tmp)
-  }
- 
-  Cell_attr <- as.numeric(rownames(tmp))
- 
-  Resultado <- cbind("Cell_env" = Cell_attr,
-                     tmp)
+  tmp <- cbind(coord, matriz) 
+  id_original <- seq_len(l.values) 
+  rownames(tmp) <- id_original 
+  
+  Resultado2 <- cbind("Cell_env" = celulas, "Cell_geo" = celulas_ras, 
+                      pam$Presence_and_Absence_Matrix[keep, ])
+  
+  if (remove.cells) { 
+    tmp <- .removeCells(tmp) 
+    }
+  if (remove.sp) { 
+    tmp <- .removeSp(tmp) 
+    } 
+  
+  Cell_attr <- as.numeric(rownames(tmp)) 
+  
+  Resultado <- cbind("Cell_env" = Cell_attr, tmp)
+  
 
   # Close progress bar
   if (count) {
