@@ -1,4 +1,4 @@
-context("Tests for lets.maplizer_attr")
+context("Tests for lets.maplizer.attr")
 
 pam_mat <- data.frame(
   cell = 1:4,

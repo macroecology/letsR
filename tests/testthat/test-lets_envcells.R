@@ -1,65 +1,62 @@
-context("Test for ")
+context("Test for lets.envcells")
 
-make_test_envpam <- function() {
-  pam_env <- data.frame(
-    cell = 1:4,
-    env1 = c(0, 1, -1, 0.5),
-    env2 = c(2, 3, 1, 0),
-    sp1  = c(1, 0, 1, 0),
-    sp2  = c(0, 1, 0, 1)
+test_that("lets.envcells basic functionality", {
+  
+  env_cells <- data.frame(
+    cell_id_env = 1:3,
+    var1 = c(0.1, 0.5, 0.9),
+    var2 = c(0.2, 0.6, 0.8),
+    sp1 = c(1,0,1),
+    sp2 = c(0,1,1)
+  )
+  geo_cells <- data.frame(
+    cell_id_geo = 1:5,
+    lon = c(10,11,12,13,14),
+    lat = c(-5,-4,-3,-2,-1),
+    sp1 = c(1,0,1,0,1),
+    sp2 = c(0,1,1,0,0)
   )
   
-  pam_geo <- data.frame(
-    cell = c(1,1,2,3),
-    lon  = c(-50, -49, -48, -47),
-    lat  = c(-10, -10, -11, -12),
-    sp1  = c(1,1,0,0),
-    sp2  = c(0,0,1,1)
+  r <- rast(nrows = 3, ncols = 1)
+  values(r) <- 1:3
+  
+  x <- list(
+    Presence_and_Absence_Matrix_env = env_cells,
+    Presence_and_Absence_Matrix_geo = geo_cells,
+    Env_Richness_Raster = r
   )
   
-  r_env <- terra::rast(nrows = 2, ncols = 2, vals = c(1,1,1,1))
-  
-  list(
-    Presence_and_Absence_Matrix_env = pam_env,
-    Presence_and_Absence_Matrix_geo = pam_geo,
-    Env_Richness_Raster = r_env
-  )
-}
+  res <- lets.envcells(x, perc = 0.2)
 
-
-test_that("lets.envcells returns a data.frame with expected columns", {
-  x <- make_test_envpam()
-  res <- lets.envcells(x)
-  
   expect_s3_class(res, "data.frame")
-  expect_true(all(c("Cell_env", "Frequency") %in% colnames(res)))
-  expect_equal(nrow(res), 4)  
+  expect_equal(nrow(res), nrow(env_cells))
+  expect_true(all(c("Cell_env", "Frequency", "Frequency Weighted Distance") %in% colnames(res)))
+  
+  numeric_cols <- setdiff(colnames(res), "Cell_env")
+  expect_true(all(sapply(res[, numeric_cols], is.numeric)))
+  
+  expect_true(all(res$Frequency >= 0))
 })
 
 
-test_that("perc affects robust border-distance metric (real data)", {
-  skip("need to fix issue with removecells")
+test_that("lets.plot.envcells basic plotting and ras output", {
   
-  data("Phyllomedusa")
-  data("prec"); prec <- unwrap(prec)
-  data("temp"); temp <- unwrap(temp)
+  env_cells <- data.frame(
+    Cell_env = 1:3,
+    Frequency = c(2,1,1),
+    `Weighted Mean Distance to midpoint` = c(0.5, 0.6, 0.7),
+    `Mean Distance to midpoint` = c(0.4, 0.5, 0.6),
+    `Frequency Weighted Distance` = c(0.3,0.2,0.1)
+  )
   
-  PAM <- lets.presab(Phyllomedusa, remove.cells = FALSE)
-  envs <- lets.addvar(PAM, c(temp, prec), onlyvar = TRUE)
-  colnames(envs) <- c("Temperature", "Precipitation")
+  r <- rast(nrows = 3, ncols = 1)
+  values(r) <- 1:3
+  x <- list(Env_Richness_Raster = r)
   
-  wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
-  PAM <- lets.pamcrop(PAM, terra::vect(wrld_simpl))
+  ras_list <- lets.plot.envcells(x, env_cells, ras = TRUE, plot_ras = FALSE)
   
-  ##not working, only works with remove.cells = FALSE
-  res <- lets.envpam(PAM, envs, n_bins = 15, remove.cells = FALSE)
-  
-  res1 <- lets.envcells(res, perc = 0.1)
-  res2 <- lets.envcells(res, perc = 0.5)
-
-  expect_false(isTRUE(all.equal(
-    res1[["Minimum 10% Zero Distance"]],
-    res2[["Minimum 10% Zero Distance"]]
-  )))
+  expect_type(ras_list, "list")
+  expect_equal(length(ras_list), ncol(env_cells) - 1) 
+  expect_true(all(sapply(ras_list, inherits, "SpatRaster")))
 })
 
