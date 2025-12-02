@@ -89,7 +89,7 @@ lets.envcells <- function(x, perc = 0.2) {
   colnames(isolation) <- paste0("Isolation (", iso_names, ")")
   
   for (i in seq_len(n)) {
-    sub <- cell_fact == env_cell[i]
+    sub <- !is.na(cell_fact) & (cell_fact == env_cell[i])
     if (sum(sub) > 1) {
       # Pairwise distances using lon/lat (assumed at columns 3:4)
       dist_mat <- lets.distmat(x$Presence_and_Absence_Matrix_geo[sub, 3:4])

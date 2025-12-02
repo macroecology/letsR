@@ -71,8 +71,12 @@ lets.attrcells <- function(x, perc = 0.2) {
   n <- length(attr_cell)
   
   # Richness per attribute cell (NA -> 0)
-  Frequency <- values(x$Attr_Richness_Raster)[, 1]
-  Frequency <- ifelse(is.na(Frequency), 0, Frequency)
+  Frequency_full <- values(x$Attr_Richness_Raster)[, 1]
+  Frequency_full <- ifelse(is.na(Frequency_full), 0, Frequency_full)
+  
+  cells_pam <- x$PAM_attribute[, 1]
+  Frequency <- Frequency_full[cells_pam]
+  
   
   # --- Distances to midpoints (attributes standardized) ---
   attr <- x$PAM_attribute[, 2:3, drop = FALSE]
