@@ -26,7 +26,8 @@
 #'   }
 #' @param perc Numeric in (0, 1]; fraction used in the robust border metric
 #'   (mean of the \emph{n} smallest zero-richness distances). Default \code{0.2}.
-#'
+#' @param remove.cells Logical. If 'TRUE', remove empty cells from the results.
+#' 
 #' @details
 #' Attributes (columns 2–3 of \code{$PAM_attribute}) are standardized (z-scores)
 #' prior to distance calculations. Cells with \code{NA} richness are treated as zero
@@ -64,10 +65,22 @@
 #'
 #' @import terra grDevices graphics  
 #' @export
-lets.attrcells <- function(x, perc = 0.2) {
+lets.attrcells <- function(x, perc = 0.2, 
+                           remove.cells = FALSE) {
   
   # Attribute-cell IDs from raster (first layer)
-  attr_cell  <- x$Attr_Richness_Raster[, 1]
+  attr_ids  <- x$PAM_attribute[, 1]
+  ids_full <- 1:ncell(x$Attr_Richness_Raster)
+  n_cells <- length(ids_full)
+  if (n_cells > length(attr_ids)) {
+    n_c <- ncol(x$PAM_attribute)
+    pam_attr <- matrix(0, nrow = n_cells, ncol = n_c)
+    pam_attr[, 1:3] <- cbind(ids_full, xyFromCell(x$Attr_Richness_Raster, ids_full))
+    pam_attr[attr_ids, 4:n_c] <- x$PAM_attribute[, -(1:3)]
+    x$PAM_attribute <- pam_attr
+  }
+  
+  attr_cell  <- x$PAM_attribute[, 1]
   n <- length(attr_cell)
   
   # Richness per attribute cell (NA -> 0)
@@ -165,7 +178,10 @@ lets.attrcells <- function(x, perc = 0.2) {
     "Frequency Weighted Distance"  = w_isol,
     check.names = FALSE
   )
-  preds
+  if (remove.cells) {
+    preds <- preds[attr_ids, ]
+  }
+  return(preds)
 }
 
 #' Plot attribute-cell descriptors as rasters
@@ -227,7 +243,8 @@ lets.plot.attrcells <- function(x, y,
   
   # Drop identifier column; keep descriptors only
   preds <- data.frame(y[, -1, drop = FALSE], check.names = FALSE)
-  
+  IDs <- y[, 1]
+    
   # Mask rows with zero or NA richness (2nd column in `preds` is 'Richness')
   if (ncol(preds) >= 2L) {
     preds[preds[, 1L] == 0 | is.na(preds[, 1L]), ] <- NA
@@ -251,7 +268,7 @@ lets.plot.attrcells <- function(x, y,
   
   for (i in seq_len(ncol(preds))) {
     r <- r_template
-    terra::values(r) <- preds[, i]
+    terra::values(r)[IDs] <- preds[, i]
     
     # Keep aspect ratio consistent with extent
     ext_vals  <- terra::ext(r)

@@ -4,7 +4,7 @@
 \alias{lets.attrcells}
 \title{Descriptors of centrality, border proximity, and isolation in attribute space}
 \usage{
-lets.attrcells(x, perc = 0.2)
+lets.attrcells(x, perc = 0.2, remove.cells = FALSE)
 }
 \arguments{
 \item{x}{A list produced by \code{\link{lets.attrpam}} containing:
@@ -16,6 +16,8 @@ lets.attrcells(x, perc = 0.2)
 
 \item{perc}{Numeric in (0, 1]; fraction used in the robust border metric
 (mean of the \emph{n} smallest zero-richness distances). Default \code{0.2}.}
+
+\item{remove.cells}{Logical. If 'TRUE', remove empty cells from the results.}
 }
 \value{
 A \code{data.frame} with one row per attribute cell and the columns:
