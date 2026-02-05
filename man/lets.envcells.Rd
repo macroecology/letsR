@@ -4,7 +4,7 @@
 \alias{lets.envcells}
 \title{Environmental descriptors for Presence–Absence in environmental space}
 \usage{
-lets.envcells(x, perc = 0.2)
+lets.envcells(x, perc = 0.2, remove.cells = FALSE)
 }
 \arguments{
 \item{x}{A list returned by \code{\link{lets.envpam}} containing at least:
@@ -19,6 +19,8 @@ lets.envcells(x, perc = 0.2)
 
 \item{perc}{Numeric in (0,1], the fraction used in the robust border metric
 (mean of the \emph{n} smallest distances to zero-richness cells). Default = 0.2.}
+
+\item{remove.cells}{Logical. If 'TRUE', remove empty cells from the results.}
 }
 \value{
 A data frame with one row per environmental cell and the following columns:

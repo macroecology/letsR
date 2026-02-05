@@ -189,10 +189,10 @@ As a simple diagnostic, we may examine whether environmental centrality (negated
 centrality <- out[["Weighted Mean Distance to midpoint"]]   # larger = more central
 rich_env   <- rowSums(res$Presence_and_Absence_Matrix_env[, -(1:3), drop = FALSE])
 
-# Remove zero-richness cells
-keep <- rich_env > 0
+# Mantain cells without zero
+keep <- res$Presence_and_Absence_Matrix_env[, 1]
 centrality <- centrality[keep]
-rich_env   <- rich_env[keep]
+
 
 # Plot relationship
 plot(centrality, rich_env,

@@ -25,7 +25,7 @@
 #' }
 #' @param perc Numeric in (0,1], the fraction used in the robust border metric
 #' (mean of the \emph{n} smallest distances to zero-richness cells). Default = 0.2.
-#'
+#' @param remove.cells Logical. If 'TRUE', remove empty cells from the results.
 #' @details
 #' Environmental variables (assumed to be the 2nd and 3rd columns of
 #' \code{$Presence_and_Absence_Matrix_env}) are z-scored before computing distances.
@@ -72,9 +72,21 @@
 #'
 #' @import terra grDevices
 #' @export
-lets.envcells <- function(x, perc = 0.2) {
+lets.envcells <- function(x, perc = 0.2, 
+                          remove.cells = FALSE) {
   
   # --- IDs and alignment ---
+  env_ids  <- x$Presence_and_Absence_Matrix_env[, 1]
+  ids_full <- 1:ncell(x$Env_Richness_Raster)
+  n_cells <- length(ids_full)
+  if (n_cells > length(env_ids)) {
+    n_c <- ncol(x$Presence_and_Absence_Matrix_env)
+    pam_env <- matrix(0, nrow = n_cells, ncol = n_c)
+    pam_env[, 1:3] <- cbind(ids_full, xyFromCell(x$Env_Richness_Raster, ids_full))
+    pam_env[env_ids, 4:n_c] <- x$Presence_and_Absence_Matrix_env[, -(1:3)]
+    x$Presence_and_Absence_Matrix_env <- pam_env
+  }
+  
   env_cell  <- x$Presence_and_Absence_Matrix_env[, 1]
   cell_fact <- factor(x$Presence_and_Absence_Matrix_geo[, 1], levels = env_cell)
   n <- length(env_cell)
@@ -89,7 +101,7 @@ lets.envcells <- function(x, perc = 0.2) {
   colnames(isolation) <- paste0("Isolation (", iso_names, ")")
   
   for (i in seq_len(n)) {
-    sub <- !is.na(cell_fact) & (cell_fact == env_cell[i])
+    sub <- cell_fact == env_cell[i]
     if (sum(sub) > 1) {
       # Pairwise distances using lon/lat (assumed at columns 3:4)
       dist_mat <- lets.distmat(x$Presence_and_Absence_Matrix_geo[sub, 3:4])
@@ -191,8 +203,12 @@ lets.envcells <- function(x, perc = 0.2) {
     "Frequency Weighted Distance"     = w_isol,
     check.names = FALSE
   )
-  preds
+  if (remove.cells) {
+    preds <- preds[env_ids, ]
+  }
+  return(preds)
 }
+
 
 
 #' Plot environmental descriptors over the environmental raster grid
@@ -249,7 +265,7 @@ lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
   
   # Work only with descriptor columns (drop the 'Cell_env' id)
   preds <- data.frame(y[, -1, drop = FALSE], check.names = FALSE)
-  
+  IDs <- y[, 1]
   # Mask rows with zero frequency (column 2 after dropping id is 'Frequency')
   if (ncol(preds) >= 2) {
     preds[preds[, 1] == 0 | is.na(preds[, 2]), ] <- NA
@@ -257,11 +273,11 @@ lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
   
   # 4x4 grid (adjust if needed)
   if (plot_ras) {
-  graphics::par(mfrow = mfrow)
+    graphics::par(mfrow = mfrow)
   }
   # Raster template 
   r_template <- x$Env_Richness_Raster
-  
+  values(r_template) <- NA
   ras_list <- vector("list", length = ncol(preds))
   if (is.null(which.plot)) {
     seq_loop <- seq_len(ncol(preds))
@@ -276,7 +292,7 @@ lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
   
   for (i in seq_loop) {
     r <- r_template
-    terra::values(r) <- preds[, i]
+    terra::values(r)[IDs] <- preds[, i]
     
     # Aspect ratio based on extent
     ext_vals <- terra::ext(r)
