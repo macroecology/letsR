@@ -62,6 +62,7 @@ library(ggplot2)
 
 ```{r, warning=FALSE, message=FALSE}
 mpg <- as.data.frame(resu$Matrix)
+colnames(mpg)[ncol(mpg)] <- "Variable_mean"
 f <- ggplot(mpg, aes(`Latitude(y)`, Variable_mean))
 f + geom_smooth(model = lm) + 
   geom_point(col = rgb(0, 0, 0, .6)) + 

@@ -1,5 +1,3 @@
-
-
 #' Plot an Attribute-space PAM
 #'
 #' @title Plot attrPAM results

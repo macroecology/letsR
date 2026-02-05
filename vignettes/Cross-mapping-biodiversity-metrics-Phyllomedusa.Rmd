@@ -57,7 +57,7 @@ envs <- lets.addvar(PAM, c(temp, prec), onlyvar = TRUE)
 colnames(envs) <- c("Temperature", "Precipitation")
 
 # Environmental-space PAM (envPAM)
-env_obj <- lets.envpam(PAM, envs, n_bins = 30, remove.cells = FALSE)
+env_obj <- lets.envpam(PAM, envs, n_bins = 30)
 
 # Plot
 lets.plot.envpam(env_obj, world = TRUE)

@@ -52,7 +52,7 @@ trait_b  <- trait_a * 0.2 + rnorm(n)
 df       <- data.frame(Species, trait_a, trait_b)
 
 # Build the attribute-space PAM
-attr_obj <- lets.attrpam(df, n_bins = 30, remove.cells = FALSE)
+attr_obj <- lets.attrpam(df, n_bins = 30)
 ```
 
 ## Visualizing richness in attribute space
@@ -99,3 +99,4 @@ This produces a data frame in which each row corresponds to a species, and each 
 ## References
 
 Vilela, B. & Villalobos, F. (2015). letsR: a new R package for data handling and analysis in macroecology. Methods in Ecology and Evolution, 6(10), 1229–1234.
+>>>>>>> 5b39b12520d9f6fac84b5979f9ac6a0a3c75de13
