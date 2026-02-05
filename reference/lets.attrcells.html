@@ -35,7 +35,7 @@ Attribute isolation: richness-weighted mean distance from each cell
 
     <a class="navbar-brand me-2" href="../index.html">letsR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,7 @@ as a 2D coordinate system. The descriptors include:</p><ul><li><p><strong>Richne
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lets.attrcells</span><span class="op">(</span><span class="va">x</span>, perc <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lets.attrcells</span><span class="op">(</span><span class="va">x</span>, perc <span class="op">=</span> <span class="fl">0.2</span>, remove.cells <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -106,6 +106,10 @@ as a 2D coordinate system. The descriptors include:</p><ul><li><p><strong>Richne
 <dt id="arg-perc">perc<a class="anchor" aria-label="anchor" href="#arg-perc"></a></dt>
 <dd><p>Numeric in (0, 1]; fraction used in the robust border metric
 (mean of the <em>n</em> smallest zero-richness distances). Default <code>0.2</code>.</p></dd>
+
+
+<dt id="arg-remove-cells">remove.cells<a class="anchor" aria-label="anchor" href="#arg-remove-cells"></a></dt>
+<dd><p>Logical. If 'TRUE', remove empty cells from the results.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -158,7 +162,7 @@ when identifying zero-richness neighbors, and later masked in plotting.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

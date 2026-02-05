@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">letsR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,7 +123,7 @@ previous articles.</p>
 <span></span>
 <span><span class="co"># Plot</span></span>
 <span><span class="fu"><a href="../reference/lets.plot.envpam.html">lets.plot.envpam</a></span><span class="op">(</span><span class="va">env_obj</span>, world <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-1-1.png" width="768" style="display: block; margin: auto;"></p>
+<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-1-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
 <hr>
 </div>
 <div class="section level2">
@@ -233,11 +233,11 @@ real traits if available.)</p>
 <span>                       trait_b  <span class="op">=</span> <span class="va">trait_b</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Attribute-space PAM (AttrPAM)</span></span>
-<span><span class="va">attr_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.attrpam.html">lets.attrpam</a></span><span class="op">(</span><span class="va">attr_df</span>, n_bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">attr_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.attrpam.html">lets.attrpam</a></span><span class="op">(</span><span class="va">attr_df</span>, n_bins <span class="op">=</span> <span class="fl">5</span>, remove.cells <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Richness map in attribute space</span></span>
 <span><span class="fu"><a href="../reference/lets.plot.attrpam.html">lets.plot.attrpam</a></span><span class="op">(</span><span class="va">attr_obj</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-4-1.png" width="768" style="display: block; margin: auto;"></p>
+<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
 <hr>
 </div>
 <div class="section level2">
@@ -264,7 +264,7 @@ spaces<a class="anchor" aria-label="anchor" href="#cross-mapping-an-environmenta
 <span><span class="va">colfunc</span> <span class="op">&lt;-</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#fff5f0"</span>, <span class="st">"#fb6a4a"</span>, <span class="st">"#67000d"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">map_richatt2</span>, col <span class="op">=</span> <span class="fu">colfunc</span><span class="op">(</span><span class="fl">200</span><span class="op">)</span>, box <span class="op">=</span> <span class="cn">FALSE</span>, axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>     main <span class="op">=</span> <span class="st">"Env centrality (env-space) mapped to geography"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-5-1.png" width="768" style="display: block; margin: auto;"></p>
+<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="b--into-attribute-space">B. Into attribute space<a class="anchor" aria-label="anchor" href="#b--into-attribute-space"></a>
@@ -279,7 +279,7 @@ grid:</p>
 <span></span>
 <span><span class="co"># Visualize</span></span>
 <span><span class="fu"><a href="../reference/lets.plot.attrpam.html">lets.plot.attrpam</a></span><span class="op">(</span><span class="va">attr_map</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-6-1.png" width="768" style="display: block; margin: auto;"></p>
+<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
 <p>These projections reveal how a descriptor computed in environmental
 space (centrality) distributes across geographic communities and trait
 space.</p>
@@ -307,7 +307,7 @@ those species-level metrics to geographic or environmental spaces using
 <span><span class="va">geo_from_attr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.maplizer.html">lets.maplizer</a></span><span class="op">(</span><span class="va">PAM</span>, y <span class="op">=</span> <span class="va">met_attr</span>, z <span class="op">=</span> <span class="va">attr_by_species</span><span class="op">$</span><span class="va">Species</span>, ras <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">geo_from_attr</span><span class="op">$</span><span class="va">Raster</span>, main <span class="op">=</span> <span class="st">"Attr centrality mapped to geography"</span>, col <span class="op">=</span> <span class="fu">colfunc</span><span class="op">(</span><span class="fl">200</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-7-1.png" width="768" style="display: block; margin: auto;"></p>
+<p><img src="Cross-mapping-biodiversity-metrics-Phyllomedusa_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -320,7 +320,7 @@ those species-level metrics to geographic or environmental spaces using
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

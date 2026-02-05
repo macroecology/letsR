@@ -1,0 +1,203 @@
+# letsR ![](reference/figures/letsr.png)
+
+## The package
+
+The letsR package is being developed to help researchers handle,
+process, and analyze macroecological data. It aims to integrate these
+methodological processes into a single software platform for
+macroecological analyses. The package’s main functions allow users to
+build presence-absence matrices, the primary analytical tool in
+macroecology, from species’ geographical distributions and merge them
+with species’ traits, conservation information and spatial environmental
+layers. In addition, other packages’ functions enable users to summarize
+and visualize data from presence-absence matrices.
+
+All functions in this package use a prefix and a suffix separated by a
+dot; the prefix refers to the package’s name, and the suffix to the
+actual function. This nomenclature avoids confusion with potentially
+similarly-named functions from other R packages. For instance, the letsR
+function used to create presence-absence matrices is called
+`lets.presab` (but see also `lets.presab.birds` and
+`lets.presab.points`), whereas the one used to add variables to a
+presence-absence matrix is called `lets.addvar`.  
+The package’s primary functions create and work on a particular S3
+object class called `PresenceAbsence`. Such `PresenceAbsence` object
+class allows storing information beyond presence-absence data
+(e.g. user-defined grid-cell system) and using the generic `plot`,
+`summary` and `print` functions of R. Also, some package’s functions
+allow the user to input customary R objects (e.g. `vector`, `matrix`,
+`data.frame`).
+
+The letsR package is in continuous development, and suggestions are more
+than welcome!
+
+We hope you enjoy it and find it helpful.
+
+## Package publication
+
+<https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.12401>
+
+## Install
+
+Install `letsR` from CRAN
+
+``` coffee
+install.packages("letsR")
+library("letsR")
+```
+
+Install `letsR` developers version from github
+
+``` coffee
+install.packages("devtools")
+library(devtools)
+install_github("macroecology/letsR")
+library(letsR)
+```
+
+OBS.: To download the developers version you will need to have the git
+software installed (<https://git-scm.com/>). If you are a windows user
+you will also need to download the Rtools
+(<https://cran.r-project.org/bin/windows/Rtools/>).
+
+## Note
+
+Due to changes in the IUCN API and limitations in data distribution
+established by IUCN terms of use, we are no longer maintaining the
+functions lets.iucn, lets.iucn.hist and lets.iucn.ha. These functions
+will be removed from the package in the next version. We apologize for
+any inconvenience this may cause.
+
+# Package index
+
+## All functions
+
+- [`IUCN`](https://brunovilela.github.io/letsR/reference/IUCN.md) : IUCN
+  evaluation for frogs of the genus Phyllomedusa
+- [`PAM`](https://brunovilela.github.io/letsR/reference/PAM.md) :
+  PresenceAbsence object for frogs of the genus Phyllomedusa
+- [`Phyllomedusa`](https://brunovilela.github.io/letsR/reference/Phyllomedusa.md)
+  : Phyllomedusa
+- [`PresenceAbsence`](https://brunovilela.github.io/letsR/reference/PresenceAbsence.md)
+  [`PresenceAbsence-class`](https://brunovilela.github.io/letsR/reference/PresenceAbsence.md)
+  : PresenceAbsence Class
+- [`lets.pamcrop()`](https://brunovilela.github.io/letsR/reference/lets.PAMcrop.md)
+  : Crop a PresenceAbsence object based on an input shapefile
+- [`lets.addpoly()`](https://brunovilela.github.io/letsR/reference/lets.addpoly.md)
+  : Add polygon coverage to a PresenceAbscence object
+- [`lets.addvar()`](https://brunovilela.github.io/letsR/reference/lets.addvar.md)
+  : Add variables (in raster format) to a PresenceAbscence object
+- [`lets.attrcells()`](https://brunovilela.github.io/letsR/reference/lets.attrcells.md)
+  : Descriptors of centrality, border proximity, and isolation in
+  attribute space
+- [`lets.attrpam()`](https://brunovilela.github.io/letsR/reference/lets.attrpam.md)
+  : Attribute-space Presence–Absence Matrix (attrPAM)
+- [`lets.classvar()`](https://brunovilela.github.io/letsR/reference/lets.classvar.md)
+  : Frequency distribution of a variable within a species' range
+- [`lets.correl()`](https://brunovilela.github.io/letsR/reference/lets.correl.md)
+  : Compute correlogram based on the Moran's I index
+- [`lets.distmat()`](https://brunovilela.github.io/letsR/reference/lets.distmat.md)
+  : Compute a geographic distance matrix
+- [`lets.envcells()`](https://brunovilela.github.io/letsR/reference/lets.envcells.md)
+  : Environmental descriptors for Presence–Absence in environmental
+  space
+- [`lets.envpam()`](https://brunovilela.github.io/letsR/reference/lets.envpam.md)
+  : Create a presence–absence matrix in environmental space
+- [`lets.field()`](https://brunovilela.github.io/letsR/reference/lets.field.md)
+  : Create species' values based on the species co-occurrence within
+  focal ranges
+- [`lets.gridirizer()`](https://brunovilela.github.io/letsR/reference/lets.gridirizer.md)
+  : Fits a grid into a PresenceAbsence object
+- [`lets.iucncont()`](https://brunovilela.github.io/letsR/reference/lets.iucncont.md)
+  : Transform IUCN RedList conservation status to continuous values
+- [`lets.load()`](https://brunovilela.github.io/letsR/reference/lets.load.md)
+  : Load a PresenceAbsence object
+- [`lets.maplizer()`](https://brunovilela.github.io/letsR/reference/lets.maplizer.md)
+  : Create a matrix summarizing species' attributes within cells of a
+  PresenceAbsence object
+- [`lets.maplizer.attr()`](https://brunovilela.github.io/letsR/reference/lets.maplizer.attr.md)
+  : Map species-level attributes over the attribute-space grid
+- [`lets.maplizer.env()`](https://brunovilela.github.io/letsR/reference/lets.maplizer.env.md)
+  : Map species attributes in both environmental and geographic spaces
+- [`lets.midpoint()`](https://brunovilela.github.io/letsR/reference/lets.midpoint.md)
+  : Compute the midpoint of species' geographic ranges
+- [`lets.overlap()`](https://brunovilela.github.io/letsR/reference/lets.overlap.md)
+  : Compute pairwise species' geographic overlaps
+- [`lets.plot.attrcells()`](https://brunovilela.github.io/letsR/reference/lets.plot.attrcells.md)
+  : Map AttrPAM descriptor layers
+- [`lets.plot.attrpam()`](https://brunovilela.github.io/letsR/reference/lets.plot.attrpam.md)
+  : Plot attrPAM results
+- [`lets.plot.envcells()`](https://brunovilela.github.io/letsR/reference/lets.plot.envcells.md)
+  : Map envPAM descriptors
+- [`lets.plot.envpam()`](https://brunovilela.github.io/letsR/reference/lets.plot.envpam.md)
+  : Plot species richness in environmental and geographical space
+- [`lets.presab()`](https://brunovilela.github.io/letsR/reference/lets.presab.md)
+  : Create a presence-absence matrix of species' geographic ranges
+  within a grid
+- [`lets.presab.birds()`](https://brunovilela.github.io/letsR/reference/lets.presab.birds.md)
+  : Create a presence-absence matrix of species' geographic ranges
+  within a grid for the Birdlife spatial data
+- [`lets.presab.grid()`](https://brunovilela.github.io/letsR/reference/lets.presab.grid.md)
+  : Create a presence-absence matrix of species' geographic ranges
+  within a user's grid shapefile (beta version)
+- [`lets.presab.grid.points()`](https://brunovilela.github.io/letsR/reference/lets.presab.grid.points.md)
+  : Create a presence-absence matrix based on species' point occurrences
+  within a user's grid shapefile (beta version)
+- [`lets.presab.points()`](https://brunovilela.github.io/letsR/reference/lets.presab.points.md)
+  : Create a presence-absence matrix based on species' point occurrences
+- [`lets.rangesize()`](https://brunovilela.github.io/letsR/reference/lets.rangesize.md)
+  : Compute species' geographic range sizes
+- [`lets.save()`](https://brunovilela.github.io/letsR/reference/lets.save.md)
+  : Save a PresenceAbsence object
+- [`lets.shFilter()`](https://brunovilela.github.io/letsR/reference/lets.shFilter.md)
+  : Filter species' shapefiles based on its presence, origin, and season
+- [`lets.subsetPAM()`](https://brunovilela.github.io/letsR/reference/lets.subsetPAM.md)
+  : Subset a PresenceAbsence object based on species names
+- [`lets.summarizer()`](https://brunovilela.github.io/letsR/reference/lets.summarizer.md)
+  : Summarize variable(s) values in a presence-absence matrix within
+  species' ranges
+- [`lets.summaryze.cells()`](https://brunovilela.github.io/letsR/reference/lets.summaryze.cells.md)
+  : Aggregate cell-wise metrics across occupied cells per species
+- [`lets.transf()`](https://brunovilela.github.io/letsR/reference/lets.transf.md)
+  : Transform values of a vector
+- [`letsR-package`](https://brunovilela.github.io/letsR/reference/letsR-package.md)
+  [`letsR`](https://brunovilela.github.io/letsR/reference/letsR-package.md)
+  : Tools for Data Handling and Analysis in Macroecology.
+- [`plot(`*`<PresenceAbsence>`*`)`](https://brunovilela.github.io/letsR/reference/plot.PresenceAbsence.md)
+  : Plot an object of class PresenceAbsence
+- [`prec`](https://brunovilela.github.io/letsR/reference/prec.md) :
+  Annual Precipitation raster for the world.
+- [`print(`*`<PresenceAbsence>`*`)`](https://brunovilela.github.io/letsR/reference/print.PresenceAbsence.md)
+  : Print for object of class PresenceAbsence
+- [`print.summary(`*`<PresenceAbsence>`*`)`](https://brunovilela.github.io/letsR/reference/print.summary.PresenceAbsence.md)
+  : Print summary for object of class PresenceAbsence
+- [`summary(`*`<PresenceAbsence>`*`)`](https://brunovilela.github.io/letsR/reference/summary.PresenceAbsence.md)
+  : Summary for object of class PresenceAbsence
+- [`temp`](https://brunovilela.github.io/letsR/reference/temp.md) : Mean
+  temperature raster for the world.
+- [`wrld_simpl`](https://brunovilela.github.io/letsR/reference/wrld_simpl.md)
+  : Simplified world country polygons
+
+# Articles
+
+### All vignettes
+
+- [A guide to transform species distributions into a presence absence
+  matrix based on a user-defined grid in
+  R](https://brunovilela.github.io/letsR/articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.md):
+- [Adding variables to a PresenceAbsence
+  object](https://brunovilela.github.io/letsR/articles/Adding-variables-to-a-presenceabsence-object.md):
+- [Cropping and subseting your presence absence
+  matrix](https://brunovilela.github.io/letsR/articles/cropping-and-subseting-your-presence-absence-matrix.md):
+- [Cross-mapping biodiversity metrics across
+  spaces](https://brunovilela.github.io/letsR/articles/Cross-mapping-biodiversity-metrics-Phyllomedusa.md):
+- [Mapping species richness in attribute
+  space](https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-attribute-space.md):
+- [Mapping species richness in environmental
+  space](https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-environmental-space.md):
+- [Mapping species traits: community level
+  analysis](https://brunovilela.github.io/letsR/articles/mapping-species-traits.md):
+- [How to save and load a PresenceAbsence
+  object](https://brunovilela.github.io/letsR/articles/save-load-presenceabsence.md):
+- [Macroecological analysis at the species
+  level](https://brunovilela.github.io/letsR/articles/species-level-macroecological-analysis.md):

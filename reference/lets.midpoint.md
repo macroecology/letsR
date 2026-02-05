@@ -1,0 +1,95 @@
+# Compute the midpoint of species' geographic ranges
+
+Calculate species distribution midpoint from a presence-absence matrix
+using several methods.
+
+## Usage
+
+``` r
+lets.midpoint(pam, planar = FALSE, method = "PC", inside = FALSE)
+```
+
+## Arguments
+
+- pam:
+
+  A presence-absence `matrix` (sites in the rows and species in the
+  columns, with the first two columns containing the longitudinal and
+  latitudinal coordinates, respectively), or an object of class
+  [`PresenceAbsence`](https://brunovilela.github.io/letsR/reference/PresenceAbsence.md).
+
+- planar:
+
+  Logical, if `FALSE` the coordinates are in Longitude/Latitude. If
+  `TRUE` the coordinates are planar.
+
+- method:
+
+  Default option, "PC" (polygon centroid) will generate a polygon from
+  the raster, and calculate the centroid of this polygon based on the
+  function
+  [`terra::centroids`](https://rspatial.github.io/terra/reference/centroids.html).
+  Note that for the "PC" method, users can only use PresenceAbsence
+  objects. Note also that this method will not be the best for
+  PresenceAbsence objects made from occurrence records, or that have
+  multiple disjoint distributions. Users can also choose the geographic
+  midpoint, using the option "GM". "GM" will create a bounding box
+  across the extremes of the distribution and calculate the centroid.
+  Alternatively, the midpoint can be calculated as the point that
+  minimize the distance between all cells of the PAM, using the method
+  "CMD"(centre of minimum distance). The user can also calculate the
+  midpoint, based on the centroid of the minimum convex polygon of the
+  distribution, using the method "MCC". This last method is useful when
+  using a PresenceAbsence object made from occurrence records.
+
+- inside:
+
+  logical. If TRUE the points returned are guaranteed to be inside the
+  polygons or on the lines, but they are not the true centroids. True
+  centroids may be outside a polygon, for example when a polygon is
+  "bean shaped", and they are unlikely to be on their line
+
+## Value
+
+A `data.frame` containing the species' names and geographic coordinates
+(longitude \[x\], latitude \[y\]) of species' midpoints.
+
+## See also
+
+[`lets.presab`](https://brunovilela.github.io/letsR/reference/lets.presab.md)
+
+[`lets.presab.birds`](https://brunovilela.github.io/letsR/reference/lets.presab.birds.md)
+
+## Author
+
+Fabricio Villalobos & Bruno Vilela
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+data(PAM)
+mid <- lets.midpoint(PAM, method = "PC")
+mid2 <- lets.midpoint(PAM, method = "GM")
+mid3 <- lets.midpoint(PAM, method = "CMD")
+mid4 <- lets.midpoint(PAM, method = "MCC")
+mid5 <- lets.midpoint(PAM, method = "PC", planar = TRUE)
+mid6 <- lets.midpoint(PAM, method = "GM", planar = TRUE)
+mid7 <- lets.midpoint(PAM, method = "CMD", planar = TRUE)
+mid8 <- lets.midpoint(PAM, method = "MCC", planar = TRUE)
+
+for (sp in seq_len(nrow(mid))) {
+ #sp = 4 # Or choose a line or species
+ plot(PAM, name = mid[sp, 1])
+ points(mid[sp, -1], col = adjustcolor("blue", .8), pch = 20, cex = 1.5)
+ points(mid2[sp, -1], col = adjustcolor("green", .8), pch = 20, cex = 1.5)
+ points(mid3[sp, -1], col = adjustcolor("yellow", .8), pch = 20, cex = 1.5)
+ points(mid4[sp, -1], col = adjustcolor("purple", .8), pch = 20, cex = 1.5)
+ points(mid5[sp, -1], col = adjustcolor("orange", .8), pch = 20, cex = 1.5)
+ points(mid6[sp, -1], col = adjustcolor("black", .8), pch = 20, cex = 1.5)
+ points(mid7[sp, -1], col = adjustcolor("gray", .8), pch = 20, cex = 1.5)
+ points(mid8[sp, -1], col = adjustcolor("brown", .8), pch = 20, cex = 1.5)
+ Sys.sleep(1)
+}
+} # }
+```
