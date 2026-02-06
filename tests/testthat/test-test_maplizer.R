@@ -1,107 +1,30 @@
-context("Tests for lets.maplizer.env")
+context("Test for lets.maplizer")
 
-prec <- unwrap(prec)
-temp <- unwrap(temp)
-PAM <- lets.presab(Phyllomedusa, remove.cells = FALSE)
-envs <- lets.addvar(PAM, c(temp, prec), onlyvar = TRUE)
-colnames(envs) <- c("Temperature", "Preciptation")
-wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
-PAM <- lets.pamcrop(PAM, vect(wrld_simpl))
+data(PAM)
+data(IUCN)
+trait <- IUCN$Description_Year
 
-# Create environmental PAM
-res <- lets.envpam(PAM, envs, remove.cells = FALSE)
-
-
-
-test_that("returns correct structure", {
-  res_map <- lets.maplizer.env(res, 
-                           y = IUCN$Description_Year, 
-                           z = IUCN$Species)
+test_that("lets.maplizer works fine", {
   
-  expect_named(res_map,
-               c("Matrix_env", "Matrix_geo", "Env_Raster", "Geo_Raster")
-  )
+  resu_test <- lets.maplizer(PAM, trait, PAM$S)
+  expect_equal(class(resu_test)[1], "matrix")
+  expect_true(ncol(resu_test) == 3)
 })
 
-
-test_that("factor y is correctly converted to numeric", {
-  y_factor <- factor(c(2000, 1990, 2010))
-  res2 <- lets.maplizer.env(res,
-                            y = y_factor,
-                            z = IUCN$Species[1:3])
+test_that("lets.maplizer works fine, other func", {
   
-  expect_type(res2, "list")
-  expect_true("Matrix_env" %in% names(res2))
+  resu_test <- lets.maplizer(PAM, trait, PAM$S, func = sd)
+  expect_equal(class(resu_test)[1], "matrix")
+  expect_true(ncol(resu_test) == 3)
 })
 
-
-test_that("species in data but missing in PAM are ignored", {
-  z_mixed <- c(IUCN$Species[1:5], "Ghostus invisibilis")
-  y_mixed <- c(IUCN$Description_Year[1:5], 9999)
+test_that("lets.maplizer works fine", {
   
-  res3 <- lets.maplizer.env(res, y = y_mixed, z = z_mixed)
+  resu_test <- lets.maplizer(PAM, trait, PAM$S, ras = TRUE)
+  expect_equal(class(resu_test)[1], "list")
+  expect_equal(class(resu_test[[1]])[1], "matrix")
+  expect_true(inherits(resu_test[[2]], "SpatRaster"))
   
-  expect_true(is.list(res3))
-  expect_true("Matrix_env" %in% names(res3))
+  expect_true(ncol(resu_test[[1]]) == 3)
 })
-
-
-test_that("weighted = TRUE overrides func", {
-  res_w <- lets.maplizer.env(res,
-                             y = IUCN$Description_Year,
-                             z = IUCN$Species,
-                             func = median,
-                             weighted = TRUE)
-  
-  res_m <- lets.maplizer.env(res,
-                             y = IUCN$Description_Year,
-                             z = IUCN$Species,
-                             func = median,
-                             weighted = FALSE)
-  
-  expect_false(isTRUE(all.equal(res_w$Matrix_env, res_m$Matrix_env)))
-})
-
-
-test_that("NAs in y are handled without crashing", {
-  y_na <- IUCN$Description_Year
-  y_na[1:10] <- NA
-  
-  expect_no_error(
-    lets.maplizer.env(res, y = y_na, z = IUCN$Species)
-  )
-})
-
-
-test_that("NAs in y are handled without crashing", {
-  y_na <- IUCN$Description_Year
-  y_na[1:10] <- NA
-  
-  expect_no_error(
-    lets.maplizer.env(res, y = y_na, z = IUCN$Species)
-  )
-})
-
-
-test_that("returns raster objects when ras = TRUE", {
-  res_r <- lets.maplizer.env(res,
-                             y = IUCN$Description_Year,
-                             z = IUCN$Species,
-                             ras = TRUE)
-  
-  expect_s4_class(res_r$Env_Raster, "SpatRaster")
-  expect_s4_class(res_r$Geo_Raster, "SpatRaster")
-})
-
-### the function doesn't work with 1 species only
-#est_that("works with a single species", {
-# res_single <- lets.maplizer.env(
-#    res,
-#    y = IUCN$Description_Year[1],
-#    z = IUCN$Species[1]
-#  )
-  
-#  expect_true(is.list(res_single))
-#  expect_true("Matrix_env" %in% names(res_single))
-#})
 

@@ -1,24 +1,29 @@
+context("tests for lets.envpam")
+
 data("Phyllomedusa")
 data("prec")
 data("temp")
-
+data("IUCN")
+  
 prec <- terra::unwrap(prec)
 temp <- terra::unwrap(temp)
-
-pam <- lets.presab(Phyllomedusa, remove.cells = FALSE)
-envs <- lets.addvar(pam, c(temp, prec), onlyvar = TRUE)
-colnames(envs) <- c("Temperature", "Preciptation")
-
-wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
-pam <- lets.pamcrop(pam, terra::vect(wrld_simpl))
-
-
+  
 
 # tests/testthat/test-lets.envpam.R
 test_that("lets.envpam creates expected structure and plot", {
   skip_on_cran()
- 
-  expect_warning(res <- lets.envpam(pam, envs))
+  
+  pam <- lets.presab(Phyllomedusa, remove.cells = FALSE)
+   suppressWarnings(
+     envs <- lets.addvar(pam, c(temp, prec), onlyvar = TRUE)
+  )
+  colnames(envs) <- c("Temperature", "Precipitation")
+  
+  wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
+  pam <- lets.pamcrop(pam, terra::vect(wrld_simpl))
+  res <- expect_warning(
+    lets.envpam(pam, envs)
+  )
   
   expect_type(res, "list")
   expect_named(res, c("Presence_and_Absence_Matrix_env",
