@@ -29,7 +29,7 @@ test_that("lets.attrcells returns a data.frame with expected columns", {
 
 
 
-test_that("lets.attrcells output has same number of rows as PAM_attribute", {
+test_that("lets.attrcells output has one row per attribute cell", {
   set.seed(2)
   df <- data.frame(
     Species = paste0("sp", 1:40),
@@ -40,7 +40,10 @@ test_that("lets.attrcells output has same number of rows as PAM_attribute", {
   x <- lets.attrpam(df, n_bins = 8)
   y <- lets.attrcells(x)
   
-  expect_equal(nrow(y), nrow(x$PAM_attribute))
+  expect_equal(
+    nrow(y),
+    terra::ncell(x$Attr_Richness_Raster)
+  )
 })
 
 
@@ -131,7 +134,7 @@ test_that("midpoint distances are negated (centrality direction)", {
 
 
 test_that("lets.plot.attrcells works without plotting (plot_ras = FALSE)", {
-  skip("Ainda precisa arrumar isso")
+
   set.seed(1)
   df <- data.frame(
     Species = paste0("sp", 1:50),
@@ -149,7 +152,7 @@ test_that("lets.plot.attrcells works without plotting (plot_ras = FALSE)", {
 
 
 test_that("lets.plot.attrcells returns rasters when ras = TRUE", {
-  skip("Ainda precisa arrumar isso")
+  
   set.seed(2)
   df <- data.frame(
     Species = paste0("sp", 1:40),
@@ -164,7 +167,10 @@ test_that("lets.plot.attrcells returns rasters when ras = TRUE", {
   
   expect_type(ras_list, "list")
   expect_gt(length(ras_list), 0)
-  expect_true(all(vapply(ras_list, terra::is.raster, FUN.VALUE = logical(1))))
+  expect_true(
+    all(vapply(ras_list, inherits, logical(1), "SpatRaster"))
+  )
+  
 })
 
 

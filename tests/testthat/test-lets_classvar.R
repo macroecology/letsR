@@ -1,9 +1,14 @@
 context("Test for lets.classvar")
 
- data(PAM)
- data(temp)
- temp <- terra::unwrap(temp)
- pamvar <- lets.addvar(PAM, temp)
+setup({
+  data(PAM)
+  data(temp)
+  temp <- terra::unwrap(temp)
+  
+  pamvar <<- suppressWarnings(
+    lets.addvar(PAM, temp)
+  )
+})
  
 
 test_that("lets.addpoly lets.classvar fine", {
