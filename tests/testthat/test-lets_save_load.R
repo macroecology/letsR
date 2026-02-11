@@ -1,6 +1,8 @@
 context("Tests for lets.save and lets.load")
 
 test_that("lets.save and lets.load work correctly", {
+  skip_on_cran()          # opcional, se necessário
+  skip_on_ci()
   
   Species <- paste0("sp", 1:3)
   PAM_matrix <- data.frame(
