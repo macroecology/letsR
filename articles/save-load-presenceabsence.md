@@ -8,9 +8,7 @@ functions `save` and `load`.
 
 ``` r
 library(letsR)
-```
 
-``` r
 data(PAM) # Example data
 lets.save(PAM, file = "PAM.RData") # save the PresenceAbsence object
 PAM <- lets.load(file = "PAM.RData") # Load the PresenceAbsence object 
