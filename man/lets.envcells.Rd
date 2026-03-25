@@ -18,23 +18,29 @@ lets.envcells(x, perc = 0.2, remove.cells = FALSE)
 }}
 
 \item{perc}{Numeric in (0,1], the fraction used in the robust border metric
-(mean of the \emph{n} smallest distances to zero-richness cells). Default = 0.2.}
+(mean of the \emph{n} smallest distances to zero-richness cells). Default = 0.1.}
 
 \item{remove.cells}{Logical. If 'TRUE', remove empty cells from the results.}
 }
 \value{
-A data frame with one row per environmental cell and the following columns:
+A data frame with one row per environmental cell. The output includes:
 \itemize{
   \item \code{Cell_env}: Environmental cell identifier.
   \item \code{Frequency}: Number of geographic cells mapped to the environmental cell.
+  \item \code{Area}: Summed area of the associated geographic cells.
   \item \code{Isolation (Min.)}, \code{Isolation (1st Qu.)}, \code{Isolation (Median)},
-        \code{Isolation (Mean)}, \code{Isolation (3rd Qu.)}, \code{Isolation (Max.)}:
-        Summary of pairwise geographic distances.
-  \item \code{Weighted Mean Distance to midpoint}, \code{Mean Distance to midpoint}:
-        Negated distances in standardized environmental space (larger values = more central).
-  \item \code{Minimum Zero Distance}, \code{Minimum 10\% Zero Distance}, \code{Distance to MCP border}:
-        Three proxies for border proximity.
-  \item \code{Frequency Weighted Distance}: Frequency-weighted mean distance to all other env cells.
+        \code{Isolation (Mean)}, \code{Isolation (3rd Qu.)}, and \code{Isolation (Max.)}:
+        Summary statistics of pairwise geographic distances among associated geographic cells.
+  \item \code{Weighted Mean Distance to midpoint}: Negated distance from the cell to the
+        frequency-weighted midpoint in standardized environmental space.
+  \item \code{Mean Distance to midpoint}: Negated distance from the cell to the unweighted
+        midpoint in standardized environmental space.
+  \item \code{Minimum Zero Distance}: Minimum distance from the cell to any empty environmental cell.
+  \item A column named according to \code{perc} (e.g., \code{Minimum 10\% Zero Distance}):
+        Mean distance from the cell to the nearest fraction of empty environmental cells.
+  \item \code{Distance to MCP border}: Distance from the cell to the environmental-space border.
+  \item \code{Frequency Weighted Distance}: Frequency-weighted mean distance from the cell
+        to all other environmental cells.
 }
 }
 \description{

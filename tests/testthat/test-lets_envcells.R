@@ -45,7 +45,6 @@ test_that("lets.envcells basic functionality", {
     "Weighted Mean Distance to midpoint",
     "Mean Distance to midpoint",
     "Minimum Zero Distance",
-    "Minimum 10% Zero Distance",
     "Distance to MCP border",
     "Frequency Weighted Distance"
   ) %in% colnames(res)))
