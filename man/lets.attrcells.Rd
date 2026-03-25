@@ -2,77 +2,152 @@
 % Please edit documentation in R/lets_attrcells.R
 \name{lets.attrcells}
 \alias{lets.attrcells}
-\title{Descriptors of centrality, border proximity, and isolation in attribute space}
+\title{Descriptors of position and isolation in attribute space}
 \usage{
-lets.attrcells(x, perc = 0.2, remove.cells = FALSE)
+lets.attrcells(x, y = NULL, perc = 0.2, remove.cells = FALSE)
 }
 \arguments{
-\item{x}{A list produced by \code{\link{lets.attrpam}} containing:
+\item{x}{A list produced by \code{\link{lets.attrpam}}, containing at
+least:
 \itemize{
-  \item \code{$PAM_attribute}: data.frame with columns \code{Cell_attr} (first),
-        the two attribute coordinates (second and third), followed by taxa columns (0/1).
-  \item \code{$Attr_Richness_Raster}: \link[terra]{SpatRaster} with richness per attribute cell.
+  \item \code{$PAM_attribute}: a data frame in which the first column is
+  \code{Cell_attr}, the second and third columns are the two attribute
+  coordinates, and the remaining columns correspond to taxa coded as
+  presence (1) or absence (0).
+  \item \code{$Attr_Richness_Raster}: a \link[terra]{SpatRaster}
+  containing the richness of taxa in each attribute cell.
 }}
 
-\item{perc}{Numeric in (0, 1]; fraction used in the robust border metric
-(mean of the \emph{n} smallest zero-richness distances). Default \code{0.2}.}
+\item{y}{A geographic presence–absence object produced by
+\code{\link{lets.presab}}. If \code{NULL}, geographic frequency and
+geographic isolation metrics are not calculated, and attribute-cell
+richness is used as the weighting variable in attribute-space
+calculations.}
 
-\item{remove.cells}{Logical. If 'TRUE', remove empty cells from the results.}
+\item{perc}{Numeric value in the interval \eqn{(0, 1]} indicating the
+proportion of the shortest distances to empty cells to be used in the
+robust border-distance metric. Default is \code{0.2}.}
+
+\item{remove.cells}{Logical. If \code{TRUE}, removes attribute cells that
+were absent from \code{x$PAM_attribute} and were added internally to
+complete the raster structure.}
 }
 \value{
-A \code{data.frame} with one row per attribute cell and the columns:
+A \code{data.frame} with one row per attribute cell. The output always
+includes:
 \itemize{
-  \item \code{Cell_attr}: attribute cell identifier (1..n).
-  \item \code{Richness}: taxa count for the cell (from \code{$Attr_Richness_Raster}).
-  \item \code{Weighted Mean Distance to midpoint}, \code{Mean Distance to midpoint}:
-        negated distances (larger = more central) in standardized attribute space.
-  \item \code{Minimum Zero Distance}, \code{Minimum 10\% Zero Distance},
-        \code{Distance to MCP border}: border proximity proxies.
-  \item \code{Frequency Weighted Distance}: richness-weighted mean distance to all other cells.
+  \item \code{Cell_attr}: attribute-cell identifier.
+  \item \code{Weighted Mean Distance to midpoint}: negative distance to
+  the richness- or frequency-weighted midpoint.
+  \item \code{Mean Distance to midpoint}: negative distance to the
+  unweighted midpoint.
+  \item \code{Minimum Zero Distance}: minimum distance to an empty
+  attribute cell.
+  \item \code{Minimum 10\% Zero Distance}: mean distance to the nearest
+  \code{perc} proportion of empty attribute cells.
+  \item \code{Distance to MCP border}: distance to the convex-hull border
+  of occupied attribute space.
+  \item \code{Frequency Weighted Distance}: weighted mean distance to all
+  other attribute cells.
+}
+
+When \code{y} is provided, the output additionally includes:
+\itemize{
+  \item \code{Frequency}: number of geographic cells associated with the
+  taxa in each attribute cell.
+  \item \code{Isolation (Min.)}, \code{Isolation (1st Qu.)},
+  \code{Isolation (Median)}, \code{Isolation (Mean)},
+  \code{Isolation (3rd Qu.)}, \code{Isolation (Max.)}: summary
+  statistics of pairwise geographic distances among associated
+  geographic cells.
 }
 }
 \description{
-Computes per-cell descriptors for an attribute-space presence–absence matrix
-(as returned by \code{\link{lets.attrpam}}), using the two numeric attributes
-as a 2D coordinate system. The descriptors include:
+Calculates descriptor variables for each cell of an attribute-space
+presence–absence matrix (AttrPAM), as returned by
+\code{\link{lets.attrpam}}. The two attribute axes are treated as a
+two-dimensional coordinate system, and descriptors are computed to
+summarize each cell's position in attribute space and its relation to
+other occupied or empty cells.
+
+The function can also incorporate a geographic presence–absence matrix,
+allowing attribute cells to be linked to the number and spatial
+configuration of geographic cells associated with the taxa occurring in
+each attribute cell.
+
+The descriptors include:
 \itemize{
-  \item \strong{Richness}: number of taxa in each attribute cell (from the richness raster).
-  \item \strong{Distances to attribute midpoints}: distance to the weighted midpoint
-        (weights = richness) and to the unweighted midpoint, both computed in standardized
-        attribute space; returned as \emph{negated} values so that larger numbers indicate
-        greater centrality.
-  \item \strong{Border proximity}: three proxies — minimum distance to any zero-richness cell;
-        robust mean of the closest \code{perc} fraction of zero-richness distances; and
-        minimum distance to the convex-hull (MCP) border of occupied attribute cells.
-  \item \strong{Attribute isolation}: richness-weighted mean distance from each cell
-        to all other cells in standardized attribute space.
+  \item \strong{Frequency}: when \code{y} is provided, the number of
+  geographic cells associated with the taxa present in each attribute
+  cell.
+  \item \strong{Geographic isolation}: when \code{y} is provided,
+  summaries of pairwise distances among the geographic cells associated
+  with each attribute cell.
+  \item \strong{Distance to midpoints}: distance from each attribute cell
+  to the weighted and unweighted midpoints of occupied attribute space,
+  computed in standardized attribute space. These values are returned as
+  negative distances so that larger values indicate greater centrality.
+  \item \strong{Border proximity}: minimum distance to any empty
+  attribute cell, mean distance to the closest \code{perc} proportion of
+  empty cells, and distance to the convex-hull border of occupied
+  attribute space.
+  \item \strong{Frequency-weighted distance}: weighted mean distance from
+  each attribute cell to all other attribute cells in standardized
+  attribute space.
 }
 }
 \details{
 Attribute-cell descriptors for an attribute-space PAM (AttrPAM)
 
 
-Attributes (columns 2–3 of \code{$PAM_attribute}) are standardized (z-scores)
-prior to distance calculations. Cells with \code{NA} richness are treated as zero
-when identifying zero-richness neighbors, and later masked in plotting.
+The two attribute variables (columns 2 and 3 of \code{x$PAM_attribute})
+are standardized to zero mean and unit variance before distance
+calculations.
+
+If \code{y} is provided, the function first links taxa occurring in each
+attribute cell to their occupied geographic cells, and then computes:
+\itemize{
+  \item the number of geographic cells associated with each attribute
+  cell (\code{Frequency});
+  \item summary statistics of pairwise geographic distances among those
+  cells.
+}
+
+If \code{y = NULL}, no geographic summaries are produced. In that case,
+the richness of each attribute cell, extracted from
+\code{x$Attr_Richness_Raster}, is used as the weight for midpoint and
+isolation calculations in attribute space.
+
+Empty attribute cells are identified as cells with zero frequency
+(or zero richness when \code{y = NULL}). Cells with \code{NA} values in
+the richness raster are treated as empty for these calculations.
+
+Distance to the midpoint is reported as a negative value by design, so
+that larger values correspond to cells located closer to the center of
+attribute space.
 }
 \examples{
 \dontrun{
-# Example with simulated traits
-n <- 2000
-Species <- paste0("sp", 1:n)
+# Example using a geographic PAM and simulated attributes
+data("PAM")
+
+n <- length(PAM$Species_name)
+Species <- PAM$Species_name
 trait_a <- rnorm(n)
 trait_b <- trait_a * 0.2 + rnorm(n)  # correlated trait
 df <- data.frame(Species, trait_a, trait_b)
 
-# Build AttrPAM
-x <- lets.attrpam(df, n_bins = 30)
+# Build the attribute-space PAM
+x <- lets.attrpam(df, n_bins = 4)
 
-# Compute descriptors
-y <- lets.attrcells(x)
+# Use the geographic PAM to calculate frequency and geographic isolation
+y <- PAM
+
+# Calculate attribute-cell descriptors
+cell_desc <- lets.attrcells(x, y)
 
 # Plot descriptors
-lets.plot.attrcells(x, y)
+lets.plot.attrcells(x, cell_desc)
 }
 
 }

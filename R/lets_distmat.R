@@ -41,7 +41,7 @@ lets.distmat <- function(xy, asdist = TRUE) {
       xy <- xy[[1]][, 1:2]
     }
   }
-
+  
   distan <- terra::distance(xy, lonlat = TRUE)
 
   # Transform in a distance matrix

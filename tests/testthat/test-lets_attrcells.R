@@ -15,7 +15,7 @@ test_that("lets.attrcells returns a data.frame with expected columns", {
   expect_gt(nrow(y), 0)
   
   expected_cols <- c(
-    "Cell_attr", "Richness",
+    "Cell_attr",
     "Weighted Mean Distance to midpoint",
     "Mean Distance to midpoint",
     "Minimum Zero Distance",
@@ -174,3 +174,72 @@ test_that("lets.plot.attrcells returns rasters when ras = TRUE", {
 })
 
 
+test_that("lets.attrcells works correctly when y is provided", {
+  
+  skip_on_cran()
+  
+  data("PAM")
+  
+  # Simulate attributes
+  n <- length(PAM$Species_name)
+  Species <- PAM$Species_name
+  trait_a <- rnorm(n)
+  trait_b <- trait_a * 0.2 + rnorm(n)
+  df <- data.frame(Species, trait_a, trait_b)
+  
+  # Build AttrPAM
+  x <- lets.attrpam(df, n_bins = 4)
+  
+  # Run function with geographic PAM
+  d <- lets.attrcells(x, y = PAM)
+  
+  # --- Basic structure ---
+  expect_true(is.data.frame(d))
+  expect_equal(nrow(d), terra::ncell(x$Attr_Richness_Raster))
+  
+  # --- Required columns ---
+  expected_cols <- c(
+    "Cell_attr",
+    "Frequency",
+    "Isolation (Min.)",
+    "Isolation (1st Qu.)",
+    "Isolation (Median)",
+    "Isolation (Mean)",
+    "Isolation (3rd Qu.)",
+    "Isolation (Max.)",
+    "Weighted Mean Distance to midpoint",
+    "Mean Distance to midpoint",
+    "Minimum Zero Distance",
+    "Minimum 10% Zero Distance",
+    "Distance to MCP border",
+    "Frequency Weighted Distance"
+  )
+  
+  expect_true(all(expected_cols %in% colnames(d)))
+  
+  # --- Frequency properties ---
+  expect_true(all(d$Frequency >= 0))
+  expect_true(is.numeric(d$Frequency))
+  
+  # --- Isolation metrics ---
+  iso_cols <- grep("Isolation", colnames(d), value = TRUE)
+  expect_true(all(sapply(d[iso_cols], is.numeric)))
+  
+  # --- Midpoint distances (should be <= 0 because negated) ---
+  expect_true(all(d$`Weighted Mean Distance to midpoint` <= 0, na.rm = TRUE))
+  expect_true(all(d$`Mean Distance to midpoint` <= 0, na.rm = TRUE))
+  
+  # --- Border metrics ---
+  expect_true(all(sapply(d[, c(
+    "Minimum Zero Distance",
+    "Minimum 10% Zero Distance",
+    "Distance to MCP border"
+  )], function(x) is.numeric(x))))
+  
+  # --- Weighted distance ---
+  expect_true(is.numeric(d$`Frequency Weighted Distance`))
+  
+  # --- No unexpected NA inflation (except expected edge cases) ---
+  expect_true(sum(is.na(d$Frequency)) == 0)
+  
+})

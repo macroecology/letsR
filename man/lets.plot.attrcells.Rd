@@ -4,7 +4,14 @@
 \alias{lets.plot.attrcells}
 \title{Map AttrPAM descriptor layers}
 \usage{
-lets.plot.attrcells(x, y, ras = FALSE, plot_ras = TRUE, col_func = NULL)
+lets.plot.attrcells(
+  x,
+  y,
+  ras = FALSE,
+  plot_ras = TRUE,
+  col_func = NULL,
+  mfrow = c(4, 4)
+)
 }
 \arguments{
 \item{x}{A list returned by \code{\link{lets.attrpam}} (must contain
@@ -19,6 +26,9 @@ one row per attribute cell (aligned with \code{x}).}
 \item{plot_ras}{Logical; if \code{TRUE}, plots each raster (default \code{TRUE}).}
 
 \item{col_func}{A custom color ramp palette function to use for plotting variables (e.g., from \code{colorRampPalette}).}
+
+\item{mfrow}{A vector of the form c(nr, nc). The figures will be drawn in an
+nr-by-nc array on the device by rows as in par documentation.}
 }
 \value{
 Invisibly returns \code{NULL}. If \code{ras = TRUE}, returns a named \code{list}
@@ -40,20 +50,21 @@ edge artifacts from empty attribute cells. The plotting grid defaults to
 \examples{
 \dontrun{
 # Example with simulated traits
-n <- 2000
-Species <- paste0("sp", 1:n)
+data(PAM)
+n <- length(PAM$Species_name)
+Species <- PAM$Species_name
 trait_a <- rnorm(n)
 trait_b <- trait_a * 0.2 + rnorm(n)  # correlated trait
 df <- data.frame(Species, trait_a, trait_b)
 
 # Build AttrPAM
-x <- lets.attrpam(df, n_bins = 30)
+x <- lets.attrpam(df, n_bins = 4)
 
 # Compute descriptors
-y <- lets.attrcells(x)
+desc <- lets.attrcells(x, PAM)
 
 # Plot descriptors
-lets.plot.attrcells(x, y)
+lets.plot.attrcells(x, desc)
 }
 
 }
