@@ -88,7 +88,8 @@ any inconvenience this may cause.
 - [`lets.addvar()`](https://brunovilela.github.io/letsR/reference/lets.addvar.md)
   : Add variables (in raster format) to a PresenceAbscence object
 - [`lets.attrcells()`](https://brunovilela.github.io/letsR/reference/lets.attrcells.md)
-  : Descriptors of position and isolation in attribute space
+  : Descriptors of position, centrality, and isolation in attribute
+  space
 - [`lets.attrpam()`](https://brunovilela.github.io/letsR/reference/lets.attrpam.md)
   : Attribute-space Presence–Absence Matrix (attrPAM)
 - [`lets.classvar()`](https://brunovilela.github.io/letsR/reference/lets.classvar.md)

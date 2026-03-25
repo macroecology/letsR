@@ -119,7 +119,7 @@ previous articles.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">envs</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Temperature"</span>, <span class="st">"Precipitation"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Environmental-space PAM (envPAM)</span></span>
-<span><span class="va">env_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.envpam.html">lets.envpam</a></span><span class="op">(</span><span class="va">PAM</span>, <span class="va">envs</span>, n_bins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="va">env_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.envpam.html">lets.envpam</a></span><span class="op">(</span><span class="va">PAM</span>, <span class="va">envs</span>, n_bins <span class="op">=</span> <span class="fl">30</span>, remove.cells <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot</span></span>
 <span><span class="fu"><a href="../reference/lets.plot.envpam.html">lets.plot.envpam</a></span><span class="op">(</span><span class="va">env_obj</span>, world <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -134,41 +134,41 @@ previous articles.</p>
 <span><span class="va">env_cells</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.envcells.html">lets.envcells</a></span><span class="op">(</span><span class="va">env_obj</span>, perc <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">env_cells</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Cell_env Frequency Isolation (Min.) Isolation (1st Qu.) Isolation (Median)</span></span>
-<span><span class="co">#&gt; 3        1         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 4        2         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 5        3         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 6        4         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 7        5         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 8        6         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt;   Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)</span></span>
-<span><span class="co">#&gt; 3               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 4               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 5               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 6               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 7               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 8               NA                  NA               NA</span></span>
+<span><span class="co">#&gt;   Cell_env Frequency Area Isolation (Min.) Isolation (1st Qu.)</span></span>
+<span><span class="co">#&gt; 1        1         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 2        2         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 3        3         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 4        4         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 5        5         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 6        6         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt;   Isolation (Median) Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)</span></span>
+<span><span class="co">#&gt; 1                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 2                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 3                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 4                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 5                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 6                 NA               NA                  NA               NA</span></span>
 <span><span class="co">#&gt;   Weighted Mean Distance to midpoint Mean Distance to midpoint</span></span>
-<span><span class="co">#&gt; 3                          -3.730908                 -3.457246</span></span>
-<span><span class="co">#&gt; 4                          -3.646836                 -3.382386</span></span>
-<span><span class="co">#&gt; 5                          -3.564523                 -3.309862</span></span>
-<span><span class="co">#&gt; 6                          -3.484092                 -3.239832</span></span>
-<span><span class="co">#&gt; 7                          -3.405677                 -3.172460</span></span>
-<span><span class="co">#&gt; 8                          -3.329421                 -3.107918</span></span>
-<span><span class="co">#&gt;   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border</span></span>
-<span><span class="co">#&gt; 3                     0                 0.9362266                      0</span></span>
-<span><span class="co">#&gt; 4                     0                 0.8700119                      0</span></span>
-<span><span class="co">#&gt; 5                     0                 0.8136812                      0</span></span>
-<span><span class="co">#&gt; 6                     0                 0.7676179                      0</span></span>
-<span><span class="co">#&gt; 7                     0                 0.7323872                      0</span></span>
-<span><span class="co">#&gt; 8                     0                 0.7068043                      0</span></span>
+<span><span class="co">#&gt; 1                          -3.730908                 -3.457246</span></span>
+<span><span class="co">#&gt; 2                          -3.646836                 -3.382386</span></span>
+<span><span class="co">#&gt; 3                          -3.564523                 -3.309862</span></span>
+<span><span class="co">#&gt; 4                          -3.484092                 -3.239832</span></span>
+<span><span class="co">#&gt; 5                          -3.405677                 -3.172460</span></span>
+<span><span class="co">#&gt; 6                          -3.329421                 -3.107918</span></span>
+<span><span class="co">#&gt;   Minimum Zero Distance Minimum 20% Zero Distance Distance to MCP border</span></span>
+<span><span class="co">#&gt; 1                     0                 0.9362266                      0</span></span>
+<span><span class="co">#&gt; 2                     0                 0.8700119                      0</span></span>
+<span><span class="co">#&gt; 3                     0                 0.8136812                      0</span></span>
+<span><span class="co">#&gt; 4                     0                 0.7676179                      0</span></span>
+<span><span class="co">#&gt; 5                     0                 0.7323872                      0</span></span>
+<span><span class="co">#&gt; 6                     0                 0.7068043                      0</span></span>
 <span><span class="co">#&gt;   Frequency Weighted Distance</span></span>
-<span><span class="co">#&gt; 3                    3.800462</span></span>
-<span><span class="co">#&gt; 4                    3.718461</span></span>
-<span><span class="co">#&gt; 5                    3.638213</span></span>
-<span><span class="co">#&gt; 6                    3.559825</span></span>
-<span><span class="co">#&gt; 7                    3.483411</span></span>
-<span><span class="co">#&gt; 8                    3.409092</span></span></code></pre></div>
+<span><span class="co">#&gt; 1                    3.800462</span></span>
+<span><span class="co">#&gt; 2                    3.718461</span></span>
+<span><span class="co">#&gt; 3                    3.638213</span></span>
+<span><span class="co">#&gt; 4                    3.559825</span></span>
+<span><span class="co">#&gt; 5                    3.483411</span></span>
+<span><span class="co">#&gt; 6                    3.409092</span></span></code></pre></div>
 <p>Summarize those per-cell descriptors to species level by aggregating
 across the environmental cells each species occupies:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -176,28 +176,28 @@ across the environmental cells each species occupies:</p>
 <span><span class="va">env_by_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.summaryze.cells.html">lets.summaryze.cells</a></span><span class="op">(</span><span class="va">env_obj</span>, <span class="va">env_cells</span>, func <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">env_by_species</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                    Species Frequency Isolation (Min.) Isolation (1st Qu.)</span></span>
-<span><span class="co">#&gt; 1    Phyllomedusa araguari   9.00000         97052.27            494018.8</span></span>
-<span><span class="co">#&gt; 2 Phyllomedusa atelopoides  25.38889        109736.78            593524.1</span></span>
-<span><span class="co">#&gt; 3      Phyllomedusa ayeaye  11.50000         99631.44            384047.4</span></span>
-<span><span class="co">#&gt; 4      Phyllomedusa azurea  11.59091        130717.35            462970.6</span></span>
-<span><span class="co">#&gt; 5     Phyllomedusa bahiana  11.91667        136522.70            463613.5</span></span>
-<span><span class="co">#&gt; 6      Phyllomedusa baltea  19.00000        110574.31            611182.1</span></span>
-<span><span class="co">#&gt;   Isolation (Median) Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)</span></span>
-<span><span class="co">#&gt; 1           767952.4         747035.8            923841.2          1500329</span></span>
-<span><span class="co">#&gt; 2          1109618.7        1175110.9           1714363.8          3008424</span></span>
-<span><span class="co">#&gt; 3           599271.8         667315.7            851729.1          1725300</span></span>
-<span><span class="co">#&gt; 4          1391519.0        1328709.9           2016286.4          3035828</span></span>
-<span><span class="co">#&gt; 5          1492534.7        1354451.4           2121714.6          2999208</span></span>
-<span><span class="co">#&gt; 6          1019632.7        1201164.4           1896221.5          2950964</span></span>
-<span><span class="co">#&gt;   Weighted Mean Distance to midpoint Mean Distance to midpoint</span></span>
-<span><span class="co">#&gt; 1                         -0.3188860                -0.1627780</span></span>
-<span><span class="co">#&gt; 2                         -0.6007348                -1.0114155</span></span>
-<span><span class="co">#&gt; 3                         -0.3310414                -0.1608610</span></span>
-<span><span class="co">#&gt; 4                         -0.4455612                -0.7009224</span></span>
-<span><span class="co">#&gt; 5                         -0.4520640                -0.6818815</span></span>
-<span><span class="co">#&gt; 6                         -0.6779813                -1.0585809</span></span>
-<span><span class="co">#&gt;   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border</span></span>
+<span><span class="co">#&gt;                    Species Frequency         Area Isolation (Min.)</span></span>
+<span><span class="co">#&gt; 1    Phyllomedusa araguari   9.00000  99942160705         97052.27</span></span>
+<span><span class="co">#&gt; 2 Phyllomedusa atelopoides  25.38889 310216725731        109736.78</span></span>
+<span><span class="co">#&gt; 3      Phyllomedusa ayeaye  11.50000 129979311887         99631.44</span></span>
+<span><span class="co">#&gt; 4      Phyllomedusa azurea  11.59091 137178852573        130717.35</span></span>
+<span><span class="co">#&gt; 5     Phyllomedusa bahiana  11.91667 142112800724        136522.70</span></span>
+<span><span class="co">#&gt; 6      Phyllomedusa baltea  19.00000 233017982880        110574.31</span></span>
+<span><span class="co">#&gt;   Isolation (1st Qu.) Isolation (Median) Isolation (Mean) Isolation (3rd Qu.)</span></span>
+<span><span class="co">#&gt; 1            494018.8           767952.4         747035.8            923841.2</span></span>
+<span><span class="co">#&gt; 2            593524.1          1109618.7        1175110.9           1714363.8</span></span>
+<span><span class="co">#&gt; 3            384047.4           599271.8         667315.7            851729.1</span></span>
+<span><span class="co">#&gt; 4            462970.6          1391519.0        1328709.9           2016286.4</span></span>
+<span><span class="co">#&gt; 5            463613.5          1492534.7        1354451.4           2121714.6</span></span>
+<span><span class="co">#&gt; 6            611182.1          1019632.7        1201164.4           1896221.5</span></span>
+<span><span class="co">#&gt;   Isolation (Max.) Weighted Mean Distance to midpoint Mean Distance to midpoint</span></span>
+<span><span class="co">#&gt; 1          1500329                         -0.3188860                -0.1627780</span></span>
+<span><span class="co">#&gt; 2          3008424                         -0.6007348                -1.0114155</span></span>
+<span><span class="co">#&gt; 3          1725300                         -0.3310414                -0.1608610</span></span>
+<span><span class="co">#&gt; 4          3035828                         -0.4455612                -0.7009224</span></span>
+<span><span class="co">#&gt; 5          2999208                         -0.4520640                -0.6818815</span></span>
+<span><span class="co">#&gt; 6          2950964                         -0.6779813                -1.0585809</span></span>
+<span><span class="co">#&gt;   Minimum Zero Distance Minimum 20% Zero Distance Distance to MCP border</span></span>
 <span><span class="co">#&gt; 1             0.2581989                 0.9296124              0.2581989</span></span>
 <span><span class="co">#&gt; 2             0.3258642                 1.0476293              0.3258642</span></span>
 <span><span class="co">#&gt; 3             0.3116736                 0.9521703              0.3116736</span></span>
@@ -233,7 +233,7 @@ real traits if available.)</p>
 <span>                       trait_b  <span class="op">=</span> <span class="va">trait_b</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Attribute-space PAM (AttrPAM)</span></span>
-<span><span class="va">attr_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.attrpam.html">lets.attrpam</a></span><span class="op">(</span><span class="va">attr_df</span>, n_bins <span class="op">=</span> <span class="fl">5</span>, remove.cells <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">attr_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.attrpam.html">lets.attrpam</a></span><span class="op">(</span><span class="va">attr_df</span>, n_bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Richness map in attribute space</span></span>
 <span><span class="fu"><a href="../reference/lets.plot.attrpam.html">lets.plot.attrpam</a></span><span class="op">(</span><span class="va">attr_obj</span><span class="op">)</span></span></code></pre></div>

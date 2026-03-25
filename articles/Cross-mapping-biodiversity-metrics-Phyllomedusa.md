@@ -38,7 +38,7 @@ envs <- lets.addvar(PAM, c(temp, prec), onlyvar = TRUE)
 colnames(envs) <- c("Temperature", "Precipitation")
 
 # Environmental-space PAM (envPAM)
-env_obj <- lets.envpam(PAM, envs, n_bins = 30)
+env_obj <- lets.envpam(PAM, envs, n_bins = 30, remove.cells = FALSE)
 
 # Plot
 lets.plot.envpam(env_obj, world = TRUE)
@@ -55,41 +55,41 @@ lets.plot.envpam(env_obj, world = TRUE)
 env_cells <- lets.envcells(env_obj, perc = 0.2)
 
 head(env_cells)
-#>   Cell_env Frequency Isolation (Min.) Isolation (1st Qu.) Isolation (Median)
-#> 3        1         0               NA                  NA                 NA
-#> 4        2         0               NA                  NA                 NA
-#> 5        3         0               NA                  NA                 NA
-#> 6        4         0               NA                  NA                 NA
-#> 7        5         0               NA                  NA                 NA
-#> 8        6         0               NA                  NA                 NA
-#>   Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)
-#> 3               NA                  NA               NA
-#> 4               NA                  NA               NA
-#> 5               NA                  NA               NA
-#> 6               NA                  NA               NA
-#> 7               NA                  NA               NA
-#> 8               NA                  NA               NA
+#>   Cell_env Frequency Area Isolation (Min.) Isolation (1st Qu.)
+#> 1        1         0   NA               NA                  NA
+#> 2        2         0   NA               NA                  NA
+#> 3        3         0   NA               NA                  NA
+#> 4        4         0   NA               NA                  NA
+#> 5        5         0   NA               NA                  NA
+#> 6        6         0   NA               NA                  NA
+#>   Isolation (Median) Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)
+#> 1                 NA               NA                  NA               NA
+#> 2                 NA               NA                  NA               NA
+#> 3                 NA               NA                  NA               NA
+#> 4                 NA               NA                  NA               NA
+#> 5                 NA               NA                  NA               NA
+#> 6                 NA               NA                  NA               NA
 #>   Weighted Mean Distance to midpoint Mean Distance to midpoint
-#> 3                          -3.730908                 -3.457246
-#> 4                          -3.646836                 -3.382386
-#> 5                          -3.564523                 -3.309862
-#> 6                          -3.484092                 -3.239832
-#> 7                          -3.405677                 -3.172460
-#> 8                          -3.329421                 -3.107918
-#>   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border
-#> 3                     0                 0.9362266                      0
-#> 4                     0                 0.8700119                      0
-#> 5                     0                 0.8136812                      0
-#> 6                     0                 0.7676179                      0
-#> 7                     0                 0.7323872                      0
-#> 8                     0                 0.7068043                      0
+#> 1                          -3.730908                 -3.457246
+#> 2                          -3.646836                 -3.382386
+#> 3                          -3.564523                 -3.309862
+#> 4                          -3.484092                 -3.239832
+#> 5                          -3.405677                 -3.172460
+#> 6                          -3.329421                 -3.107918
+#>   Minimum Zero Distance Minimum 20% Zero Distance Distance to MCP border
+#> 1                     0                 0.9362266                      0
+#> 2                     0                 0.8700119                      0
+#> 3                     0                 0.8136812                      0
+#> 4                     0                 0.7676179                      0
+#> 5                     0                 0.7323872                      0
+#> 6                     0                 0.7068043                      0
 #>   Frequency Weighted Distance
-#> 3                    3.800462
-#> 4                    3.718461
-#> 5                    3.638213
-#> 6                    3.559825
-#> 7                    3.483411
-#> 8                    3.409092
+#> 1                    3.800462
+#> 2                    3.718461
+#> 3                    3.638213
+#> 4                    3.559825
+#> 5                    3.483411
+#> 6                    3.409092
 ```
 
 Summarize those per-cell descriptors to species level by aggregating
@@ -100,28 +100,28 @@ across the environmental cells each species occupies:
 env_by_species <- lets.summaryze.cells(env_obj, env_cells, func = mean)
 
 head(env_by_species)
-#>                    Species Frequency Isolation (Min.) Isolation (1st Qu.)
-#> 1    Phyllomedusa araguari   9.00000         97052.27            494018.8
-#> 2 Phyllomedusa atelopoides  25.38889        109736.78            593524.1
-#> 3      Phyllomedusa ayeaye  11.50000         99631.44            384047.4
-#> 4      Phyllomedusa azurea  11.59091        130717.35            462970.6
-#> 5     Phyllomedusa bahiana  11.91667        136522.70            463613.5
-#> 6      Phyllomedusa baltea  19.00000        110574.31            611182.1
-#>   Isolation (Median) Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)
-#> 1           767952.4         747035.8            923841.2          1500329
-#> 2          1109618.7        1175110.9           1714363.8          3008424
-#> 3           599271.8         667315.7            851729.1          1725300
-#> 4          1391519.0        1328709.9           2016286.4          3035828
-#> 5          1492534.7        1354451.4           2121714.6          2999208
-#> 6          1019632.7        1201164.4           1896221.5          2950964
-#>   Weighted Mean Distance to midpoint Mean Distance to midpoint
-#> 1                         -0.3188860                -0.1627780
-#> 2                         -0.6007348                -1.0114155
-#> 3                         -0.3310414                -0.1608610
-#> 4                         -0.4455612                -0.7009224
-#> 5                         -0.4520640                -0.6818815
-#> 6                         -0.6779813                -1.0585809
-#>   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border
+#>                    Species Frequency         Area Isolation (Min.)
+#> 1    Phyllomedusa araguari   9.00000  99942160705         97052.27
+#> 2 Phyllomedusa atelopoides  25.38889 310216725731        109736.78
+#> 3      Phyllomedusa ayeaye  11.50000 129979311887         99631.44
+#> 4      Phyllomedusa azurea  11.59091 137178852573        130717.35
+#> 5     Phyllomedusa bahiana  11.91667 142112800724        136522.70
+#> 6      Phyllomedusa baltea  19.00000 233017982880        110574.31
+#>   Isolation (1st Qu.) Isolation (Median) Isolation (Mean) Isolation (3rd Qu.)
+#> 1            494018.8           767952.4         747035.8            923841.2
+#> 2            593524.1          1109618.7        1175110.9           1714363.8
+#> 3            384047.4           599271.8         667315.7            851729.1
+#> 4            462970.6          1391519.0        1328709.9           2016286.4
+#> 5            463613.5          1492534.7        1354451.4           2121714.6
+#> 6            611182.1          1019632.7        1201164.4           1896221.5
+#>   Isolation (Max.) Weighted Mean Distance to midpoint Mean Distance to midpoint
+#> 1          1500329                         -0.3188860                -0.1627780
+#> 2          3008424                         -0.6007348                -1.0114155
+#> 3          1725300                         -0.3310414                -0.1608610
+#> 4          3035828                         -0.4455612                -0.7009224
+#> 5          2999208                         -0.4520640                -0.6818815
+#> 6          2950964                         -0.6779813                -1.0585809
+#>   Minimum Zero Distance Minimum 20% Zero Distance Distance to MCP border
 #> 1             0.2581989                 0.9296124              0.2581989
 #> 2             0.3258642                 1.0476293              0.3258642
 #> 3             0.3116736                 0.9521703              0.3116736
@@ -160,7 +160,7 @@ attr_df  <- data.frame(Species = sp_vec,
                        trait_b  = trait_b)
 
 # Attribute-space PAM (AttrPAM)
-attr_obj <- lets.attrpam(attr_df, n_bins = 5, remove.cells = FALSE)
+attr_obj <- lets.attrpam(attr_df, n_bins = 5)
 
 # Richness map in attribute space
 lets.plot.attrpam(attr_obj)

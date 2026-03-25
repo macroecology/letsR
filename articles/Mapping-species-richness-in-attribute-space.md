@@ -77,7 +77,7 @@ head(attr_desc)
 #> 6         4                          -2.103971                 -2.131885
 #> 7         5                          -2.037358                 -2.065836
 #> 8         6                          -1.975254                 -2.004267
-#>   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border
+#>   Minimum Zero Distance Minimum 20% Zero Distance Distance to MCP border
 #> 3                     0                 0.7875427                      0
 #> 4                     0                 0.7238193                      0
 #> 5                     0                 0.6742795                      0
@@ -122,7 +122,7 @@ head(attr_desc_by_sp)
 #> 4     sp4                        -0.65172785                -0.6818160
 #> 5     sp5                        -0.07626174                -0.1050365
 #> 6     sp6                        -0.95462516                -0.9441664
-#>   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border
+#>   Minimum Zero Distance Minimum 20% Zero Distance Distance to MCP border
 #> 1             0.4618802                 1.1195434              1.2701706
 #> 2             0.8164966                 1.2218190              1.5011107
 #> 3             0.3265986                 0.8310473              0.7745967

@@ -246,20 +246,20 @@ environmental midpoints (negated so larger values imply higher
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.envcells.html">lets.envcells</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>  <span class="co"># perc controls the robust border metric</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Cell_env Frequency Isolation (Min.) Isolation (1st Qu.) Isolation (Median)</span></span>
-<span><span class="co">#&gt; 3        1         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 4        2         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 5        3         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 6        4         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 7        5         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt; 8        6         0               NA                  NA                 NA</span></span>
-<span><span class="co">#&gt;   Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)</span></span>
-<span><span class="co">#&gt; 3               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 4               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 5               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 6               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 7               NA                  NA               NA</span></span>
-<span><span class="co">#&gt; 8               NA                  NA               NA</span></span>
+<span><span class="co">#&gt;   Cell_env Frequency Area Isolation (Min.) Isolation (1st Qu.)</span></span>
+<span><span class="co">#&gt; 3        1         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 4        2         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 5        3         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 6        4         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 7        5         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt; 8        6         0   NA               NA                  NA</span></span>
+<span><span class="co">#&gt;   Isolation (Median) Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)</span></span>
+<span><span class="co">#&gt; 3                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 4                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 5                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 6                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 7                 NA               NA                  NA               NA</span></span>
+<span><span class="co">#&gt; 8                 NA               NA                  NA               NA</span></span>
 <span><span class="co">#&gt;   Weighted Mean Distance to midpoint Mean Distance to midpoint</span></span>
 <span><span class="co">#&gt; 3                          -3.730908                 -3.457246</span></span>
 <span><span class="co">#&gt; 4                          -3.646836                 -3.382386</span></span>
@@ -267,7 +267,7 @@ environmental midpoints (negated so larger values imply higher
 <span><span class="co">#&gt; 6                          -3.484092                 -3.239832</span></span>
 <span><span class="co">#&gt; 7                          -3.405677                 -3.172460</span></span>
 <span><span class="co">#&gt; 8                          -3.329421                 -3.107918</span></span>
-<span><span class="co">#&gt;   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border</span></span>
+<span><span class="co">#&gt;   Minimum Zero Distance Minimum 20% Zero Distance Distance to MCP border</span></span>
 <span><span class="co">#&gt; 3                     0                 0.9362266                      0</span></span>
 <span><span class="co">#&gt; 4                     0                 0.8700119                      0</span></span>
 <span><span class="co">#&gt; 5                     0                 0.8136812                      0</span></span>

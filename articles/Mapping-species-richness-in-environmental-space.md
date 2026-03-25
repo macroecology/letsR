@@ -191,20 +191,20 @@ environmental borders.
 ``` r
 out <- lets.envcells(res)  # perc controls the robust border metric
 head(out)
-#>   Cell_env Frequency Isolation (Min.) Isolation (1st Qu.) Isolation (Median)
-#> 3        1         0               NA                  NA                 NA
-#> 4        2         0               NA                  NA                 NA
-#> 5        3         0               NA                  NA                 NA
-#> 6        4         0               NA                  NA                 NA
-#> 7        5         0               NA                  NA                 NA
-#> 8        6         0               NA                  NA                 NA
-#>   Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)
-#> 3               NA                  NA               NA
-#> 4               NA                  NA               NA
-#> 5               NA                  NA               NA
-#> 6               NA                  NA               NA
-#> 7               NA                  NA               NA
-#> 8               NA                  NA               NA
+#>   Cell_env Frequency Area Isolation (Min.) Isolation (1st Qu.)
+#> 3        1         0   NA               NA                  NA
+#> 4        2         0   NA               NA                  NA
+#> 5        3         0   NA               NA                  NA
+#> 6        4         0   NA               NA                  NA
+#> 7        5         0   NA               NA                  NA
+#> 8        6         0   NA               NA                  NA
+#>   Isolation (Median) Isolation (Mean) Isolation (3rd Qu.) Isolation (Max.)
+#> 3                 NA               NA                  NA               NA
+#> 4                 NA               NA                  NA               NA
+#> 5                 NA               NA                  NA               NA
+#> 6                 NA               NA                  NA               NA
+#> 7                 NA               NA                  NA               NA
+#> 8                 NA               NA                  NA               NA
 #>   Weighted Mean Distance to midpoint Mean Distance to midpoint
 #> 3                          -3.730908                 -3.457246
 #> 4                          -3.646836                 -3.382386
@@ -212,7 +212,7 @@ head(out)
 #> 6                          -3.484092                 -3.239832
 #> 7                          -3.405677                 -3.172460
 #> 8                          -3.329421                 -3.107918
-#>   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border
+#>   Minimum Zero Distance Minimum 20% Zero Distance Distance to MCP border
 #> 3                     0                 0.9362266                      0
 #> 4                     0                 0.8700119                      0
 #> 5                     0                 0.8136812                      0
