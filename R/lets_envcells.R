@@ -1,119 +1,202 @@
-#' Summarize environmental–geographical metrics from an envPAM object
+#' Environmental-cell descriptors for an environmental PAM (envPAM)
 #'
-#' @title Environmental descriptors for Presence–Absence in environmental space
+#' @title Descriptors of position, centrality, area, and isolation in environmental space
+#'
 #' @description
-#' Computes a suite of descriptors for each environmental cell in an
-#' \emph{environmental} presence–absence matrix (envPAM), including:
-#' (i) frequency in geographic space, (ii) geographic isolation statistics
-#' (summary of pairwise distances among geographic cells mapped to the same
-#' environmental cell), (iii) distance to environmental midpoints (mean and
-#' frequency-weighted mean), (iv) distance to environmental “border” (zero-richness
-#' frontier via three proxies), and (v) an environmental isolation metric based on
-#' frequency-weighted Euclidean distance in standardized environmental space.
+#' Calculates descriptor variables for each cell of an environmental
+#' presence–absence matrix (envPAM), as returned by
+#' \code{\link{lets.envpam}}. The two environmental axes are treated as a
+#' two-dimensional coordinate system, and the function derives metrics that
+#' summarize the position of each environmental cell in this space, its
+#' proximity to empty regions and borders, and its average isolation from
+#' other cells.
 #'
-#' Distances to midpoints are returned **negated** (i.e., larger values imply
-#' greater centrality in environmental space), following the current implementation.
+#' The function also links each environmental cell to the geographic cells
+#' assigned to it, allowing the calculation of frequency, area, and
+#' geographic isolation summaries.
 #'
-#' @param x A list returned by \code{\link{lets.envpam}} containing at least:
-#' \itemize{
-#'   \item \code{$Presence_and_Absence_Matrix_env}: data.frame with columns
-#'         \code{cell_id_env}, the environmental coordinates (e.g., two variables),
-#'         and species presences (one column per species).
-#'   \item \code{$Presence_and_Absence_Matrix_geo}: data.frame with columns
-#'         \code{cell_id_geo}, geographic coordinates (lon, lat), and species presences.
-#'   \item \code{$Env_Richness_Raster}: a \pkg{terra} SpatRaster of richness in environmental space.
-#' }
-#' @param perc Numeric in (0,1], the fraction used in the robust border metric
-#' (mean of the \emph{n} smallest distances to zero-richness cells). Default = 0.2.
-#' @param remove.cells Logical. If 'TRUE', remove empty cells from the results.
+#' @param x A list produced by \code{\link{lets.envpam}} containing, at
+#'   minimum:
+#'   \itemize{
+#'     \item \code{$Presence_and_Absence_Matrix_env}: a data frame in which
+#'     the first column is the environmental-cell identifier
+#'     (\code{cell_id_env}), the second and third columns are the
+#'     coordinates of the two environmental axes, and the remaining columns
+#'     are taxa coded as presence (1) or absence (0).
+#'     \item \code{$Presence_and_Absence_Matrix_geo}: a data frame linking
+#'     geographic cells to environmental cells. The first column is assumed
+#'     to contain the environmental-cell identifier, the second column the
+#'     geographic cell identifier, and columns 3 and 4 the geographic
+#'     coordinates used in distance calculations.
+#'     \item \code{$Env_Richness_Raster}: a \link[terra]{SpatRaster}
+#'     containing richness in environmental space.
+#'     \item \code{$Geo_Richness_Raster}: a \link[terra]{SpatRaster}
+#'     containing richness in geographic space and used to compute the area
+#'     associated with each environmental cell.
+#'   }
+#' @param perc Numeric value in the interval \eqn{(0, 1]} indicating the
+#'   proportion of the shortest distances to empty environmental cells to
+#'   be averaged in the robust border-distance metric. Default is
+#'   \code{0.1}.
+#'
 #' @details
-#' Environmental variables (assumed to be the 2nd and 3rd columns of
-#' \code{$Presence_and_Absence_Matrix_env}) are z-scored before computing distances.
-#' Geographic isolation is summarized with \code{summary()} of pairwise distances
-#' among geographic cells that collapse to the same environmental cell.
+#' The two environmental variables (columns 2 and 3 of
+#' \code{x$Presence_and_Absence_Matrix_env}) are standardized to zero mean
+#' and unit variance before distance-based calculations.
+#'
+#' The function first determines how many geographic cells are associated
+#' with each environmental cell and computes:
+#' \itemize{
+#'   \item \code{Frequency}: number of geographic cells assigned to the
+#'   environmental cell;
+#'   \item \code{Area}: total area of those geographic cells;
+#'   \item summary statistics of pairwise geographic distances among those
+#'   geographic cells.
+#' }
+#'
+#' Distances to the weighted and unweighted midpoints are returned as
+#' negative values so that larger values indicate greater centrality in
+#' environmental space.
+#'
+#' Empty environmental cells are defined as cells with zero frequency, that
+#' is, cells to which no geographic cells are assigned.
+#'
+#' The function also calculates three border-related descriptors:
+#' \itemize{
+#'   \item the minimum distance to any empty environmental cell;
+#'   \item the mean distance to the nearest \code{perc} proportion of empty
+#'   environmental cells;
+#'   \item the distance to the border of the hull enclosing occupied
+#'   environmental cells.
+#' }
+#'
+#' Geographic isolation is summarized using \code{summary()} applied to the
+#' pairwise distance matrix among geographic cells associated with each
+#' environmental cell. For cells represented by a single geographic cell,
+#' isolation statistics remain \code{NA}.
 #'
 #' @return
-#' A data frame with one row per environmental cell and the following columns:
+#' A \code{data.frame} with one row per environmental cell. The output
+#' contains:
 #' \itemize{
-#'   \item \code{Cell_env}: Environmental cell identifier.
-#'   \item \code{Frequency}: Number of geographic cells mapped to the environmental cell.
-#'   \item \code{Isolation (Min.)}, \code{Isolation (1st Qu.)}, \code{Isolation (Median)},
-#'         \code{Isolation (Mean)}, \code{Isolation (3rd Qu.)}, \code{Isolation (Max.)}:
-#'         Summary of pairwise geographic distances.
-#'   \item \code{Weighted Mean Distance to midpoint}, \code{Mean Distance to midpoint}:
-#'         Negated distances in standardized environmental space (larger values = more central).
-#'   \item \code{Minimum Zero Distance}, \code{Minimum 10\% Zero Distance}, \code{Distance to MCP border}:
-#'         Three proxies for border proximity.
-#'   \item \code{Frequency Weighted Distance}: Frequency-weighted mean distance to all other env cells.
+#'   \item \code{Cell_env}: environmental-cell identifier.
+#'   \item \code{Frequency}: number of geographic cells mapped to the
+#'   environmental cell.
+#'   \item \code{Area}: summed area of the geographic cells mapped to the
+#'   environmental cell.
+#'   \item \code{Isolation (Min.)}, \code{Isolation (1st Qu.)},
+#'   \code{Isolation (Median)}, \code{Isolation (Mean)},
+#'   \code{Isolation (3rd Qu.)}, and \code{Isolation (Max.)}: summary
+#'   statistics of pairwise geographic distances among mapped geographic
+#'   cells.
+#'   \item \code{Weighted Mean Distance to midpoint}: negative Euclidean
+#'   distance from the cell to the frequency-weighted midpoint of occupied
+#'   environmental space.
+#'   \item \code{Mean Distance to midpoint}: negative Euclidean distance
+#'   from the cell to the unweighted midpoint of occupied environmental
+#'   space.
+#'   \item \code{Minimum Zero Distance}: minimum distance from the cell to
+#'   any empty environmental cell.
+#'   \item a column named according to the percentage defined by
+#'   \code{perc} (for example, \code{Minimum 10\% Zero Distance}),
+#'   containing the mean distance from the cell to the nearest fraction of
+#'   empty environmental cells defined by \code{perc}.
+#'   \item \code{Distance to MCP border}: distance from the cell to the
+#'   border of the hull enclosing occupied environmental cells.
+#'   \item \code{Frequency Weighted Distance}: weighted mean distance from
+#'   the cell to all other environmental cells.
+#' }
+#'
+#' @section Assumptions:
+#' \itemize{
+#'   \item The first column of \code{x$Presence_and_Absence_Matrix_env}
+#'   contains environmental-cell identifiers.
+#'   \item Columns 2 and 3 of \code{x$Presence_and_Absence_Matrix_env}
+#'   contain the two environmental variables used to define environmental
+#'   space.
+#'   \item The first column of \code{x$Presence_and_Absence_Matrix_geo}
+#'   links geographic records to environmental cells.
+#'   \item Columns 3 and 4 of \code{x$Presence_and_Absence_Matrix_geo}
+#'   contain the geographic coordinates used in distance calculations.
 #' }
 #'
 #' @section Caveats:
-#' (1) The code assumes the first column of \code{$Presence_and_Absence_Matrix_env}
-#' indexes environmental cells and columns 2–3 are the two environmental variables.
-#' (2) The geographic matrix assumes lon/lat at columns 3–4. Adjust indices if needed.
-#' (3) If there are no zero-richness cells or < 3 occupied env cells, border metrics
-#' are returned as \code{NA}.
+#' \itemize{
+#'   \item If there are no empty environmental cells, the zero-distance
+#'   border metrics are returned as \code{NA}.
+#'   \item If fewer than three occupied environmental cells are available,
+#'   the hull-based border metric is returned as \code{NA}.
+#'   \item Cells represented by only one geographic cell do not have
+#'   pairwise geographic distances, so isolation statistics remain
+#'   \code{NA}.
+#' }
 #'
-#' @seealso \code{\link{lets.envpam}}, \code{\link{lets.plot.envcells}}, \code{\link{lets.plot.envpam}}
+#' @seealso \code{\link{lets.envpam}}, \code{\link{lets.plot.envcells}},
+#'   \code{\link{lets.plot.envpam}}
 #'
 #' @examples
 #' \dontrun{
-#' data("Phyllomedusa"); data("prec"); data("temp")
-#' prec <- unwrap(prec); temp <- unwrap(temp)
+#' data("Phyllomedusa")
+#' data("prec")
+#' data("temp")
+#'
+#' prec <- unwrap(prec)
+#' temp <- unwrap(temp)
+#'
 #' PAM  <- lets.presab(Phyllomedusa, remove.cells = FALSE)
 #' envs <- lets.addvar(PAM, c(temp, prec), onlyvar = TRUE)
 #' colnames(envs) <- c("Temperature", "Precipitation")
+#'
 #' wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
 #' PAM <- lets.pamcrop(PAM, terra::vect(wrld_simpl))
-#' res <- lets.envpam(PAM, envs, n_bins = 30)
-#' out <- lets.envcells(res, perc = 0.2)
-#' lets.plot.envcells(res, out)
+#'
+#' x <- lets.envpam(PAM, envs, n_bins = 30)
+#' env_desc <- lets.envcells(x, perc = 0.1)
+#'
+#' lets.plot.envcells(x, env_desc)
 #' }
 #'
 #' @import terra grDevices
 #' @export
-lets.envcells <- function(x, perc = 0.2, 
-                          remove.cells = FALSE) {
+lets.envcells <- function(x, perc = 0.1) {
   
-  # --- IDs and alignment ---
-  env_ids  <- x$Presence_and_Absence_Matrix_env[, 1]
-  ids_full <- 1:ncell(x$Env_Richness_Raster)
-  n_cells <- length(ids_full)
-  if (n_cells > length(env_ids)) {
-    n_c <- ncol(x$Presence_and_Absence_Matrix_env)
-    pam_env <- matrix(0, nrow = n_cells, ncol = n_c)
-    pam_env[, 1:3] <- cbind(ids_full, xyFromCell(x$Env_Richness_Raster, ids_full))
-    pam_env[env_ids, 4:n_c] <- x$Presence_and_Absence_Matrix_env[, -(1:3)]
-    x$Presence_and_Absence_Matrix_env <- pam_env
-  }
-  
-  env_cell  <- x$Presence_and_Absence_Matrix_env[, 1]
+  # Environmental-cell identifiers and mapping of geographic records to
+  # environmental cells
+  env_cell  <- unique(x$Presence_and_Absence_Matrix_env[, 1])
   cell_fact <- factor(x$Presence_and_Absence_Matrix_geo[, 1], levels = env_cell)
   n <- length(env_cell)
   
-  # --- Metric 1: Frequency (geographic count per environmental cell) ---
+  # Number and total area of geographic cells associated with each
+  # environmental cell
   Frequency <- as.numeric(base::table(cell_fact))
   
-  # --- Metric 2: Geographic isolation (summary of pairwise distances) ---
-  # Initialize with NA; safer if groups with singletons or none exist
+  vs <- terra::values(terra::cellSize(terra::unwrap(x$Geo_Richness_Raster)))[, 1]
+  
+  Area <- tapply(vs[x$Presence_and_Absence_Matrix_geo[, 2]],
+                 x$Presence_and_Absence_Matrix_geo[, 1], 
+                 sum, na.rm = TRUE)[as.character(env_cell)]
+  
+  
+  # Summary statistics of pairwise geographic distances among geographic
+  # cells mapped to each environmental cell
   iso_names <- c("Min.", "1st Qu.", "Median", "Mean", "3rd Qu.", "Max.")
   isolation <- matrix(NA_real_, nrow = n, ncol = length(iso_names))
   colnames(isolation) <- paste0("Isolation (", iso_names, ")")
   
   for (i in seq_len(n)) {
     sub <- cell_fact == env_cell[i]
-    n_sub <- sum(sub, na.rm = TRUE)
-    if (!is.na(n_sub) && n_sub > 1) {
-      # Pairwise distances using lon/lat (assumed at columns 3:4)
+    if (sum(sub) > 1) {
+      # Pairwise distances computed from geographic coordinates
       dist_mat <- lets.distmat(x$Presence_and_Absence_Matrix_geo[sub, 3:4])
       isolation[i, ] <- base::summary(dist_mat)
     }
   }
   
-  # --- Metric 3: Distance to environmental midpoints (z-scored env) ---
+  # Standardize environmental coordinates before computing distances
   envs <- x$Presence_and_Absence_Matrix_env[, 2:3, drop = FALSE]
   envs <- apply(envs, 2, base::scale)
   
+  # Weighted and unweighted midpoints calculated from occupied cells only
   pam_mid <- cbind(envs, Frequency)
   pam_mid <- pam_mid[Frequency > 0, , drop = FALSE]
   
@@ -124,16 +207,16 @@ lets.envcells <- function(x, perc = 0.2,
   
   mid_m  <- matrix(c(mean(pam_mid[, 1]), mean(pam_mid[, 2])), ncol = 2)
   
-  # Distances from each env cell to the two midpoints
+  # Distances from each environmental cell to the two midpoints
   dist_all_env <- as.matrix(stats::dist(rbind(mid_wm, mid_m, envs)))
   mid_dist <- dist_all_env[-(1:2), 1:2, drop = FALSE]
   colnames(mid_dist) <- c("Weighted Mean Distance to midpoint",
                           "Mean Distance to midpoint")
   
-  # --- Metric 4: Distances to border proxies ---
+  # Pairwise distances among all environmental cells
   dist_env <- dist_all_env[-(1:2), -(1:2), drop = FALSE]
   
-  # (4a) Minimum distance to any zero-richness cell
+  # Minimum distance from each cell to any empty environmental cell
   zero_idx <- which(Frequency == 0)
   if (length(zero_idx) > 0) {
     dist_bord  <- apply(dist_env[zero_idx, , drop = FALSE], 2, min)
@@ -141,20 +224,21 @@ lets.envcells <- function(x, perc = 0.2,
     dist_bord  <- rep(NA_real_, n)
   }
   
-  # Helper: mean of the n smallest distances (default: ~perc)
+  # Robust border metric: mean distance to the nearest perc fraction of
+  # empty environmental cells
   n_min <- function(x, n = NULL, perc) {
     if (is.null(n)) n <- ceiling(length(x) * perc)
     mean(sort(x)[seq_len(min(n, length(x)))])
   }
   
-  # (4b) Robust border: mean of closest ~perc zero-richness distances
   if (length(zero_idx) > 0) {
     dist_bord2 <- apply(dist_env[zero_idx, , drop = FALSE], 2, n_min, perc = perc)
   } else {
     dist_bord2 <- rep(NA_real_, n)
   }
   
-  # (4c) Min distance to the convex hull (MCP) border of occupied env cells
+  # Distance from each cell to the border of the hull enclosing occupied
+  # environmental cells
   envs2 <- x$Presence_and_Absence_Matrix_env[Frequency > 0, 2:3, drop = FALSE]
   
   if (nrow(envs2) >= 3) {
@@ -164,9 +248,8 @@ lets.envcells <- function(x, perc = 0.2,
     
     p  <- terra::vect(sf::st_concave_hull(sf_env, ratio = .5))
     
-    # Extract raster cell ids overlapping the hull polygon
+    # Raster cell identifiers overlapping the hull polygon
     ext_df <- terra::extract(x$Env_Richness_Raster, p, cells = TRUE)
-    # Column 'cell' is typically the 3rd column returned by extract(..., cells=TRUE)
     cell_col <- if ("cell" %in% names(ext_df)) "cell" else names(ext_df)[3]
     out_bord <- ext_df[[cell_col]]
     keep <- setdiff(seq_len(n), unique(out_bord))
@@ -179,7 +262,8 @@ lets.envcells <- function(x, perc = 0.2,
     dist_bord3 <- rep(NA_real_, n)
   }
   
-  # --- Metric 5: Environmental isolation (frequency-weighted mean distance) ---
+  # Weighted mean distance from each environmental cell to all other
+  # environmental cells
   weighted_mean_distances <- function(xmat, w) {
     n <- nrow(xmat)
     out <- numeric(n)
@@ -192,24 +276,25 @@ lets.envcells <- function(x, perc = 0.2,
   }
   w_isol <- weighted_mean_distances(envs, Frequency)
   
-  # --- Assemble output (note: midpoint distances are NEGATED by design) ---
+  perc_label <- paste0("Minimum ", round(perc * 100), "% Zero Distance")
+  
+  # Assemble output; midpoint distances are multiplied by -1 so that
+  # larger values indicate greater centrality
   preds <- data.frame(
     "Cell_env"                        = x$Presence_and_Absence_Matrix_env[, 1],
     "Frequency"                       = Frequency,
+    "Area"                            = Area,
     as.data.frame(isolation),
     as.data.frame(-mid_dist),
     "Minimum Zero Distance"           = dist_bord,
-    "Minimum 10% Zero Distance"       = dist_bord2,
+    setNames(list(dist_bord2), perc_label),
     "Distance to MCP border"          = dist_bord3,
     "Frequency Weighted Distance"     = w_isol,
     check.names = FALSE
   )
-  if (remove.cells) {
-    preds <- preds[env_ids, ]
-  }
-  return(preds)
+  
+  preds
 }
-
 
 
 #' Plot environmental descriptors over the environmental raster grid
@@ -266,7 +351,7 @@ lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
   
   # Work only with descriptor columns (drop the 'Cell_env' id)
   preds <- data.frame(y[, -1, drop = FALSE], check.names = FALSE)
-  IDs <- y[, 1]
+  
   # Mask rows with zero frequency (column 2 after dropping id is 'Frequency')
   if (ncol(preds) >= 2) {
     preds[preds[, 1] == 0 | is.na(preds[, 2]), ] <- NA
@@ -274,11 +359,11 @@ lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
   
   # 4x4 grid (adjust if needed)
   if (plot_ras) {
-    graphics::par(mfrow = mfrow)
+  graphics::par(mfrow = mfrow)
   }
   # Raster template 
   r_template <- x$Env_Richness_Raster
-  values(r_template) <- NA
+  
   ras_list <- vector("list", length = ncol(preds))
   if (is.null(which.plot)) {
     seq_loop <- seq_len(ncol(preds))
@@ -293,7 +378,7 @@ lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
   
   for (i in seq_loop) {
     r <- r_template
-    terra::values(r)[IDs] <- preds[, i]
+    terra::values(r) <- preds[, i]
     
     # Aspect ratio based on extent
     ext_vals <- terra::ext(r)
