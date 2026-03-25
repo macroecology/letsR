@@ -138,27 +138,27 @@ centrality, isolation, and border proximity.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">attr_desc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.attrcells.html">lets.attrcells</a></span><span class="op">(</span><span class="va">attr_obj</span>, perc <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">attr_desc</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Cell_attr Richness Weighted Mean Distance to midpoint</span></span>
-<span><span class="co">#&gt; 3         1        0                          -2.326864</span></span>
-<span><span class="co">#&gt; 4         2        0                          -2.249095</span></span>
-<span><span class="co">#&gt; 5         3        0                          -2.174679</span></span>
-<span><span class="co">#&gt; 6         4        0                          -2.103971</span></span>
-<span><span class="co">#&gt; 7         5        0                          -2.037358</span></span>
-<span><span class="co">#&gt; 8         6        0                          -1.975254</span></span>
-<span><span class="co">#&gt;   Mean Distance to midpoint Minimum Zero Distance Minimum 10% Zero Distance</span></span>
-<span><span class="co">#&gt; 3                 -2.353019                     0                 0.7875427</span></span>
-<span><span class="co">#&gt; 4                 -2.275839                     0                 0.7238193</span></span>
-<span><span class="co">#&gt; 5                 -2.202012                     0                 0.6742795</span></span>
-<span><span class="co">#&gt; 6                 -2.131885                     0                 0.6362405</span></span>
-<span><span class="co">#&gt; 7                 -2.065836                     0                 0.6116810</span></span>
-<span><span class="co">#&gt; 8                 -2.004267                     0                 0.5974101</span></span>
-<span><span class="co">#&gt;   Distance to MCP border Frequency Weighted Distance</span></span>
-<span><span class="co">#&gt; 3                      0                    2.401182</span></span>
-<span><span class="co">#&gt; 4                      0                    2.325796</span></span>
-<span><span class="co">#&gt; 5                      0                    2.253747</span></span>
-<span><span class="co">#&gt; 6                      0                    2.185353</span></span>
-<span><span class="co">#&gt; 7                      0                    2.120959</span></span>
-<span><span class="co">#&gt; 8                      0                    2.060930</span></span></code></pre></div>
+<span><span class="co">#&gt;   Cell_attr Weighted Mean Distance to midpoint Mean Distance to midpoint</span></span>
+<span><span class="co">#&gt; 3         1                          -2.326864                 -2.353019</span></span>
+<span><span class="co">#&gt; 4         2                          -2.249095                 -2.275839</span></span>
+<span><span class="co">#&gt; 5         3                          -2.174679                 -2.202012</span></span>
+<span><span class="co">#&gt; 6         4                          -2.103971                 -2.131885</span></span>
+<span><span class="co">#&gt; 7         5                          -2.037358                 -2.065836</span></span>
+<span><span class="co">#&gt; 8         6                          -1.975254                 -2.004267</span></span>
+<span><span class="co">#&gt;   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border</span></span>
+<span><span class="co">#&gt; 3                     0                 0.7875427                      0</span></span>
+<span><span class="co">#&gt; 4                     0                 0.7238193                      0</span></span>
+<span><span class="co">#&gt; 5                     0                 0.6742795                      0</span></span>
+<span><span class="co">#&gt; 6                     0                 0.6362405                      0</span></span>
+<span><span class="co">#&gt; 7                     0                 0.6116810                      0</span></span>
+<span><span class="co">#&gt; 8                     0                 0.5974101                      0</span></span>
+<span><span class="co">#&gt;   Frequency Weighted Distance</span></span>
+<span><span class="co">#&gt; 3                    2.401182</span></span>
+<span><span class="co">#&gt; 4                    2.325796</span></span>
+<span><span class="co">#&gt; 5                    2.253747</span></span>
+<span><span class="co">#&gt; 6                    2.185353</span></span>
+<span><span class="co">#&gt; 7                    2.120959</span></span>
+<span><span class="co">#&gt; 8                    2.060930</span></span></code></pre></div>
 <p>We can visualize these metrics using
 <code><a href="../reference/lets.plot.attrcells.html">lets.plot.attrcells()</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -177,13 +177,13 @@ across all cells occupied by each species using the
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">attr_desc_by_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.summaryze.cells.html">lets.summaryze.cells</a></span><span class="op">(</span><span class="va">attr_obj</span>, <span class="va">attr_desc</span>, func <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">attr_desc_by_sp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Species Richness Weighted Mean Distance to midpoint Mean Distance to midpoint</span></span>
-<span><span class="co">#&gt; 1     sp1       16                        -0.50820192                -0.4896199</span></span>
-<span><span class="co">#&gt; 2     sp2       15                        -0.12253919                -0.1470435</span></span>
-<span><span class="co">#&gt; 3     sp3        5                        -0.84093748                -0.8298832</span></span>
-<span><span class="co">#&gt; 4     sp4        8                        -0.65172785                -0.6818160</span></span>
-<span><span class="co">#&gt; 5     sp5       14                        -0.07626174                -0.1050365</span></span>
-<span><span class="co">#&gt; 6     sp6        2                        -0.95462516                -0.9441664</span></span>
+<span><span class="co">#&gt;   Species Weighted Mean Distance to midpoint Mean Distance to midpoint</span></span>
+<span><span class="co">#&gt; 1     sp1                        -0.50820192                -0.4896199</span></span>
+<span><span class="co">#&gt; 2     sp2                        -0.12253919                -0.1470435</span></span>
+<span><span class="co">#&gt; 3     sp3                        -0.84093748                -0.8298832</span></span>
+<span><span class="co">#&gt; 4     sp4                        -0.65172785                -0.6818160</span></span>
+<span><span class="co">#&gt; 5     sp5                        -0.07626174                -0.1050365</span></span>
+<span><span class="co">#&gt; 6     sp6                        -0.95462516                -0.9441664</span></span>
 <span><span class="co">#&gt;   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border</span></span>
 <span><span class="co">#&gt; 1             0.4618802                 1.1195434              1.2701706</span></span>
 <span><span class="co">#&gt; 2             0.8164966                 1.2218190              1.5011107</span></span>

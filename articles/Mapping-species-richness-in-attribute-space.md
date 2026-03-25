@@ -70,27 +70,27 @@ including measures of centrality, isolation, and border proximity.
 ``` r
 attr_desc <- lets.attrcells(attr_obj, perc = 0.2)
 head(attr_desc)
-#>   Cell_attr Richness Weighted Mean Distance to midpoint
-#> 3         1        0                          -2.326864
-#> 4         2        0                          -2.249095
-#> 5         3        0                          -2.174679
-#> 6         4        0                          -2.103971
-#> 7         5        0                          -2.037358
-#> 8         6        0                          -1.975254
-#>   Mean Distance to midpoint Minimum Zero Distance Minimum 10% Zero Distance
-#> 3                 -2.353019                     0                 0.7875427
-#> 4                 -2.275839                     0                 0.7238193
-#> 5                 -2.202012                     0                 0.6742795
-#> 6                 -2.131885                     0                 0.6362405
-#> 7                 -2.065836                     0                 0.6116810
-#> 8                 -2.004267                     0                 0.5974101
-#>   Distance to MCP border Frequency Weighted Distance
-#> 3                      0                    2.401182
-#> 4                      0                    2.325796
-#> 5                      0                    2.253747
-#> 6                      0                    2.185353
-#> 7                      0                    2.120959
-#> 8                      0                    2.060930
+#>   Cell_attr Weighted Mean Distance to midpoint Mean Distance to midpoint
+#> 3         1                          -2.326864                 -2.353019
+#> 4         2                          -2.249095                 -2.275839
+#> 5         3                          -2.174679                 -2.202012
+#> 6         4                          -2.103971                 -2.131885
+#> 7         5                          -2.037358                 -2.065836
+#> 8         6                          -1.975254                 -2.004267
+#>   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border
+#> 3                     0                 0.7875427                      0
+#> 4                     0                 0.7238193                      0
+#> 5                     0                 0.6742795                      0
+#> 6                     0                 0.6362405                      0
+#> 7                     0                 0.6116810                      0
+#> 8                     0                 0.5974101                      0
+#>   Frequency Weighted Distance
+#> 3                    2.401182
+#> 4                    2.325796
+#> 5                    2.253747
+#> 6                    2.185353
+#> 7                    2.120959
+#> 8                    2.060930
 ```
 
 We can visualize these metrics using
@@ -115,13 +115,13 @@ across all cells occupied by each species using the
 ``` r
 attr_desc_by_sp <- lets.summaryze.cells(attr_obj, attr_desc, func = mean)
 head(attr_desc_by_sp)
-#>   Species Richness Weighted Mean Distance to midpoint Mean Distance to midpoint
-#> 1     sp1       16                        -0.50820192                -0.4896199
-#> 2     sp2       15                        -0.12253919                -0.1470435
-#> 3     sp3        5                        -0.84093748                -0.8298832
-#> 4     sp4        8                        -0.65172785                -0.6818160
-#> 5     sp5       14                        -0.07626174                -0.1050365
-#> 6     sp6        2                        -0.95462516                -0.9441664
+#>   Species Weighted Mean Distance to midpoint Mean Distance to midpoint
+#> 1     sp1                        -0.50820192                -0.4896199
+#> 2     sp2                        -0.12253919                -0.1470435
+#> 3     sp3                        -0.84093748                -0.8298832
+#> 4     sp4                        -0.65172785                -0.6818160
+#> 5     sp5                        -0.07626174                -0.1050365
+#> 6     sp6                        -0.95462516                -0.9441664
 #>   Minimum Zero Distance Minimum 10% Zero Distance Distance to MCP border
 #> 1             0.4618802                 1.1195434              1.2701706
 #> 2             0.8164966                 1.2218190              1.5011107

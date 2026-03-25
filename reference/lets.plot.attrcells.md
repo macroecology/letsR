@@ -8,7 +8,14 @@ Optionally returns the rasters without plotting.
 ## Usage
 
 ``` r
-lets.plot.attrcells(x, y, ras = FALSE, plot_ras = TRUE, col_func = NULL)
+lets.plot.attrcells(
+  x,
+  y,
+  ras = FALSE,
+  plot_ras = TRUE,
+  col_func = NULL,
+  mfrow = c(4, 4)
+)
 ```
 
 ## Arguments
@@ -40,6 +47,11 @@ lets.plot.attrcells(x, y, ras = FALSE, plot_ras = TRUE, col_func = NULL)
   A custom color ramp palette function to use for plotting variables
   (e.g., from `colorRampPalette`).
 
+- mfrow:
+
+  A vector of the form c(nr, nc). The figures will be drawn in an
+  nr-by-nc array on the device by rows as in par documentation.
+
 ## Value
 
 Invisibly returns `NULL`. If `ras = TRUE`, returns a named `list` of
@@ -59,19 +71,20 @@ edge artifacts from empty attribute cells. The plotting grid defaults to
 ``` r
 if (FALSE) { # \dontrun{
 # Example with simulated traits
-n <- 2000
-Species <- paste0("sp", 1:n)
+data(PAM)
+n <- length(PAM$Species_name)
+Species <- PAM$Species_name
 trait_a <- rnorm(n)
 trait_b <- trait_a * 0.2 + rnorm(n)  # correlated trait
 df <- data.frame(Species, trait_a, trait_b)
 
 # Build AttrPAM
-x <- lets.attrpam(df, n_bins = 30)
+x <- lets.attrpam(df, n_bins = 4)
 
 # Compute descriptors
-y <- lets.attrcells(x)
+desc <- lets.attrcells(x, PAM)
 
 # Plot descriptors
-lets.plot.attrcells(x, y)
+lets.plot.attrcells(x, desc)
 } # }
 ```
