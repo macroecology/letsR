@@ -15,7 +15,7 @@ A PackedStatRaster object.
 
 ## Source
 
-Data was modified from WorldClim (<https://worldclim.com/>, downloaded
+Data was modified from WorldClim (<https://worldclim.org/>, downloaded
 05/2014).
 
 Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005.

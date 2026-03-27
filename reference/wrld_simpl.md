@@ -14,7 +14,5 @@ A simple feature collection with 246 features and 11 fields.
 
 ## Source
 
-Originally
-<https://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip>, now
-available from
+Now available from
 <https://github.com/nasa/World-Wind-Java/tree/master/WorldWind/testData/shapefiles>.
