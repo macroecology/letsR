@@ -38,13 +38,13 @@ A \code{list} with:
 }
 \description{
 Summarizes species attributes (e.g., trait values, description year) within
-each **attribute-space** cell of a presence–absence matrix produced by
-\code{\link{lets.attrpam}}. A summary function (\code{func}) is applied across
+each attribute-space cell of a presence–absence matrix produced by
+\code{\link{lets.attrpam}}. A summary function is applied across
 the attributes of species present in each cell, producing a per-cell attribute
 surface and an optional raster for visualization.
 }
 \details{
-Map species attributes in attribute space (based on AttrPAM)
+Map species attributes in attribute space
 
 
 Internally, the function multiplies each species presence column by its attribute

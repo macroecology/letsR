@@ -13,7 +13,8 @@ lets.envcells(x, perc = 0.2, remove.cells = FALSE)
         \code{cell_id_env}, the environmental coordinates (e.g., two variables),
         and species presences (one column per species).
   \item \code{$Presence_and_Absence_Matrix_geo}: data.frame with columns
-        \code{cell_id_geo}, geographic coordinates (lon, lat), and species presences.
+        \code{cell_id_geo}, geographic coordinates (lon, lat), and species presences.+
+        
   \item \code{$Env_Richness_Raster}: a \pkg{terra} SpatRaster of richness in environmental space.
 }}
 
@@ -53,11 +54,11 @@ frequency-weighted mean), (iv) distance to environmental “border” (zero-rich
 frontier via three proxies), and (v) an environmental isolation metric based on
 frequency-weighted Euclidean distance in standardized environmental space.
 
-Distances to midpoints are returned **negated** (i.e., larger values imply
+Distances to midpoints are returned inverted (i.e., larger values imply
 greater centrality in environmental space), following the current implementation.
 }
 \details{
-Summarize environmental–geographical metrics from an envPAM object
+Summarize environmental–geographical metrics from an environmental space PAM
 
 
 Environmental variables (assumed to be the 2nd and 3rd columns of

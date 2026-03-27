@@ -2,17 +2,17 @@
 #'
 #' @title Attribute-space Presence–Absence Matrix (attrPAM)
 #' @description
-#' Builds a presence–absence matrix (PAM) in a two-dimensional **trait space**,
+#' Builds a presence–absence matrix (PAM) in a two-dimensional trait space,
 #' by binning species occurrences along two quantitative attributes (e.g., body size and mass).
 #' Each species can have one or multiple entries in the trait dataset.
 #'
 #' @param x A data frame where the first column contains species (character vector),
 #'          and the next two columns contain numeric trait values (2D space).
 #' @param n_bins Integer. Number of bins per axis (default = 10).
-#' @param remove.cells Logical. If `TRUE`, remove empty cells from the PAM (default).
-#' @param remove.sp Logical. If `TRUE`, remove species absent from all cells (default).
-#' @param count Logical. If `TRUE`, display a text progress bar while building the PAM.
-#'
+#' @param remove.cells Logical. Should cells with no species be removed from the final matrix?
+#' @param remove.sp Logical. Should species with no occurrences in attribute space be removed?
+#' @param count Logical. If `TRUE`, displays a progress bar for species processing.
+#' 
 #' @details
 #' The two trait axes are divided into equal-interval bins, generating a grid of
 #' `n_bins × n_bins` cells. Each species occurrence is assigned to a cell, and
@@ -26,13 +26,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' # n <- 2000
-# Species <- paste0("sp", 1:n)
-# trait_a <- rnorm(n)
-# trait_b <- trait_a * .2 + rnorm(n)
-# x <- data.frame(Species, trait_a, trait_b)
-# test <- lets.attrpam(x, n_bins = 30)
-# lets.plot.attrpam(test)
+#' n <- 2000
+#' Species <- paste0("sp", 1:n)
+#' trait_a <- rnorm(n)
+#' trait_b <- trait_a * .2 + rnorm(n)
+#' x <- data.frame(Species, trait_a, trait_b)
+#' test <- lets.attrpam(x, n_bins = 30)
+#' lets.plot.attrpam(test)
 #' }
 #' 
 #' @import terra

@@ -29,12 +29,12 @@ cells where that species is present. The first column, \code{Species}, holds
 the species names copied from \code{colnames(x[[1]])[4:ncol(x[[1]])]}.
 }
 \description{
-Given a presence–absence matrix in either **attribute space** (from
-\code{\link{lets.attrpam}}) or **environmental space** (from
-\code{\link{lets.envpam}}) and a table of **per-cell descriptors**
+Given a presence–absence matrix in either attribute space (from
+\code{\link{lets.attrpam}}) or environmental space (from
+\code{\link{lets.envpam}}) and a table of per-cell descriptors
 (from \code{\link{lets.attrcells}} or \code{\link{lets.envcells}}),
 this function aggregates each descriptor across the set of cells
-**occupied by each species**, using a user-supplied summary function
+occupied by each species, using a user-supplied summary function
 (e.g., \code{mean}, \code{median}, \code{sum}).
 }
 \details{
@@ -42,7 +42,7 @@ Summarize per-cell descriptors to species-level values
 
 
 Internally, for each species column in \code{x[[1]]} (starting at column 4),
-the function builds a logical mask of **occupied cells** (> 0). It then subsets
+the function builds a logical mask of occupied cells (> 0). It then subsets
 the descriptor table \code{y} to those rows and applies \code{func} column-wise
 to \code{y[occupied, -1]} (dropping the ID column). Missing values are removed
 with \code{stats::na.omit} prior to aggregation.

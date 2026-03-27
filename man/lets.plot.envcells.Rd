@@ -38,20 +38,21 @@ in an nr-by-nc array on the device by rows as in par documentation.}
 \item{...}{other arguments passed to  \code{terra::plot} function.}
 }
 \value{
-Invisibly returns \code{NULL}. If \code{ras = TRUE}, returns a named list of
-\link[terra]{SpatRaster} objects corresponding to each descriptor column.
+If \code{ras = TRUE}, returns a named list of \link[terra]{SpatRaster}
+objects corresponding to each descriptor column.
 }
 \description{
 Plots each column of the descriptor table returned by
 \code{\link{lets.envcells}} back onto the environmental richness raster
-embedded in the envPAM object. Rows with zero frequency are masked as \code{NA}.
+embedded in the environmental space PAM object.
 }
 \details{
 Plot environmental descriptors over the environmental raster grid
 
 
-Each descriptor column is assigned as values of the environmental raster template
-and plotted sequentially. The plotting grid defaults to \code{par(mfrow = c(4,4))}.
+Each descriptor column is assigned as values of the environmental raster
+template and plotted sequentially. Rows with zero frequency are masked as
+\code{NA}. The plotting grid defaults to \code{par(mfrow = c(4,4))}.
 }
 \examples{
 \dontrun{

@@ -12,7 +12,6 @@
 #'                 default palette is used (red ramp for species maps, red–white ramp for richness).
 #' @param ... Additional arguments passed to \code{plot()}.
 #'
-#' @return Invisibly returns \code{NULL}. Called for side effects (plots).
 #'
 #' @examples
 #' \dontrun{

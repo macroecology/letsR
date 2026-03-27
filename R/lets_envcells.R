@@ -1,4 +1,4 @@
-#' Summarize environmental–geographical metrics from an envPAM object
+#' Summarize environmental–geographical metrics from an environmental space PAM
 #'
 #' @title Environmental descriptors for Presence–Absence in environmental space
 #' @description
@@ -11,7 +11,7 @@
 #' frontier via three proxies), and (v) an environmental isolation metric based on
 #' frequency-weighted Euclidean distance in standardized environmental space.
 #'
-#' Distances to midpoints are returned **negated** (i.e., larger values imply
+#' Distances to midpoints are returned inverted (i.e., larger values imply
 #' greater centrality in environmental space), following the current implementation.
 #'
 #' @param x A list returned by \code{\link{lets.envpam}} containing at least:
@@ -20,7 +20,8 @@
 #'         \code{cell_id_env}, the environmental coordinates (e.g., two variables),
 #'         and species presences (one column per species).
 #'   \item \code{$Presence_and_Absence_Matrix_geo}: data.frame with columns
-#'         \code{cell_id_geo}, geographic coordinates (lon, lat), and species presences.
+#'         \code{cell_id_geo}, geographic coordinates (lon, lat), and species presences.+
+#'         
 #'   \item \code{$Env_Richness_Raster}: a \pkg{terra} SpatRaster of richness in environmental space.
 #' }
 #' @param perc Numeric in (0,1], the fraction used in the robust border metric
@@ -83,12 +84,12 @@ lets.envcells <- function(x, perc = 0.2,
   
   # --- IDs and alignment ---
   env_ids  <- x$Presence_and_Absence_Matrix_env[, 1]
-  ids_full <- 1:ncell(x$Env_Richness_Raster)
+  ids_full <- 1:terra::ncell(x$Env_Richness_Raster)
   n_cells <- length(ids_full)
   if (n_cells > length(env_ids)) {
     n_c <- ncol(x$Presence_and_Absence_Matrix_env)
     pam_env <- matrix(0, nrow = n_cells, ncol = n_c)
-    pam_env[, 1:3] <- cbind(ids_full, xyFromCell(x$Env_Richness_Raster, ids_full))
+    pam_env[, 1:3] <- cbind(ids_full, terra::xyFromCell(x$Env_Richness_Raster, ids_full))
     pam_env[env_ids, 4:n_c] <- x$Presence_and_Absence_Matrix_env[, -(1:3)]
     x$Presence_and_Absence_Matrix_env <- pam_env
   }
@@ -233,7 +234,7 @@ lets.envcells <- function(x, perc = 0.2,
 #' @description
 #' Plots each column of the descriptor table returned by
 #' \code{\link{lets.envcells}} back onto the environmental richness raster
-#' embedded in the envPAM object. Rows with zero frequency are masked as \code{NA}.
+#' embedded in the environmental space PAM object. 
 #'
 #' @param x The envPAM list returned by \code{\link{lets.envpam}} (must include
 #' \code{$Env_Richness_Raster} and \code{$Presence_and_Absence_Matrix_env}).
@@ -250,12 +251,13 @@ lets.envcells <- function(x, perc = 0.2,
 #' @param ... other arguments passed to  \code{terra::plot} function.
 #' 
 #' @details
-#' Each descriptor column is assigned as values of the environmental raster template
-#' and plotted sequentially. The plotting grid defaults to \code{par(mfrow = c(4,4))}.
+#' Each descriptor column is assigned as values of the environmental raster
+#' template and plotted sequentially. Rows with zero frequency are masked as
+#' \code{NA}. The plotting grid defaults to \code{par(mfrow = c(4,4))}.
 #'
 #' @return
-#' Invisibly returns \code{NULL}. If \code{ras = TRUE}, returns a named list of
-#' \link[terra]{SpatRaster} objects corresponding to each descriptor column.
+#' If \code{ras = TRUE}, returns a named list of \link[terra]{SpatRaster}
+#' objects corresponding to each descriptor column.
 #'
 #' @examples
 #' \dontrun{

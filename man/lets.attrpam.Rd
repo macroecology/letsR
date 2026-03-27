@@ -18,11 +18,11 @@ and the next two columns contain numeric trait values (2D space).}
 
 \item{n_bins}{Integer. Number of bins per axis (default = 10).}
 
-\item{remove.cells}{Logical. If `TRUE`, remove empty cells from the PAM (default).}
+\item{remove.cells}{Logical. Should cells with no species be removed from the final matrix?}
 
-\item{remove.sp}{Logical. If `TRUE`, remove species absent from all cells (default).}
+\item{remove.sp}{Logical. Should species with no occurrences in attribute space be removed?}
 
-\item{count}{Logical. If `TRUE`, display a text progress bar while building the PAM.}
+\item{count}{Logical. If `TRUE`, displays a progress bar for species processing.}
 }
 \value{
 A list with two components:
@@ -32,7 +32,7 @@ A list with two components:
 }
 }
 \description{
-Builds a presence–absence matrix (PAM) in a two-dimensional **trait space**,
+Builds a presence–absence matrix (PAM) in a two-dimensional trait space,
 by binning species occurrences along two quantitative attributes (e.g., body size and mass).
 Each species can have one or multiple entries in the trait dataset.
 }
@@ -46,7 +46,13 @@ the resulting PAM indicates which species are present in each trait cell.
 }
 \examples{
 \dontrun{
-# n <- 2000
+n <- 2000
+Species <- paste0("sp", 1:n)
+trait_a <- rnorm(n)
+trait_b <- trait_a * .2 + rnorm(n)
+x <- data.frame(Species, trait_a, trait_b)
+test <- lets.attrpam(x, n_bins = 30)
+lets.plot.attrpam(test)
 }
 
 }

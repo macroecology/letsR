@@ -31,13 +31,12 @@ one row per attribute cell (aligned with \code{x}).}
 nr-by-nc array on the device by rows as in par documentation.}
 }
 \value{
-Invisibly returns \code{NULL}. If \code{ras = TRUE}, returns a named \code{list}
+If \code{ras = TRUE}, returns a named \code{list}
 of \link[terra]{SpatRaster} layers (one per descriptor column).
 }
 \description{
-Maps each descriptor column returned by \code{\link{lets.attrcells}}
-back onto the attribute raster template (\code{x$Attr_Richness_Raster}).
-Optionally returns the rasters without plotting.
+Maps each descriptor column returned by \code{\link{lets.attrcells}} back
+onto the attribute raster. Optionally returns the rasters without plotting.
 }
 \details{
 Plot attribute-cell descriptors as rasters
@@ -45,7 +44,7 @@ Plot attribute-cell descriptors as rasters
 
 Rows with zero or \code{NA} richness are masked before plotting, to avoid
 edge artifacts from empty attribute cells. The plotting grid defaults to
-\code{par(mfrow = c(4, 2))}; adjust as needed.
+\code{par(mfrow = c(4, 4))}; adjust as needed.
 }
 \examples{
 \dontrun{
