@@ -33,10 +33,6 @@ lets.plot.attrpam(x, species = NULL, col_rich = NULL, ...)
   Additional arguments passed to
   [`plot()`](https://rdrr.io/r/graphics/plot.default.html).
 
-## Value
-
-Invisibly returns `NULL`. Called for side effects (plots).
-
 ## Details
 
 Plot an Attribute-space PAM

@@ -1,12 +1,12 @@
 # Map species-level attributes over the attribute-space grid
 
 Summarizes species attributes (e.g., trait values, description year)
-within each \*\*attribute-space\*\* cell of a presence–absence matrix
-produced by
+within each attribute-space cell of a presence–absence matrix produced
+by
 [`lets.attrpam`](https://brunovilela.github.io/letsR/reference/lets.attrpam.md).
-A summary function (`func`) is applied across the attributes of species
-present in each cell, producing a per-cell attribute surface and an
-optional raster for visualization.
+A summary function is applied across the attributes of species present
+in each cell, producing a per-cell attribute surface and an optional
+raster for visualization.
 
 ## Usage
 
@@ -64,7 +64,7 @@ A `list` with:
 
 ## Details
 
-Map species attributes in attribute space (based on AttrPAM)
+Map species attributes in attribute space
 
 Internally, the function multiplies each species presence column by its
 attribute value in `y` (matched by name via `z`), sets zeros to `NA` so

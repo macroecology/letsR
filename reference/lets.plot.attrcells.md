@@ -2,8 +2,8 @@
 
 Maps each descriptor column returned by
 [`lets.attrcells`](https://brunovilela.github.io/letsR/reference/lets.attrcells.md)
-back onto the attribute raster template (`x$Attr_Richness_Raster`).
-Optionally returns the rasters without plotting.
+back onto the attribute raster. Optionally returns the rasters without
+plotting.
 
 ## Usage
 
@@ -54,7 +54,7 @@ lets.plot.attrcells(
 
 ## Value
 
-Invisibly returns `NULL`. If `ras = TRUE`, returns a named `list` of
+If `ras = TRUE`, returns a named `list` of
 [SpatRaster](https://rspatial.github.io/terra/reference/SpatRaster-class.html)
 layers (one per descriptor column).
 
@@ -64,7 +64,7 @@ Plot attribute-cell descriptors as rasters
 
 Rows with zero or `NA` richness are masked before plotting, to avoid
 edge artifacts from empty attribute cells. The plotting grid defaults to
-`par(mfrow = c(4, 2))`; adjust as needed.
+`par(mfrow = c(4, 4))`; adjust as needed.
 
 ## Examples
 

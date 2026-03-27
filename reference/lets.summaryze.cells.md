@@ -1,16 +1,16 @@
 # Aggregate cell-wise metrics across occupied cells per species
 
-Given a presence–absence matrix in either \*\*attribute space\*\* (from
+Given a presence–absence matrix in either attribute space (from
 [`lets.attrpam`](https://brunovilela.github.io/letsR/reference/lets.attrpam.md))
-or \*\*environmental space\*\* (from
+or environmental space (from
 [`lets.envpam`](https://brunovilela.github.io/letsR/reference/lets.envpam.md))
-and a table of \*\*per-cell descriptors\*\* (from
+and a table of per-cell descriptors (from
 [`lets.attrcells`](https://brunovilela.github.io/letsR/reference/lets.attrcells.md)
 or
 [`lets.envcells`](https://brunovilela.github.io/letsR/reference/lets.envcells.md)),
 this function aggregates each descriptor across the set of cells
-\*\*occupied by each species\*\*, using a user-supplied summary function
-(e.g., `mean`, `median`, `sum`).
+occupied by each species, using a user-supplied summary function (e.g.,
+`mean`, `median`, `sum`).
 
 ## Usage
 
@@ -56,8 +56,8 @@ holds the species names copied from `colnames(x[[1]])[4:ncol(x[[1]])]`.
 Summarize per-cell descriptors to species-level values
 
 Internally, for each species column in `x[[1]]` (starting at column 4),
-the function builds a logical mask of \*\*occupied cells\*\* (\> 0). It
-then subsets the descriptor table `y` to those rows and applies `func`
+the function builds a logical mask of occupied cells (\> 0). It then
+subsets the descriptor table `y` to those rows and applies `func`
 column-wise to `y[occupied, -1]` (dropping the ID column). Missing
 values are removed with
 [`stats::na.omit`](https://rdrr.io/r/stats/na.fail.html) prior to

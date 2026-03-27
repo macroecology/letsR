@@ -10,8 +10,8 @@ frequency-weighted mean), (iv) distance to environmental “border”
 isolation metric based on frequency-weighted Euclidean distance in
 standardized environmental space.
 
-Distances to midpoints are returned \*\*negated\*\* (i.e., larger values
-imply greater centrality in environmental space), following the current
+Distances to midpoints are returned inverted (i.e., larger values imply
+greater centrality in environmental space), following the current
 implementation.
 
 ## Usage
@@ -34,7 +34,7 @@ lets.envcells(x, perc = 0.2, remove.cells = FALSE)
 
   - `$Presence_and_Absence_Matrix_geo`: data.frame with columns
     `cell_id_geo`, geographic coordinates (lon, lat), and species
-    presences.
+    presences.+
 
   - `$Env_Richness_Raster`: a terra SpatRaster of richness in
     environmental space.
@@ -86,7 +86,8 @@ A data frame with one row per environmental cell. The output includes:
 
 ## Details
 
-Summarize environmental–geographical metrics from an envPAM object
+Summarize environmental–geographical metrics from an environmental space
+PAM
 
 Environmental variables (assumed to be the 2nd and 3rd columns of
 `$Presence_and_Absence_Matrix_env`) are z-scored before computing

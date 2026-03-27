@@ -2,8 +2,8 @@
 
 Plots each column of the descriptor table returned by
 [`lets.envcells`](https://brunovilela.github.io/letsR/reference/lets.envcells.md)
-back onto the environmental richness raster embedded in the envPAM
-object. Rows with zero frequency are masked as `NA`.
+back onto the environmental richness raster embedded in the
+environmental space PAM object.
 
 ## Usage
 
@@ -66,7 +66,7 @@ lets.plot.envcells(
 
 ## Value
 
-Invisibly returns `NULL`. If `ras = TRUE`, returns a named list of
+If `ras = TRUE`, returns a named list of
 [SpatRaster](https://rspatial.github.io/terra/reference/SpatRaster-class.html)
 objects corresponding to each descriptor column.
 
@@ -75,8 +75,8 @@ objects corresponding to each descriptor column.
 Plot environmental descriptors over the environmental raster grid
 
 Each descriptor column is assigned as values of the environmental raster
-template and plotted sequentially. The plotting grid defaults to
-`par(mfrow = c(4,4))`.
+template and plotted sequentially. Rows with zero frequency are masked
+as `NA`. The plotting grid defaults to `par(mfrow = c(4,4))`.
 
 ## Examples
 

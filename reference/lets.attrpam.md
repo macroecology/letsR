@@ -1,9 +1,9 @@
 # Attribute-space Presence–Absence Matrix (attrPAM)
 
-Builds a presence–absence matrix (PAM) in a two-dimensional \*\*trait
-space\*\*, by binning species occurrences along two quantitative
-attributes (e.g., body size and mass). Each species can have one or
-multiple entries in the trait dataset.
+Builds a presence–absence matrix (PAM) in a two-dimensional trait space,
+by binning species occurrences along two quantitative attributes (e.g.,
+body size and mass). Each species can have one or multiple entries in
+the trait dataset.
 
 ## Usage
 
@@ -31,16 +31,17 @@ lets.attrpam(
 
 - remove.cells:
 
-  Logical. If \`TRUE\`, remove empty cells from the PAM (default).
+  Logical. Should cells with no species be removed from the final
+  matrix?
 
 - remove.sp:
 
-  Logical. If \`TRUE\`, remove species absent from all cells (default).
+  Logical. Should species with no occurrences in attribute space be
+  removed?
 
 - count:
 
-  Logical. If \`TRUE\`, display a text progress bar while building the
-  PAM.
+  Logical. If \`TRUE\`, displays a progress bar for species processing.
 
 ## Value
 
@@ -65,6 +66,12 @@ each trait cell.
 
 ``` r
 if (FALSE) { # \dontrun{
-# n <- 2000
+n <- 2000
+Species <- paste0("sp", 1:n)
+trait_a <- rnorm(n)
+trait_b <- trait_a * .2 + rnorm(n)
+x <- data.frame(Species, trait_a, trait_b)
+test <- lets.attrpam(x, n_bins = 30)
+lets.plot.attrpam(test)
 } # }
 ```

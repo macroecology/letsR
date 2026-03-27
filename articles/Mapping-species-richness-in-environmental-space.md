@@ -228,30 +228,11 @@ head(out)
 #> 8                    3.409092
 ```
 
-Key columns are:
-
-Frequency: geographic aggregation into the same environmental cell.
-
-Isolation: summary of pairwise geographic distances among geographic
-cells mapped to that environmental bin.
-
-Weighted Mean Distance to midpoint and Mean Distance to midpoint:
-negated distances in standardized environmental space (larger = more
-central).
-
-Minimum Zero Distance, Minimum 10% Zero Distance (here 20% because perc
-= 0.2), and Distance to MCP border: three proxies for environmental
-“edge”.
-
-Mapping descriptor layers
+### Plot the descriptors
 
 We can plot every descriptor over the environmental raster grid.
 Optionally, set ras = TRUE to also retrieve the layers as a named list
 of SpatRaster objects for further use.
-
-### Plot the descriptors
-
-Plot all descriptors (environmental grid)
 
 ``` r
 lets.plot.envcells(res, out)
@@ -268,7 +249,7 @@ ras_list <- lets.plot.envcells(res, out, ras = TRUE, plot_ras = FALSE)
 ## Diagnosing centrality vs. richness (optional)
 
 As a simple diagnostic, we may examine whether environmental centrality
-(negated distance to the weighted midpoint) co-varies with environmental
+(inverse distance to the weighted midpoint) co-varies with environmental
 richness.
 
 ``` r
@@ -282,7 +263,7 @@ centrality <- centrality[keep]
 
 # Plot relationship
 plot(centrality, rich_env,
-     xlab = "Centrality (negated distance to weighted midpoint)",
+     xlab = "Centrality (inverse distance to weighted midpoint)",
      ylab = "Species richness",
      pch  = 19)
 abline(lm(rich_env ~ centrality), lwd = 2)

@@ -7,7 +7,7 @@ environmental cell), (iii) distance to environmental midpoints (mean and
 frequency-weighted mean), (iv) distance to environmental “border” (zero-richness
 frontier via three proxies), and (v) an environmental isolation metric based on
 frequency-weighted Euclidean distance in standardized environmental space.
-Distances to midpoints are returned **negated** (i.e., larger values imply
+Distances to midpoints are returned inverted (i.e., larger values imply
 greater centrality in environmental space), following the current implementation."><meta property="og:description" content="Computes a suite of descriptors for each environmental cell in an
 environmental presence–absence matrix (envPAM), including:
 (i) frequency in geographic space, (ii) geographic isolation statistics
@@ -16,7 +16,7 @@ environmental cell), (iii) distance to environmental midpoints (mean and
 frequency-weighted mean), (iv) distance to environmental “border” (zero-richness
 frontier via three proxies), and (v) an environmental isolation metric based on
 frequency-weighted Euclidean distance in standardized environmental space.
-Distances to midpoints are returned **negated** (i.e., larger values imply
+Distances to midpoints are returned inverted (i.e., larger values imply
 greater centrality in environmental space), following the current implementation."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -71,7 +71,7 @@ environmental cell), (iii) distance to environmental midpoints (mean and
 frequency-weighted mean), (iv) distance to environmental “border” (zero-richness
 frontier via three proxies), and (v) an environmental isolation metric based on
 frequency-weighted Euclidean distance in standardized environmental space.</p>
-<p>Distances to midpoints are returned **negated** (i.e., larger values imply
+<p>Distances to midpoints are returned inverted (i.e., larger values imply
 greater centrality in environmental space), following the current implementation.</p>
     </div>
 
@@ -89,7 +89,7 @@ greater centrality in environmental space), following the current implementation
         <code>cell_id_env</code>, the environmental coordinates (e.g., two variables),
         and species presences (one column per species).</p></li>
 <li><p><code>$Presence_and_Absence_Matrix_geo</code>: data.frame with columns
-        <code>cell_id_geo</code>, geographic coordinates (lon, lat), and species presences.</p></li>
+        <code>cell_id_geo</code>, geographic coordinates (lon, lat), and species presences.+</p></li>
 <li><p><code>$Env_Richness_Raster</code>: a <span class="pkg">terra</span> SpatRaster of richness in environmental space.</p></li>
 </ul></dd>
 
@@ -124,7 +124,7 @@ greater centrality in environmental space), following the current implementation
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Summarize environmental–geographical metrics from an envPAM object</p>
+    <p>Summarize environmental–geographical metrics from an environmental space PAM</p>
 
 <p>Environmental variables (assumed to be the 2nd and 3rd columns of
 <code>$Presence_and_Absence_Matrix_env</code>) are z-scored before computing distances.
