@@ -8,7 +8,7 @@
 A PackedStatRaster object.
 }
 \source{
-Data was modified from WorldClim (\url{https://worldclim.com/}, downloaded 05/2014).
+Data was modified from WorldClim (\url{https://worldclim.org/}, downloaded 05/2014).
 
 Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. 
 Very high resolution interpolated climate surfaces for global land areas. 

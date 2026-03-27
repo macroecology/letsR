@@ -50,7 +50,7 @@
 #' Mean temperature raster in degrees Celsius (multiplied by 100) 
 #' for the world in 10 arc min of resolution. 
 #' @format A PackedStatRaster object.
-#' @source Data was modified from WorldClim (\url{https://worldclim.com/}, downloaded 05/2014).
+#' @source Data was modified from WorldClim (\url{https://worldclim.org/}, downloaded 05/2014).
 #' 
 #' Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. 
 #' Very high resolution interpolated climate surfaces for global land areas. 
@@ -63,7 +63,7 @@
 #'
 #' Annual Precipitation in mm for the world in 10 arc min of resolution. 
 #' @format A PackedStatRaster object.
-#' @source Data was modified from WorldClim (\url{https://worldclim.com/}, downloaded 10/2024).
+#' @source Data was modified from WorldClim (\url{https://worldclim.org/}, downloaded 10/2024).
 #' 
 #' Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. 
 #' Very high resolution interpolated climate surfaces for global land areas. 
@@ -76,9 +76,7 @@
 #' and converted to sf.
 #'  
 #' @format A simple feature collection with 246 features and 11 fields.
-#' @source Originally
-#'  \url{https://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip}, 
-#'  now available from
+#' @source Now available from
 #'  \url{https://github.com/nasa/World-Wind-Java/tree/master/WorldWind/testData/shapefiles}.
 "wrld_simpl"
 

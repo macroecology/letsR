@@ -8,9 +8,7 @@
 A simple feature collection with 246 features and 11 fields.
 }
 \source{
-Originally
- \url{https://mappinghacks.com/data/TM_WORLD_BORDERS_SIMPL-0.2.zip}, 
- now available from
+Now available from
  \url{https://github.com/nasa/World-Wind-Java/tree/master/WorldWind/testData/shapefiles}.
 }
 \usage{
