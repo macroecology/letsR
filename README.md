@@ -2,6 +2,7 @@
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/letsR)](https://CRAN.R-project.org/package=letsR)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/letsR)]( https://github.com/r-hub/cranlogs.app)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/letsR)]( https://github.com/r-hub/cranlogs.app)
+[![codecov](https://codecov.io/github/BrunoVilela/letsR/graph/badge.svg?token=PAsk54dmff)](https://codecov.io/github/BrunoVilela/letsR)
 
 # letsR <img src="man/figures/letsr.png" align="right" height="200" style="float:right; height:200px;" />
 
