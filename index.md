@@ -1,4 +1,4 @@
-# letsR ![](reference/figures/letsr.png)
+# letsR
 
 ## The package
 
