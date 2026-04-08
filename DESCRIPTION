@@ -17,7 +17,8 @@ Imports:
     geosphere,
     sf
 Depends:
-  terra,
+    R (>= 3.1.0),
+    terra,
     grDevices,
     graphics,
     methods,
