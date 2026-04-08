@@ -6,7 +6,7 @@ provided by the user.
 ## Usage
 
 ``` r
-lets.subsetPAM(x, names, remove.cells = TRUE)
+lets.subsetPAM(x, species, remove.cells = TRUE)
 ```
 
 ## Arguments
@@ -17,7 +17,7 @@ lets.subsetPAM(x, names, remove.cells = TRUE)
   [`PresenceAbsence`](https://brunovilela.github.io/letsR/reference/PresenceAbsence.md)
   object.
 
-- names:
+- species:
 
   Character vector with species names to subset the `PresenceAbsence`
   object.

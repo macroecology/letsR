@@ -11,7 +11,7 @@ Each species can have one or multiple entries in the trait dataset."></head><bod
 
     <a class="navbar-brand me-2" href="../index.html">letsR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@ Each species can have one or multiple entries in the trait dataset."></head><bod
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Attribute-space Presence–Absence Matrix (attrPAM)</h1>
-      <small class="dont-index">Source: <a href="https://github.com/macroecology/letsR/blob/6.0/R/lets_attrpam.R" class="external-link"><code>R/lets_attrpam.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/macroecology/letsR/blob/master/R/lets_attrpam.R" class="external-link"><code>R/lets_attrpam.R</code></a></small>
       <div class="d-none name"><code>lets.attrpam.Rd</code></div>
     </div>
 
@@ -112,8 +112,8 @@ the resulting PAM indicates which species are present in each trait cell.</p>
 <span class="r-in"><span><span class="va">trait_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">trait_b</span> <span class="op">&lt;-</span> <span class="va">trait_a</span> <span class="op">*</span> <span class="fl">.2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">Species</span>, <span class="va">trait_a</span>, <span class="va">trait_b</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">test</span> <span class="op">&lt;-</span> <span class="fu">lets.attrpam</span><span class="op">(</span><span class="va">x</span>, n_bins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="lets.plot.attrpam.html">lets.plot.attrpam</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pam_att</span> <span class="op">&lt;-</span> <span class="fu">lets.attrpam</span><span class="op">(</span><span class="va">x</span>, n_bins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="lets.plot.attrpam.html">lets.plot.attrpam</a></span><span class="op">(</span><span class="va">pam_att</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

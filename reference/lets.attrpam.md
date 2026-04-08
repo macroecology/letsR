@@ -71,7 +71,7 @@ Species <- paste0("sp", 1:n)
 trait_a <- rnorm(n)
 trait_b <- trait_a * .2 + rnorm(n)
 x <- data.frame(Species, trait_a, trait_b)
-test <- lets.attrpam(x, n_bins = 30)
-lets.plot.attrpam(test)
+pam_att <- lets.attrpam(x, n_bins = 30)
+lets.plot.attrpam(pam_att)
 } # }
 ```

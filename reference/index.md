@@ -83,6 +83,10 @@
   : Filter species' shapefiles based on its presence, origin, and season
 - [`lets.subsetPAM()`](https://brunovilela.github.io/letsR/reference/lets.subsetPAM.md)
   : Subset a PresenceAbsence object based on species names
+- [`lets.subsetPAMatt()`](https://brunovilela.github.io/letsR/reference/lets.subsetPAMatt.md)
+  : Subset an attribute PAM by species names
+- [`lets.subsetPAMenv()`](https://brunovilela.github.io/letsR/reference/lets.subsetPAMenv.md)
+  : Subset an environmental PAM by species names
 - [`lets.summarizer()`](https://brunovilela.github.io/letsR/reference/lets.summarizer.md)
   : Summarize variable(s) values in a presence-absence matrix within
   species' ranges
