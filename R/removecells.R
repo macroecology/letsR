@@ -6,7 +6,7 @@
   if (length(rem) > 0) {
     x <- x[-rem, , drop = FALSE]
   }
-  if(nrow(x) == 0) {
+  if (nrow(x) == 0) {
     stop("No cells left after removing cells without occurrences")
   }
   return(x)

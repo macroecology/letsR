@@ -4,12 +4,12 @@
 \alias{lets.subsetPAM}
 \title{Subset a PresenceAbsence object based on species names}
 \usage{
-lets.subsetPAM(x, names, remove.cells = TRUE)
+lets.subsetPAM(x, species, remove.cells = TRUE)
 }
 \arguments{
 \item{x}{A \code{\link{PresenceAbsence}} object.}
 
-\item{names}{Character vector with species names to subset the \code{PresenceAbsence} object.}
+\item{species}{Character vector with species names to subset the \code{PresenceAbsence} object.}
 
 \item{remove.cells}{Logical, if \code{TRUE} the final matrix will not contain cells in the 
 grid with a value of zero (i.e. sites with no species present).}

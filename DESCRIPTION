@@ -1,7 +1,7 @@
 Package: letsR
 Type: Package
 Title: Data Handling and Analysis in Macroecology
-Version: 6.0
+Version: 6.1
 Date: 2026-03-27
 Authors@R: c(person(given = "Bruno", family = "Vilela",
                     email = "bvilela.bv@gmail.com",
@@ -17,8 +17,7 @@ Imports:
     geosphere,
     sf
 Depends:
-    R (>= 3.1.0),
-    terra,
+  terra,
     grDevices,
     graphics,
     methods,

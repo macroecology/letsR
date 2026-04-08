@@ -6,7 +6,7 @@
 #' provided by the user.
 #' 
 #' @param x A \code{\link{PresenceAbsence}} object.
-#' @param names Character vector with species names to subset the \code{PresenceAbsence} object.
+#' @param species Character vector with species names to subset the \code{PresenceAbsence} object.
 #' @param remove.cells Logical, if \code{TRUE} the final matrix will not contain cells in the 
 #' grid with a value of zero (i.e. sites with no species present).
 #' 
@@ -31,7 +31,7 @@
 #' 
 #' @export
 
-lets.subsetPAM <- function(x, names, remove.cells = TRUE) {
+lets.subsetPAM <- function(x, species, remove.cells = TRUE) {
 
   if (!methods::is(x, "PresenceAbsence")) {
     stop("x is not a PresenceAbsence object")
@@ -39,8 +39,8 @@ lets.subsetPAM <- function(x, names, remove.cells = TRUE) {
     x <- .check_pam(x)
   }
   
-  if (!inherits(names, "character")) {
-    stop("names argument must be a character object")
+  if (!inherits(species, "character")) {
+    stop("species argument must be a character object")
   }
   
   if (!inherits(remove.cells, "logical")) {
@@ -48,16 +48,16 @@ lets.subsetPAM <- function(x, names, remove.cells = TRUE) {
   }
   
   # Get species position name
-  pos <- colnames(x[[1]]) %in% names  
+  pos <- colnames(x[[1]]) %in% species  
   
-  errorcont <- names %in% colnames(x[[1]]) 
+  errorcont <- species %in% colnames(x[[1]]) 
   
   if (!any(errorcont)) {
-    stop("None of the names provided match with PAM species")
+    stop("None of the species provided match with PAM species")
   }
   
   if (any(!errorcont)) {
-    warning(paste("One or more names",
+    warning(paste("One or more species",
                   "provided, do not",
                   "match any of the",
                   "PAM species"))
