@@ -4,7 +4,7 @@
 \alias{lets.plot.attrpam}
 \title{Plot attrPAM results}
 \usage{
-lets.plot.attrpam(x, species = NULL, col_rich = NULL, ...)
+lets.plot.attrpam(x, species = NULL, cell_id = NULL, col_rich = NULL, ...)
 }
 \arguments{
 \item{x}{A list returned by \code{\link{lets.attrpam}}.}
@@ -16,6 +16,8 @@ If provided, plots its presence in trait space.}
 default palette is used (red ramp for species maps, red–white ramp for richness).}
 
 \item{...}{Additional arguments passed to \code{plot()}.}
+
+\item{cell_id_env}{An integer or vector of integers indicating attribute space cell(s) to be highlighted.}
 }
 \description{
 Plots the richness (or a single species) in the attribute (trait) space

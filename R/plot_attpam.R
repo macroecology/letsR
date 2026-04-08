@@ -8,6 +8,7 @@
 #' @param x A list returned by \code{\link{lets.attrpam}}.
 #' @param species Optional. A character string with the name of a species to highlight.
 #'                If provided, plots its presence in trait space.
+#'@param cell_id_env An integer or vector of integers indicating attribute space cell(s) to be highlighted.
 #' @param col_rich Optional. A color palette function or vector. If `NULL`, a
 #'                 default palette is used (red ramp for species maps, red–white ramp for richness).
 #' @param ... Additional arguments passed to \code{plot()}.
@@ -30,14 +31,16 @@
 #' @export
 lets.plot.attrpam <- function(x,
                               species = NULL,
+                              cell_id = NULL,
                               col_rich = NULL,
                               ...) {
   
   ## --- Define color palette --------------------------------------------------
   check_sp <- !is.null(species)
+  check_cell <- !is.null(cell_id)
   
   if (is.null(col_rich)) {
-    if (!check_sp) {
+    if (!(check_sp | check_cell)) {
       # Default richness palette (light to dark red)
       colfunc <- grDevices::colorRampPalette(c("#fff5f0", "#fb6a4a", "#67000d"))
     } else {
@@ -57,6 +60,14 @@ lets.plot.attrpam <- function(x,
     v[!is.na(v)] <- 0
     v[cells]    <- 1
     terra::values(x[[2]]) <- v
+  }
+  
+  if (check_cell) {
+    v <- terra::values(x[[2]])
+    v[!is.na(v)] <- 0
+    v[cell_id]    <- 1
+    terra::values(x[[2]]) <- v
+    
   }
   
   ## --- Axis scaling ----------------------------------------------------------

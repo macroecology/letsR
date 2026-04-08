@@ -17,11 +17,11 @@ This object is expected to be a list in which:
   representing the attribute-space grid.
 }}
 
+\item{species}{A character vector with species names to retain in the PAM.}
+
 \item{remove.cells}{Logical. If \code{TRUE}, attribute-space cells with zero
 richness after subsetting are removed from the data-frame component
 (\code{x[[1]]}). Default is \code{TRUE}.}
-
-\item{names}{A character vector with species names to retain in the PAM.}
 }
 \value{
 A list with the same structure as the input object:

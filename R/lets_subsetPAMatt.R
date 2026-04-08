@@ -20,7 +20,7 @@
 #'     \item \code{x[[2]]} is a \code{\link[terra:SpatRaster-class]{terra::SpatRaster}}
 #'     representing the attribute-space grid.
 #'   }
-#' @param names A character vector with species names to retain in the PAM.
+#' @param species A character vector with species names to retain in the PAM.
 #' @param remove.cells Logical. If \code{TRUE}, attribute-space cells with zero
 #'   richness after subsetting are removed from the data-frame component
 #'   (\code{x[[1]]}). Default is \code{TRUE}.
