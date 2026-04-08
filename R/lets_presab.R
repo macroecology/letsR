@@ -107,7 +107,8 @@ lets.presab <- function(shapes,
                         count = FALSE) {
   
   # look for species names
-  if(!any(c("binomial","BINOMIAL","SCINAME","sciname") %in% names(shapes)))
+  if(!any(c("binomial","BINOMIAL","SCINAME","sciname", 
+            "SCI_NAME", "sci_name") %in% names(shapes)))
   {
     stop(paste0("species names missing from shapes ",
                 "or column name in data does not match required names"))
