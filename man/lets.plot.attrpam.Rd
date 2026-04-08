@@ -12,12 +12,12 @@ lets.plot.attrpam(x, species = NULL, cell_id = NULL, col_rich = NULL, ...)
 \item{species}{Optional. A character string with the name of a species to highlight.
 If provided, plots its presence in trait space.}
 
+\item{cell_id}{An integer or vector of integers indicating attribute space cell(s) to be highlighted.}
+
 \item{col_rich}{Optional. A color palette function or vector. If `NULL`, a
 default palette is used (red ramp for species maps, red–white ramp for richness).}
 
 \item{...}{Additional arguments passed to \code{plot()}.}
-
-\item{cell_id_env}{An integer or vector of integers indicating attribute space cell(s) to be highlighted.}
 }
 \description{
 Plots the richness (or a single species) in the attribute (trait) space

@@ -8,7 +8,7 @@
 #' @param x A list returned by \code{\link{lets.attrpam}}.
 #' @param species Optional. A character string with the name of a species to highlight.
 #'                If provided, plots its presence in trait space.
-#'@param cell_id_env An integer or vector of integers indicating attribute space cell(s) to be highlighted.
+#' @param cell_id An integer or vector of integers indicating attribute space cell(s) to be highlighted.
 #' @param col_rich Optional. A color palette function or vector. If `NULL`, a
 #'                 default palette is used (red ramp for species maps, red–white ramp for richness).
 #' @param ... Additional arguments passed to \code{plot()}.
