@@ -22,6 +22,11 @@ lets.plot.attrpam(x, species = NULL, cell_id = NULL, col_rich = NULL, ...)
   Optional. A character string with the name of a species to highlight.
   If provided, plots its presence in trait space.
 
+- cell_id:
+
+  An integer or vector of integers indicating attribute space cell(s) to
+  be highlighted.
+
 - col_rich:
 
   Optional. A color palette function or vector. If \`NULL\`, a default
@@ -32,11 +37,6 @@ lets.plot.attrpam(x, species = NULL, cell_id = NULL, col_rich = NULL, ...)
 
   Additional arguments passed to
   [`plot()`](https://rdrr.io/r/graphics/plot.default.html).
-
-- cell_id_env:
-
-  An integer or vector of integers indicating attribute space cell(s) to
-  be highlighted.
 
 ## Details
 
