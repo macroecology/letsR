@@ -30,15 +30,15 @@ lets.subsetPAMatt(x, species, remove.cells = TRUE)
     [`terra::SpatRaster`](https://rspatial.github.io/terra/reference/SpatRaster-class.html)
     representing the attribute-space grid.
 
+- species:
+
+  A character vector with species names to retain in the PAM.
+
 - remove.cells:
 
   Logical. If `TRUE`, attribute-space cells with zero richness after
   subsetting are removed from the data-frame component (`x[[1]]`).
   Default is `TRUE`.
-
-- names:
-
-  A character vector with species names to retain in the PAM.
 
 ## Value
 
