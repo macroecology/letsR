@@ -40,7 +40,7 @@
 #' @export
 
 lets.maplizer <- function(x, y, z, func = mean, ras = FALSE, weighted = FALSE) {
-  .map_all(x, y, z, func = mean, space = "geo", ras,
+  .map_all(x, y, z, func = func, space = "geo", ras,
            weighted)
 }
 
