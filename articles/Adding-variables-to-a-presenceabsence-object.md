@@ -18,6 +18,7 @@ presence-absence matrix. Let’s see an example using the bioclimatic data
 from WorldClim.
 
 ``` r
+
 library(letsR)
 ```
 
@@ -25,6 +26,7 @@ Here we will use the Average temperature raster in Celsius degrees
 (multiplied by 100) for the world in 10 arc min of resolution.
 
 ``` r
+
 data(temp)
 r <- terra::unwrap(temp) # example data
 
@@ -37,6 +39,7 @@ Here I will use the `PresenceAbsence` object for Phyllomedusa species
 previously generated.
 
 ``` r
+
 data(PAM)
 plot(PAM, main = "Phyllomedusa\nRichness")
 ```
@@ -53,6 +56,7 @@ you may want to sum them, or get the standard deviation, or use any
 another function.
 
 ``` r
+
 PAM_env <- lets.addvar(PAM, r, fun = mean)
 #> Warning in lets.addvar(PAM, r, fun = mean): Reprojecting y to match the
 #> projection in x
@@ -62,28 +66,31 @@ The result is a presence absence matrix, where the last columns now
 include the raster values. Check the table:
 
 ``` r
+
 head(PAM_env)
 ```
 
 | Longitude(x) | Latitude(y) | Phyllomedusa araguari | Phyllomedusa atelopoides | Phyllomedusa ayeaye | Phyllomedusa azurea | Phyllomedusa bahiana | Phyllomedusa baltea | Phyllomedusa bicolor | Phyllomedusa boliviana | Phyllomedusa burmeisteri | Phyllomedusa camba | Phyllomedusa centralis | Phyllomedusa coelestis | Phyllomedusa distincta | Phyllomedusa duellmani | Phyllomedusa ecuatoriana | Phyllomedusa hypochondrialis | Phyllomedusa iheringii | Phyllomedusa itacolomi | Phyllomedusa megacephala | Phyllomedusa neildi | Phyllomedusa nordestina | Phyllomedusa oreades | Phyllomedusa palliata | Phyllomedusa perinesos | Phyllomedusa rohdei | Phyllomedusa sauvagii | Phyllomedusa tarsius | Phyllomedusa tetraploidea | Phyllomedusa tomopterna | Phyllomedusa trinitatis | Phyllomedusa vaillantii | Phyllomedusa venusta | wc2.1_10m_bio_1_mean |
-|-------------:|------------:|----------------------:|-------------------------:|--------------------:|--------------------:|---------------------:|--------------------:|---------------------:|-----------------------:|-------------------------:|-------------------:|-----------------------:|-----------------------:|-----------------------:|-----------------------:|-------------------------:|-----------------------------:|-----------------------:|-----------------------:|-------------------------:|--------------------:|------------------------:|---------------------:|----------------------:|-----------------------:|--------------------:|----------------------:|---------------------:|--------------------------:|------------------------:|------------------------:|------------------------:|---------------------:|---------------------:|
-|        -74.5 |        11.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   0 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       0 |                       0 |                    1 |             26.67511 |
-|        -69.5 |        11.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   1 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       1 |                       0 |                    0 |             26.38072 |
-|        -68.5 |        11.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   0 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       1 |                       0 |                    0 |             26.75012 |
-|        -75.5 |        10.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   0 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       0 |                       0 |                    1 |             27.59441 |
-|        -74.5 |        10.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   0 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       0 |                       0 |                    1 |             27.69106 |
-|        -69.5 |        10.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   1 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       1 |                       0 |                    0 |             24.01917 |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| -74.5 | 11.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 26.67511 |
+| -69.5 | 11.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 26.38072 |
+| -68.5 | 11.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 26.75012 |
+| -75.5 | 10.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 27.59441 |
+| -74.5 | 10.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 27.69106 |
+| -69.5 | 10.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 24.01917 |
 
 If you do not want the coordinates and species included you can set the
 argument `onlyvar = TRUE`.
 
 ``` r
+
 climate <- lets.addvar(PAM, r, fun = mean, onlyvar = TRUE)
 #> Warning in lets.addvar(PAM, r, fun = mean, onlyvar = TRUE): Reprojecting y to
 #> match the projection in x
 ```
 
 ``` r
+
 head(climate)
 ```
 
@@ -101,10 +108,12 @@ data in many ways. For example, you could graph the relationship between
 temperature and species richness.
 
 ``` r
+
 library(ggplot2)
 ```
 
 ``` r
+
 rich <- rowSums(PAM$P[, -(1:2)])
 
 mpg1 <- data.frame("Temperature" = climate[, 1]/10,
@@ -127,6 +136,7 @@ polygon attribute used. As an example, we can use the South America
 countries map available in the package `maptools`.
 
 ``` r
+
 data("wrld_simpl")
 SA <- c("Brazil", "Colombia",  "Argentina",
         "Peru", "Venezuela", "Chile",
@@ -145,26 +155,29 @@ ggplot(data = south_ame) +
 Now we can add this variables to our PAM.
 
 ``` r
+
 PAM_pol <- lets.addpoly(PAM, south_ame, "NAME")
 ```
 
 ``` r
+
 head(PAM_pol)
 ```
 
 | Longitude(x) | Latitude(y) | Phyllomedusa araguari | Phyllomedusa atelopoides | Phyllomedusa ayeaye | Phyllomedusa azurea | Phyllomedusa bahiana | Phyllomedusa baltea | Phyllomedusa bicolor | Phyllomedusa boliviana | Phyllomedusa burmeisteri | Phyllomedusa camba | Phyllomedusa centralis | Phyllomedusa coelestis | Phyllomedusa distincta | Phyllomedusa duellmani | Phyllomedusa ecuatoriana | Phyllomedusa hypochondrialis | Phyllomedusa iheringii | Phyllomedusa itacolomi | Phyllomedusa megacephala | Phyllomedusa neildi | Phyllomedusa nordestina | Phyllomedusa oreades | Phyllomedusa palliata | Phyllomedusa perinesos | Phyllomedusa rohdei | Phyllomedusa sauvagii | Phyllomedusa tarsius | Phyllomedusa tetraploidea | Phyllomedusa tomopterna | Phyllomedusa trinitatis | Phyllomedusa vaillantii | Phyllomedusa venusta | Argentina | Bolivia | Brazil | Chile | Colombia | Ecuador | French Guiana | Guyana | Suriname | Paraguay | Peru | Uruguay | Venezuela |
-|-------------:|------------:|----------------------:|-------------------------:|--------------------:|--------------------:|---------------------:|--------------------:|---------------------:|-----------------------:|-------------------------:|-------------------:|-----------------------:|-----------------------:|-----------------------:|-----------------------:|-------------------------:|-----------------------------:|-----------------------:|-----------------------:|-------------------------:|--------------------:|------------------------:|---------------------:|----------------------:|-----------------------:|--------------------:|----------------------:|---------------------:|--------------------------:|------------------------:|------------------------:|------------------------:|---------------------:|----------:|--------:|-------:|------:|---------:|--------:|--------------:|-------:|---------:|---------:|-----:|--------:|----------:|
-|        -74.5 |        11.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   0 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       0 |                       0 |                    1 |         0 |       0 |      0 |     0 |   0.1231 |       0 |             0 |      0 |        0 |        0 |    0 |       0 |    0.0000 |
-|        -69.5 |        11.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   1 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       1 |                       0 |                    0 |         0 |       0 |      0 |     0 |   0.0000 |       0 |             0 |      0 |        0 |        0 |    0 |       0 |    0.5744 |
-|        -68.5 |        11.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   0 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       1 |                       0 |                    0 |         0 |       0 |      0 |     0 |   0.0000 |       0 |             0 |      0 |        0 |        0 |    0 |       0 |    0.1744 |
-|        -75.5 |        10.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   0 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       0 |                       0 |                    1 |         0 |       0 |      0 |     0 |   0.3333 |       0 |             0 |      0 |        0 |        0 |    0 |       0 |    0.0000 |
-|        -74.5 |        10.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   0 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       0 |                       0 |                    1 |         0 |       0 |      0 |     0 |   0.9641 |       0 |             0 |      0 |        0 |        0 |    0 |       0 |    0.0000 |
-|        -69.5 |        10.5 |                     0 |                        0 |                   0 |                   0 |                    0 |                   0 |                    0 |                      0 |                        0 |                  0 |                      0 |                      0 |                      0 |                      0 |                        0 |                            0 |                      0 |                      0 |                        0 |                   1 |                       0 |                    0 |                     0 |                      0 |                   0 |                     0 |                    0 |                         0 |                       0 |                       1 |                       0 |                    0 |         0 |       0 |      0 |     0 |   0.0000 |       0 |             0 |      0 |        0 |        0 |    0 |       0 |    1.0000 |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| -74.5 | 11.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0.1231 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0000 |
+| -69.5 | 11.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.5744 |
+| -68.5 | 11.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.1744 |
+| -75.5 | 10.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0.3333 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0000 |
+| -74.5 | 10.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0.9641 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0000 |
+| -69.5 | 10.5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1.0000 |
 
 This information can be used to calculate the number of species per
 country for example.
 
 ``` r
+
 vars_col <- (ncol(PAM$P) + 1):ncol(PAM_pol)
 n <- length(vars_col)
 rich_count <- numeric(n)
@@ -177,6 +190,7 @@ names(rich_count) <- labs
 ```
 
 ``` r
+
 mpg <- data.frame("Richness" = rich_count, "Country" = as.factor(labs))
 g <- ggplot(mpg, aes(labs, Richness))
 g + geom_bar(stat = "identity") + labs(x = "") +

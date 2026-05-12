@@ -8,6 +8,7 @@ let the function know which species you want to keep and provide the
 `PresenceAbsence` object as input.
 
 ``` r
+
 # Package
 library(letsR)
 
@@ -29,6 +30,7 @@ straightforward method to achieve this. For instance, let’s crop our
 Presence-Absence Matrix (PAM) to the borders of Brazil.
 
 ``` r
+
 data(wrld_simpl)  # World map
 data(PAM)
 Brazil <- wrld_simpl[wrld_simpl$NAME == "Brazil", ]  # Brazil (polygon)

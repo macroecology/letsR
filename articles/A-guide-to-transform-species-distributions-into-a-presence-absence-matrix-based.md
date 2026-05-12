@@ -22,6 +22,7 @@ distribution data for frogs belonging to the Phyllomedusa genus, which
 is conveniently pre-loaded within the `letsR` package.
 
 ``` r
+
 library(letsR)
 
 data("Phyllomedusa")
@@ -30,6 +31,7 @@ data("Phyllomedusa")
 We can plot the data to see how it looks like.
 
 ``` r
+
 # Plot
 ## Color settings and assignment
 colors <- rainbow(length(unique(Phyllomedusa$binomial)),
@@ -54,6 +56,7 @@ user-defined grid system. A simple way to do this is to define the
 extent and resolution of the grid.
 
 ``` r
+
 PAM <- lets.presab(Phyllomedusa, xmn = -93, xmx = -29,
                    ymn = -57, ymx = 15, res = 1)
 ```
@@ -74,6 +77,7 @@ To obtain summary information about the generated Presence-Absence
 Matrix (PAM), the `summary` function can be employed.
 
 ``` r
+
 summary(PAM)
 ```
 
@@ -95,6 +99,7 @@ summary(PAM)
 You can also use the `plot` function directly to the PAM object.
 
 ``` r
+
 plot(PAM)
 ```
 
@@ -105,6 +110,7 @@ distributions. For example, we can plot the map of *Phyllomedusa
 hypochondrialis*:
 
 ``` r
+
 plot(PAM, name = "Phyllomedusa hypochondrialis")
 ```
 
@@ -114,6 +120,7 @@ As said before, the PAM object contains the actual presence absence
 matrix, to access it we can use the following code:
 
 ``` r
+
 presab <- PAM$Presence_and_Absence_Matrix
 ```
 
@@ -122,6 +129,7 @@ latitude (y) of the cells’ centroid, the following columns include the
 species’ presence(1) and absence(0) information.
 
 ``` r
+
 # Print only the first 5 rows and 3 columns
 presab[1:5, 1:3]
 ```
@@ -141,6 +149,7 @@ by changing the `crs.grid` argument. Check the example using the South
 America Equidistant Conic projection.
 
 ``` r
+
 pro <- paste("+proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5",
              "+lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA", 
              "+units=m +no_defs")
@@ -153,6 +162,7 @@ PAM_proj <- lets.presab(Phyllomedusa, xmn = -4135157,
 ```
 
 ``` r
+
 summary(PAM_proj)
 ```
 
@@ -172,6 +182,7 @@ summary(PAM_proj)
     ## Coord. Ref.:  +proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5 +lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA +units=m +no_defs
 
 ``` r
+
 plot(PAM_proj)
 # Add projected country boundaries
 data("wrld_simpl")
@@ -200,6 +211,7 @@ However, with the latest update on
 the `cover` argument with other projections as well.
 
 ``` r
+
 # 90% cover
 PAM_90 <- lets.presab(Phyllomedusa, xmn = -93,
                       xmx = -29, ymn = -57,
@@ -221,6 +233,7 @@ excludes cells with a value of zero in the final matrix, meaning sites
 where no species are present won’t be included.
 
 ``` r
+
 PAM_keep_cells <- lets.presab(Phyllomedusa, xmn = -93,
                               xmx = -29, ymn = -57,
                               ymx = 15, res = 1,
@@ -231,6 +244,7 @@ You can now employ the `summary` function to confirm whether the empty
 cells were retained.
 
 ``` r
+
 summary(PAM_keep_cells)
 ```
 
@@ -262,6 +276,7 @@ vector indicating the species name for each occurrence record. In the
 example below, we are going to simulate random occurrence points.
 
 ``` r
+
 species <- c(rep("sp1", 100), rep("sp2", 100),
              rep("sp3", 100), rep("sp4", 100))
 x <- runif(400, min = -69, max = -51)
@@ -273,6 +288,7 @@ Now that we have the coordinates and species name, we can use the
 `lets.presab.points` function.
 
 ``` r
+
 PAM_points <- lets.presab.points(xy, species, xmn = -93, xmx = -29,
                           ymn = -57, ymx = 15)
 plot(PAM_points)
@@ -292,6 +308,7 @@ to convert this result to a `PresenceAbsence` object, I will cover this
 in a new post soon. Let’s first create our grid:
 
 ``` r
+
 # Grid 
 sp.r <- terra::as.polygons(terra::rast(xmin = -93, xmax = -29,
                                 ymin = -57, ymax = 15,
@@ -307,6 +324,7 @@ plot(sf::st_geometry(wrld_simpl[1]), add = T, fill = F)
 Now we can build our presence absence matrix from the grid.
 
 ``` r
+
 resu <- lets.presab.grid(Phyllomedusa, sp.r, "ID")
 ```
 
@@ -314,6 +332,7 @@ The result is a list with the presence absence matrix and the grid. To
 plot the richness map we can use the following code:
 
 ``` r
+
 rich_plus1 <- rowSums(resu$PAM[, -1]) + 1
 colfunc <- colorRampPalette(c("#fff5f0", "#fb6a4a", "#67000d"))
 colors <- c("white", colfunc(max(rich_plus1)))

@@ -16,7 +16,7 @@ Source:
 Vilela B, Villalobos F (2015). “letsR: a new R package for data handling
 and analysis in macroecology.” *Methods in Ecology and Evolution*,
 **6**(10), -5.
-[doi:10.1111/2041-210X.12401](https://doi.org/10.1111/2041-210X.12401),
+[doi:10.1111/2041-210X.12401](https://doi.org/10.1111/2041-210X.12401).
 <https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.12401>.
 
     @Article{,

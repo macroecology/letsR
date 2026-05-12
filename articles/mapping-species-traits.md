@@ -17,6 +17,7 @@ the Phyllomedusa species.
 [GitHub](https://github.com/macroecology/letsR)*
 
 ``` r
+
 # Load the package
 library(letsR)
 
@@ -37,6 +38,7 @@ ranges shapefiles. Let’s do the latter option, since it is more
 accurate, although all options should be correlated.
 
 ``` r
+
 data("Phyllomedusa")
 rangesize <- lets.rangesize(Phyllomedusa,
                             coordinates = "geographic")
@@ -52,6 +54,7 @@ values. We also want the function to return a raster with the mapped
 traits, so we will set `ras = TRUE`.
 
 ``` r
+
 resu <- lets.maplizer(PAM, rangesize, rownames(rangesize), ras = TRUE)
 cols2 <- colorRampPalette(c('#e0ecf4','#9ebcda','#8856a7'))
 plot(resu$Raster, col = cols2(10), main = "Mean Range Size")
@@ -65,10 +68,12 @@ Visually, the Rapoport’s rule doesn’t seem to work on Phyllomedusa
 frogs. We can go further and see the relationship with latitude.
 
 ``` r
+
 library(ggplot2)
 ```
 
 ``` r
+
 mpg <- as.data.frame(resu$Matrix)
 colnames(mpg)[ncol(mpg)] <- "Variable_mean"
 f <- ggplot(mpg, aes(`Latitude(y)`, Variable_mean))

@@ -23,6 +23,7 @@ This vignette demonstrates how to:
     analysis.
 
 ``` r
+
 # Load the package
 library(letsR)
 ```
@@ -33,6 +34,7 @@ We begin by generating a dataset of 2,000 species with two correlated
 traits:
 
 ``` r
+
 set.seed(123)
 n <- 2000
 Species  <- paste0("sp", 1:n)
@@ -51,6 +53,7 @@ The
 function plots the richness surface across the bivariate trait space.
 
 ``` r
+
 lets.plot.attrpam(attr_obj)
 ```
 
@@ -68,6 +71,7 @@ quantifies structural properties of each cell in the trait space,
 including measures of centrality, isolation, and border proximity.
 
 ``` r
+
 attr_desc <- lets.attrcells(attr_obj, perc = 0.2)
 head(attr_desc)
 #>   Cell_attr Weighted Mean Distance to midpoint Mean Distance to midpoint
@@ -97,6 +101,7 @@ We can visualize these metrics using
 [`lets.plot.attrcells()`](https://brunovilela.github.io/letsR/reference/lets.plot.attrcells.md):
 
 ``` r
+
 lets.plot.attrcells(attr_obj, attr_desc)
 ```
 
@@ -113,6 +118,7 @@ across all cells occupied by each species using the
 `lets.summarizer.cells()` function.
 
 ``` r
+
 attr_desc_by_sp <- lets.summaryze.cells(attr_obj, attr_desc, func = mean)
 head(attr_desc_by_sp)
 #>   Species Weighted Mean Distance to midpoint Mean Distance to midpoint
@@ -153,6 +159,7 @@ cells occupied by those species. This enables the computation of
 additional descriptors in geographic space.
 
 ``` r
+
 data("PAM")
 
 n <- length(PAM$Species_name)
@@ -221,6 +228,7 @@ with occupancy and isolation patterns in geographic space.
 The resulting descriptors can also be plotted:
 
 ``` r
+
 lets.plot.attrcells(x, cell_desc_geo)
 ```
 

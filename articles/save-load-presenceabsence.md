@@ -7,6 +7,7 @@ load `PresenceAbsence` objects in a similar fashion to the base
 functions `save` and `load`.
 
 ``` r
+
 library(letsR)
 
 data(PAM) # Example data

@@ -21,6 +21,7 @@ precipitation.
 [GitHub](https://github.com/macroecology/letsR)*
 
 ``` r
+
 # Load the package
 library(letsR)
 
@@ -39,6 +40,7 @@ records. We can also remove data beyond the geographic limits of
 continents as the example species are continental organisms.
 
 ``` r
+
 # Generate a geographic PAM
 pam <- lets.presab(Phyllomedusa, remove.cells = FALSE)
 
@@ -52,6 +54,7 @@ Next, we need to add our environmental data to the pam using the
 set the `onlyvar` argument `TRUE`.
 
 ``` r
+
 # Extract environmental values
 envs <- lets.addvar(pam, c(temp, prec), onlyvar = TRUE)
 colnames(envs) <- c("Temperature", "Precipitation")
@@ -64,6 +67,7 @@ create the presence absence matrix in the environmental space using the
 `lets.envpam`function.
 
 ``` r
+
 # Transform PAM into environmental space
 res <- lets.envpam(pam, envs)
 ```
@@ -86,6 +90,7 @@ of information between environmental and geographic spaces in both
 directions.
 
 ``` r
+
 res$Presence_and_Absence_Matrix_env[1:5, 1:5]
 #>     Cell_env Temperature Precipitation Phyllomedusa araguari
 #> 269      269    26.46848      4568.828                     0
@@ -102,6 +107,7 @@ res$Presence_and_Absence_Matrix_env[1:5, 1:5]
 ```
 
 ``` r
+
 res$Presence_and_Absence_Matrix_geo[1:5, 1:5]
 #>      Cell_env Cell_geo Longitude(x) Latitude(y) Phyllomedusa araguari
 #> [1,]      750        3    -75.92399     10.5907                     0
@@ -117,6 +123,7 @@ The `letsR` package also offers a function to plot richness plot in both
 environmental and geographic space.
 
 ``` r
+
 lets.plot.envpam(res,
             world = TRUE)
 ```
@@ -131,6 +138,7 @@ environmental (right) space.
 To visualize where a specific species occurs in both spaces:
 
 ``` r
+
 lets.plot.envpam(res, species = "Phyllomedusa atelopoides")
 ```
 
@@ -143,6 +151,7 @@ attributes in both environmental and geographic spaces. Let’s use the
 species description date available in the `IUCN` example object.
 
 ``` r
+
 data("IUCN")
 # Map mean description year
 res_map <- lets.maplizer.env(res, 
@@ -158,6 +167,7 @@ results (notice that you cannot plot individual species or cells in this
 case).
 
 ``` r
+
 # Plotting trait maps
 lets.plot.envpam(res_map)
 ```
@@ -189,6 +199,7 @@ environmental borders.
 ## Summarize descriptors per environmental cell
 
 ``` r
+
 out <- lets.envcells(res)  # perc controls the robust border metric
 head(out)
 #>   Cell_env Frequency Area Isolation (Min.) Isolation (1st Qu.)
@@ -235,6 +246,7 @@ Optionally, set ras = TRUE to also retrieve the layers as a named list
 of SpatRaster objects for further use.
 
 ``` r
+
 lets.plot.envcells(res, out)
 ```
 
@@ -243,6 +255,7 @@ lets.plot.envcells(res, out)
 Optionally retrieve rasters for further analysis:
 
 ``` r
+
 ras_list <- lets.plot.envcells(res, out, ras = TRUE, plot_ras = FALSE)
 ```
 
@@ -253,6 +266,7 @@ As a simple diagnostic, we may examine whether environmental centrality
 richness.
 
 ``` r
+
 centrality <- out[["Weighted Mean Distance to midpoint"]]   # larger = more central
 rich_env   <- rowSums(res$Presence_and_Absence_Matrix_env[, -(1:3), drop = FALSE])
 

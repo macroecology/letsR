@@ -20,6 +20,7 @@ First we create a geographic and environmental PAM as described in
 previous articles.
 
 ``` r
+
 library(letsR)
 
 # Occurrences and climate
@@ -51,6 +52,7 @@ lets.plot.envpam(env_obj, world = TRUE)
 ## Environmental descriptors per environmental cell
 
 ``` r
+
 # Compute env-space descriptors (centrality, border, isolation, etc.)
 env_cells <- lets.envcells(env_obj, perc = 0.2)
 
@@ -96,6 +98,7 @@ Summarize those per-cell descriptors to species level by aggregating
 across the environmental cells each species occupies:
 
 ``` r
+
 # Species-level summaries (e.g., mean across occupied env cells)
 env_by_species <- lets.summaryze.cells(env_obj, env_cells, func = mean)
 
@@ -149,6 +152,7 @@ traits for the species present in our PAM. (Replace with real traits if
 available.)
 
 ``` r
+
 set.seed(123)
 sp_vec   <- env_by_species$Species                    # species present in PAM
 n_sp     <- length(sp_vec)
@@ -177,6 +181,7 @@ lets.plot.attrpam(attr_obj)
 Project environmental metric to geography:
 
 ``` r
+
 # Align env-cell descriptors to the order of geographic rows
 env_cells_geo <- env_cells[ env_obj$Presence_and_Absence_Matrix_geo[, 1], ]
 
@@ -202,6 +207,7 @@ Map the same environmental metric (species-level) into the attribute
 grid:
 
 ``` r
+
 met_env <- env_by_species$`Weighted Mean Distance to midpoint` 
 sp_names <- env_by_species$Species
 
@@ -228,6 +234,7 @@ species-level metrics to geographic or environmental spaces using
 `lets.maplizer(...)` or `lets.maplizer.env(...)`.
 
 ``` r
+
 # Attribute-space descriptors per cell
 attr_cells <- lets.attrcells(attr_obj, perc = 0.2)
 
