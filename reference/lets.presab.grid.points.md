@@ -57,7 +57,7 @@ lets.presab.grid.points(
 The result is a `list` containing two objects:
 
 \(I\) A matrix the species presence (1) and absence (0) values per
-sample unity.
+sample unit.
 
 \(II\) The original grid.
 

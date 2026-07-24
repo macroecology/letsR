@@ -92,8 +92,8 @@ summary(PAM)
     ## Species with the largest range: Phyllomedusa hypochondrialis
     ## _ _
     ## Grid parameters
-    ## Resolution: 1, 1 (x, y)
-    ## Extention: -93, -29, -57, 15 (xmin, xmax, ymin, ymax)
+    ## Resolution: ,  (x, y)
+    ## Extent: -93, -29, -57, 15 (xmin, xmax, ymin, ymax)
     ## Coord. Ref.:  +proj=longlat +datum=WGS84 +no_defs
 
 You can also use the `plot` function directly to the PAM object.
@@ -177,8 +177,8 @@ summary(PAM_proj)
     ## Species with the largest range: Phyllomedusa hypochondrialis
     ## _ _
     ## Grid parameters
-    ## Resolution: 1e+05, 1e+05 (x, y)
-    ## Extention: -4135157, 4664843, -450000, 5750000 (xmin, xmax, ymin, ymax)
+    ## Resolution: ,  (x, y)
+    ## Extent: -4135157, 4664843, -450000, 5750000 (xmin, xmax, ymin, ymax)
     ## Coord. Ref.:  +proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5 +lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA +units=m +no_defs
 
 ``` r
@@ -259,8 +259,8 @@ summary(PAM_keep_cells)
     ## Species with the largest range: Phyllomedusa hypochondrialis
     ## _ _
     ## Grid parameters
-    ## Resolution: 1, 1 (x, y)
-    ## Extention: -93, -29, -57, 15 (xmin, xmax, ymin, ymax)
+    ## Resolution: ,  (x, y)
+    ## Extent: -93, -29, -57, 15 (xmin, xmax, ymin, ymax)
     ## Coord. Ref.:  +proj=longlat +datum=WGS84 +no_defs
 
 Additionally, for users intending to retain species that do not occur in

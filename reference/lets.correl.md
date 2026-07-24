@@ -30,14 +30,13 @@ lets.correl(x, y, z, equidistant = FALSE, plot = TRUE)
 
 - plot:
 
-  Logical, if `TRUE` the correlogram will be ploted.
+  Logical, if `TRUE` the correlogram will be plotted.
 
 ## Value
 
 Returns a matrix with the Moran's I Observed value, Confidence Interval
 (95 and Expected value. Also the p value of the randomization test, the
-mean distance between classes, and the number of observations. quase
-tudo
+mean distance between classes, and the number of observations.
 
 ## References
 

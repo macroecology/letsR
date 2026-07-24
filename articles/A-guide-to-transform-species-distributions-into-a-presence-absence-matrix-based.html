@@ -40,7 +40,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html">A guide to transform species distributions into a presence absence matrix based on a user-defined grid in R</a></li>
     <li><a class="dropdown-item" href="../articles/Adding-variables-to-a-presenceabsence-object.html">Adding variables to a PresenceAbsence object</a></li>
-    <li><a class="dropdown-item" href="../articles/cropping-and-subseting-your-presence-absence-matrix.html">Cropping and subseting your presence absence matrix</a></li>
+    <li><a class="dropdown-item" href="../articles/cropping-and-subsetting-your-presence-absence-matrix.html">Cropping and subsetting your presence absence matrix</a></li>
     <li><a class="dropdown-item" href="../articles/Cross-mapping-biodiversity-metrics-Phyllomedusa.html">Cross-mapping biodiversity metrics across spaces</a></li>
     <li><a class="dropdown-item" href="../articles/Mapping-species-richness-in-attribute-space.html">Mapping species richness in attribute space</a></li>
     <li><a class="dropdown-item" href="../articles/Mapping-species-richness-in-environmental-space.html">Mapping species richness in environmental space</a></li>
@@ -150,8 +150,8 @@ function can be employed.</p>
 <span><span class="co">## Species with the largest range: Phyllomedusa hypochondrialis</span></span>
 <span><span class="co">## _ _</span></span>
 <span><span class="co">## Grid parameters</span></span>
-<span><span class="co">## Resolution: 1, 1 (x, y)</span></span>
-<span><span class="co">## Extention: -93, -29, -57, 15 (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">## Resolution: ,  (x, y)</span></span>
+<span><span class="co">## Extent: -93, -29, -57, 15 (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## Coord. Ref.:  +proj=longlat +datum=WGS84 +no_defs</span></span></code></pre>
 <p>You can also use the <code>plot</code> function directly to the PAM
 object.</p>
@@ -211,8 +211,8 @@ example using the South America Equidistant Conic projection.</p>
 <span><span class="co">## Species with the largest range: Phyllomedusa hypochondrialis</span></span>
 <span><span class="co">## _ _</span></span>
 <span><span class="co">## Grid parameters</span></span>
-<span><span class="co">## Resolution: 1e+05, 1e+05 (x, y)</span></span>
-<span><span class="co">## Extention: -4135157, 4664843, -450000, 5750000 (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">## Resolution: ,  (x, y)</span></span>
+<span><span class="co">## Extent: -4135157, 4664843, -450000, 5750000 (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## Coord. Ref.:  +proj=eqdc +lat_0=-32 +lon_0=-60 +lat_1=-5 +lat_2=-42 +x_0=0 +y_0=0 +ellps=aust_SA +units=m +no_defs</span></span></code></pre>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">PAM_proj</span><span class="op">)</span></span>
@@ -277,8 +277,8 @@ whether the empty cells were retained.</p>
 <span><span class="co">## Species with the largest range: Phyllomedusa hypochondrialis</span></span>
 <span><span class="co">## _ _</span></span>
 <span><span class="co">## Grid parameters</span></span>
-<span><span class="co">## Resolution: 1, 1 (x, y)</span></span>
-<span><span class="co">## Extention: -93, -29, -57, 15 (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">## Resolution: ,  (x, y)</span></span>
+<span><span class="co">## Extent: -93, -29, -57, 15 (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## Coord. Ref.:  +proj=longlat +datum=WGS84 +no_defs</span></span></code></pre>
 <p>Additionally, for users intending to retain species that do not occur
 in any cell of the grid, it is essential to configure

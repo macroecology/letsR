@@ -1,6 +1,6 @@
 # Create a matrix summarizing species' attributes within cells of a PresenceAbsence object
 
-Summarize species atributes per cell in a presence-absence matrix.
+Summarize species attributes per cell in a presence-absence matrix.
 
 ## Usage
 
@@ -27,7 +27,7 @@ lets.maplizer(x, y, z, func = mean, ras = FALSE, weighted = FALSE)
 
 - func:
 
-  A function to summarize the species' atribute in each cell (the
+  A function to summarize the species' attribute in each cell (the
   function must return only one value).
 
 - ras:
@@ -42,13 +42,13 @@ lets.maplizer(x, y, z, func = mean, ras = FALSE, weighted = FALSE)
 
 ## Value
 
-The result can be both a `matrix` or a `list` cointaining the follow
+The result can be both a `matrix` or a `list` containing the follow
 objects:
 
 **Matrix**: a `matrix` object with the cells' geographic coordinates and
 the summarized species' attributes within them.
 
-**Raster**: The summarized species'attributed maped in a `SpatRaster`
+**Raster**: The summarized species' attributed mapped in a `SpatRaster`
 object.
 
 ## See also

@@ -137,7 +137,7 @@ Phyllomedusa genus. However, there seems to be an interesting pattern
 where range size decreases from the center towards the extremes of the
 group. This could be an effect of niche conservatism, where species in
 the extreme latitude would face very different conditions from the
-ancestral Phylllomedusa. Another possibility is that this pattern could
+ancestral Phyllomedusa. Another possibility is that this pattern could
 be due to the shape of the continent, where extreme latitudes means
 smaller longitudes.
 

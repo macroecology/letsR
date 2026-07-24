@@ -128,7 +128,7 @@ ggplot(mpg1, aes(Temperature, Richness)) +
 
 ### Adding variables in polygon format
 
-Data in shapefile format like ecorregions, conservation units or
+Data in shapefile format like ecoregions, conservation units or
 countries, can be added to a PAM using the function `lets.addpoly`. This
 function adds polygons’ attributes as columns at the right-end of the
 matrix. The values represent the percentage of the cell covered by the

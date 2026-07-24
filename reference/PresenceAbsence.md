@@ -36,7 +36,7 @@ geographic gradient in species richness;
 - Species_name: A character vector with species' names contained in the
 matrix.  
   
-Each of the objects can be obtained usign the standard subsetting
+Each of the objects can be obtained using the standard subsetting
 operators that are commonly applied to a `list` object (i.e. '\[\[' and
 '\$').  
   

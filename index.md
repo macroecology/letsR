@@ -75,7 +75,7 @@ research questions.
   user-defined spatial grid into a presence-absence matrix using
   `lets.presab`, `lets.presab.points`, or `lets.presab.grid`.
 - [Crop or subset a presence-absence
-  matrix](https://brunovilela.github.io/letsR/articles/cropping-and-subseting-your-presence-absence-matrix.html):
+  matrix](https://brunovilela.github.io/letsR/articles/cropping-and-subsetting-your-presence-absence-matrix.html):
   Select focal species with `lets.subsetPAM` or restrict a
   `PresenceAbsence` object to a geographic region with `lets.pamcrop`.
 - [Add environmental or polygon

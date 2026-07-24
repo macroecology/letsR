@@ -34,7 +34,7 @@ lets.pamcrop(x, shp, remove.sp = TRUE, remove.cells = FALSE)
 
 ## Value
 
-The result is an object of class PresenceAbsence croped.
+The result is an object of class PresenceAbsence cropped.
 
 ## See also
 

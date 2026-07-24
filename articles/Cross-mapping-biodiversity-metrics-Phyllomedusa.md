@@ -229,7 +229,7 @@ space.
 
 You can compute attribute-space descriptors with
 `lets.attrcells(attr_obj, ...)`, summarize them to species with
-`lets.summarizer.cells(attr_obj, ...)`, and then project those
+`lets.summaryze.cells(attr_obj, ...)`, and then project those
 species-level metrics to geographic or environmental spaces using
 `lets.maplizer(...)` or `lets.maplizer.env(...)`.
 

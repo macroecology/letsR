@@ -29,7 +29,7 @@ lets.subsetPAM(x, species, remove.cells = TRUE)
 
 ## Value
 
-The result is an object of class PresenceAbsence subseted.
+The result is an object of class PresenceAbsence subsetted.
 
 ## See also
 

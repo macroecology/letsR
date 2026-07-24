@@ -14,9 +14,9 @@
 - [`lets.pamcrop()`](https://brunovilela.github.io/letsR/reference/lets.PAMcrop.md)
   : Crop a PresenceAbsence object based on an input shapefile
 - [`lets.addpoly()`](https://brunovilela.github.io/letsR/reference/lets.addpoly.md)
-  : Add polygon coverage to a PresenceAbscence object
+  : Add polygon coverage to a PresenceAbsence object
 - [`lets.addvar()`](https://brunovilela.github.io/letsR/reference/lets.addvar.md)
-  : Add variables (in raster format) to a PresenceAbscence object
+  : Add variables (in raster format) to a PresenceAbsence object
 - [`lets.attrcells()`](https://brunovilela.github.io/letsR/reference/lets.attrcells.md)
   : Descriptors of position, centrality, and isolation in attribute
   space

@@ -10,7 +10,7 @@ prec
 
 ## Format
 
-A PackedStatRaster object.
+A PackedSpatRaster object.
 
 ## Source
 

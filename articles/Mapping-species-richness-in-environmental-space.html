@@ -40,7 +40,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html">A guide to transform species distributions into a presence absence matrix based on a user-defined grid in R</a></li>
     <li><a class="dropdown-item" href="../articles/Adding-variables-to-a-presenceabsence-object.html">Adding variables to a PresenceAbsence object</a></li>
-    <li><a class="dropdown-item" href="../articles/cropping-and-subseting-your-presence-absence-matrix.html">Cropping and subseting your presence absence matrix</a></li>
+    <li><a class="dropdown-item" href="../articles/cropping-and-subsetting-your-presence-absence-matrix.html">Cropping and subsetting your presence absence matrix</a></li>
     <li><a class="dropdown-item" href="../articles/Cross-mapping-biodiversity-metrics-Phyllomedusa.html">Cross-mapping biodiversity metrics across spaces</a></li>
     <li><a class="dropdown-item" href="../articles/Mapping-species-richness-in-attribute-space.html">Mapping species richness in attribute space</a></li>
     <li><a class="dropdown-item" href="../articles/Mapping-species-richness-in-environmental-space.html">Mapping species richness in environmental space</a></li>
@@ -310,7 +310,7 @@ environmental richness.</p>
 <code class="sourceCode R"><span><span class="va">centrality</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">[[</span><span class="st">"Weighted Mean Distance to midpoint"</span><span class="op">]</span><span class="op">]</span>   <span class="co"># larger = more central</span></span>
 <span><span class="va">rich_env</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/rowSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">Presence_and_Absence_Matrix_env</span><span class="op">[</span>, <span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Mantain cells without zero</span></span>
+<span><span class="co"># Maintain cells without zero</span></span>
 <span><span class="va">keep</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">$</span><span class="va">Presence_and_Absence_Matrix_env</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">centrality</span> <span class="op">&lt;-</span> <span class="va">centrality</span><span class="op">[</span><span class="va">keep</span><span class="op">]</span></span>
 <span></span>

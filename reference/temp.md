@@ -11,7 +11,7 @@ temp
 
 ## Format
 
-A PackedStatRaster object.
+A PackedSpatRaster object.
 
 ## Source
 

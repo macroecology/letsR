@@ -270,7 +270,7 @@ richness.
 centrality <- out[["Weighted Mean Distance to midpoint"]]   # larger = more central
 rich_env   <- rowSums(res$Presence_and_Absence_Matrix_env[, -(1:3), drop = FALSE])
 
-# Mantain cells without zero
+# Maintain cells without zero
 keep <- res$Presence_and_Absence_Matrix_env[, 1]
 centrality <- centrality[keep]
 

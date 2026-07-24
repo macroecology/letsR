@@ -20,7 +20,7 @@ lets.transf(x, y, z, NUMERIC = TRUE)
 
 - z:
 
-  The value to be atributed to each level (same order as y).
+  The value to be atrtibuted to each level (same order as y).
 
 - NUMERIC:
 

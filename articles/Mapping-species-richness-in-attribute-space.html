@@ -40,7 +40,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html">A guide to transform species distributions into a presence absence matrix based on a user-defined grid in R</a></li>
     <li><a class="dropdown-item" href="../articles/Adding-variables-to-a-presenceabsence-object.html">Adding variables to a PresenceAbsence object</a></li>
-    <li><a class="dropdown-item" href="../articles/cropping-and-subseting-your-presence-absence-matrix.html">Cropping and subseting your presence absence matrix</a></li>
+    <li><a class="dropdown-item" href="../articles/cropping-and-subsetting-your-presence-absence-matrix.html">Cropping and subsetting your presence absence matrix</a></li>
     <li><a class="dropdown-item" href="../articles/Cross-mapping-biodiversity-metrics-Phyllomedusa.html">Cross-mapping biodiversity metrics across spaces</a></li>
     <li><a class="dropdown-item" href="../articles/Mapping-species-richness-in-attribute-space.html">Mapping species richness in attribute space</a></li>
     <li><a class="dropdown-item" href="../articles/Mapping-species-richness-in-environmental-space.html">Mapping species richness in environmental space</a></li>
@@ -98,7 +98,7 @@ patterns beyond geography and environment.</p>
 <li>Compute descriptors per attribute cell using
 <code><a href="../reference/lets.attrcells.html">lets.attrcells()</a></code>;</li>
 <li>Aggregate descriptors to the species level with
-<code>lets.summarizer.cells()</code>; and</li>
+<code><a href="../reference/lets.summaryze.cells.html">lets.summaryze.cells()</a></code>; and</li>
 <li>Cross-map attribute metrics to geographic space for integrative
 analysis.</li>
 </ol>
@@ -178,7 +178,7 @@ trait space.</p>
 </h2>
 <p>To derive species-level summaries, we can aggregate descriptor values
 across all cells occupied by each species using the
-<code>lets.summarizer.cells()</code> function.</p>
+<code><a href="../reference/lets.summaryze.cells.html">lets.summaryze.cells()</a></code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">attr_desc_by_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lets.summaryze.cells.html">lets.summaryze.cells</a></span><span class="op">(</span><span class="va">attr_obj</span>, <span class="va">attr_desc</span>, func <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">attr_desc_by_sp</span><span class="op">)</span></span>
@@ -205,7 +205,7 @@ across all cells occupied by each species using the
 <span><span class="co">#&gt; 6                   1.1319803</span></span></code></pre></div>
 <p>This produces a data frame in which each row corresponds to a
 species, and each column corresponds to the mean descriptor value across
-the cells where that species occurs. `</p>
+the cells where that species occurs.</p>
 </div>
 <div class="section level2">
 <h2 id="linking-attribute-space-to-geographic-space">Linking attribute space to geographic space<a class="anchor" aria-label="anchor" href="#linking-attribute-space-to-geographic-space"></a>

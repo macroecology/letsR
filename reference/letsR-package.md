@@ -41,10 +41,10 @@ get the development version of letsR on github
 
 |          |            |
 |----------|------------|
-| Package: | lestR      |
+| Package: | letsR      |
 | Type:    | Package    |
-| Version: | 3.1        |
-| Date:    | 2018-01-24 |
+| Version: | 6.1        |
+| Date:    | 2026-07-24 |
 | License: | GPL-2      |
 
 ## References

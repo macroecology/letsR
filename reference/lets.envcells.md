@@ -34,7 +34,7 @@ lets.envcells(x, perc = 0.2, remove.cells = FALSE)
 
   - `$Presence_and_Absence_Matrix_geo`: data.frame with columns
     `cell_id_geo`, geographic coordinates (lon, lat), and species
-    presences.+
+    presences.
 
   - `$Env_Richness_Raster`: a terra SpatRaster of richness in
     environmental space.

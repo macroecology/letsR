@@ -19,12 +19,12 @@ plot(x, name = NULL, world = TRUE, col_rich = NULL, col_name = "red", ...)
 
 - name:
 
-  A character specifying a species to be ploted instead of the complete
+  A character specifying a species to be plotted instead of the complete
   species richness map.
 
 - world:
 
-  If `TURE` a map of political divisions (countries) is added to the
+  If `TRUE` a map of political divisions (countries) is added to the
   plot.
 
 - col_rich:
@@ -37,7 +37,7 @@ plot(x, name = NULL, world = TRUE, col_rich = NULL, col_name = "red", ...)
 
 - col_name:
 
-  The color to use when ploting single species.
+  The color to use when plotting single species.
 
 - ...:
 

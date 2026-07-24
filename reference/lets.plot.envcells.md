@@ -51,7 +51,7 @@ lets.plot.envcells(
 
 - which.plot:
 
-  Indicate the number of the columns in y to be ploted.
+  Indicate the number of the columns in y to be plotted.
 
 - col_func:
 

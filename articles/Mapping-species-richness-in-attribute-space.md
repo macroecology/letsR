@@ -18,7 +18,8 @@ This vignette demonstrates how to:
 3.  Compute descriptors per attribute cell using
     [`lets.attrcells()`](https://brunovilela.github.io/letsR/reference/lets.attrcells.md);
 4.  Aggregate descriptors to the species level with
-    `lets.summarizer.cells()`; and
+    [`lets.summaryze.cells()`](https://brunovilela.github.io/letsR/reference/lets.summaryze.cells.md);
+    and
 5.  Cross-map attribute metrics to geographic space for integrative
     analysis.
 
@@ -115,7 +116,8 @@ trait space.
 
 To derive species-level summaries, we can aggregate descriptor values
 across all cells occupied by each species using the
-`lets.summarizer.cells()` function.
+[`lets.summaryze.cells()`](https://brunovilela.github.io/letsR/reference/lets.summaryze.cells.md)
+function.
 
 ``` r
 
@@ -146,7 +148,7 @@ head(attr_desc_by_sp)
 
 This produces a data frame in which each row corresponds to a species,
 and each column corresponds to the mean descriptor value across the
-cells where that species occurs. \`
+cells where that species occurs.
 
 ## Linking attribute space to geographic space
 

@@ -22,8 +22,8 @@ lets.gridirizer(x)
 ## Value
 
 The result is a list of two objects. The first is a grid in shapefile
-format; the second is a presence-absence matrix with an aditional column
-called SP_ID (shapefile cell identifier).
+format; the second is a presence-absence matrix with an additional
+column called SP_ID (shapefile cell identifier).
 
 ## See also
 
@@ -44,7 +44,7 @@ PAM.grid <- lets.gridirizer(PAM)
 names(PAM.grid)
 # Grid in polygon format (can be saved in shapefile)
 PAM.grid$Grid
-# Presence-absence matrix (beggining only)
+# Presence-absence matrix (beginning only)
 head(PAM.grid$Presence[, 1:5])
 
 } # }

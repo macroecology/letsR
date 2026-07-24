@@ -26,7 +26,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html">A guide to transform species distributions into a presence absence matrix based on a user-defined grid in R</a></li>
     <li><a class="dropdown-item" href="../articles/Adding-variables-to-a-presenceabsence-object.html">Adding variables to a PresenceAbsence object</a></li>
-    <li><a class="dropdown-item" href="../articles/cropping-and-subseting-your-presence-absence-matrix.html">Cropping and subseting your presence absence matrix</a></li>
+    <li><a class="dropdown-item" href="../articles/cropping-and-subsetting-your-presence-absence-matrix.html">Cropping and subsetting your presence absence matrix</a></li>
     <li><a class="dropdown-item" href="../articles/Cross-mapping-biodiversity-metrics-Phyllomedusa.html">Cross-mapping biodiversity metrics across spaces</a></li>
     <li><a class="dropdown-item" href="../articles/Mapping-species-richness-in-attribute-space.html">Mapping species richness in attribute space</a></li>
     <li><a class="dropdown-item" href="../articles/Mapping-species-richness-in-environmental-space.html">Mapping species richness in environmental space</a></li>
@@ -73,7 +73,7 @@
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>The result is a list of two objects. The first is a grid in shapefile
-  format; the second is a presence-absence matrix with an aditional column
+  format; the second is a presence-absence matrix with an additional column
   called SP_ID (shapefile cell identifier).</p>
     </div>
     <div class="section level2">
@@ -94,7 +94,7 @@
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">PAM.grid</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Grid in polygon format (can be saved in shapefile)</span></span></span>
 <span class="r-in"><span><span class="va">PAM.grid</span><span class="op">$</span><span class="va">Grid</span></span></span>
-<span class="r-in"><span><span class="co"># Presence-absence matrix (beggining only)</span></span></span>
+<span class="r-in"><span><span class="co"># Presence-absence matrix (beginning only)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">PAM.grid</span><span class="op">$</span><span class="va">Presence</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>

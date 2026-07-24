@@ -94,7 +94,7 @@ prec <- unwrap(prec)
 temp <- unwrap(temp)
 PAM <- lets.presab(Phyllomedusa, remove.cells = FALSE)
 envs <- lets.addvar(PAM, c(temp, prec), onlyvar = TRUE)
-colnames(envs) <- c("Temperature", "Preciptation")
+colnames(envs) <- c("Temperature", "Precipitation")
 wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
 PAM <- lets.pamcrop(PAM, vect(wrld_simpl))
 

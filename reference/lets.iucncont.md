@@ -27,7 +27,7 @@ lets.iucncont(x, dd = NA, ne = NA)
 
 ## Value
 
-Returns a vector/matrix with continuos values from 0 to 5.
+Returns a vector/matrix with continuous values from 0 to 5.
 
 EX and EW = 5
 
