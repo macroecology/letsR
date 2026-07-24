@@ -60,6 +60,65 @@ software installed (<https://git-scm.com/>). If you are a windows user
 you will also need to download the Rtools
 (<https://cran.r-project.org/bin/windows/Rtools/>).
 
+## Documentation guide and annotated vignette index
+
+The vignettes below provide a suggested pathway through the main `letsR`
+workflows. New users should begin by creating a presence-absence matrix
+and then proceed to the sections most relevant to their data and
+research questions.
+
+### Create and manage presence-absence matrices
+
+- [Create a presence-absence
+  matrix](https://brunovilela.github.io/letsR/articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html):
+  Start here to transform species ranges, occurrence records, or a
+  user-defined spatial grid into a presence-absence matrix using
+  `lets.presab`, `lets.presab.points`, or `lets.presab.grid`.
+- [Crop or subset a presence-absence
+  matrix](https://brunovilela.github.io/letsR/articles/cropping-and-subseting-your-presence-absence-matrix.html):
+  Select focal species with `lets.subsetPAM` or restrict a
+  `PresenceAbsence` object to a geographic region with `lets.pamcrop`.
+- [Add environmental or polygon
+  variables](https://brunovilela.github.io/letsR/articles/Adding-variables-to-a-presenceabsence-object.html):
+  Append raster-based variables with `lets.addvar` or polygon attributes
+  with `lets.addpoly`.
+- [Save and load a `PresenceAbsence`
+  object](https://brunovilela.github.io/letsR/articles/save-load-presenceabsence.html):
+  Use `lets.save` and `lets.load` to preserve objects containing spatial
+  raster components.
+
+### Analyze biodiversity patterns
+
+- [Map species traits at the community
+  level](https://brunovilela.github.io/letsR/articles/mapping-species-traits.html):
+  Aggregate species-level attributes within grid cells using
+  `lets.maplizer` and visualize their geographic variation.
+- [Conduct species-level macroecological
+  analyses](https://brunovilela.github.io/letsR/articles/species-level-macroecological-analysis.html):
+  Summarize geographic and environmental information by species using
+  functions such as `lets.rangesize`, `lets.midpoint`, and
+  `lets.summarizer`.
+
+### Work across geographic, environmental, and attribute spaces
+
+- [Map species richness in environmental
+  space](https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-environmental-space.html):
+  Transform a geographic PAM into an environmental-space PAM with
+  `lets.envpam` and examine richness and structural descriptors across
+  environmental gradients.
+- [Map species richness in attribute
+  space](https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-attribute-space.html):
+  Construct and visualize an attribute-space PAM with `lets.attrpam`,
+  then quantify cell-level structure with `lets.attrcells`.
+- [Cross-map biodiversity metrics across
+  spaces](https://brunovilela.github.io/letsR/articles/Cross-mapping-biodiversity-metrics-Phyllomedusa.html):
+  Integrate environmental, geographic, and attribute spaces by
+  calculating metrics in one space and projecting them into the others.
+
+For documentation on individual functions and their arguments, consult
+the [function
+reference](https://brunovilela.github.io/letsR/reference/index.html).
+
 ## Note
 
 Due to changes in the IUCN API and limitations in data distribution

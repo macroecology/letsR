@@ -6,13 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Data Handling and Analysis in Macroecology • letsR</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Data Handling and Analysis in Macroecology">
 <meta name="description" content="Handling, processing, and analyzing geographic data on species' distributions and environmental variables. Read Vilela &amp; Villalobos (2015) &lt;doi:10.1111/2041-210X.12401&gt; for details.">
 <meta property="og:description" content="Handling, processing, and analyzing geographic data on species' distributions and environmental variables. Read Vilela &amp; Villalobos (2015) &lt;doi:10.1111/2041-210X.12401&gt; for details.">
+<meta property="og:image" content="https://brunovilela.github.io/letsR/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -46,6 +52,7 @@
     <li><a class="dropdown-item" href="articles/species-level-macroecological-analysis.html">Macroecological analysis at the species level</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -59,10 +66,15 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-<div class="section level1">
-<div class="page-header"><h1 id="letsr">letsR<a class="anchor" aria-label="anchor" href="#letsr"></a>
-</h1></div>
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="letsr-">letsR 
+<a class="anchor" aria-label="anchor" href="#letsr-"></a>
+</h1>
+</div>
+<!-- badges: start -->
+
+<!-- badges: end -->
 <div class="section level2">
 <h2 id="the-package">The package<a class="anchor" aria-label="anchor" href="#the-package"></a>
 </h2>
@@ -91,12 +103,53 @@ The package’s primary functions create and work on a particular S3 object clas
 <p>OBS.: To download the developers version you will need to have the git software installed (<a href="https://git-scm.com/" class="external-link uri">https://git-scm.com/</a>). If you are a windows user you will also need to download the Rtools (<a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link uri">https://cran.r-project.org/bin/windows/Rtools/</a>).</p>
 </div>
 <div class="section level2">
+<h2 id="documentation-guide-and-annotated-vignette-index">Documentation guide and annotated vignette index<a class="anchor" aria-label="anchor" href="#documentation-guide-and-annotated-vignette-index"></a>
+</h2>
+<p>The vignettes below provide a suggested pathway through the main <code>letsR</code> workflows. New users should begin by creating a presence-absence matrix and then proceed to the sections most relevant to their data and research questions.</p>
+<div class="section level3">
+<h3 id="create-and-manage-presence-absence-matrices">Create and manage presence-absence matrices<a class="anchor" aria-label="anchor" href="#create-and-manage-presence-absence-matrices"></a>
+</h3>
+<ul>
+<li>
+<a href="https://brunovilela.github.io/letsR/articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html">Create a presence-absence matrix</a>: Start here to transform species ranges, occurrence records, or a user-defined spatial grid into a presence-absence matrix using <code>lets.presab</code>, <code>lets.presab.points</code>, or <code>lets.presab.grid</code>.</li>
+<li>
+<a href="https://brunovilela.github.io/letsR/articles/cropping-and-subseting-your-presence-absence-matrix.html">Crop or subset a presence-absence matrix</a>: Select focal species with <code>lets.subsetPAM</code> or restrict a <code>PresenceAbsence</code> object to a geographic region with <code>lets.pamcrop</code>.</li>
+<li>
+<a href="https://brunovilela.github.io/letsR/articles/Adding-variables-to-a-presenceabsence-object.html">Add environmental or polygon variables</a>: Append raster-based variables with <code>lets.addvar</code> or polygon attributes with <code>lets.addpoly</code>.</li>
+<li>
+<a href="https://brunovilela.github.io/letsR/articles/save-load-presenceabsence.html">Save and load a <code>PresenceAbsence</code> object</a>: Use <code>lets.save</code> and <code>lets.load</code> to preserve objects containing spatial raster components.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="analyze-biodiversity-patterns">Analyze biodiversity patterns<a class="anchor" aria-label="anchor" href="#analyze-biodiversity-patterns"></a>
+</h3>
+<ul>
+<li>
+<a href="https://brunovilela.github.io/letsR/articles/mapping-species-traits.html">Map species traits at the community level</a>: Aggregate species-level attributes within grid cells using <code>lets.maplizer</code> and visualize their geographic variation.</li>
+<li>
+<a href="https://brunovilela.github.io/letsR/articles/species-level-macroecological-analysis.html">Conduct species-level macroecological analyses</a>: Summarize geographic and environmental information by species using functions such as <code>lets.rangesize</code>, <code>lets.midpoint</code>, and <code>lets.summarizer</code>.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="work-across-geographic-environmental-and-attribute-spaces">Work across geographic, environmental, and attribute spaces<a class="anchor" aria-label="anchor" href="#work-across-geographic-environmental-and-attribute-spaces"></a>
+</h3>
+<ul>
+<li>
+<a href="https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-environmental-space.html">Map species richness in environmental space</a>: Transform a geographic PAM into an environmental-space PAM with <code>lets.envpam</code> and examine richness and structural descriptors across environmental gradients.</li>
+<li>
+<a href="https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-attribute-space.html">Map species richness in attribute space</a>: Construct and visualize an attribute-space PAM with <code>lets.attrpam</code>, then quantify cell-level structure with <code>lets.attrcells</code>.</li>
+<li>
+<a href="https://brunovilela.github.io/letsR/articles/Cross-mapping-biodiversity-metrics-Phyllomedusa.html">Cross-map biodiversity metrics across spaces</a>: Integrate environmental, geographic, and attribute spaces by calculating metrics in one space and projecting them into the others.</li>
+</ul>
+<p>For documentation on individual functions and their arguments, consult the <a href="https://brunovilela.github.io/letsR/reference/index.html">function reference</a>.</p>
+</div>
+</div>
+<div class="section level2">
 <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
 </h2>
 <p>Due to changes in the IUCN API and limitations in data distribution established by IUCN terms of use, we are no longer maintaining the functions lets.iucn, lets.iucn.hist and lets.iucn.ha. These functions will be removed from the package in the next version. We apologize for any inconvenience this may cause.</p>
 </div>
 </div>
-
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -134,8 +187,8 @@ The package’s primary functions create and work on a particular S3 object clas
 <ul class="list-unstyled">
 <li><a href="https://github.com/BrunoVilela/letsR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/BrunoVilela/letsR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://CRAN.R-project.org/package=letsR" class="external-link"><img src="https://www.r-pkg.org/badges/version/letsR" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://github.com/r-hub/cranlogs.app" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/letsR" alt="rstudio mirror downloads"></a></li>
-<li><a href="https://github.com/r-hub/cranlogs.app" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/letsR" alt="rstudio mirror downloads"></a></li>
+<li><a href="https://github.com/r-hub/cranlogs.app" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/letsR" alt="CRAN downloads"></a></li>
+<li><a href="https://github.com/r-hub/cranlogs.app" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/letsR" alt="Total CRAN downloads"></a></li>
 <li><a href="https://codecov.io/github/BrunoVilela/letsR" class="external-link"><img src="https://codecov.io/github/BrunoVilela/letsR/graph/badge.svg?token=PAsk54dmff" alt="codecov"></a></li>
 </ul>
 </div>
@@ -149,7 +202,7 @@ The package’s primary functions create and work on a particular S3 object clas
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
