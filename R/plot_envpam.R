@@ -7,7 +7,7 @@
 #'based on the output of \code{\link{lets.envpam}}. It can optionally highlight species
 #'distributions, individual cells, or regions in both spaces.
 #'
-#'@param x The output object from \code{\link{lets.envpam}}).
+#'@param x The output object from \code{\link{lets.envpam}}.
 #'@param species A character string indicating the species name to be highlighted in both plots.
 #'@param cell_id_env An integer or vector of integers indicating environmental space cell(s) to be highlighted.
 #'@param cell_id_geo An integer or vector of integers indicating geographic cell(s) to be highlighted.
@@ -36,7 +36,7 @@
 #' temp <- unwrap(temp)
 #' PAM <- lets.presab(Phyllomedusa, remove.cells = FALSE)
 #' envs <- lets.addvar(PAM, c(temp, prec), onlyvar = TRUE)
-#' colnames(envs) <- c("Temperature", "Preciptation")
+#' colnames(envs) <- c("Temperature", "Precipitation")
 #' wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
 #' PAM <- lets.pamcrop(PAM, vect(wrld_simpl))
 #'

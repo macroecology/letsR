@@ -10,12 +10,11 @@
 #' @param z The number of distance classes to use in the correlogram.
 #' @param equidistant Logical, if \code{TRUE} the classes will be equidistant.
 #' If \code{FALSE} the classes will have equal number of observations.
-#' @param plot Logical, if \code{TRUE} the correlogram will be ploted. 
+#' @param plot Logical, if \code{TRUE} the correlogram will be plotted. 
 #' 
 #' @return Returns a matrix with the Moran's I Observed value, Confidence Interval (95%) 
 #' and Expected value. Also the p value of the randomization test, the mean distance 
 #' between classes, and the number of observations.   
-#' quase tudo 
 #' @references Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology.
 #' 1. Methodology. Biological Journal of the Linnean Society, 10, 199-228.
 #' @references Sokal, R.R. & Oden, N.L. (1978) Spatial autocorrelation in biology.

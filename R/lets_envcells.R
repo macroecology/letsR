@@ -20,7 +20,7 @@
 #'         \code{cell_id_env}, the environmental coordinates (e.g., two variables),
 #'         and species presences (one column per species).
 #'   \item \code{$Presence_and_Absence_Matrix_geo}: data.frame with columns
-#'         \code{cell_id_geo}, geographic coordinates (lon, lat), and species presences.+
+#'         \code{cell_id_geo}, geographic coordinates (lon, lat), and species presences.
 #'         
 #'   \item \code{$Env_Richness_Raster}: a \pkg{terra} SpatRaster of richness in environmental space.
 #' }
@@ -246,7 +246,7 @@ lets.envcells <- function(x, perc = 0.2,
 #' Default \code{TRUE}.
 #' @param mfrow A vector of the form c(nr, nc). The figures will be drawn
 #'   in an nr-by-nc array on the device by rows as in par documentation.
-#' @param which.plot Indicate the number of the columns in y to be ploted.
+#' @param which.plot Indicate the number of the columns in y to be plotted.
 #' @param col_func A custom color ramp palette function to use for plotting variables (e.g., from \code{colorRampPalette}).
 #' @param ... other arguments passed to  \code{terra::plot} function.
 #' 

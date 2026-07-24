@@ -6,10 +6,10 @@
 #' particular species' map.
 #'
 #' @param x An object of class \code{\link{PresenceAbsence}}.
-#' @param name A character specifying a species to be ploted instead of the complete species richness map.
-#' @param world If \code{TURE} a map of political divisions (countries) is added to the plot.
+#' @param name A character specifying a species to be plotted instead of the complete species richness map.
+#' @param world If \code{TRUE} a map of political divisions (countries) is added to the plot.
 #' @param col_rich Color function (e.g. \code{\link{rainbow}}, \code{\link{heat.colors}}, \code{\link{colorRampPalette}}) to be used in the richness map.
-#' @param col_name The color to use when ploting single species.
+#' @param col_name The color to use when plotting single species.
 #' @param ... Other parameters pass to the plot function.
 #' 
 #' @seealso \code{\link{lets.presab}}

@@ -155,7 +155,7 @@ These projections reveal how a descriptor computed in environmental space (centr
 
 ## Cross-mapping attribute metrics back to geography
 
-You can compute attribute-space descriptors with `lets.attrcells(attr_obj, ...)`, summarize them to species with `lets.summarizer.cells(attr_obj, ...)`, and then project those species-level metrics to geographic or environmental spaces using `lets.maplizer(...)` or `lets.maplizer.env(...)`.
+You can compute attribute-space descriptors with `lets.attrcells(attr_obj, ...)`, summarize them to species with `lets.summaryze.cells(attr_obj, ...)`, and then project those species-level metrics to geographic or environmental spaces using `lets.maplizer(...)` or `lets.maplizer.env(...)`.
 
 ```{r}
 # Attribute-space descriptors per cell

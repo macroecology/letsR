@@ -15,7 +15,7 @@ lets.maplizer(x, y, z, func = mean, ras = FALSE, weighted = FALSE)
 \item{z}{Species names in the same order as the attributes and exactly the 
 same as named in the \code{PresenceAbsence} object.}
 
-\item{func}{A function to summarize the species' atribute in each cell (the function must return only one value).}
+\item{func}{A function to summarize the species' attribute in each cell (the function must return only one value).}
 
 \item{ras}{If \code{TRUE} the raster object will be returned 
 together with the matrix.}
@@ -25,17 +25,17 @@ calculated. Weights are attributed to each species according to 1/N cells
 that the species occur.}
 }
 \value{
-The result can be both a \code{matrix} or a \code{list} cointaining 
+The result can be both a \code{matrix} or a \code{list} containing 
 the follow objects:
 
 \strong{Matrix}: a \code{matrix} object with the cells' geographic 
 coordinates and the summarized species' attributes within them.
 
-\strong{Raster}: The summarized species'attributed maped in a 
+\strong{Raster}: The summarized species' attributed mapped in a 
 \code{SpatRaster} object.
 }
 \description{
-Summarize species atributes per cell in a presence-absence matrix.
+Summarize species attributes per cell in a presence-absence matrix.
 }
 \examples{
 \dontrun{

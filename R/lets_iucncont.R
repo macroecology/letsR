@@ -8,7 +8,7 @@
 #' @param dd The value to be attributed to DD (data-deficient) species, the default option is NA. 
 #' @param ne The value to be attributed to NE (not-evaluated) species, the default option is NA. 
 
-#' @return Returns a vector/matrix with continuos values from 0 to 5.
+#' @return Returns a vector/matrix with continuous values from 0 to 5.
 #' @return EX and EW = 5 
 #' @return CR = 4
 #' @return EN = 3

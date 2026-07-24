@@ -19,7 +19,7 @@ species that do not match any cell in the grid.}
 cells in the grid with a value of zero (i.e. sites with no species present).}
 }
 \value{
-The result is an object of class PresenceAbsence croped.
+The result is an object of class PresenceAbsence cropped.
 }
 \description{
 Crop a PresenceAbsence object based on a shapefile provided by

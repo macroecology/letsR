@@ -6,7 +6,7 @@
 #' 
 #' @param x A vector to be transformed.
 #' @param y levels to be transformed. 
-#' @param z The value to be atributed to each level (same order as y).
+#' @param z The value to be atrtibuted to each level (same order as y).
 #' @param NUMERIC logical, if \code{TRUE} z will be considered numbers.
 #' 
 #' @return Return a vector with changed values.

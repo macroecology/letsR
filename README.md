@@ -55,7 +55,7 @@ The vignettes below provide a suggested pathway through the main `letsR` workflo
 ### Create and manage presence-absence matrices
 
 - [Create a presence-absence matrix](https://brunovilela.github.io/letsR/articles/A-guide-to-transform-species-distributions-into-a-presence-absence-matrix-based.html): Start here to transform species ranges, occurrence records, or a user-defined spatial grid into a presence-absence matrix using `lets.presab`, `lets.presab.points`, or `lets.presab.grid`.
-- [Crop or subset a presence-absence matrix](https://brunovilela.github.io/letsR/articles/cropping-and-subseting-your-presence-absence-matrix.html): Select focal species with `lets.subsetPAM` or restrict a `PresenceAbsence` object to a geographic region with `lets.pamcrop`.
+- [Crop or subset a presence-absence matrix](https://brunovilela.github.io/letsR/articles/cropping-and-subsetting-your-presence-absence-matrix.html): Select focal species with `lets.subsetPAM` or restrict a `PresenceAbsence` object to a geographic region with `lets.pamcrop`.
 - [Add environmental or polygon variables](https://brunovilela.github.io/letsR/articles/Adding-variables-to-a-presenceabsence-object.html): Append raster-based variables with `lets.addvar` or polygon attributes with `lets.addpoly`.
 - [Save and load a `PresenceAbsence` object](https://brunovilela.github.io/letsR/articles/save-load-presenceabsence.html): Use `lets.save` and `lets.load` to preserve objects containing spatial raster components.
 

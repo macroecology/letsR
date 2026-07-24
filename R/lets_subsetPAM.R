@@ -11,7 +11,7 @@
 #' grid with a value of zero (i.e. sites with no species present).
 #' 
 #' 
-#' @return The result is an object of class PresenceAbsence subseted.
+#' @return The result is an object of class PresenceAbsence subsetted.
 #' 
 #' 
 #' @seealso \code{\link{plot.PresenceAbsence}}

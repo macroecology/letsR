@@ -31,7 +31,7 @@ Default \code{TRUE}.}
 \item{mfrow}{A vector of the form c(nr, nc). The figures will be drawn
 in an nr-by-nc array on the device by rows as in par documentation.}
 
-\item{which.plot}{Indicate the number of the columns in y to be ploted.}
+\item{which.plot}{Indicate the number of the columns in y to be plotted.}
 
 \item{col_func}{A custom color ramp palette function to use for plotting variables (e.g., from \code{colorRampPalette}).}
 

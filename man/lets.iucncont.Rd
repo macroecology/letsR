@@ -14,7 +14,7 @@ lets.iucncont(x, dd = NA, ne = NA)
 \item{ne}{The value to be attributed to NE (not-evaluated) species, the default option is NA.}
 }
 \value{
-Returns a vector/matrix with continuos values from 0 to 5.
+Returns a vector/matrix with continuous values from 0 to 5.
 
 EX and EW = 5
 

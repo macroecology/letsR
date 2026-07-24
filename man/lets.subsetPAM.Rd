@@ -15,7 +15,7 @@ lets.subsetPAM(x, species, remove.cells = TRUE)
 grid with a value of zero (i.e. sites with no species present).}
 }
 \value{
-The result is an object of class PresenceAbsence subseted.
+The result is an object of class PresenceAbsence subsetted.
 }
 \description{
 Subset a PresenceAbsence object based on species character vector 

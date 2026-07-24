@@ -41,8 +41,8 @@ summary.PresenceAbsence <- function(object, ...) {
                  Cellswithoutanypresence    = Cellswithoutanypresence,
                  Specieswithoutanypresence  = Specieswithoutanypresence,
                  SpeciesLargestRange        = SpeciesLargestRange,
-                 resolution                 = resolution,
-                 extention                  = extention,
+                 Resolution                 = resolution,
+                 extent                     = extention,
                  coordRef                   = coordRef)
   class(result) <- "summary.PresenceAbsence" 
   return(result)

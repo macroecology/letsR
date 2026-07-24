@@ -5,7 +5,7 @@
 \alias{temp}
 \title{Mean temperature raster for the world.}
 \format{
-A PackedStatRaster object.
+A PackedSpatRaster object.
 }
 \source{
 Data was modified from WorldClim (\url{https://worldclim.org/}, downloaded 05/2014).

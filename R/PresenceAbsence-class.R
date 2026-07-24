@@ -25,7 +25,7 @@
 #' the geographic domain, which can be used to map the observed geographic 
 #' gradient in species richness;\cr
 #' - Species_name: A character vector with species' names contained in
-#' the matrix.\cr\cr Each of the objects can be obtained usign the standard
+#' the matrix.\cr\cr Each of the objects can be obtained using the standard
 #' subsetting operators that are commonly applied to a \code{list} object (i.e.
 #' '[[' and '$').\cr\cr
 #'

@@ -17,13 +17,12 @@ lets.correl(x, y, z, equidistant = FALSE, plot = TRUE)
 \item{equidistant}{Logical, if \code{TRUE} the classes will be equidistant.
 If \code{FALSE} the classes will have equal number of observations.}
 
-\item{plot}{Logical, if \code{TRUE} the correlogram will be ploted.}
+\item{plot}{Logical, if \code{TRUE} the correlogram will be plotted.}
 }
 \value{
 Returns a matrix with the Moran's I Observed value, Confidence Interval (95%) 
 and Expected value. Also the p value of the randomization test, the mean distance 
-between classes, and the number of observations.   
-quase tudo
+between classes, and the number of observations.
 }
 \description{
 Computes the Moran's I correlogram of a single or multiple variables.

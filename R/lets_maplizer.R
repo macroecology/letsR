@@ -3,23 +3,23 @@
 #' 
 #' @author Bruno Vilela
 #' 
-#' @description Summarize species atributes per cell in a presence-absence matrix.
+#' @description Summarize species attributes per cell in a presence-absence matrix.
 #' 
 #' @param x A \code{\link{PresenceAbsence}} object.
 #' @param y Species attribute to be considered. It must be a numeric attribute.
 #' @param z Species names in the same order as the attributes and exactly the 
 #' same as named in the \code{PresenceAbsence} object.
-#' @param func A function to summarize the species' atribute in each cell (the function must return only one value).
+#' @param func A function to summarize the species' attribute in each cell (the function must return only one value).
 #' @param ras If \code{TRUE} the raster object will be returned 
 #' together with the matrix.
 #' @param weighted If TRUE, argument func is ignored, and weighted mean is
 #'   calculated. Weights are attributed to each species according to 1/N cells
 #'   that the species occur.
-#' @return The result can be both a \code{matrix} or a \code{list} cointaining 
+#' @return The result can be both a \code{matrix} or a \code{list} containing 
 #' the follow objects:
 #' @return \strong{Matrix}: a \code{matrix} object with the cells' geographic 
 #' coordinates and the summarized species' attributes within them.
-#' @return \strong{Raster}: The summarized species'attributed maped in a 
+#' @return \strong{Raster}: The summarized species' attributed mapped in a 
 #' \code{SpatRaster} object.
 #' 
 #' @seealso \code{\link{lets.presab}}

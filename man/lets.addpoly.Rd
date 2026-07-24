@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_addpoly.R
 \name{lets.addpoly}
 \alias{lets.addpoly}
-\title{Add polygon coverage to a PresenceAbscence object}
+\title{Add polygon coverage to a PresenceAbsence object}
 \usage{
 lets.addpoly(x, y, z, onlyvar = FALSE, count = FALSE)
 }

@@ -1,4 +1,4 @@
-#' Add polygon coverage to a PresenceAbscence object
+#' Add polygon coverage to a PresenceAbsence object
 #' 
 #' @author Bruno Vilela
 #' 

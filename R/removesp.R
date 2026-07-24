@@ -1,4 +1,4 @@
-# Function to remove species with values of zero (i.e. species not present in the grid) in PresenceAbscence object
+# Function to remove species with values of zero (i.e. species not present in the grid) in PresenceAbsence object
 # Bruno Vilela
 
 .removeSp <- function(x) {  

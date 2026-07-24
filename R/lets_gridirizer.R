@@ -10,7 +10,7 @@
 #' @param x A \code{\link{PresenceAbsence}} object.
 #'
 #' @return The result is a list of two objects. The first is a grid in shapefile
-#'   format; the second is a presence-absence matrix with an aditional column
+#'   format; the second is a presence-absence matrix with an additional column
 #'   called SP_ID (shapefile cell identifier).
 #'
 #'
@@ -23,7 +23,7 @@
 #' names(PAM.grid)
 #' # Grid in polygon format (can be saved in shapefile)
 #' PAM.grid$Grid
-#' # Presence-absence matrix (beggining only)
+#' # Presence-absence matrix (beginning only)
 #' head(PAM.grid$Presence[, 1:5])
 #' 
 #' }

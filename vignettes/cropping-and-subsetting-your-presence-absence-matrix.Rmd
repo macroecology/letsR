@@ -1,8 +1,8 @@
 ---
-title: "Cropping and subseting your presence absence matrix"
+title: "Cropping and subsetting your presence absence matrix"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{cropping-and-subseting-your-presence-absence-matrix}
+  %\VignetteIndexEntry{cropping-and-subsetting-your-presence-absence-matrix}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 

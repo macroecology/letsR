@@ -2,7 +2,7 @@
 % Please edit documentation in R/lets_addvar.R
 \name{lets.addvar}
 \alias{lets.addvar}
-\title{Add variables (in raster format) to a PresenceAbscence object}
+\title{Add variables (in raster format) to a PresenceAbsence object}
 \usage{
 lets.addvar(x, y, onlyvar = FALSE, fun = mean)
 }

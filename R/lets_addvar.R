@@ -1,4 +1,4 @@
-#' Add variables (in raster format) to a PresenceAbscence object
+#' Add variables (in raster format) to a PresenceAbsence object
 #' 
 #' @author Bruno Vilela
 #' 

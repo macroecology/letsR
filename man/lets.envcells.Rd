@@ -13,7 +13,7 @@ lets.envcells(x, perc = 0.2, remove.cells = FALSE)
         \code{cell_id_env}, the environmental coordinates (e.g., two variables),
         and species presences (one column per species).
   \item \code{$Presence_and_Absence_Matrix_geo}: data.frame with columns
-        \code{cell_id_geo}, geographic coordinates (lon, lat), and species presences.+
+        \code{cell_id_geo}, geographic coordinates (lon, lat), and species presences.
         
   \item \code{$Env_Richness_Raster}: a \pkg{terra} SpatRaster of richness in environmental space.
 }}

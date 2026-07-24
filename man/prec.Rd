@@ -5,7 +5,7 @@
 \alias{prec}
 \title{Annual Precipitation raster for the world.}
 \format{
-A PackedStatRaster object.
+A PackedSpatRaster object.
 }
 \source{
 Data was modified from WorldClim (\url{https://worldclim.org/}, downloaded 10/2024).

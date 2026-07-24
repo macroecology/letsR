@@ -11,7 +11,7 @@ lets.transf(x, y, z, NUMERIC = TRUE)
 
 \item{y}{levels to be transformed.}
 
-\item{z}{The value to be atributed to each level (same order as y).}
+\item{z}{The value to be atrtibuted to each level (same order as y).}
 
 \item{NUMERIC}{logical, if \code{TRUE} z will be considered numbers.}
 }

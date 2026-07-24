@@ -39,7 +39,7 @@ will show presence-absence values.}
 \value{
 The result is a \code{list} containing two objects: 
 
- (I) A matrix the species presence (1) and absence (0) values per sample unity.
+ (I) A matrix the species presence (1) and absence (0) values per sample unit.
  
  (II) The original grid.
 }

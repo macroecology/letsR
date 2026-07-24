@@ -49,7 +49,7 @@
 #'
 #' Mean temperature raster in degrees Celsius (multiplied by 100) 
 #' for the world in 10 arc min of resolution. 
-#' @format A PackedStatRaster object.
+#' @format A PackedSpatRaster object.
 #' @source Data was modified from WorldClim (\url{https://worldclim.org/}, downloaded 05/2014).
 #' 
 #' Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. 
@@ -62,7 +62,7 @@
 #' Annual Precipitation raster for the world.
 #'
 #' Annual Precipitation in mm for the world in 10 arc min of resolution. 
-#' @format A PackedStatRaster object.
+#' @format A PackedSpatRaster object.
 #' @source Data was modified from WorldClim (\url{https://worldclim.org/}, downloaded 10/2024).
 #' 
 #' Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. 

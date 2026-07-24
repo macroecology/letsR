@@ -13,7 +13,7 @@
 #'@param remove.cells Logical, if \code{FALSE} the final matrix will not contain
 #'  cells in the grid with a value of zero (i.e. sites with no species present).
 #'
-#' @return The result is an object of class PresenceAbsence croped.
+#' @return The result is an object of class PresenceAbsence cropped.
 #'
 #'
 #' @seealso \code{\link{plot.PresenceAbsence}}
