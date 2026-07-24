@@ -1,5 +1,7 @@
 url: https://brunovilela.github.io/letsR/
+
 template:
   bootstrap: 5
-  bootswatch: materia
-
+  bslib:
+    bootswatch: materia
+    pkgdown-nav-height: 72px
