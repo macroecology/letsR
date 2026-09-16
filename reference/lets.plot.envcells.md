@@ -16,6 +16,8 @@ lets.plot.envcells(
   mfrow = c(4, 4),
   which.plot = NULL,
   col_func = NULL,
+  xlab = NULL,
+  ylab = NULL,
   ...
 )
 ```
@@ -58,6 +60,14 @@ lets.plot.envcells(
   A custom color ramp palette function to use for plotting variables
   (e.g., from `colorRampPalette`).
 
+- xlab:
+
+  Character string specifying the label for the x-axis.
+
+- ylab:
+
+  Character string specifying the label for the y-axis.
+
 - ...:
 
   other arguments passed to
@@ -81,16 +91,19 @@ as `NA`. The plotting grid defaults to `par(mfrow = c(4,4))`.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+if (FALSE) B
 data("Phyllomedusa"); data("prec"); data("temp")
 prec <- unwrap(prec); temp <- unwrap(temp)
 PAM  <- lets.presab(Phyllomedusa, remove.cells = FALSE)
 envs <- lets.addvar(PAM, c(temp, prec), onlyvar = TRUE)
+#> Warning: Reprojecting y to match the projection in x
 colnames(envs) <- c("Temperature", "Precipitation")
 wrld_simpl <- get(utils::data("wrld_simpl", package = "letsR"))
 PAM <- lets.pamcrop(PAM, terra::vect(wrld_simpl))
 res <- lets.envpam(PAM, envs, n_bins = 30)
+#> Warning: Some environmental data have NA values, these data will be excluded.
 out <- lets.envcells(res, perc = 0.2)
 lets.plot.envcells(res, out)
-} # }
+ # \dontrun{}
+
 ```
