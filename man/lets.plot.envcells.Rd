@@ -12,6 +12,8 @@ lets.plot.envcells(
   mfrow = c(4, 4),
   which.plot = NULL,
   col_func = NULL,
+  xlab = NULL,
+  ylab = NULL,
   ...
 )
 }
@@ -35,6 +37,10 @@ in an nr-by-nc array on the device by rows as in par documentation.}
 
 \item{col_func}{A custom color ramp palette function to use for plotting variables (e.g., from \code{colorRampPalette}).}
 
+\item{xlab}{Character string specifying the label for the x-axis.}
+
+\item{ylab}{Character string specifying the label for the y-axis.}
+
 \item{...}{other arguments passed to  \code{terra::plot} function.}
 }
 \value{
@@ -55,7 +61,7 @@ template and plotted sequentially. Rows with zero frequency are masked as
 \code{NA}. The plotting grid defaults to \code{par(mfrow = c(4,4))}.
 }
 \examples{
-\dontrun{
+\dontrun{B
 data("Phyllomedusa"); data("prec"); data("temp")
 prec <- unwrap(prec); temp <- unwrap(temp)
 PAM  <- lets.presab(Phyllomedusa, remove.cells = FALSE)

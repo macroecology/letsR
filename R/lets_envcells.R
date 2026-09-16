@@ -248,6 +248,8 @@ lets.envcells <- function(x, perc = 0.2,
 #'   in an nr-by-nc array on the device by rows as in par documentation.
 #' @param which.plot Indicate the number of the columns in y to be plotted.
 #' @param col_func A custom color ramp palette function to use for plotting variables (e.g., from \code{colorRampPalette}).
+#' @param xlab Character string specifying the label for the x-axis.
+#' @param ylab Character string specifying the label for the y-axis.
 #' @param ... other arguments passed to  \code{terra::plot} function.
 #' 
 #' @details
@@ -260,7 +262,7 @@ lets.envcells <- function(x, perc = 0.2,
 #' objects corresponding to each descriptor column.
 #'
 #' @examples
-#' \dontrun{
+#' \dontrun{B
 #' data("Phyllomedusa"); data("prec"); data("temp")
 #' prec <- unwrap(prec); temp <- unwrap(temp)
 #' PAM  <- lets.presab(Phyllomedusa, remove.cells = FALSE)
@@ -279,6 +281,8 @@ lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
                                mfrow = c(4, 4),
                                which.plot = NULL,
                                col_func = NULL,
+                               xlab = NULL,
+                               ylab = NULL,
                                ...) {
   
   # Work only with descriptor columns (drop the 'Cell_env' id)
@@ -315,10 +319,12 @@ lets.plot.envcells <- function(x, y, ras = FALSE, plot_ras = TRUE,
     # Aspect ratio based on extent
     ext_vals <- terra::ext(r)
     asp_ratio <- (ext_vals[2] - ext_vals[1]) / (ext_vals[4] - ext_vals[3])
+
     if (plot_ras) {
       plot(r, main = colnames(preds)[i], asp = asp_ratio,
-           col = colfunc(n_col[i]),
-           ...)
+           col = colfunc(n_col[i]), ...)
+      
+
     }
     ras_list[[i]] <- r
   }
