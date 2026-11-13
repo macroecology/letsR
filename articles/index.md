@@ -11,6 +11,10 @@
   matrix](https://brunovilela.github.io/letsR/articles/cropping-and-subsetting-your-presence-absence-matrix.md):
 - [Cross-mapping biodiversity metrics across
   spaces](https://brunovilela.github.io/letsR/articles/Cross-mapping-biodiversity-metrics-Phyllomedusa.md):
+- [Exploring autocorrelation across distances with
+  lets.correl()](https://brunovilela.github.io/letsR/articles/lets-correl.md):
+- [Estimating species geographic ranges with
+  lets.range()](https://brunovilela.github.io/letsR/articles/lets-range.md):
 - [Mapping species richness in attribute
   space](https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-attribute-space.md):
 - [Mapping species richness in environmental

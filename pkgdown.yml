@@ -6,12 +6,14 @@ articles:
   Adding-variables-to-a-presenceabsence-object: Adding-variables-to-a-presenceabsence-object.html
   cropping-and-subsetting-your-presence-absence-matrix: cropping-and-subsetting-your-presence-absence-matrix.html
   Cross-mapping-biodiversity-metrics-Phyllomedusa: Cross-mapping-biodiversity-metrics-Phyllomedusa.html
+  lets-correl: lets-correl.html
+  lets-range: lets-range.html
   Mapping-species-richness-in-attribute-space: Mapping-species-richness-in-attribute-space.html
   Mapping-species-richness-in-environmental-space: Mapping-species-richness-in-environmental-space.html
   mapping-species-traits: mapping-species-traits.html
   save-load-presenceabsence: save-load-presenceabsence.html
   species-level-macroecological-analysis: species-level-macroecological-analysis.html
-last_built: 2026-09-16T13:29Z
+last_built: 2026-11-13T23:06Z
 urls:
   reference: https://brunovilela.github.io/letsR/reference
   article: https://brunovilela.github.io/letsR/articles

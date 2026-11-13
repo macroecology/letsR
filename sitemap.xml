@@ -7,6 +7,8 @@
 <url><loc>https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-environmental-space.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/articles/cropping-and-subsetting-your-presence-absence-matrix.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/articles/index.html</loc></url>
+<url><loc>https://brunovilela.github.io/letsR/articles/lets-correl.html</loc></url>
+<url><loc>https://brunovilela.github.io/letsR/articles/lets-range.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/articles/mapping-species-traits.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/articles/save-load-presenceabsence.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/articles/species-level-macroecological-analysis.html</loc></url>
@@ -46,6 +48,7 @@
 <url><loc>https://brunovilela.github.io/letsR/reference/lets.presab.grid.points.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/reference/lets.presab.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/reference/lets.presab.points.html</loc></url>
+<url><loc>https://brunovilela.github.io/letsR/reference/lets.range.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/reference/lets.rangesize.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/reference/lets.save.html</loc></url>
 <url><loc>https://brunovilela.github.io/letsR/reference/lets.shFilter.html</loc></url>
