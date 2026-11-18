@@ -1,7 +1,9 @@
-# Load a PresenceAbsence object
+# Load a letsR object
 
-Reload PresenceAbsence objects written with the function
+Load a letsR object previously saved using
 [`lets.save`](https://brunovilela.github.io/letsR/reference/lets.save.md).
+All packed raster components are automatically restored as SpatRaster
+objects.
 
 ## Usage
 
@@ -13,13 +15,22 @@ lets.load(file)
 
 - file:
 
-  a character string giving the name of the file to load.
+  A character string specifying the file to load.
+
+## Value
+
+The restored letsR object, including its matrices, raster components,
+and other attributes.
 
 ## See also
 
 [`lets.save`](https://brunovilela.github.io/letsR/reference/lets.save.md)
 
 [`lets.presab`](https://brunovilela.github.io/letsR/reference/lets.presab.md)
+
+[`lets.envpam`](https://brunovilela.github.io/letsR/reference/lets.envpam.md)
+
+[`lets.attrpam`](https://brunovilela.github.io/letsR/reference/lets.attrpam.md)
 
 ## Author
 
@@ -31,6 +42,6 @@ Bruno Vilela
 if (FALSE) { # \dontrun{
 data(PAM)
 lets.save(PAM, file = "PAM.RData")
-PAM <- lets.load(file = "PAM.RData")
+PAM <- lets.load("PAM.RData")
 } # }
 ```

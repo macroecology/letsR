@@ -92,10 +92,6 @@ brazil <- rnaturalearth::ne_countries(
   scale = "medium",
   returnclass = "sf"
 )
-#> The rnaturalearthdata package needs to be installed.
-#> Installing the rnaturalearthdata package.
-#> Installing package into '/home/runner/work/_temp/Library'
-#> (as 'lib' is unspecified)
 
 candidate_sites <- expand.grid(
   longitude = seq(-74, -34, by = 2),

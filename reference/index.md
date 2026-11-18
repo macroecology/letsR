@@ -41,7 +41,7 @@
 - [`lets.iucncont()`](https://brunovilela.github.io/letsR/reference/lets.iucncont.md)
   : Transform IUCN RedList conservation status to continuous values
 - [`lets.load()`](https://brunovilela.github.io/letsR/reference/lets.load.md)
-  : Load a PresenceAbsence object
+  : Load a letsR object
 - [`lets.maplizer()`](https://brunovilela.github.io/letsR/reference/lets.maplizer.md)
   : Create a matrix summarizing species' attributes within cells of a
   PresenceAbsence object
@@ -80,7 +80,7 @@
 - [`lets.rangesize()`](https://brunovilela.github.io/letsR/reference/lets.rangesize.md)
   : Compute species' geographic range sizes
 - [`lets.save()`](https://brunovilela.github.io/letsR/reference/lets.save.md)
-  : Save a PresenceAbsence object
+  : Save a letsR object
 - [`lets.shFilter()`](https://brunovilela.github.io/letsR/reference/lets.shFilter.md)
   : Filter species' shapefiles based on its presence, origin, and season
 - [`lets.subsetPAM()`](https://brunovilela.github.io/letsR/reference/lets.subsetPAM.md)

@@ -21,7 +21,7 @@
   space](https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-environmental-space.md):
 - [Mapping species traits: community level
   analysis](https://brunovilela.github.io/letsR/articles/mapping-species-traits.md):
-- [How to save and load a PresenceAbsence
-  object](https://brunovilela.github.io/letsR/articles/save-load-presenceabsence.md):
+- [Saving and loading letsR
+  objects](https://brunovilela.github.io/letsR/articles/save-load-presenceabsence.md):
 - [Macroecological analysis at the species
   level](https://brunovilela.github.io/letsR/articles/species-level-macroecological-analysis.md):

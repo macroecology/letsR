@@ -170,7 +170,7 @@ any inconvenience this may cause.
 - [`lets.iucncont()`](https://brunovilela.github.io/letsR/reference/lets.iucncont.md)
   : Transform IUCN RedList conservation status to continuous values
 - [`lets.load()`](https://brunovilela.github.io/letsR/reference/lets.load.md)
-  : Load a PresenceAbsence object
+  : Load a letsR object
 - [`lets.maplizer()`](https://brunovilela.github.io/letsR/reference/lets.maplizer.md)
   : Create a matrix summarizing species' attributes within cells of a
   PresenceAbsence object
@@ -209,7 +209,7 @@ any inconvenience this may cause.
 - [`lets.rangesize()`](https://brunovilela.github.io/letsR/reference/lets.rangesize.md)
   : Compute species' geographic range sizes
 - [`lets.save()`](https://brunovilela.github.io/letsR/reference/lets.save.md)
-  : Save a PresenceAbsence object
+  : Save a letsR object
 - [`lets.shFilter()`](https://brunovilela.github.io/letsR/reference/lets.shFilter.md)
   : Filter species' shapefiles based on its presence, origin, and season
 - [`lets.subsetPAM()`](https://brunovilela.github.io/letsR/reference/lets.subsetPAM.md)
@@ -266,7 +266,7 @@ any inconvenience this may cause.
   space](https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-environmental-space.md):
 - [Mapping species traits: community level
   analysis](https://brunovilela.github.io/letsR/articles/mapping-species-traits.md):
-- [How to save and load a PresenceAbsence
-  object](https://brunovilela.github.io/letsR/articles/save-load-presenceabsence.md):
+- [Saving and loading letsR
+  objects](https://brunovilela.github.io/letsR/articles/save-load-presenceabsence.md):
 - [Macroecological analysis at the species
   level](https://brunovilela.github.io/letsR/articles/species-level-macroecological-analysis.md):
