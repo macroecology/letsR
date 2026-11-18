@@ -60,7 +60,7 @@ plot(PAM, xlab = "Longitude", ylab = "Latitude",
 # Crop PAM to Brazil
 data(wrld_simpl)  # World map
 Brazil <- wrld_simpl[wrld_simpl$NAME == "Brazil", ]  # Brazil (polygon)
-PAM_crop <- lets.pamcrop(PAM, Brazil, remove.sp = TRUE)
+PAM_crop <- lets.pamcrop(PAM, Brazil, remove.sp = TRUE, remove.cells = TRUE)
 plot(PAM_crop, xlab = "Longitude", ylab = "Latitude",
      main = "Phyllomedusa species richness (Brazil crop)")
 plot(sf::st_geometry(wrld_simpl), add = TRUE)
