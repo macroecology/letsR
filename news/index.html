@@ -46,21 +46,53 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="6.1" id="letsr-61">letsR 6.1<a class="anchor" aria-label="anchor" href="#letsr-61"></a></h2>
+<h2 class="pkg-version" data-toc-text="6.1.0" id="letsr-610">letsR 6.1.0<a class="anchor" aria-label="anchor" href="#letsr-610"></a></h2>
 <div class="section level3">
-<h3 id="new-features-6-1">New features<a class="anchor" aria-label="anchor" href="#new-features-6-1"></a></h3>
-<ul><li><p>Added functions for mapping biodiversity across geographic, environmental, and attribute spaces.</p></li>
-<li><p>Added new vignettes describing environmental-space and attribute-space analyses.</p></li>
+<h3 id="new-features-6-1-0">New features<a class="anchor" aria-label="anchor" href="#new-features-6-1-0"></a></h3>
+<ul><li>Added <code><a href="../reference/lets.range.html">lets.range()</a></code>, a new function for estimating species geographic ranges from occurrence records using DBSCAN spatial clustering and buffered concave hulls.</li>
+<li>The new function supports multiple spatial clusters per species, isolated occurrence records, flexible buffering distances, and geographic masking through intersection or exclusion.</li>
+<li>Added support for handling complex range geometries, including multipart polygons and ranges crossing the antimeridian.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="documentation-6-1">Documentation<a class="anchor" aria-label="anchor" href="#documentation-6-1"></a></h3>
-<ul><li><p>Reorganized the package documentation to improve accessibility.</p></li>
-<li><p>Added an annotated documentation index to the README.</p></li>
+<h3 id="improvements-6-1-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-6-1-0"></a></h3>
+<ul><li>Improved geographic range estimation workflows by integrating occurrence-based range reconstruction with existing letsR functions.</li>
+<li>Added compatibility checks for GEOS versions required for concave hull construction.</li>
+<li>Improved the documentation of <code><a href="../reference/lets.correl.html">lets.correl()</a></code>, clarifying distance classes, statistical inference, and interpretation of Moran’s I correlograms.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="improvements-6-1">Improvements<a class="anchor" aria-label="anchor" href="#improvements-6-1"></a></h3>
-<ul><li><p>Updated functions to use the current <code>terra</code> and <code>sf</code> workflows.</p></li>
-<li><p>Improved plotting and summary methods for <code>PresenceAbsence</code> objects.</p></li>
+<h3 id="documentation-6-1-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-6-1-0"></a></h3>
+<ul><li>Added a vignette demonstrating <code><a href="../reference/lets.range.html">lets.range()</a></code>, including spatial clustering, geographic masking, and integration with <code><a href="../reference/lets.presab.html">lets.presab()</a></code>.</li>
+<li>Added a methodological comparison of geographic range estimation using <code><a href="../reference/lets.range.html">lets.range()</a></code>, <code>alphahull</code>, and <code>rangeBuilder</code>.</li>
+<li>Added a vignette demonstrating <code><a href="../reference/lets.correl.html">lets.correl()</a></code> using climatic data and exploring autocorrelation across geographic, environmental, and phylogenetic distance matrices.</li>
+<li>Expanded the discussion of the differences between occurrence-based range estimates and IUCN geographic range mapping approaches.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="dependencies-and-compatibility-6-1-0">Dependencies and compatibility<a class="anchor" aria-label="anchor" href="#dependencies-and-compatibility-6-1-0"></a></h3>
+<ul><li>Added <code>dbscan</code> to package imports.</li>
+<li>Updated the minimum required version of <code>sf</code> to 1.0-11.</li>
+<li>Documented the requirement for GEOS 3.11.0 or later for concave hull construction.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="citation-6-1-0">Citation<a class="anchor" aria-label="anchor" href="#citation-6-1-0"></a></h3>
+<ul><li>Updated the package citation to include Vilela et al. (2026), alongside the original letsR publication by Vilela and Villalobos (2015).</li>
+</ul><hr></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="6.0.0" id="letsr-600">letsR 6.0.0<a class="anchor" aria-label="anchor" href="#letsr-600"></a></h2>
+<div class="section level3">
+<h3 id="new-features-6-0-0">New features<a class="anchor" aria-label="anchor" href="#new-features-6-0-0"></a></h3>
+<ul><li>Added functions for mapping biodiversity across geographic, environmental, and attribute spaces.</li>
+<li>Added new vignettes describing environmental-space and attribute-space analyses.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-6-0-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-6-0-0"></a></h3>
+<ul><li>Reorganized the package documentation to improve accessibility.</li>
+<li>Added an annotated documentation index to the README.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="improvements-6-0-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-6-0-0"></a></h3>
+<ul><li>Updated functions to use current <code>terra</code> and <code>sf</code> workflows.</li>
+<li>Improved plotting and summary methods for <code>PresenceAbsence</code> objects.</li>
 </ul></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
