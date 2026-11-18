@@ -30,7 +30,7 @@
 #' # Crop PAM to Brazil
 #' data(wrld_simpl)  # World map
 #' Brazil <- wrld_simpl[wrld_simpl$NAME == "Brazil", ]  # Brazil (polygon)
-#' PAM_crop <- lets.pamcrop(PAM, Brazil, remove.sp = TRUE)
+#' PAM_crop <- lets.pamcrop(PAM, Brazil, remove.sp = TRUE, remove.cells = TRUE)
 #' plot(PAM_crop, xlab = "Longitude", ylab = "Latitude",
 #'      main = "Phyllomedusa species richness (Brazil crop)")
 #' plot(sf::st_geometry(wrld_simpl), add = TRUE)
@@ -62,6 +62,7 @@ lets.pamcrop <- function(x, shp, remove.sp = TRUE,
   manter <- terra::extract(x[[2]], x[[1]][, 1:2])
   if (remove.cells) {
     x[[1]] <- x[[1]][!is.na(manter[, 1]), ]
+    x[[2]] <- terra::crop(x[[2]], shp, extend = TRUE)
   } else {
     x[[1]][is.na(manter[, 1]), -(1:2)] <- 0
   }
