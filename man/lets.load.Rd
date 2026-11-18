@@ -2,22 +2,27 @@
 % Please edit documentation in R/lets_save_load.R
 \name{lets.load}
 \alias{lets.load}
-\title{Load a PresenceAbsence object}
+\title{Load a letsR object}
 \usage{
 lets.load(file)
 }
 \arguments{
-\item{file}{a character string giving the name of the file to load.}
+\item{file}{A character string specifying the file to load.}
+}
+\value{
+The restored letsR object, including its matrices,
+  raster components, and other attributes.
 }
 \description{
-Reload PresenceAbsence objects written with the function
-  \code{\link{lets.save}}.
+Load a letsR object previously saved using
+\code{\link{lets.save}}. All packed raster components
+are automatically restored as SpatRaster objects.
 }
 \examples{
 \dontrun{
 data(PAM)
 lets.save(PAM, file = "PAM.RData")
-PAM <- lets.load(file = "PAM.RData")
+PAM <- lets.load("PAM.RData")
 }
 
 }
@@ -25,6 +30,10 @@ PAM <- lets.load(file = "PAM.RData")
 \code{\link{lets.save}}
 
 \code{\link{lets.presab}}
+
+\code{\link{lets.envpam}}
+
+\code{\link{lets.attrpam}}
 }
 \author{
 Bruno Vilela
