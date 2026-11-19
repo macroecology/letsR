@@ -15,6 +15,8 @@
   lets.correl()](https://brunovilela.github.io/letsR/articles/lets-correl.md):
 - [Estimating species geographic ranges with
   lets.range()](https://brunovilela.github.io/letsR/articles/lets-range.md):
+- [From incomplete environmental and attribute spaces to continuous
+  estimates](https://brunovilela.github.io/letsR/articles/lets-smooth-theoretical-space.md):
 - [Mapping species richness in attribute
   space](https://brunovilela.github.io/letsR/articles/Mapping-species-richness-in-attribute-space.md):
 - [Mapping species richness in environmental

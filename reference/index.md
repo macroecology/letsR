@@ -83,6 +83,8 @@
   : Save a letsR object
 - [`lets.shFilter()`](https://brunovilela.github.io/letsR/reference/lets.shFilter.md)
   : Filter species' shapefiles based on its presence, origin, and season
+- [`lets.smooth()`](https://brunovilela.github.io/letsR/reference/lets.smooth.md)
+  : Smooth and interpolate raster values using a Gaussian kernel
 - [`lets.subsetPAM()`](https://brunovilela.github.io/letsR/reference/lets.subsetPAM.md)
   : Subset a PresenceAbsence object based on species names
 - [`lets.subsetPAMatt()`](https://brunovilela.github.io/letsR/reference/lets.subsetPAMatt.md)

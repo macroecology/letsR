@@ -8,12 +8,13 @@ articles:
   Cross-mapping-biodiversity-metrics-Phyllomedusa: Cross-mapping-biodiversity-metrics-Phyllomedusa.html
   lets-correl: lets-correl.html
   lets-range: lets-range.html
+  lets-smooth-theoretical-space: lets-smooth-theoretical-space.html
   Mapping-species-richness-in-attribute-space: Mapping-species-richness-in-attribute-space.html
   Mapping-species-richness-in-environmental-space: Mapping-species-richness-in-environmental-space.html
   mapping-species-traits: mapping-species-traits.html
   save-load-presenceabsence: save-load-presenceabsence.html
   species-level-macroecological-analysis: species-level-macroecological-analysis.html
-last_built: 2026-11-18T17:15Z
+last_built: 2026-11-19T23:40Z
 urls:
   reference: https://brunovilela.github.io/letsR/reference
   article: https://brunovilela.github.io/letsR/articles
