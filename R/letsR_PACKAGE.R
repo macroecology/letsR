@@ -31,7 +31,7 @@
 #' \strong{Bruno Vilela}\cr
 #' Email: \email{bvilela.bv@@gmail.com}\cr
 #' ORCID: \url{https://orcid.org/0000-0003-4072-0558}\cr
-#' Website: \url{https://brunovilela.github.io/}
+#' Website: \url{https://bvilela.com}
 #'
 #' \strong{Fabricio Villalobos}\cr
 #' Email: \email{fabricio.villalobos@@gmail.com}\cr
