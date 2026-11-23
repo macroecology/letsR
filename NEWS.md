@@ -2,22 +2,27 @@
 
 ## New features
 
-- Added `lets.range()`, a new function for estimating species geographic ranges from occurrence records using DBSCAN spatial clustering and buffered concave hulls.
-- The new function supports multiple spatial clusters per species, isolated occurrence records, flexible buffering distances, and geographic masking through intersection or exclusion.
-- Added support for handling complex range geometries, including multipart polygons and ranges crossing the antimeridian.
+- Added `lets.range()`, a new function for estimating species geographic ranges from occurrence records using DBSCAN spatial clustering and buffered concave hulls. The new function supports multiple spatial clusters per species, isolated occurrence records, flexible buffering distances, and geographic masking through intersection or exclusion.
+- Added `lets.smooth()`, a new function for estimating continuous patterns from incomplete observations in environmental, attribute, and other raster-based spaces using Gaussian kernel regression (Nadaraya-Watson estimator).
 
 ## Improvements
 
 - Improved geographic range estimation workflows by integrating occurrence-based range reconstruction with existing letsR functions.
-- Added compatibility checks for GEOS versions required for concave hull construction.
 - Improved the documentation of `lets.correl()`, clarifying distance classes, statistical inference, and interpretation of Moran's I correlograms.
+- Introduced kernel-based interpolation to explore continuous biodiversity patterns in incompletely sampled environmental and attribute spaces, including applications to species richness and other numerical raster variables.
+- Implemented automatic bandwidth selection in `lets.smooth()` by minimizing leave-one-out prediction errors, while retaining user-defined smoothing parameters.
+- Improved the handling of missing raster values during smoothing by using normalized Gaussian weights rather than treating missing observations as zeros.
+- Added support for restricting interpolated surfaces to geometric boundaries defined by observed cells, reducing extrapolation beyond the selected domain.
+- Added unit tests for `lets.smooth()`, covering kernel interpolation, bandwidth optimization, raster geometry, hull restrictions, and input validation.
 
 ## Documentation
 
 - Added a vignette demonstrating `lets.range()`, including spatial clustering, geographic masking, and integration with `lets.presab()`.
-- Added a methodological comparison of geographic range estimation using `lets.range()`, `alphahull`, and `rangeBuilder`.
 - Added a vignette demonstrating `lets.correl()` using climatic data and exploring autocorrelation across geographic, environmental, and phylogenetic distance matrices.
+- Added a vignette exploring theoretical and observed ecological spaces and demonstrating how `lets.smooth()` can be used to estimate continuous patterns from incomplete sampling in environmental and attribute spaces.
+- Included examples comparing different sampling intensities, automatic bandwidth selection, and geometric constraints on kernel-based interpolation.
 - Expanded the discussion of the differences between occurrence-based range estimates and IUCN geographic range mapping approaches.
+- Documented the assumptions and limitations of kernel-based interpolation, particularly regarding sampling coverage, extrapolation, and the interpretation of unobserved environmental and attribute combinations.
 
 ## Dependencies and compatibility
 
