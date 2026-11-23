@@ -209,12 +209,21 @@ test_that("lets.smooth rejects missing or insufficient observations", {
     lets.smooth(line, k_sigma = 1, restrict = TRUE),
     "collinear"
   )
-
-  # Infinite raster values are invalid input.
+  # Raster containing infinite values
   infinite <- terra::rast(r)
-  z <- terra::values(infinite, mat = FALSE)
-  z[which(!is.na(z))[1]] <- Inf
-  terra::values(infinite) <- z
+  
+  # Initialize values explicitly
+  v_inf <- rep(NA_real_, terra::ncell(infinite))
+  v_inf[c(1, 2, 3)] <- c(1, Inf, 2)
+  
+  terra::values(infinite) <- v_inf
+  
+  # Verify that Inf was preserved
+  expect_true(any(is.infinite(
+    terra::values(infinite, mat = FALSE)
+  )))
+  
+  # Test error handling
   expect_error(
     lets.smooth(infinite, k_sigma = 1, restrict = FALSE),
     "infinite values"

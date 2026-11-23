@@ -26,12 +26,37 @@
 #' @aliases letsR
 #' @aliases letsR-package
 #' @title Tools for Data Handling and Analysis in  Macroecology.
-#' @author \strong{Bruno Vilela}\cr
-#' (email: \email{bvilela@@wustl.edu}; 
-#' Website: \url{https://bvilela.weebly.com/})
-#' @author \strong{Fabricio Villalobos}\cr
-#' (email: \email{fabricio.villalobos@@gmail.com}; 
-#' Website: \url{https://fabro.github.io})
+#' @author \strong{Authors:}
+#'
+#' \strong{Bruno Vilela}\cr
+#' Email: \email{bvilela.bv@@gmail.com}\cr
+#' ORCID: \url{https://orcid.org/0000-0003-4072-0558}\cr
+#' Website: \url{https://brunovilela.github.io/}
+#'
+#' \strong{Fabricio Villalobos}\cr
+#' Email: \email{fabricio.villalobos@@gmail.com}\cr
+#' ORCID: \url{https://orcid.org/0000-0002-5230-2217}
+#'
+#' @author \strong{Contributors:}
+#'
+#' Bruna M. Farina
+#' (\url{https://orcid.org/0000-0001-6506-3801})\cr
+#' Ricardo Dobrovolski
+#' (\url{https://orcid.org/0000-0002-8775-5486})\cr
+#' Sidney F. Gouveia
+#' (\url{https://orcid.org/0000-0003-4941-7440})\cr
+#' José Alexandre F. Diniz-Filho
+#' (\url{https://orcid.org/0000-0002-0967-9684})\cr
+#' Thiago F. Rangel
+#' (\url{https://orcid.org/0000-0002-2001-7382})\cr
+#' Trevor S. Fristoe
+#' (\url{https://orcid.org/0000-0002-3894-8126})\cr
+#' Carlos Calderón del Cid
+#' (\url{https://orcid.org/0000-0002-3897-4615})\cr
+#' Marco Túlio Pacheco Coelho
+#' (\url{https://orcid.org/0000-0002-7831-3053})\cr
+#' Catherine H. Graham
+#' (\url{https://orcid.org/0000-0001-9267-7948})
 #' 
 #' @keywords package
 #'
