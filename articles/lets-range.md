@@ -56,7 +56,6 @@ Each occurrence must have `scientificName`, `decimalLongitude`, and
 
 library(letsR)
 #> Loading required package: terra
-#> terra 1.9.50
 library(sf)
 #> Linking to GEOS 3.14.1, GDAL 3.12.2, PROJ 9.7.1; sf_use_s2() is TRUE
 

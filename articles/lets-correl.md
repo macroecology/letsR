@@ -78,7 +78,6 @@ ecological boundary.
 
 library(letsR)
 #> Loading required package: terra
-#> terra 1.9.50
 library(sf)
 #> Linking to GEOS 3.14.1, GDAL 3.12.2, PROJ 9.7.1; sf_use_s2() is TRUE
 
@@ -92,6 +91,10 @@ brazil <- rnaturalearth::ne_countries(
   scale = "medium",
   returnclass = "sf"
 )
+#> The rnaturalearthdata package needs to be installed.
+#> Installing the rnaturalearthdata package.
+#> Installing package into '/home/runner/work/_temp/Library'
+#> (as 'lib' is unspecified)
 
 candidate_sites <- expand.grid(
   longitude = seq(-74, -34, by = 2),
