@@ -50,22 +50,27 @@
 <h2 class="pkg-version" data-toc-text="6.1.0" id="letsr-610">letsR 6.1.0<a class="anchor" aria-label="anchor" href="#letsr-610"></a></h2>
 <div class="section level3">
 <h3 id="new-features-6-1-0">New features<a class="anchor" aria-label="anchor" href="#new-features-6-1-0"></a></h3>
-<ul><li>Added <code><a href="../reference/lets.range.html">lets.range()</a></code>, a new function for estimating species geographic ranges from occurrence records using DBSCAN spatial clustering and buffered concave hulls.</li>
-<li>The new function supports multiple spatial clusters per species, isolated occurrence records, flexible buffering distances, and geographic masking through intersection or exclusion.</li>
-<li>Added support for handling complex range geometries, including multipart polygons and ranges crossing the antimeridian.</li>
+<ul><li>Added <code><a href="../reference/lets.range.html">lets.range()</a></code>, a new function for estimating species geographic ranges from occurrence records using DBSCAN spatial clustering and buffered concave hulls. The new function supports multiple spatial clusters per species, isolated occurrence records, flexible buffering distances, and geographic masking through intersection or exclusion.</li>
+<li>Added <code><a href="../reference/lets.smooth.html">lets.smooth()</a></code>, a new function for estimating continuous patterns from incomplete observations in environmental, attribute, and other raster-based spaces using Gaussian kernel regression (Nadaraya-Watson estimator).</li>
 </ul></div>
 <div class="section level3">
 <h3 id="improvements-6-1-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-6-1-0"></a></h3>
 <ul><li>Improved geographic range estimation workflows by integrating occurrence-based range reconstruction with existing letsR functions.</li>
-<li>Added compatibility checks for GEOS versions required for concave hull construction.</li>
 <li>Improved the documentation of <code><a href="../reference/lets.correl.html">lets.correl()</a></code>, clarifying distance classes, statistical inference, and interpretation of Moran’s I correlograms.</li>
+<li>Introduced kernel-based interpolation to explore continuous biodiversity patterns in incompletely sampled environmental and attribute spaces, including applications to species richness and other numerical raster variables.</li>
+<li>Implemented automatic bandwidth selection in <code><a href="../reference/lets.smooth.html">lets.smooth()</a></code> by minimizing leave-one-out prediction errors, while retaining user-defined smoothing parameters.</li>
+<li>Improved the handling of missing raster values during smoothing by using normalized Gaussian weights rather than treating missing observations as zeros.</li>
+<li>Added support for restricting interpolated surfaces to geometric boundaries defined by observed cells, reducing extrapolation beyond the selected domain.</li>
+<li>Added unit tests for <code><a href="../reference/lets.smooth.html">lets.smooth()</a></code>, covering kernel interpolation, bandwidth optimization, raster geometry, hull restrictions, and input validation.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="documentation-6-1-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-6-1-0"></a></h3>
 <ul><li>Added a vignette demonstrating <code><a href="../reference/lets.range.html">lets.range()</a></code>, including spatial clustering, geographic masking, and integration with <code><a href="../reference/lets.presab.html">lets.presab()</a></code>.</li>
-<li>Added a methodological comparison of geographic range estimation using <code><a href="../reference/lets.range.html">lets.range()</a></code>, <code>alphahull</code>, and <code>rangeBuilder</code>.</li>
 <li>Added a vignette demonstrating <code><a href="../reference/lets.correl.html">lets.correl()</a></code> using climatic data and exploring autocorrelation across geographic, environmental, and phylogenetic distance matrices.</li>
+<li>Added a vignette exploring theoretical and observed ecological spaces and demonstrating how <code><a href="../reference/lets.smooth.html">lets.smooth()</a></code> can be used to estimate continuous patterns from incomplete sampling in environmental and attribute spaces.</li>
+<li>Included examples comparing different sampling intensities, automatic bandwidth selection, and geometric constraints on kernel-based interpolation.</li>
 <li>Expanded the discussion of the differences between occurrence-based range estimates and IUCN geographic range mapping approaches.</li>
+<li>Documented the assumptions and limitations of kernel-based interpolation, particularly regarding sampling coverage, extrapolation, and the interpretation of unobserved environmental and attribute combinations.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="dependencies-and-compatibility-6-1-0">Dependencies and compatibility<a class="anchor" aria-label="anchor" href="#dependencies-and-compatibility-6-1-0"></a></h3>
