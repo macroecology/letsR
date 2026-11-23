@@ -54,9 +54,26 @@ handling and analysis in macroecology. Methods in Ecology and Evolution.
 
 ## Author
 
+**Authors:**
+
 **Bruno Vilela**  
-(email: <bvilela@wustl.edu>; Website: <https://bvilela.weebly.com/>)
+Email: <bvilela.bv@gmail.com>  
+ORCID: <https://orcid.org/0000-0003-4072-0558>  
+Website: <https://brunovilela.github.io/>
 
 **Fabricio Villalobos**  
-(email: <fabricio.villalobos@gmail.com>; Website:
-<https://fabro.github.io>)
+Email: <fabricio.villalobos@gmail.com>  
+ORCID: <https://orcid.org/0000-0002-5230-2217>
+
+**Contributors:**
+
+Bruna M. Farina (<https://orcid.org/0000-0001-6506-3801>)  
+Ricardo Dobrovolski (<https://orcid.org/0000-0002-8775-5486>)  
+Sidney F. Gouveia (<https://orcid.org/0000-0003-4941-7440>)  
+José Alexandre F. Diniz-Filho
+(<https://orcid.org/0000-0002-0967-9684>)  
+Thiago F. Rangel (<https://orcid.org/0000-0002-2001-7382>)  
+Trevor S. Fristoe (<https://orcid.org/0000-0002-3894-8126>)  
+Carlos Calderón del Cid (<https://orcid.org/0000-0002-3897-4615>)  
+Marco Túlio Pacheco Coelho (<https://orcid.org/0000-0002-7831-3053>)  
+Catherine H. Graham (<https://orcid.org/0000-0001-9267-7948>)

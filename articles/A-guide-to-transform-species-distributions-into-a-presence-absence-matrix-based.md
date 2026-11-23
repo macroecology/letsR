@@ -7,7 +7,7 @@ the spatial distribution of species into a presence-absence matrix or a
 grid format. In this tutorial, we will guide you through a
 straightforward process using the R package
 [`letsR`](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.12401),
-authored by [Bruno Vilela](https://bvilela.weebly.com) and [Fabricio
+authored by [Bruno Vilela](https://bvilela.com) and [Fabricio
 Villalobos](https://fabro.github.io).
 
 ## IUCN shapefiles
