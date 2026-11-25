@@ -59,7 +59,7 @@ handling and analysis in macroecology. Methods in Ecology and Evolution.
 **Bruno Vilela**  
 Email: <bvilela.bv@gmail.com>  
 ORCID: <https://orcid.org/0000-0003-4072-0558>  
-Website: <https://brunovilela.github.io/>
+Website: <https://bvilela.com>
 
 **Fabricio Villalobos**  
 Email: <fabricio.villalobos@gmail.com>  
