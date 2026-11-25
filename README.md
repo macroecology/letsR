@@ -6,8 +6,7 @@
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/letsR)](https://CRAN.R-project.org/package=letsR)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/letsR)](https://github.com/r-hub/cranlogs.app)
 [![Total CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/letsR)](https://github.com/r-hub/cranlogs.app)
-[![codecov](https://codecov.io/github/BrunoVilela/letsR/graph/badge.svg?token=PAsk54dmff)](https://codecov.io/github/BrunoVilela/letsR)
-
+[![codecov](https://codecov.io/gh/BrunoVilela/letsR/graph/badge.svg?token=PAsk54dmff)](https://app.codecov.io/github/BrunoVilela/letsR)
 <!-- badges: end -->
 
 ## The package
